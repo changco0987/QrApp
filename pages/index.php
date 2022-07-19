@@ -31,22 +31,22 @@
                     <div class="carousel-item active">
                         <img class="d-block" src="../asset/b.jpg" alt="First slide">
                         <div class="carousel-caption">
-                            <h4>Announcement 1</h4>
-                            <p>...</p>
+                            <h4 id="announceHead1">Announcement 1</h4>
+                            <p id="context1" class="text-justify">...</p>
                         </div>
                     </div>
                     <div class="carousel-item">
                         <img class="d-block img-responsive" src="../asset/b.jpg" alt="Second slide">
                         <div class="carousel-caption">
-                            <h4>Announcement 2</h4>
-                            <p class="text-justify">adssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss</p>
+                            <h4 id="announceHead2">Announcement 2</h4>
+                            <p id="context2" class="text-justify">adssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss</p>
                         </div>
                     </div>
                     <div class="carousel-item">
                         <img class="d-block" src="../asset/b.jpg" alt="Third slide">
                         <div class="carousel-caption">
-                            <h4>Announcement 3</h4>
-                            <p>...</p>
+                            <h4 id="announceHead3">Announcement 3</h4>
+                            <p id="context3" class="text-justify">...</p>
                         </div>
                     </div>
                 </div>
@@ -63,15 +63,15 @@
 
         <div class="col-sm-4 col-xs-4 col-md-4 col-lg-4" style="background-color:gray;">
             <div class="row no-gutters d-flex pt-5 mt-5">
-                <div class="col-sm-12 col-xs-12 col-md-12 pt-5 mt-5 ">
+                <div class="col-sm-12 col-xs-12 col-md-12 pt-5 mt-5">
                     <h1 class="text-center">Choose one below</h1>
                 </div>
             </div>
 
             <div class="row no-gutters d-flex justify-content-center pt-5 mt-5">
                 <div class="col-sm-12 col-xs-12 col-md-12 pt-5 mt-5 d-flex justify-content-between">
-                    <button type="button" class="btn btn-lg  mx-5 " style="width: 200px; background-color:#3466AA; color:white;">Visitor</button>
-                    <button type="button" class="btn btn-lg  mx-5 " style="width: 200px; background-color:#114084; color:white;">Guardian</button>
+                    <button type="button" class="btn btn-lg ml-5 " style="width: 200px; background-color:#3466AA; color:white;">Visitor</button>
+                    <button type="button" class="btn btn-lg mr-5 ml-1" style="width: 200px; background-color:#114084; color:white;">Guardian</button>
                 </div>
             </div>
 
