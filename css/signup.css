@@ -1,0 +1,32 @@
+body{
+    background-color: #3466AA;
+    font-family: "Bahnschrift", Times, serif;
+}
+
+.container{
+    background-color: #f1f1f1; /* Fallback color */
+    color: black;
+    font-weight: bold;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    height: 450px;
+    width: 650px;
+    padding: 20px;
+    text-align: center;
+    border-radius: 15px;
+    box-shadow: -1px 1px 20px 6px black;
+    
+}
+
+.myRow{
+    position: absolute;
+    top: 30%;
+    left: 50%;
+    transform: translate(-50%, -30%);
+}
+
+.form-control{
+    border: 0;
+}
