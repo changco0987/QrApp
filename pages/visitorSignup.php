@@ -21,9 +21,9 @@
     <title>Entrance Monitoring sys - Sign up</title>
 </head>
 <body>
-    <div class="row myRow mt-5 pt-5">
+    <div class="row myRow mt-5 pt-5 mx-auto">
         <div class="col-sm-12 col-xs-12 col-md-12 col-lg-12 my-5 py-5">
-            <div class="container mt-5 pt-5 px-2 mx-2">
+            <div class="container px-2 mx-auto">
                 <div class="d-flex justify-content-center">
                     <form action="" method="post">
                         <div class="form-group">
