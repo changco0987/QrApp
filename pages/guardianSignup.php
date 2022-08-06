@@ -26,6 +26,7 @@
             <div class="container px-2 mx-auto">
                 <div class="d-flex justify-content-center">
                     <form action="" method="post">
+                        <input type="hidden" name="accType" value="guardian">
                         <div class="form-group">
                             <h1>Sign up</h1>
                             <hr style="height:2px;border-width:0;color:gray;background-color:gray">

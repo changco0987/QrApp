@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     <!-- CSS only -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
@@ -21,11 +21,12 @@
     <title>Entrance Monitoring sys - Sign up</title>
 </head>
 <body>
-    <div class="row myRow mt-5 pt-5 mx-auto">
-        <div class="col-sm-12 col-xs-12 col-md-12 col-lg-12 my-5 py-5">
+    <div class="row myRow mt-5 pt-5 px-2 mx-auto">
+        <div class="col col-sm-5 col-xs-5 col-md-12 col-lg-12 my-5 py-5 px-2 mx-auto">
             <div class="container px-2 mx-auto">
                 <div class="d-flex justify-content-center">
                     <form action="" method="post">
+                        <input type="hidden" name="accType" value="visitor">
                         <div class="form-group">
                             <h1>Sign up</h1>
                             <hr style="height:2px;border-width:0;color:gray;background-color:gray">

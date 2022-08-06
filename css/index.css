@@ -36,7 +36,7 @@ p{
     }
 }
 
-button:hover{
+#myBtn:hover{
 
     animation-name: hoverBtn;
     animation-duration: 2s;

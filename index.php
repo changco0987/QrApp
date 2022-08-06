@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     <!-- CSS only -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
@@ -74,9 +74,10 @@
                     <div class="col-sm-12 col-xs-12 col-md-12 pt-2 mt-2 d-flex">
                         <h5 class="ml-2 pl-2 ">Identify yourself as:</h5>
                     </div>
+                    <!--Visitor and Guardian Button to login-->
                     <div class="col-sm-12 col-xs-12 col-md-12 pt-2 mt-2 d-flex justify-content-center">
-                        <button type="button" class="btn btn-lg mx-auto pl-3" id="myBtn" style="width: 150px; background-color: #3466AA; color:white;" onclick="gotoVisitorLogin()">Visitor</button>
-                        <button type="button" class="btn btn-lg mx-auto pr-3" style="width: 150px; background-color:#114084; color:white;" onclick="gotoGuardianLogin()">Guardian</button>
+                        <a type="button" class="btn btn-lg mx-auto pl-3" id="myBtn" style="width: 150px; background-color: #3466AA; color:white;" href="pages/visitorLogin.php">Visitor</a>
+                        <a type="button" class="btn btn-lg mx-auto pr-3" id="myBtn" style="width: 150px; background-color:#114084; color:white;" href="pages/guardianLogin.php">Guardian</a>
                     </div>
                     <div class="col-sm-12 col-xs-12 col-md-12 pt-2 mt-2 pb-4 mb-5 d-flex justify-content-center">
 
