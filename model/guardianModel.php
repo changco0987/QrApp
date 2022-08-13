@@ -41,7 +41,7 @@
 
         public function setPassword($password)
         {
-            $this->password = $password;
+            $this->password = strtoupper(hash('sha256',$password));
         }
         
         public function getFirstname()

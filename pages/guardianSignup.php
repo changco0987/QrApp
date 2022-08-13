@@ -25,7 +25,7 @@
         <div class="col-sm-12 col-xs-12 col-md-12 col-lg-12 my-5 py-5">
             <div class="container px-2 mx-auto">
                 <div class="d-flex justify-content-center">
-                    <form action="" method="post">
+                    <form action="../controller/signup.php" method="post">
                         <input type="hidden" name="accType" value="guardian">
                         <div class="form-group">
                             <h1>Sign up</h1>
@@ -55,7 +55,7 @@
                             </div>
                             <div class="row pt-2 mt-2">
                                 <div class="col-sm-12 col-xs-12 col-md-12 col-lg-12">
-                                    <input type="email" class="form-control no-border" id="studentidTb" name="studentidTb" placeholder="Student Id" maxlength="80" required>
+                                    <input type="text" class="form-control no-border" id="studentidTb" name="studentidTb" placeholder="Student Id" maxlength="80" required>
                                 </div>
                             </div>
                             <div class="row pt-2 mt-2">

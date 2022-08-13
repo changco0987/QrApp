@@ -7,4 +7,100 @@
     include_once '../db/tb_visitor.php';//tb_visitor.php
     include_once '../model/visitorModel.php';//visitorModel.php
 
+    if(isset($_POST['accType']))
+    {
+        if($_POST['accType'] == 'visitor')
+        {
+            $data = new visitorModel();
+            $data->setUsername($_POST['usernameTb']);
+            $data->setPassword($_POST['passwordTb']);
+            //this will check the username if already used
+            $read = ReadAccountVisitor($conn,$data);
+            $row = mysqli_fetch_assoc($read);
+
+            if($row>1)
+            {
+                //Throws back to the signup page and show an error
+                echo '<script> localStorage.setItem("state",1); window.location = "javascript:history.go(-1)";</script>';
+            }
+            else
+            {
+                if(checkSpaces($data->getUsername(),$data->getPassword()) == false)
+                {
+                    $data->setFirstname($_POST['fnameTb']);
+                    $data->setLastname($_POST['lnameTb']);
+                    $data->setEmail($_POST['emailTb']);
+                    $data->setStatus('unlock');
+
+                    CreateAccountVisitor($conn,$data);
+                    header('Location: ../pages/visitorLogin.php');
+                }
+                else
+                {
+                    //Throws back to the signup page and show an error
+                    echo '<script> localStorage.setItem("state",1); window.location = "javascript:history.go(-1)";</script>';    
+                }
+            }
+        }
+        else if($_POST['accType'] == 'guardian')
+        {
+            $data = new guardianModel();
+            $data->setUsername($_POST['usernameTb']);
+            $data->setPassword($_POST['passwordTb']);
+            //this will check the username if already used
+            $read = ReadAccountGuardian($conn,$data);
+            $row = mysqli_fetch_assoc($read);
+
+            if($row>1)
+            {
+                //Throws back to the signup page and show an error
+                echo '<script> localStorage.setItem("state",1); window.location = "javascript:history.go(-1)";</script>';
+            }
+            else
+            {
+                if(checkSpaces($data->getUsername(),$data->getPassword()) == false)
+                {
+                    $data->setFirstname($_POST['fnameTb']);
+                    $data->setLastname($_POST['lnameTb']);
+                    $data->setEmail($_POST['emailTb']);
+                    $data->setStudentId($_POST['studentidTb']);
+                    $data->setStatus('unlock');
+
+                    CreateAccountGuardian($conn,$data);
+                    header('Location: ../pages/guardianLogin.php');
+                }
+                else
+                {
+                    //Throws back to the signup page and show an error
+                    echo '<script> localStorage.setItem("state",1); window.location = "javascript:history.go(-1)";</script>';    
+                }
+            }
+    
+        }
+    }
+    else
+    {
+        echo 'Error encountered in getting the element named="accType"';
+    }
+
+
+    //To check if there is spaces included in user input
+    function checkSpaces($username,$password)
+    {
+        if ($username == trim($username) && str_contains($username, ' ')) 
+        {
+            return true;
+        }        
+
+        if ($password == trim($password) && str_contains($password, ' ')) 
+        {
+            return true;
+        }  
+
+
+        return false;
+    }
+
+
+
 ?>

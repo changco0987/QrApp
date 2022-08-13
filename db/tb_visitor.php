@@ -6,7 +6,7 @@
     $data = new visitorModel();
     function CreateAccountVisitor($conn,$data)
     {
-        mysqli_query($conn,"INSERT INTO visitorTb(username,password,firstname,lastname,email,qr_ExDate,status,) values('".$data->getUsername()."','".$data->getPassword().
+        mysqli_query($conn,"INSERT INTO visitortb(username,password,firstname,lastname,email,qr_ExDate,status,) values('".$data->getUsername()."','".$data->getPassword().
         "','".$data->getFirstname()."','".$data->getLastname()."','".$data->getEmail()."','".$data->getQr_ExDate()."','".$data->getStatus()."')");
     }
 
@@ -14,11 +14,11 @@
     {
         if($data->getUsername()==null)
         {
-            $dbData = mysqli_query($conn,"SELECT * FROM visitorTb");
+            $dbData = mysqli_query($conn,"SELECT * FROM visitortb");
         }
         else
         {
-            $dbData = mysqli_query($conn,"SELECT * FROM visitorTb WHERE id = ".$data->getUsername());
+            $dbData = mysqli_query($conn,"SELECT * FROM visitortb WHERE username = '".$data->getUsername()."'");
         }
 
         return $dbData;
@@ -26,14 +26,14 @@
 
     function UpdateAccountVisitor($conn,$data)
     {
-        mysqli_query($conn,"UPDATE visitorTb set username ='".$data->getUsername()."', password ='".$data->getPassword()."', firstname ='". $data->getFirstname()
+        mysqli_query($conn,"UPDATE visitortb set username ='".$data->getUsername()."', password ='".$data->getPassword()."', firstname ='". $data->getFirstname()
         ."', lastname ='".$data->getLastname(). "', email ='". $data->getEmail() ."', qr_ExDate ='". $data->getQr_ExDate()."', status = '".
         $data->getStatus()."' where id = ". $data->getId());
     }
 
     function DeleteAccountVisitor($conn,$data)
     {
-        mysqli_query($conn,"DELETE from visitorTb where id = ".$data->getId());
+        mysqli_query($conn,"DELETE from visitortb where id = ".$data->getId());
     }
 
 ?>
