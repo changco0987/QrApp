@@ -5,8 +5,8 @@
     $data = new guardianModel();
     function CreateAccountGuardian($conn,$data)
     {
-        mysqli_query($conn,"INSERT INTO guardiantb(username,password,firstname,lastname,email,studentId,qr_ExDate,status) values('".$data->getUsername()."','".$data->getPassword().
-        "','".$data->getFirstname()."','".$data->getLastname()."','".$data->getEmail()."','".$data->getStudentId()."','".$data->getQr_ExDate()."','".$data->getStatus()."')");
+        mysqli_query($conn,"INSERT INTO guardiantb(username,password,firstname,lastname,email,studentId,status) values('".$data->getUsername()."','".$data->getPassword().
+        "','".$data->getFirstname()."','".$data->getLastname()."','".$data->getEmail()."','".$data->getStudentId()."','".$data->getStatus()."')");
     }
 
     function ReadAccountGuardian($conn,$data)
@@ -25,9 +25,17 @@
 
     function UpdateAccountGuardian($conn,$data)
     {
-        mysqli_query($conn,"UPDATE guardiantb set username ='".$data->getUsername()."', password ='".$data->getPassword()."', firstname ='". $data->getFirstname()
-        ."', lastname ='".$data->getLastname(). "', email ='". $data->getEmail(). "', studentId = '". $data->getStudentId(). "', qr_ExDate ='". $data->getQr_ExDate()."', status = '".
-        $data->getStatus()."' where id = ". $data->getId());
+        if($data->getQr_ExDate()==null)
+        {
+
+            mysqli_query($conn,"UPDATE guardiantb set username ='".$data->getUsername()."', password ='".$data->getPassword()."', firstname ='". $data->getFirstname()
+            ."', lastname ='".$data->getLastname(). "', email ='". $data->getEmail(). "', studentId = '". $data->getStudentId(). "', status = '".$data->getStatus()."' where id = ". $data->getId());
+        }
+        else
+        {
+            mysqli_query($conn,"UPDATE guardiantb set qr_ExDate ='".$data->getQr_ExDate()."'");
+        }
+
     }
 
     function DeleteAccountGuardian($conn,$data)

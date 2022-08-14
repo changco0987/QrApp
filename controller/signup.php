@@ -7,6 +7,9 @@
     include_once '../db/tb_visitor.php';//tb_visitor.php
     include_once '../model/visitorModel.php';//visitorModel.php
 
+
+
+    //This will be used by 2 page the visitor and guardian signup
     if(isset($_POST['accType']))
     {
         if($_POST['accType'] == 'visitor')
@@ -16,11 +19,11 @@
             $data->setPassword($_POST['passwordTb']);
             //this will check the username if already used
             $read = ReadAccountVisitor($conn,$data);
-            $row = mysqli_fetch_assoc($read);
+            $row = mysqli_num_rows($read);
 
             if($row>1)
             {
-                //Throws back to the signup page and show an error
+                //Throws back to the signup page and show "This account is already existed"
                 echo '<script> localStorage.setItem("state",1); window.location = "javascript:history.go(-1)";</script>';
             }
             else
@@ -49,11 +52,11 @@
             $data->setPassword($_POST['passwordTb']);
             //this will check the username if already used
             $read = ReadAccountGuardian($conn,$data);
-            $row = mysqli_fetch_assoc($read);
+            $row = mysqli_num_rows($read);
 
             if($row>1)
             {
-                //Throws back to the signup page and show an error
+                //Throws back to the signup page and show "This account is already existed"
                 echo '<script> localStorage.setItem("state",1); window.location = "javascript:history.go(-1)";</script>';
             }
             else

@@ -1,9 +1,12 @@
 <?php
-    /*session_start();
-    if(isset($_SESSION['id']))
+    session_start();
+    if(isset($_SESSION['username']))
     {
-        header('Location: pages/dashboard.php');
-    }*/
+        header("Location: userDashboard.php");
+    }
+    
+    date_default_timezone_set('Asia/Manila');
+
 
 ?>
 
@@ -30,14 +33,15 @@
 </head>
 <body>
 
-    <div class="row myRow mt-5 pt-5">
+    <div class="row myRow mt-5 pt-5 mx-auto">
         <div class="col-sm-12 col-xs-12 col-md-12 col-lg-12 my-5 py-5">
-            <div class="container px-2 mx-2">
+            <div class="container">
                 <div class="d-flex justify-content-center my-4">
                     <form action="controller/retrieveMember.php" method="post" enctype="multipart/form-data">
+                        <input type="hidden" name="accType" value="guardian">
                         <div class="form-group">
                             <center>
-                            <h2>Log In as guardian</h2>
+                            <h2>Log in as guardian</h2>
 
                             </center>
                             <hr style="height:2px; border-width:0;background-color: #3466AA">

@@ -2,12 +2,11 @@
     include_once 'connection.php';
     include_once '../model/visitorModel.php';
 
-
     $data = new visitorModel();
     function CreateAccountVisitor($conn,$data)
     {
-        mysqli_query($conn,"INSERT INTO visitortb(username,password,firstname,lastname,email,qr_ExDate,status,) values('".$data->getUsername()."','".$data->getPassword().
-        "','".$data->getFirstname()."','".$data->getLastname()."','".$data->getEmail()."','".$data->getQr_ExDate()."','".$data->getStatus()."')");
+        mysqli_query($conn,"INSERT INTO visitortb(username,password,firstname,lastname,email,status) values('".$data->getUsername()."','".$data->getPassword().
+        "','".$data->getFirstname()."','".$data->getLastname()."','".$data->getEmail()."','".$data->getStatus()."')");
     }
 
     function ReadAccountVisitor($conn,$data)
@@ -26,9 +25,16 @@
 
     function UpdateAccountVisitor($conn,$data)
     {
-        mysqli_query($conn,"UPDATE visitortb set username ='".$data->getUsername()."', password ='".$data->getPassword()."', firstname ='". $data->getFirstname()
-        ."', lastname ='".$data->getLastname(). "', email ='". $data->getEmail() ."', qr_ExDate ='". $data->getQr_ExDate()."', status = '".
-        $data->getStatus()."' where id = ". $data->getId());
+
+        if($data->getQr_ExDate()==null)
+        {
+            mysqli_query($conn,"UPDATE visitortb set username ='".$data->getUsername()."', password ='".$data->getPassword()."', firstname ='". $data->getFirstname()
+            ."', lastname ='".$data->getLastname(). "', email ='". $data->getEmail() ."', status = '".$data->getStatus()."' where id = ". $data->getId());
+        }
+        else
+        {
+            mysqli_query($conn,"UPDATE visitortb set qr_ExDate ='".$data->getQr_ExDate()."'");
+        }
     }
 
     function DeleteAccountVisitor($conn,$data)

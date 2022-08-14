@@ -25,7 +25,7 @@
         <div class="col col-sm-5 col-xs-5 col-md-12 col-lg-12 my-5 py-5 px-2 mx-auto">
             <div class="container px-2 mx-auto">
                 <div class="d-flex justify-content-center">
-                    <form action="" method="post">
+                    <form action="../controller/signup.php" method="post" enctype="multipart/form-data">
                         <input type="hidden" name="accType" value="visitor">
                         <div class="form-group">
                             <h1>Sign up</h1>

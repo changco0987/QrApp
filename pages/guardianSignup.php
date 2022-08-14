@@ -23,9 +23,9 @@
 <body>
     <div class="row myRow mt-5 pt-5 mx-auto">
         <div class="col-sm-12 col-xs-12 col-md-12 col-lg-12 my-5 py-5">
-            <div class="container px-2 mx-auto">
+            <div class="container">
                 <div class="d-flex justify-content-center">
-                    <form action="../controller/signup.php" method="post">
+                    <form action="../controller/signup.php" method="post" enctype="multipart/form-data">
                         <input type="hidden" name="accType" value="guardian">
                         <div class="form-group">
                             <h1>Sign up</h1>

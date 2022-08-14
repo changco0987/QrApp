@@ -29,7 +29,7 @@
 
         public function setUsername($username)
         {
-            $this->username = $username;
+            $this->username = strtolower($username);
         }
 
 
