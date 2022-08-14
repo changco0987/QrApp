@@ -36,7 +36,6 @@
                 UpdateAccountVisitor($conn,$data);
                 $qrData = array("title"=>$_SESSION['title'], "accType"=>$_SESSION['accType'], "username"=>$_SESSION['username'], "qr_ExDate"=>$_SESSION['qr_ExDate']);
                 echo json_encode(base64_encode(serialize($qrData)));
-                exit;
 
             }
 

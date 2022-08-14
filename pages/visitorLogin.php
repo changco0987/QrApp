@@ -73,7 +73,44 @@
             </div>
         </div>
     </div>
-    
+    <!-- Alert message container-->
+    <div id="alertBox" class="alert alert-danger alert-dismissible fade show" role="alert" style="display:block ;">
+        <strong id="errorMsg">Holy guacamole!</strong>
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
     
 </body>
+    <!--alert message script-->
+    <script>
+        document.getElementById('alertBox').style.display = 'none';
+        var successSignal = localStorage.getItem('state');
+
+        if(successSignal==1)
+        {
+            //if incorrect password
+            document.getElementById('alertBox').style.display = 'block';
+            document.getElementById('errorMsg').innerHTML = 'Incorrect password please try again';
+            console.log("okay");
+
+        }
+        else if(successSignal==2)
+        {
+            //if email is already taken
+            document.getElementById('alertBox').style.display = 'block';
+            document.getElementById('errorMsg').innerHTML = 'Sorry, this account is not existing';
+            console.log("okay");
+        }
+        else if(successSignal==3)
+        {
+            //if password doesn't matched
+            document.getElementById('alertBox').style.display = 'block';
+            document.getElementById('errorMsg').innerHTML = "Password doesn't match!";
+            console.log("okay");
+        }
+
+        //To make signl back to normmal and to prevent for the success page to appear every time the page was reload or refresh
+        localStorage.setItem('state',0);
+    </script>
 </html>

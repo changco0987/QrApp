@@ -33,7 +33,7 @@
         }
         else
         {
-            mysqli_query($conn,"UPDATE guardiantb set qr_ExDate ='".$data->getQr_ExDate()."'");
+            mysqli_query($conn,"UPDATE guardiantb set qr_ExDate ='".$data->getQr_ExDate()."' where username = '".$data->getUsername()."'");
         }
 
     }
