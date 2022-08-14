@@ -10,6 +10,7 @@
     $date->format('Y-m-d h:i a') . "\n";  //it i will give you 10:00:00
 
     $date2 = date('Y-m-d h:i a');
+    echo json_encode($date);
     if($date<$date2)
     {
         echo 'oo';

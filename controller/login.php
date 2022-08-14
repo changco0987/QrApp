@@ -29,6 +29,8 @@
                     $_SESSION['accType'] = $_POST['accType'];
                     $_SESSION['username'] = $row['username'];
 
+                    echo 'dbDate'. $row['qr_ExDate'].'<br>';
+                    echo 'currDate'. $currentDateTime;
                     //to check if the qr is expired
                     if($row['qr_ExDate']!=null && $row['qr_ExDate'] > $currentDateTime)
                     {
@@ -49,7 +51,7 @@
             }
 
           //Throws back to the login page and show "This account is not existed"
-          echo '<script> localStorage.setItem("state",1); window.location = "../pages/visitorLogin.php";</script>';
+          //echo '<script> localStorage.setItem("state",1); window.location = "../pages/visitorLogin.php";</script>';
           exit;
            
         }
@@ -69,7 +71,7 @@
                     $_SESSION['accType'] = $_POST['accType'];
                     $_SESSION['username'] = $row['username'];
 
-                    //to check if the qr is expired
+                    //to check if the qr is expired, this will pass in the userDashboard
                     if($row['qr_ExDate']!=null && $row['qr_ExDate'] > $currentDateTime)
                     {
                          $_SESSION['qr_ExDate'] = $row['qr_ExDate'];
@@ -87,7 +89,10 @@
                     echo '<script> localStorage.setItem("state",1); window.location = "../pages/visitorLogin.php";</script>';
                }
             }
-            
+
+           //Throws back to the login page and show "This account is not existed"
+          //echo '<script> localStorage.setItem("state",1); window.location = "../pages/visitorLogin.php";</script>';
+          exit;
     
         }
     }

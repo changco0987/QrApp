@@ -25,7 +25,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 
 
-    <script src="javascript/linkJs.js"></script>
+    <script src="../javascript/linked.js"></script>
     <link rel="stylesheet" href="../css/login.css">
 
     <link rel="icon" href="../asset/icon.png">
@@ -37,7 +37,7 @@
         <div class="col-sm-12 col-xs-12 col-md-12 col-lg-12 my-5 py-5">
             <div class="container">
                 <div class="d-flex justify-content-center my-4">
-                    <form action="controller/retrieveMember.php" method="post" enctype="multipart/form-data">
+                    <form action="../controller/login.php" method="post" enctype="multipart/form-data">
                         <input type="hidden" name="accType" value="guardian">
                         <div class="form-group">
                             <center>

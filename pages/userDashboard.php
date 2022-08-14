@@ -56,7 +56,7 @@
             http.setRequestHeader("Content-type","application/x-www-form-urlencoded");
             //This is the form input fields data
             var params = "titleTb=" + document.getElementById("titleTb").value+"&accTypeTb=" + document.getElementById("accTypeTb").value+"&usernameTb=" + document.getElementById("usernameTb").value+"&qr_ExDateTb=" + document.getElementById("qr_ExDateTb").value; // probably use document.getElementById(...).value
-
+            $('#noQR').hide();
             http.send(params);
             http.onload = function() {
                 var data = http.responseText;
@@ -99,7 +99,7 @@
                                 {
                                     //This means there is no previous qr generated for user
                                     ?>
-                                        <img src="../asset/noQr.png" class="rounded img-fluid img-thumbnail h-50 w-50">
+                                        <img src="../asset/noQr.png" class="rounded img-fluid img-thumbnail h-50 w-50" id="noQR">
                                     <?php
                                 }
                             

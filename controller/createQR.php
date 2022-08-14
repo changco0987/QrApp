@@ -16,7 +16,12 @@
         {
             $data = new visitorModel();
             $data->setUsername($_POST['usernameTb']);
-            $data->setQr_ExDate($_POST['qr_ExDateTb']);
+            
+            //This will compute the expiry date it will add +12hrs to current date
+            $date = new DateTime($_POST['qr_ExDateTb']);
+            $date->add(new DateInterval('PT12H'));
+            $expiryDate = $date->format('Y-m-d h:i a');
+            $data->setQr_ExDate($expiryDate);
 
             $result = ReadAccountVisitor($conn,$data);
             while($row = mysqli_fetch_assoc($result))
@@ -24,20 +29,12 @@
         
                 session_start();
                 $_SESSION['title'] = 'qremsystem';
-                $_SESSION['accTypeTb'] = $_POST['accTypeTb'];
+                $_SESSION['accType'] = $_POST['accTypeTb'];
                 $_SESSION['username'] = $row['username'];
-                $_SESSION['qr_ExDate'] = $row['qr_ExDate'];
+                $_SESSION['qr_ExDate'] = $data->getQr_ExDate();
 
-                //to check if the qr is expired
-                if($row['qr_ExDate']!=null && $row['qr_ExDate'] > $currentDateTime)
-                {
-                        $_SESSION['qr_ExDate'] = $row['qr_ExDate'];
-                }
-                else
-                {
-                        $_SESSION['qr_ExDate'] = null;
-                }
-                $qrData = array("title"=>$_SESSION['title'], "accType"=>$_SESSION['accTypeTb'], "username"=>$_SESSION['username'], "qr_ExDate"=>$_SESSION['qr_ExDate']);
+                UpdateAccountVisitor($conn,$data);
+                $qrData = array("title"=>$_SESSION['title'], "accType"=>$_SESSION['accType'], "username"=>$_SESSION['username'], "qr_ExDate"=>$_SESSION['qr_ExDate']);
                 echo json_encode(base64_encode(serialize($qrData)));
                 exit;
 
@@ -52,7 +49,12 @@
         {
             $data = new guardianModel();
             $data->setUsername($_POST['usernameTb']);
-            $data->setPassword($_POST['passwordTb']);
+
+            //This will compute the expiry date it will add +12hrs to current date
+            $date = new DateTime($_POST['qr_ExDateTb']);
+            $date->add(new DateInterval('PT12H'));
+            $expiryDate = $date->format('Y-m-d h:i a');
+            $data->setQr_ExDate($expiryDate);
 
             $result = ReadAccountGuardian($conn,$data);
             while($row = mysqli_fetch_assoc($result))
@@ -60,20 +62,12 @@
         
                 session_start();
                 $_SESSION['title'] = 'qremsystem';
-                $_SESSION['accTypeTb'] = $_POST['accTypeTb'];
+                $_SESSION['accType'] = $_POST['accTypeTb'];
                 $_SESSION['username'] = $row['username'];
-                $_SESSION['qr_ExDate'] = $row['qr_ExDate'];
+                $_SESSION['qr_ExDate'] = $data->getQr_ExDate();
 
-                //to check if the qr is expired
-                if($row['qr_ExDate']!=null && $row['qr_ExDate'] > $currentDateTime)
-                {
-                        $_SESSION['qr_ExDate'] = $row['qr_ExDate'];
-                }
-                else
-                {
-                        $_SESSION['qr_ExDate'] = null;
-                }
-                $qrData = array("title"=>$_SESSION['title'], "accType"=>$_SESSION['accTypeTb'], "username"=>$_SESSION['username'], "qr_ExDate"=>$_SESSION['qr_ExDate']);
+                UpdateAccountGuardian($conn,$data);
+                $qrData = array("title"=>$_SESSION['title'], "accType"=>$_SESSION['accType'], "username"=>$_SESSION['username'], "qr_ExDate"=>$_SESSION['qr_ExDate']);
                 echo json_encode(base64_encode(serialize($qrData)));
                 exit;
 
