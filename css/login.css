@@ -1,7 +1,7 @@
 body{
-    background-color: #ebedf0;
+    background-color: #3466AA;
+    font-family: "Bahnschrift", Times, serif;
 }
-
 
 #pageIcon{
     height: 80px;
@@ -9,6 +9,8 @@ body{
 
 
 .container{
+    background-color: #f1f1f1; /* Fallback color */
+    color: black;
     position: absolute;
     top: 50%;
     left: 50%;
@@ -16,7 +18,7 @@ body{
     border-radius: 15px;
     width: 400px;
     height: 300px;
-    box-shadow: 1px 1px 15px 3px #8a8a8a;
+    box-shadow: 1px 1px 15px 3px black;
 }
 
 .myRow{

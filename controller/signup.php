@@ -21,10 +21,10 @@
             $read = ReadAccountVisitor($conn,$data);
             $row = mysqli_num_rows($read);
 
-            if($row>1)
+            if($row>0)
             {
                 //Throws back to the signup page and show "This account is already existed"
-                echo '<script> localStorage.setItem("state",1); window.location = "javascript:history.go(-1)";</script>';
+                echo '<script> localStorage.setItem("state",1); window.location = "../pages/visitorSignup.php";</script>';
             }
             else
             {
@@ -40,8 +40,8 @@
                 }
                 else
                 {
-                    //Throws back to the signup page and show an error
-                    echo '<script> localStorage.setItem("state",1); window.location = "javascript:history.go(-1)";</script>';    
+                    //Throws back to the signup page and show an error saying, spaces is illegal
+                    echo '<script> localStorage.setItem("state",2); window.location = "../pages/visitorSignup.php";</script>';    
                 }
             }
         }
@@ -54,10 +54,10 @@
             $read = ReadAccountGuardian($conn,$data);
             $row = mysqli_num_rows($read);
 
-            if($row>1)
+            if($row>0)
             {
                 //Throws back to the signup page and show "This account is already existed"
-                echo '<script> localStorage.setItem("state",1); window.location = "javascript:history.go(-1)";</script>';
+                echo '<script> localStorage.setItem("state",1); window.location = "../pages/guardianSignup.php";</script>';
             }
             else
             {
@@ -74,8 +74,8 @@
                 }
                 else
                 {
-                    //Throws back to the signup page and show an error
-                    echo '<script> localStorage.setItem("state",1); window.location = "javascript:history.go(-1)";</script>';    
+                    //Throws back to the signup page and show an error saying, spaces is illegal
+                    echo '<script> localStorage.setItem("state",2); window.location = "../pages/guardianSignup.php";</script>';    
                 }
             }
     

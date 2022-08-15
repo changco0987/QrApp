@@ -99,6 +99,9 @@
                                 {
                                     //This means there is no previous qr generated for user
                                     ?>
+                                    <script>
+                                        console.log('null '+<?php echo $_SESSION['qr_ExDate'];?>);
+                                    </script>
                                         <img src="../asset/noQr.png" class="rounded img-fluid img-thumbnail h-50 w-50" id="noQR">
                                     <?php
                                 }
