@@ -10,7 +10,7 @@ body{
     position: absolute;
     top: 50%;
     left: 50%;
-    transform: translate(-50%, -50%);
+    transform: translateX(-50%) translateY(-50%);
     height: 450px;
     width: 650px;
     padding: 20px;
@@ -24,9 +24,15 @@ body{
     position: absolute;
     top: 30%;
     left: 50%;
-    transform: translate(-50%, -30%);
+    transform: translateX(-50%) translateY(-30%);
 }
 
 .form-control{
     border: 0;
 }
+
+
+@media screen and (max-height: 850px) {
+
+    .container {height: 475px; width: 400px;}
+  }

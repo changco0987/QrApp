@@ -20,7 +20,7 @@
             //This will compute the expiry date it will add +12hrs to current date
             $date = new DateTime($_POST['qr_ExDateTb']);
             $date->add(new DateInterval('PT12H'));
-            $expiryDate = $date->format('Y-m-d h:i a');
+            $expiryDate = $date->format('Y-m-d h:i:s');
             $data->setQr_ExDate($expiryDate);
 
             $result = ReadAccountVisitor($conn,$data);
@@ -52,13 +52,12 @@
             //This will compute the expiry date it will add +12hrs to current date
             $date = new DateTime($_POST['qr_ExDateTb']);
             $date->add(new DateInterval('PT12H'));
-            $expiryDate = $date->format('Y-m-d h:i a');
+            $expiryDate = $date->format('Y-m-d h:i:s a');
             $data->setQr_ExDate($expiryDate);
 
             $result = ReadAccountGuardian($conn,$data);
             while($row = mysqli_fetch_assoc($result))
             {
-        
                 session_start();
                 $_SESSION['title'] = 'qremsystem';
                 $_SESSION['accType'] = $_POST['accTypeTb'];

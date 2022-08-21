@@ -28,42 +28,57 @@
                     <form action="../controller/signup.php" method="post" enctype="multipart/form-data">
                         <input type="hidden" name="accType" value="guardian">
                         <div class="form-group">
-                            <h1>Sign up</h1>
+                            <center>
+                                <h1>Sign up</h1>
+                            </center>
                             <hr style="height:2px;border-width:0;color:gray;background-color:gray">
+                        </div>
+                        <div class="form-group">
                             <div class="row">
-                                <div class="col-sm-6 col-xs-6 col-md-6 col-lg-6  pt-2 mt-2">
+                                <div class="col-sm-12 col-xs-12 col-md-6 col-lg-6 pt-2 mt-1">
                                     <input type="text" class="form-control no-border" id="fnameTb" name="fnameTb" placeholder="First name" maxlength="50" required>
                                 </div>
-                                <div class="col-sm-6 col-xs-6 col-md-6 col-lg-6 pt-2 mt-2">
+                                <div class="col-sm-12 col-xs-12 col-md-6 col-lg-6 pt-2 mt-1">
                                     <input type="text" class="form-control" id="lnameTb" name="lnameTb" placeholder="Last name" maxlength="50" required>
                                 </div>
                             </div>
-                            <div class="row pt-2 mt-2">
+                        </div>
+                        <div class="form-group">
+                            <div class="row">
                                 <div class="col-sm-12 col-xs-12 col-md-12 col-lg-12">
                                     <input type="text" class="form-control" id="usernameTb" name="usernameTb" placeholder="Username" maxlength="20" required>
                                 </div>
                             </div>
-                            <div class="row pt-2 mt-2">
+                        </div>
+                        <div class="form-group">
+                            <div class="row">
                                 <div class="col-sm-12 col-xs-12 col-md-12 col-lg-12">
                                     <input type="password" class="form-control" id="passwordTb" name="passwordTb" placeholder="Password" minlength="8" maxlength="20" required>
                                 </div>
                             </div>
-                            <div class="row pt-2 mt-2">
+                        </div>
+                        <div class="form-group">
+                            <div class="row">
                                 <div class="col-sm-12 col-xs-12 col-md-12 col-lg-12">
                                     <input type="email" class="form-control no-border" id="emailTb" name="emailTb" placeholder="Email" maxlength="80" required>
                                 </div>
                             </div>
-                            <div class="row pt-2 mt-2">
+                        </div>
+                        <div class="form-group">
+                            <div class="row">
                                 <div class="col-sm-12 col-xs-12 col-md-12 col-lg-12">
                                     <input type="text" class="form-control no-border" id="studentidTb" name="studentidTb" placeholder="Student Id" maxlength="80" required>
                                 </div>
                             </div>
-                            <div class="row pt-2 mt-2">
+                        </div>
+                        <div class="form-group">
+                            <div class="row">
                                 <div class="col-sm-12 col-xs-12 col-md-12 col-lg-12">
-                                    <button type="submit" class="form-control btn btn-primary" id="submitBtn">Submit</button>
+                                    <button type="submit" class="form-control btn" id="submitBtn" style="background-color: #3466AA; color:white;">Submit</button>
                                 </div>
                             </div>
                         </div>
+                        
                     </form>
                 </div>
             </div>

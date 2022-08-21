@@ -27,6 +27,8 @@
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 
+    
+    <script src="https://code.jquery.com/jquery-1.8.3.min.js"></script>
     <!-- QR code javascript -->
     <script src="../javascript/qrcode.min.js"></script>
 
@@ -41,7 +43,9 @@
             if(qrcode === undefined)
             {
                 qrcode = new QRCode(document.getElementById('qrcode'), value);
-                //console.log(value);
+                $('#qrcode').show();
+                returnDate();
+                //console.log(qrDate);
             }
             else
             {
@@ -50,6 +54,7 @@
             }
         }
 
+        //To submit the form without reloading it
         function submitForm() {
             var http = new XMLHttpRequest();
             http.open("POST", "../controller/createQR.php", true);
@@ -60,10 +65,30 @@
             http.send(params);
             http.onload = function() {
                 var data = http.responseText;
+                returnDate();
                 generateQRCode(data);
-                console.log(data);
+                //console.log(params);
             }
         }
+
+        //To get the user  qr expiry date
+        function returnDate(){
+            var dateData = '<?php echo $_SESSION['accType']; ?>';
+            var username = '<?php echo $_SESSION['username']; ?>';
+            //alert('return sent'+ dateData);
+            $.ajax({
+                type: "POST",
+                url: "../controller/getDate.php",
+                data: {accTypeTb: dateData, usernameTb: username},
+                dataType:'text', //or HTML, JSON, etc.
+                success: function(response){
+                    //alert(response);
+                $('#qrIndicator').html(response);
+                    //echo what the server sent back...
+                }
+            });
+        }
+
     </script>
 
     <link rel="icon" href="../asset/icon.png">
@@ -77,19 +102,19 @@
                 <div>
                     <div class="form-group">
                         <center>
+                            <small id="qrIndicator"></small>
                             <div class="py-3 my-3" id="qrcode"></div>
                             <?php
                                                                 
                                 //This will get/generate the default qr code for the user if the user somehow have a previous qr code
 
-                                if($_SESSION['qr_ExDate']!=null)
+                                if($_SESSION['qr_ExDate']!==null)
                                 {
                                     $prevQRData = array("title"=>'qremsystem', "accType"=>$_SESSION['accType'], "username"=>$_SESSION['username'], "qr_ExDate"=>$_SESSION['qr_ExDate']);
-                                    $convertedQRData = json_encode(base64_encode(serialize($prevQRData)));
+                                    $convertedQRData = base64_encode(serialize($prevQRData));
                                     ?>
                                         <script>
-                                            var data = <?php echo $convertedQRData;?>;
-                                            console.log(data);
+                                            var data = <?php echo json_encode($convertedQRData);?>;
                                             generateQRCode(data);
                                         </script>
                                     <?php
@@ -99,10 +124,11 @@
                                 {
                                     //This means there is no previous qr generated for user
                                     ?>
-                                    <script>
-                                        console.log('null '+<?php echo $_SESSION['qr_ExDate'];?>);
-                                    </script>
                                         <img src="../asset/noQr.png" class="rounded img-fluid img-thumbnail h-50 w-50" id="noQR">
+                                        <script>
+                                            $('#qrIndicator').html('Your QR is already expired');
+                                            $('#qrcode').hide();
+                                        </script>
                                     <?php
                                 }
                             
@@ -119,7 +145,7 @@
                                 <input type="hidden" name="titleTb" id="titleTb" value="qremsystem">
                                 <input type="hidden" name="accTypeTb" id="accTypeTb" value="<?php echo $_SESSION['accType']; ?>">
                                 <input type="hidden" name="usernameTb" id="usernameTb" value="<?php echo $_SESSION['username']; ?>">
-                                <input type="hidden" name="qr_ExDateTb" id="qr_ExDateTb" value="<?php echo date('Y-m-d h:i a'); ?>">
+                                <input type="hidden" name="qr_ExDateTb" id="qr_ExDateTb" value="<?php echo date('Y-m-d h:i:s a'); ?>">
                                 <button type="submit" class="btn-success form-control btn" id="submitBtn" onclick="submitForm()">Generate QR code</button>
                             </div>
                         </div>
@@ -128,7 +154,7 @@
                         <div class="row pt-1 mt-1">
                             <div class="col-sm-12 col-xs-12 col-md-12 col-lg-12">
                                 <form action="pages/accSettings.php" method="post" enctype="multipart/form-data">
-                                    <button type="submit" class="form-control btn" id="submitBtn" style="background-color: #3466AA; color:white;">Account Settings</button>
+                                    <button type="submit" class="form-control btn" id="submitBtn" style="background-color: #3466AA; color:white;" disabled>Account Settings</button>
                                 </form>
                             </div>
                         </div>

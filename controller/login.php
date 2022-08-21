@@ -8,7 +8,7 @@
     include_once '../model/visitorModel.php';//visitorModel.php
 
     date_default_timezone_set('Asia/Manila'); 
-    $currentDateTime = date('Y-m-d h:i a');
+    $currentDateTime = date('Y-m-d h:i:s a');
 
     //This will be used by 2 page the visitor and guardian login
     if(isset($_POST['accType']))
@@ -29,16 +29,24 @@
                     $_SESSION['accType'] = $_POST['accType'];
                     $_SESSION['username'] = $row['username'];
 
-                    //to check if the qr is expired
-                    if($row['qr_ExDate']!=null && $row['qr_ExDate'] > $currentDateTime)
+                    //to format the datetime
+                    $formattedDate1 = strtotime($row['qr_ExDate']);
+                    $formattedDate2 = strtotime($currentDateTime);
+
+                    //to check if the qr(datetime) is expired
+                    if($row['qr_ExDate']!==null && $formattedDate1 > $formattedDate2)
                     {
                          $_SESSION['qr_ExDate'] = $row['qr_ExDate'];
+                         //echo 'not null';
                     }
                     else
                     {
                          $_SESSION['qr_ExDate'] = null;
+                         //echo 'null '.$row['qr_ExDate'];
                     }
+                    
 
+                    //$_SESSION['qr_ExDate'] = $row['qr_ExDate'];
                     header("Location: ../pages/userDashboard.php");
                     exit;
                }
@@ -70,16 +78,24 @@
                     $_SESSION['accType'] = $_POST['accType'];
                     $_SESSION['username'] = $row['username'];
 
-                    //to check if the qr is expired, this will pass in the userDashboard
-                    if($row['qr_ExDate']!=null && $row['qr_ExDate'] > $currentDateTime)
+
+                    //to format the datetime
+                    $formattedDate1 = strtotime($row['qr_ExDate']);
+                    $formattedDate2 = strtotime($currentDateTime);
+
+                    //to check if the qr(datetime) is expired
+                    if($row['qr_ExDate']!==null && $formattedDate1 > $formattedDate2)
                     {
                          $_SESSION['qr_ExDate'] = $row['qr_ExDate'];
+                         //echo 'not null';
                     }
                     else
                     {
                          $_SESSION['qr_ExDate'] = null;
+                         //echo 'null '.$row['qr_ExDate'];
                     }
-
+                    
+                    //$_SESSION['qr_ExDate'] = $row['qr_ExDate'];
                     header("Location: ../pages/userDashboard.php");
                     exit;
                }
@@ -99,6 +115,14 @@
     else
     {
         echo 'Error encountered in getting the element named="accType"';
+    }
+
+    //This will fix the format from mysql to php
+    function formatDatetime($datetime)
+     {
+          $newDate = new DateTime($datetime);
+          
+          return $newDate->format('Y-m-d h:i:s a');
     }
 
 
