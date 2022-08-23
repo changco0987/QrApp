@@ -3,7 +3,7 @@ body{
     font-family: "Bahnschrift", Times, serif;
 }
 
-.container{
+.containerForm{
     background-color: #f1f1f1; /* Fallback color */
     color: black;
     font-weight: bold;
@@ -34,5 +34,81 @@ body{
 
 @media screen and (max-height: 850px) {
 
-    .container {height: 475px; width: 400px;}
-  }
+    .containerForm {
+        background-color: #f1f1f1; /* Fallback color */
+        color: black;
+        font-weight: bold;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translateX(-50%) translateY(-50%);
+        height: 475px;
+        width: 400px;
+        padding: 20px;
+        text-align: center;
+        border-radius: 15px;
+        box-shadow: -1px 1px 20px 6px black;
+    }
+}
+
+@media screen and (max-width: 450px) {
+
+    .containerForm {
+        background-color: #f1f1f1; /* Fallback color */
+        color: black;
+        font-weight: bold;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translateX(-50%) translateY(-50%);
+        height: 475px;
+        width: 385px;
+        padding: 20px;
+        text-align: center;
+        border-radius: 15px;
+        box-shadow: -1px 1px 20px 6px black;
+    }
+}
+
+
+@media screen and (max-width: 360px) {
+
+    .containerForm {
+        background-color: #f1f1f1; /* Fallback color */
+        color: black;
+        font-weight: bold;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translateX(-50%) translateY(-50%);
+        height: 475px;
+        width: 350px;
+        padding: 20px;
+        text-align: center;
+        border-radius: 15px;
+        box-shadow: -1px 1px 20px 6px black;
+    }
+}
+
+
+@media screen and (max-width: 320px) {
+    body{  
+        background-color: #f1f1f1;
+        font-family: "Bahnschrift", Times, serif;
+    }
+    .containerForm {
+        background-color: #f1f1f1; /* Fallback color */
+        color: black;
+        font-weight: bold;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translateX(-50%) translateY(-50%);
+        height: 475px;
+        width: 320px;
+        padding: 20px;
+        text-align: center;
+        border-radius: 0px;
+        box-shadow: none;
+    }
+}

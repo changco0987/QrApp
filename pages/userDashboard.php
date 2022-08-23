@@ -45,7 +45,7 @@
                 qrcode = new QRCode(document.getElementById('qrcode'), value);
                 $('#qrcode').show();
                 returnDate();
-                //console.log(qrDate);
+                console.log(value);
             }
             else
             {
@@ -71,7 +71,7 @@
             }
         }
 
-        //To get the user  qr expiry date
+        //To get the user qr expiry date
         function returnDate(){
             var dateData = '<?php echo $_SESSION['accType']; ?>';
             var username = '<?php echo $_SESSION['username']; ?>';

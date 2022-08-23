@@ -20,7 +20,7 @@
             //This will compute the expiry date it will add +12hrs to current date
             $date = new DateTime($_POST['qr_ExDateTb']);
             $date->add(new DateInterval('PT12H'));
-            $expiryDate = $date->format('Y-m-d h:i:s');
+            $expiryDate = $date->format('Y-m-d h:i:s a');
             $data->setQr_ExDate($expiryDate);
 
             $result = ReadAccountVisitor($conn,$data);

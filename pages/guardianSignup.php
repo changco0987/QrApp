@@ -14,8 +14,124 @@
 
 
     <!--My CSS and JS-->
-    <link type="text/css" rel="stylesheet" href="../css/signup.css"/>
+    <!--link type="text/css" rel="stylesheet" href="../css/signup.css"/-->
     <!--script src="../javascript/index.js"></script-->
+    <style>
+        body{
+    background-color: #3466AA;
+    font-family: "Bahnschrift", Times, serif;
+}
+
+.containerForm{
+    background-color: #f1f1f1; /* Fallback color */
+    color: black;
+    font-weight: bold;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translateX(-50%) translateY(-50%);
+    height: 450px;
+    width: 650px;
+    padding: 20px;
+    text-align: center;
+    border-radius: 15px;
+    box-shadow: -1px 1px 20px 6px black;
+    
+}
+
+.myRow{
+    position: absolute;
+    top: 30%;
+    left: 50%;
+    transform: translateX(-50%) translateY(-30%);
+}
+
+.form-control{
+    border: 0;
+}
+
+
+@media screen and (max-height: 850px) {
+
+    .containerForm {
+        background-color: #f1f1f1; /* Fallback color */
+        color: black;
+        font-weight: bold;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translateX(-50%) translateY(-50%);
+        height: 475px;
+        width: 400px;
+        padding: 20px;
+        text-align: center;
+        border-radius: 15px;
+        box-shadow: -1px 1px 20px 6px black;
+    }
+}
+
+@media screen and (max-width: 450px) {
+
+    .containerForm {
+        background-color: #f1f1f1; /* Fallback color */
+        color: black;
+        font-weight: bold;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translateX(-50%) translateY(-50%);
+        height: 475px;
+        width: 385px;
+        padding: 20px;
+        text-align: center;
+        border-radius: 15px;
+        box-shadow: -1px 1px 20px 6px black;
+    }
+}
+
+
+@media screen and (max-width: 360px) {
+
+    .containerForm {
+        background-color: #f1f1f1; /* Fallback color */
+        color: black;
+        font-weight: bold;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translateX(-50%) translateY(-50%);
+        height: 475px;
+        width: 350px;
+        padding: 20px;
+        text-align: center;
+        border-radius: 15px;
+        box-shadow: -1px 1px 20px 6px black;
+    }
+}
+
+
+@media screen and (max-width: 320px) {
+    body{  
+        background-color: #f1f1f1;
+        font-family: "Bahnschrift", Times, serif;
+    }
+    .containerForm {
+        background-color: #f1f1f1; /* Fallback color */
+        color: black;
+        font-weight: bold;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translateX(-50%) translateY(-50%);
+        height: 475px;
+        width: 320px;
+        padding: 20px;
+        text-align: center;
+        border-radius: 0px;
+        box-shadow: none;
+    }
+}
+    </style>
 
     <link rel="icon" href="../asset/icon.png">
     <title>Entrance Monitoring sys - Sign up</title>
@@ -23,7 +139,7 @@
 <body>
     <div class="row myRow mt-5 pt-5 mx-auto">
         <div class="col-sm-12 col-xs-12 col-md-12 col-lg-12 my-5 py-5">
-            <div class="container">
+            <div class="containerForm">
                 <div class="d-flex justify-content-center">
                     <form action="../controller/signup.php" method="post" enctype="multipart/form-data">
                         <input type="hidden" name="accType" value="guardian">
