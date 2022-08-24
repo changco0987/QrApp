@@ -124,7 +124,7 @@
                                 {
                                     //This means there is no previous qr generated for user
                                     ?>
-                                        <img src="../asset/noQr.png" class="rounded img-fluid img-thumbnail h-50 w-50" id="noQR">
+                                        <div style="height: 256px; width: 256px; border-radius: 10px; border: solid white; background-color: whitesmoke;" id="noQR"></div>
                                         <script>
                                             $('#qrIndicator').html('Your QR is already expired');
                                             $('#qrcode').hide();
