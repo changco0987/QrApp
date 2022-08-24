@@ -7,9 +7,6 @@
     }
     
     date_default_timezone_set('Asia/Manila');
-
-
-
 ?>
 
 <!DOCTYPE html>
@@ -26,7 +23,8 @@
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-
+    <!--Bootstrap icon--> 
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.3/font/bootstrap-icons.css">
     
     <script src="https://code.jquery.com/jquery-1.8.3.min.js"></script>
     <!-- QR code javascript -->
@@ -137,7 +135,7 @@
                             <h2 id="usernameLb" name="usernameLb"><?php echo $_SESSION['username'];?></h2>
 
                         </center>
-                        <hr style="height:2px; border-width:0;background-color: #3466AA">
+                        <hr style="height:1px; border-width:0;background-color: #3466AA">
                     </div>
                     <div class="form-group">
                         <div class="row pt-2 mt-2">
@@ -146,24 +144,59 @@
                                 <input type="hidden" name="accTypeTb" id="accTypeTb" value="<?php echo $_SESSION['accType']; ?>">
                                 <input type="hidden" name="usernameTb" id="usernameTb" value="<?php echo $_SESSION['username']; ?>">
                                 <input type="hidden" name="qr_ExDateTb" id="qr_ExDateTb" value="<?php echo date('Y-m-d h:i:s a'); ?>">
-                                <button type="submit" class="btn-success form-control btn" id="submitBtn" onclick="submitForm()">Generate QR code</button>
+                                <button type="submit" class="btn-success form-control btn d-flex justify-content-center" id="submitBtn" onclick="submitForm()"><i class="bi bi bi-qr-code mr-2"></i>Generate QR code</button>
                             </div>
                         </div>
                     </div>
                     <div class="form-group">
                         <div class="row pt-1 mt-1">
                             <div class="col-sm-12 col-xs-12 col-md-12 col-lg-12">
-                                <form action="pages/accSettings.php" method="post" enctype="multipart/form-data">
-                                    <button type="submit" class="form-control btn" id="submitBtn" style="background-color: #3466AA; color:white;" disabled>Account Settings</button>
-                                </form>
+                                <button type="button" class="form-control btn  d-flex justify-content-center"  data-toggle="modal" data-target="#accSettModal" id="submitBtn" style="background-color: #3466AA; color:white;"><i class="bi bi bi-sliders mr-2"></i>Account Settings</button>
                             </div>
                         </div>
                     </div>
                     <div class="form-group">
                         <div class="row pt-1 mt-1">
                             <div class="col-sm-12 col-xs-12 col-md-12 col-lg-12">
-                                <a type="button" class="btn-danger form-control btn" id="submitBtn" href="../controller/wipedata.php">Sign out</a>
+                                <a type="button" class="btn-danger form-control btn d-flex justify-content-center" id="submitBtn" href="../controller/wipedata.php"><i class="bi bi-box-arrow-left mr-2"></i>Sign out</a>
                             </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+        <!-- Add department Btn Modal -->
+    <div class="modal fade" id="accSettModal" tabindex="-1" role="dialog" aria-labelledby="accSettModalTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="accSettModalLongTitle">Account Settings</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="row pt-1 mt-1">
+                        <div class="col-sm-6 col-xs-6 col-md-6 col-lg-6">
+                            <form action="accSettings.php" method="post" enctype="multipart/form-data">
+                                <div class="form-group">
+                                    <input type="hidden" id="accType" name="accType" value="<?php echo $_SESSION['accType'];?>">
+                                    <input type="hidden" id="usernameTb" name="usernameTb" value="<?php echo $_SESSION['username'];?>">
+                                    <button type="submit" class="form-control btn  d-flex justify-content-center"  data-toggle="modal" data-target="#accSettModal" id="submitBtn" style="background-color: #3466AA; color:white;"><i class="bi bi-pencil-square mr-2"></i>Change Info</button>
+                                </div>
+                            </form>
+                        </div>
+                        
+                        <div class="col-sm-6 col-xs-6 col-md-6 col-lg-6">
+                            <form action="../controller/addDept.php" method="post" enctype="multipart/form-data">
+                                <div class="form-group">
+                                    <input type="hidden" id="accType" name="accType" value="<?php echo $_SESSION['accType'];?>">
+                                    <input type="hidden" id="usernameTb" name="usernameTb" value="<?php echo $_SESSION['username'];?>">
+                                    <button type="submit" class="form-control btn btn-warning d-flex justify-content-center"  data-toggle="modal" data-target="#accSettModal" id="submitBtn"><i class="bi bi-clock-history mr-2"></i>Log in History</button>
+                                </div>
+                            </form>
                         </div>
                     </div>
                 </div>

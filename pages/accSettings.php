@@ -1,3 +1,35 @@
+<?php
+    include_once '../db/connection.php';
+
+    include_once '../model/visitorModel.php';
+    include_once '../db/tb_visitor.php';
+
+    include_once '../model/guardianModel.php';
+    include_once '../db/tb_guardian.php';
+
+    $row = array();
+    session_start();
+
+    if($_POST['accType'] == 'visitor')
+    {
+        $data = new visitorModel();
+        $data->setUsername($_POST['usernameTb']);
+
+        $result = ReadAccountVisitor($conn,$data);
+        $row =  mysqli_fetch_assoc($result);
+    }
+    else if($_POST['accType'] == 'guardian')
+    {
+        $data = new guardianModel();
+        $data->setUsername($_POST['usernameTb']);
+        
+        $result = ReadAccountGuardian($conn,$data);
+        $row =  mysqli_fetch_assoc($result);
+    }
+
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -132,79 +164,100 @@
     }
 }
     </style>
+
     <link rel="icon" href="../asset/icon.png">
-    <title>Entrance Monitoring sys - Sign up</title>
+    <title>Entrance Monitoring sys - Account Settings</title>
 </head>
 <body>
     <div class="row myRow mt-5 pt-5 mx-auto">
         <div class="col-sm-12 col-xs-12 col-md-12 col-lg-12 my-5 py-5">
             <div class="containerForm">
                 <div class="d-flex justify-content-center">
-                    <form action="../controller/signup.php" method="post" enctype="multipart/form-data">
-                        <input type="hidden" name="accType" value="visitor">
+                    <form action="../controller/updateInfo.php" method="post" enctype="multipart/form-data">
+                        <input type="hidden" name="accType" value="<?php echo $_POST['accType'];?>">
+                        <input type="hidden" name="statusTb" value="<?php echo $row['status'];?>">
+                        <input type="hidden" name="idTb" value="<?php echo $row['id'];?>">
                         <div class="form-group">
                             <center>
-                                <h1>Sign up</h1>
+                                <h1>Edit Info</h1>
                             </center>
                             <hr style="height:2px;border-width:0;color:gray;background-color:gray">
                         </div>
                         <div class="form-group">
                             <div class="row">
-                                <div class="col-sm-12 col-xs-12 col-md-6 col-lg-6 pt-2 mt-2">
-                                    <input type="text" class="form-control no-border" id="fnameTb" name="fnameTb" placeholder="First name" maxlength="50" required>
+                                <div class="col-sm-12 col-xs-12 col-md-6 col-lg-6 pt-2 mt-1">
+                                    <input type="text" class="form-control no-border" id="fnameTb" name="fnameTb" placeholder="First name" maxlength="50" required value="<?php echo $row['firstname'];?>">
                                 </div>
-                                <div class="col-sm-12 col-xs-12 col-md-6 col-lg-6 pt-2 mt-2">
-                                    <input type="text" class="form-control" id="lnameTb" name="lnameTb" placeholder="Last name" maxlength="50" required>
+                                <div class="col-sm-12 col-xs-12 col-md-6 col-lg-6 pt-2 mt-1">
+                                    <input type="text" class="form-control" id="lnameTb" name="lnameTb" placeholder="Last name" maxlength="50" required value="<?php echo $row['lastname'];?>">
                                 </div>
                             </div>
                         </div>
                         <div class="form-group">
-                            <div class="row pt-1 mt-1">
+                            <div class="row">
                                 <div class="col-sm-12 col-xs-12 col-md-12 col-lg-12">
-                                    <input type="text" class="form-control" id="usernameTb" name="usernameTb" placeholder="Username" maxlength="20" required>
+                                    <input type="text" class="form-control" id="usernameTb" name="usernameTb" placeholder="Username" maxlength="20" required value="<?php echo $row['username'];?>">
                                 </div>
                             </div>
                         </div>
                         <div class="form-group">
-                            <div class="row pt-1 mt-1">
+                            <div class="row">
                                 <div class="col-sm-12 col-xs-12 col-md-12 col-lg-12">
-                                    <input type="password" class="form-control" id="passwordTb" name="passwordTb" placeholder="Password" minlength="8" maxlength="20" required>
+                                    <input type="password" class="form-control" id="passwordTb" name="passwordTb" placeholder="Password" minlength="8" maxlength="20" required value="<?php echo $_SESSION['password'];?>">
+                                    <small class="text-danger">Leave password field empty if you do not want to change it</small>
                                 </div>
                             </div>
                         </div>
                         <div class="form-group">
-                            <div class="row pt-1 mt-1">
+                            <div class="row">
                                 <div class="col-sm-12 col-xs-12 col-md-12 col-lg-12">
-                                    <input type="email" class="form-control no-border" id="emailTb" name="emailTb" placeholder="Email" maxlength="80" required>
+                                    <input type="email" class="form-control no-border" id="emailTb" name="emailTb" placeholder="Email" maxlength="80" required value="<?php echo $row['email'];?>">
                                 </div>
                             </div>
                         </div>
+                        
+                        <div class="form-group" id="studentIdDiv" style="display: none;">
+                            <div class="row">
+                                <div class="col-sm-12 col-xs-12 col-md-12 col-lg-12">
+                                    <input type="text" class="form-control no-border" id="studentidTb" name="studentidTb" placeholder="Student Id" maxlength="80" required value="<?php echo $row['studentId'];?>">
+                                </div>
+                            </div>
+                        </div>
+                        <?php 
+                              if($_POST['accType'] == 'guardian')
+                              {
+                                ?>
+                                <script>$('#studentIdDiv').show();</script>
+                                <?php
+                              }
+                        ?>
                         <div class="form-group">
-                            <div class="row pt-1 mt-1">
+                            <div class="row">
                                 <div class="col-sm-12 col-xs-12 col-md-12 col-lg-12">
                                     <button type="submit" class="form-control btn" id="submitBtn" style="background-color: #3466AA; color:white;">Submit</button>
                                 </div>
                             </div>
                         </div>
+                        
                     </form>
                 </div>
             </div>
         </div>
+
     </div>
     <!--Footer Section-->
     <div class="row">
         <footer class=" text-center text-lg-end fixed-bottom">
-            <div class="d-flex justify-content-center p-3" style="background-color:#9C9C9C;">
+            <!--div class="d-flex justify-content-center p-3" style="background-color:#9C9C9C;">
                 <h5><u><a class="text-secondary px-2" href="../page/signup.php" target="_blank">Contacts</a></u></h5>
                 <h5><u><a class="text-secondary px-2" href="../page/signup.php" target="_blank">School History</a></u></h5>
                 <h5><u><a class="text-secondary px-2" href="../page/signup.php" target="_blank">About</a></u></h5>
-            </div>
+            </div-->
         </footer>
     </div>
-
     <!-- Alert message container-->
     <div id="alertBox" class="alert alert-danger alert-dismissible fade show" role="alert" style="display:block ;">
-        <strong id="errorMsg">Holy guacamole!</strong>
+        <strong id="errorMsg"></strong>
         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
             <span aria-hidden="true">&times;</span>
         </button>

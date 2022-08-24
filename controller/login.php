@@ -28,6 +28,7 @@
                     session_start();
                     $_SESSION['accType'] = $_POST['accType'];
                     $_SESSION['username'] = $row['username'];
+                    $_SESSION['password'] = $_POST['passwordTb'];
 
                     //to format the datetime
                     $formattedDate1 = strtotime($row['qr_ExDate']);
@@ -77,6 +78,7 @@
                     session_start();
                     $_SESSION['accType'] = $_POST['accType'];
                     $_SESSION['username'] = $row['username'];
+                    $_SESSION['password'] = $_POST['passwordTb'];
 
 
                     //to format the datetime

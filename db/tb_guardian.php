@@ -30,6 +30,9 @@
 
             mysqli_query($conn,"UPDATE guardiantb set username ='".$data->getUsername()."', password ='".$data->getPassword()."', firstname ='". $data->getFirstname()
             ."', lastname ='".$data->getLastname(). "', email ='". $data->getEmail(). "', studentId = '". $data->getStudentId(). "', status = '".$data->getStatus()."' where id = ". $data->getId());
+        
+
+
         }
         else
         {

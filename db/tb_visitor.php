@@ -28,8 +28,11 @@
 
         if($data->getQr_ExDate()==null)
         {
+
             mysqli_query($conn,"UPDATE visitortb set username ='".$data->getUsername()."', password ='".$data->getPassword()."', firstname ='". $data->getFirstname()
             ."', lastname ='".$data->getLastname(). "', email ='". $data->getEmail() ."', status = '".$data->getStatus()."' where id = ". $data->getId());
+            
+
         }
         else
         {

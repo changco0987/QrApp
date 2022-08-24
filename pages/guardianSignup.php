@@ -19,7 +19,7 @@
     <style>
         body{
     background-color: #3466AA;
-    font-family: "Bahnschrift", Times, serif;
+    font-family: Comic Sans MS, Comic Sans, cursive;
 }
 
 .containerForm{
