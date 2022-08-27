@@ -53,6 +53,10 @@
     background-color: #3466AA;
     font-family: Comic Sans MS, Comic Sans;
 }
+label{
+    font-size: 12px;
+    color: #234471;
+}
 
 .containerForm{
     background-color: #f1f1f1; /* Fallback color */
@@ -62,7 +66,7 @@
     top: 50%;
     left: 50%;
     transform: translateX(-50%) translateY(-50%);
-    height: 450px;
+    height: 650px;
     width: 650px;
     padding: 20px;
     text-align: center;
@@ -93,7 +97,7 @@
         top: 50%;
         left: 50%;
         transform: translateX(-50%) translateY(-50%);
-        height: 475px;
+        height: 665px;
         width: 400px;
         padding: 20px;
         text-align: center;
@@ -112,8 +116,9 @@
         top: 50%;
         left: 50%;
         transform: translateX(-50%) translateY(-50%);
-        height: 475px;
+        height: 740px;
         width: 385px;
+        margin-top: 20px;
         padding: 20px;
         text-align: center;
         border-radius: 15px;
@@ -132,8 +137,9 @@
         top: 50%;
         left: 50%;
         transform: translateX(-50%) translateY(-50%);
-        height: 475px;
+        height: 725px;
         width: 350px;
+        margin-top: 20px;
         padding: 20px;
         text-align: center;
         border-radius: 15px;
@@ -155,8 +161,9 @@
         top: 50%;
         left: 50%;
         transform: translateX(-50%) translateY(-50%);
-        height: 475px;
+        height: 675px;
         width: 320px;
+        margin-top: 20px;
         padding: 20px;
         text-align: center;
         border-radius: 0px;
@@ -185,46 +192,53 @@
                         </div>
                         <div class="form-group">
                             <div class="row">
-                                <div class="col-sm-12 col-xs-12 col-md-6 col-lg-6 pt-2 mt-1">
+                                <div class="col-sm-12 col-xs-12 col-md-6 col-lg-6 pt-2 mt-2">
+                                    <label class="d-flex align-items-start" for="fnameTb">First name</label>
                                     <input type="text" class="form-control no-border" id="fnameTb" name="fnameTb" placeholder="First name" maxlength="50" required value="<?php echo $row['firstname'];?>">
                                 </div>
-                                <div class="col-sm-12 col-xs-12 col-md-6 col-lg-6 pt-2 mt-1">
+                                <div class="col-sm-12 col-xs-12 col-md-6 col-lg-6 pt-2 mt-2">
+                                    <label class="d-flex align-items-start" for="lnameTb">Last name</label> 
                                     <input type="text" class="form-control" id="lnameTb" name="lnameTb" placeholder="Last name" maxlength="50" required value="<?php echo $row['lastname'];?>">
                                 </div>
                             </div>
                         </div>
                         <div class="form-group">
-                            <div class="row">
+                            <div class="row pt-1 mt-1">
                                 <div class="col-sm-12 col-xs-12 col-md-12 col-lg-12">
-                                    <input type="text" class="form-control" id="usernameTb" name="usernameTb" placeholder="Username" maxlength="20" required value="<?php echo $row['username'];?>">
+                                    <label class="d-flex align-items-start" for="usernameTb">Username</label>
+                                    <input type="text" class="form-control" id="usernameTb" name="usernameTb" placeholder="Ex. Marie0123" maxlength="20" required value="<?php echo $row['username'];?>">
                                 </div>
                             </div>
                         </div>
                         <div class="form-group">
-                            <div class="row">
+                            <div class="row pt-1 mt-1">
                                 <div class="col-sm-12 col-xs-12 col-md-12 col-lg-12">
-                                    <input type="password" class="form-control" id="passwordTb" name="passwordTb" placeholder="Password" minlength="8" maxlength="20" required value="<?php echo $_SESSION['password'];?>">
+                                    <label class="d-flex align-items-start" for="passwordTb">Password</label>
+                                    <input type="password" class="form-control" id="passwordTb" name="passwordTb" placeholder="Ex. CMarie123" minlength="8" maxlength="20" required value="<?php echo $_SESSION['password'];?>">
                                 </div>
                             </div>
                         </div>
                         <div class="form-group">
-                            <div class="row">
+                            <div class="row pt-1 mt-1">
                                 <div class="col-sm-12 col-xs-12 col-md-12 col-lg-12">
-                                    <input type="text" class="form-control no-border" id="addressTb" name="addressTb" placeholder="Address" maxlength="90" required value="<?php echo $row['address'];?>">
+                                    <label class="d-flex align-items-start" for="addressTb">Address</label>
+                                    <input type="text" class="form-control no-border" id="addressTb" name="addressTb" placeholder="Ex. 2123 home st." maxlength="90" required value="<?php echo $row['address'];?>">
                                 </div>
                             </div>
                         </div>
                         <div class="form-group">
-                            <div class="row">
+                            <div class="row pt-1 mt-1">
                                 <div class="col-sm-12 col-xs-12 col-md-12 col-lg-12">
-                                    <input type="text" class="form-control no-border" id="contactTb" name="contactTb" placeholder="Ex. 0912345678901" maxlength="12" required value="<?php echo $row['contact_number'];?>">
+                                    <label class="d-flex align-items-start" for="contactTb">Contact Number</label>
+                                    <input type="text" class="form-control no-border" id="contactTb" name="contactTb" placeholder="Ex. 0912345678901" maxlength="11" required value="<?php echo $row['contact_number'];?>">
                                 </div>
                             </div>
                         </div>
                         <div class="form-group" id="studentIdDiv" style="display: none;">
                             <div class="row">
                                 <div class="col-sm-12 col-xs-12 col-md-12 col-lg-12">
-                                    <input type="text" class="form-control no-border" id="studentidTb" name="studentidTb" placeholder="Student Id" maxlength="80" required value="<?php echo $row['studentId'];?>">
+                                    <label class="d-flex align-items-start" for="studentidTb">Student ID</label>
+                                    <input type="text" class="form-control no-border" id="studentidTb" name="studentidTb" placeholder="Ex. 012-3456-7890" maxlength="80" required value="<?php echo $row['studentId'];?>">
                                 </div>
                             </div>
                         </div>

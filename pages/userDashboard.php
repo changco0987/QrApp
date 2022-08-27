@@ -151,7 +151,7 @@
                     <div class="form-group">
                         <div class="row pt-1 mt-1">
                             <div class="col-sm-12 col-xs-12 col-md-12 col-lg-12">
-                                <button type="button" class="form-control btn  d-flex justify-content-center"  data-toggle="modal" data-target="#accSettModal" id="submitBtn" style="background-color: #3466AA; color:white;"><i class="bi bi bi-sliders mr-2"></i>Account Settings</button>
+                                <button type="button" class="form-control btn  d-flex justify-content-center" data-toggle="modal" data-target="#accSettModal" id="submitBtn" style="background-color: #3466AA; color:white;"><i class="bi bi bi-sliders mr-2"></i>Account Settings</button>
                             </div>
                         </div>
                     </div>

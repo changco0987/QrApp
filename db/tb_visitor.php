@@ -5,8 +5,9 @@
     $data = new visitorModel();
     function CreateAccountVisitor($conn,$data)
     {
+        $address = mysqli_real_escape_string($conn,$data->getAddress());
         mysqli_query($conn,"INSERT INTO visitortb(username,password,firstname,lastname,address,contact_number,status) values('".$data->getUsername()."','".$data->getPassword().
-        "','".$data->getFirstname()."','".$data->getLastname()."','".$data->getAddress()."','".$data->getContact_number()."','".$data->getStatus()."')");
+        "','".$data->getFirstname()."','".$data->getLastname()."','".$address."','".$data->getContact_number()."','".$data->getStatus()."')");
     }
 
     function ReadAccountVisitor($conn,$data)
@@ -26,11 +27,12 @@
     function UpdateAccountVisitor($conn,$data)
     {
 
+        $address = mysqli_real_escape_string($conn,$data->getAddress());
         if($data->getQr_ExDate()==null)
         {
 
             mysqli_query($conn,"UPDATE visitortb set username ='".$data->getUsername()."', password ='".$data->getPassword()."', firstname ='". $data->getFirstname()
-            ."', lastname ='".$data->getLastname(). "', address ='". $data->getAddress(). "',contact_number ='". $data->getContact_number()."', status = '".$data->getStatus()."' where id = ". $data->getId());
+            ."', lastname ='".$data->getLastname(). "', address ='". $address. "',contact_number ='". $data->getContact_number()."', status = '".$data->getStatus()."' where id = ". $data->getId());
             
 
         }
