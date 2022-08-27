@@ -215,6 +215,7 @@ label{
                                 <div class="col-sm-12 col-xs-12 col-md-12 col-lg-12">
                                     <label class="d-flex align-items-start" for="passwordTb">Password</label>
                                     <input type="password" class="form-control" id="passwordTb" name="passwordTb" placeholder="Ex. CMarie123" minlength="8" maxlength="20" required value="<?php echo $_SESSION['password'];?>">
+                                    <small class="d-flex align-items-start" style="color:red;">Use at least 8 or up to 15 characters for your password </small>
                                 </div>
                             </div>
                         </div>

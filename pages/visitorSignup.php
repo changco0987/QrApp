@@ -11,7 +11,8 @@
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-
+    <!--Bootstrap icon--> 
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.3/font/bootstrap-icons.css">
 
     <!--My CSS and JS-->
     <!--link type="text/css" rel="stylesheet" href="../css/signup.css"/-->
@@ -81,12 +82,11 @@ label{
         color: black;
         font-weight: bold;
         position: absolute;
-        top: 50%;
+        top: 45%;
         left: 50%;
-        transform: translateX(-50%) translateY(-50%);
-        height: 675px;
+        transform: translateX(-50%) translateY(-45%);
+        height: 695px;
         width: 385px;
-        margin-top: 20px;
         padding: 20px;
         text-align: center;
         border-radius: 15px;
@@ -102,12 +102,11 @@ label{
         color: black;
         font-weight: bold;
         position: absolute;
-        top: 50%;
+        top: 45%;
         left: 50%;
-        transform: translateX(-50%) translateY(-50%);
-        height: 675px;
+        transform: translateX(-50%) translateY(-45%);
+        height: 775px;
         width: 350px;
-        margin-top: 20px;
         padding: 20px;
         text-align: center;
         border-radius: 15px;
@@ -126,13 +125,12 @@ label{
         color: black;
         font-weight: bold;
         position: absolute;
-        top: 50%;
+        top: 40%;
         left: 50%;
-        transform: translateX(-50%) translateY(-50%);
-        height: 765px;
+        transform: translateX(-50%) translateY(-40%);
+        height: 785px;
         width: 320px;
-        margin-top: 20px;
-        padding: 55px;
+        padding: 35px;
         text-align: center;
         border-radius: 0px;
         box-shadow: none;
@@ -149,9 +147,9 @@ label{
                 <div class="d-flex justify-content-center">
                     <form action="../controller/signup.php" method="post" enctype="multipart/form-data">
                         <input type="hidden" name="accType" value="visitor">
-                        <div class="form-group">
+                        <div class="form-group mt-2 pt-2">
                             <center>
-                                <h1>Sign up</h1>
+                                <h1>Sign up <small style="font-size: 20px; font-weight:bold; color:#3466AA;">as visitor</small></h1>
                             </center>
                             <hr style="height:2px;border-width:0;color:gray;background-color:gray">
                         </div>
@@ -180,6 +178,7 @@ label{
                                 <div class="col-sm-12 col-xs-12 col-md-12 col-lg-12">
                                     <label class="d-flex align-items-start" for="passwordTb">Password</label>
                                     <input type="password" class="form-control" id="passwordTb" name="passwordTb" placeholder="Ex. CMarie123" minlength="8" maxlength="20" required>
+                                    <small class="d-flex align-items-start" style="color:red;">Use at least 8 or up to 15 characters for your password </small>
                                 </div>
                             </div>
                         </div>
@@ -192,7 +191,7 @@ label{
                             </div>
                         </div>
                         <div class="form-group">
-                            <div class="row">
+                            <div class="row pt-1 mt-1">
                                 <div class="col-sm-12 col-xs-12 col-md-12 col-lg-12">
                                     <label class="d-flex align-items-start" for="contactTb">Contact Number</label>
                                     <input type="text" class="form-control no-border" id="contactTb" name="contactTb" placeholder="Ex. 0912345678901" maxlength="11" required>
@@ -200,7 +199,7 @@ label{
                             </div>
                         </div>
                         <div class="form-group">
-                            <div class="row pt-1 mt-1">
+                            <div class="row pb-5 mb-5">
                                 <div class="col-sm-12 col-xs-12 col-md-12 col-lg-12">
                                     <button type="submit" class="form-control btn" id="submitBtn" style="background-color: #3466AA; color:white;">Submit</button>
                                 </div>
@@ -212,14 +211,15 @@ label{
         </div>
     </div>
     <!--Footer Section-->
-    <div class="row">
-        <footer class=" text-center text-lg-end fixed-bottom">
-            <div class="d-flex justify-content-center p-3" style="background-color:#9C9C9C;">
-                <h5><u><a class="text-secondary px-2" href="../page/signup.php" target="_blank">Contacts</a></u></h5>
-                <h5><u><a class="text-secondary px-2" href="../page/signup.php" target="_blank">School History</a></u></h5>
-                <h5><u><a class="text-secondary px-2" href="../page/signup.php" target="_blank">About</a></u></h5>
-            </div>
-        </footer>
+    <div class="row no-gutters">
+    <footer class=" text-center text-lg-end fixed-bottom">
+        <div class="d-flex justify-content-center p-3" style="background-color: #E78F14;">
+            <h5><a type="button" href="https://www.facebook.com/batangas.sti.edu/" target="_blank" class="mx-2"><i class="bi bi-facebook"></i></a></h5>
+            <h5><a type="button" href="mailto:richardjohn.encarnacion@batangas.sti.edu" target="_blank" class="mx-2"><i class="bi bi-envelope-fill"></i></a></h5>
+            <h5><a type="button" href="https://maps.google.com/?q=STI College - Batangas, 865 National Road, Batangas, 4200 Batangas" target="_blank" class="mx-2"><i class="bi bi-geo-alt-fill"></i></a></h5>
+            <h5><a type="button" href="https://www.sti.edu/campuses-details.asp?campus_id=BAT" target="_blank" class="mx-2"><i class="bi bi-info-square-fill"></i></a></h5>
+        </div>
+    </footer>
     </div>
 
     <!-- Alert message container-->

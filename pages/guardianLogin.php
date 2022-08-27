@@ -29,7 +29,7 @@
     <link rel="stylesheet" href="../css/login.css">
 
     <link rel="icon" href="../asset/icon.png">
-    <title>WilServ - Login</title>
+    <title>Entrance Monitoring sys - Login</title>
 </head>
 <body>
 

@@ -90,7 +90,7 @@
     </script>
 
     <link rel="icon" href="../asset/icon.png">
-    <title>Dashboard</title>
+    <title>Entrance Monitoring sys - Dashboard</title>
 </head>
 <body>
     
