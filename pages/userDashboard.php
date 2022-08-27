@@ -167,7 +167,7 @@
         </div>
     </div>
 
-        <!-- Add department Btn Modal -->
+        <!-- Account Settings Modal -->
     <div class="modal fade" id="accSettModal" tabindex="-1" role="dialog" aria-labelledby="accSettModalTitle" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
@@ -194,7 +194,7 @@
                                 <div class="form-group">
                                     <input type="hidden" id="accType" name="accType" value="<?php echo $_SESSION['accType'];?>">
                                     <input type="hidden" id="usernameTb" name="usernameTb" value="<?php echo $_SESSION['username'];?>">
-                                    <button type="submit" class="form-control btn btn-warning d-flex justify-content-center"  data-toggle="modal" data-target="#accSettModal" id="submitBtn"><i class="bi bi-clock-history mr-2"></i>Log in History</button>
+                                    <button type="submit" class="form-control btn btn-warning d-flex justify-content-center"  data-toggle="modal" data-target="#accSettModal" id="submitBtn" disabled><i class="bi bi-clock-history mr-2"></i>Log in History</button>
                                 </div>
                             </form>
                         </div>

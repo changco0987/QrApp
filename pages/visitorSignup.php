@@ -19,7 +19,7 @@
     <style>
         body{
     background-color: #3466AA;
-    font-family: Comic Sans MS, Comic Sans, cursive;
+    font-family: Comic Sans MS, Comic Sans;
 }
 
 .containerForm{
@@ -175,7 +175,14 @@
                         <div class="form-group">
                             <div class="row pt-1 mt-1">
                                 <div class="col-sm-12 col-xs-12 col-md-12 col-lg-12">
-                                    <input type="email" class="form-control no-border" id="emailTb" name="emailTb" placeholder="Email" maxlength="80" required>
+                                    <input type="text" class="form-control no-border" id="addressTb" name="addressTb" placeholder="Address" maxlength="90" required>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="row">
+                                <div class="col-sm-12 col-xs-12 col-md-12 col-lg-12">
+                                    <input type="text" class="form-control no-border" id="contactTb" name="contactTb" placeholder="Ex. 0912345678901" maxlength="12" required>
                                 </div>
                             </div>
                         </div>

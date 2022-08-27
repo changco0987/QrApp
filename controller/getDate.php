@@ -41,7 +41,7 @@
             while($row = mysqli_fetch_assoc($result))
             {
         
-                echo json_encode('Expires on: '.date("m/d/Y g:i A", strtotime($row['qr_ExDate'])));
+                echo json_encode('Expires on: '.date("m-d-Y g:i a", strtotime($row['qr_ExDate'])), JSON_HEX_TAG);
 
             }
             

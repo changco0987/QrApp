@@ -51,7 +51,7 @@
     <style>
         body{
     background-color: #3466AA;
-    font-family: Comic Sans MS, Comic Sans, cursive;
+    font-family: Comic Sans MS, Comic Sans;
 }
 
 .containerForm{
@@ -204,18 +204,23 @@
                             <div class="row">
                                 <div class="col-sm-12 col-xs-12 col-md-12 col-lg-12">
                                     <input type="password" class="form-control" id="passwordTb" name="passwordTb" placeholder="Password" minlength="8" maxlength="20" required value="<?php echo $_SESSION['password'];?>">
-                                    <small class="text-danger">Leave password field empty if you do not want to change it</small>
                                 </div>
                             </div>
                         </div>
                         <div class="form-group">
                             <div class="row">
                                 <div class="col-sm-12 col-xs-12 col-md-12 col-lg-12">
-                                    <input type="email" class="form-control no-border" id="emailTb" name="emailTb" placeholder="Email" maxlength="80" required value="<?php echo $row['email'];?>">
+                                    <input type="text" class="form-control no-border" id="addressTb" name="addressTb" placeholder="Address" maxlength="90" required value="<?php echo $row['address'];?>">
                                 </div>
                             </div>
                         </div>
-                        
+                        <div class="form-group">
+                            <div class="row">
+                                <div class="col-sm-12 col-xs-12 col-md-12 col-lg-12">
+                                    <input type="text" class="form-control no-border" id="contactTb" name="contactTb" placeholder="Ex. 0912345678901" maxlength="12" required value="<?php echo $row['contact_number'];?>">
+                                </div>
+                            </div>
+                        </div>
                         <div class="form-group" id="studentIdDiv" style="display: none;">
                             <div class="row">
                                 <div class="col-sm-12 col-xs-12 col-md-12 col-lg-12">

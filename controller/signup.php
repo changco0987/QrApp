@@ -32,7 +32,8 @@
                 {
                     $data->setFirstname($_POST['fnameTb']);
                     $data->setLastname($_POST['lnameTb']);
-                    $data->setEmail($_POST['emailTb']);
+                    $data->setAddress($_POST['addressTb']);
+                    $data->setContact_number($_POST['contactTb']);
                     $data->setStatus('unlock');
 
                     CreateAccountVisitor($conn,$data);
@@ -65,7 +66,8 @@
                 {
                     $data->setFirstname($_POST['fnameTb']);
                     $data->setLastname($_POST['lnameTb']);
-                    $data->setEmail($_POST['emailTb']);
+                    $data->setAddress($_POST['addressTb']);
+                    $data->setContact_number($_POST['contactTb']);
                     $data->setStudentId($_POST['studentidTb']);
                     $data->setStatus('unlock');
 

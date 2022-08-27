@@ -36,12 +36,14 @@
                {
                     $data->setFirstname($_POST['fnameTb']);
                     $data->setLastname($_POST['lnameTb']);
-                    $data->setEmail($_POST['emailTb']);
+                    $data->setAddress($_POST['addressTb']);
+                    $data->setContact_number($_POST['contactTb']);
                     $data->setStatus($_POST['statusTb']);
 
                     UpdateAccountVisitor($conn,$data);
                     
                     $_SESSION['username'] = $data->getUsername();  
+                    $_SESSION['password'] = $_POST['passwordTb'];  
                     header('Location: ../pages/userDashboard.php');
                }
                else
@@ -75,12 +77,16 @@
                 {
                     $data->setFirstname($_POST['fnameTb']);
                     $data->setLastname($_POST['lnameTb']);
-                    $data->setEmail($_POST['emailTb']);
+                    $data->setAddress($_POST['addressTb']);
+                    $data->setContact_number($_POST['contactTb']);
                     $data->setStudentId($_POST['studentidTb']);
                     $data->setStatus($_POST['statusTb']);
 
                     UpdateAccountGuardian($conn,$data);
-                    header('Location: ../pages/guardianLogin.php');
+                    
+                    $_SESSION['username'] = $data->getUsername();
+                    $_SESSION['password'] = $_POST['passwordTb'];  
+                    header('Location: ../pages/userDashboard.php');
                 }
                 else
                 {

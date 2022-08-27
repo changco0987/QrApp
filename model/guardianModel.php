@@ -6,7 +6,8 @@
         private $password;
         private $firstname;
         private $lastname;
-        private $email;
+        private $address;
+        private $contact_number;
         private $studentId;
         private $qr_ExDate;
         private $status;
@@ -65,14 +66,25 @@
         }
 
 
-        public function getEmail()
+        public function getAddress()
         {
-            return $this->email;   
+            return $this->address;   
         }
 
-        public function setEmail($email)
+        public function setAddress($address)
         {
-            $this->email = $email;
+            $this->address = $address;
+        }
+
+
+        public function getContact_number()
+        {
+            return $this->contact_number;   
+        }
+
+        public function setContact_number($contact_number)
+        {
+            $this->contact_number = $contact_number;
         }
 
 
