@@ -7,8 +7,16 @@
     include_once '../model/guardianModel.php';
     include_once '../db/tb_guardian.php';
 
-    $row = array();
+    //This will check if the user is truely login
     session_start();
+    if(!isset($_SESSION['username']))
+    {
+        header("Location: ../index.php");
+    }
+    
+    date_default_timezone_set('Asia/Manila');
+
+    $row = array();
 
     if($_SESSION['accType'] == 'visitor')
     {

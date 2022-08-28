@@ -190,17 +190,17 @@
                         <div class="col-sm-6 col-xs-6 col-md-6 col-lg-6">
                             <form action="accSettings.php" method="post" enctype="multipart/form-data">
                                 <div class="form-group">
-                                    <button type="submit" class="form-control btn  d-flex justify-content-center"  data-toggle="modal" data-target="#accSettModal" id="submitBtn" style="background-color: #3466AA; color:white;"><i class="bi bi-pencil-square mr-2"></i>Change Info</button>
+                                    <button type="submit" class="form-control btn  d-flex justify-content-center"  data-toggle="modal" data-target="#accSettModal" id="submitBtn1" style="background-color: #3466AA; color:white;"><i class="bi bi-pencil-square mr-2"></i>Change Info</button>
                                 </div>
                             </form>
                         </div>
                         
                         <div class="col-sm-6 col-xs-6 col-md-6 col-lg-6">
-                            <form action="../controller/addDept.php" method="post" enctype="multipart/form-data">
+                            <form action="../pages/accHistory.php" method="post" enctype="multipart/form-data">
                                 <div class="form-group">
                                     <input type="hidden" id="accType" name="accType" value="<?php echo $_SESSION['accType'];?>">
                                     <input type="hidden" id="usernameTb" name="usernameTb" value="<?php echo $_SESSION['username'];?>">
-                                    <button type="submit" class="form-control btn btn-warning d-flex justify-content-center"  data-toggle="modal" data-target="#accSettModal" id="submitBtn" disabled><i class="bi bi-clock-history mr-2"></i>Log in History</button>
+                                    <button type="submit" class="form-control btn btn-warning d-flex justify-content-center" data-toggle="modal" data-target="#accSettModal" id="submitBtn2"><i class="bi bi-clock-history mr-2"></i>Log in History</button>
                                 </div>
                             </form>
                         </div>
