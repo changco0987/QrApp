@@ -93,6 +93,14 @@
     <title>Entrance Monitoring sys - Dashboard</title>
 </head>
 <body>
+        
+    <!-- Alert message container-->
+    <div id="successBox" class="alert alert-success alert-dismissible fade show" role="alert" style="display:block;">
+        <strong id="successMsg"></strong>
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
     
 <div class="row myRow mt-4 pt-4 mx-auto">
         <div class="col-sm-12 col-xs-12 col-md-12 col-lg-12 my-4 py-4">
@@ -182,8 +190,6 @@
                         <div class="col-sm-6 col-xs-6 col-md-6 col-lg-6">
                             <form action="accSettings.php" method="post" enctype="multipart/form-data">
                                 <div class="form-group">
-                                    <input type="hidden" id="accType" name="accType" value="<?php echo $_SESSION['accType'];?>">
-                                    <input type="hidden" id="usernameTb" name="usernameTb" value="<?php echo $_SESSION['username'];?>">
                                     <button type="submit" class="form-control btn  d-flex justify-content-center"  data-toggle="modal" data-target="#accSettModal" id="submitBtn" style="background-color: #3466AA; color:white;"><i class="bi bi-pencil-square mr-2"></i>Change Info</button>
                                 </div>
                             </form>
@@ -205,5 +211,44 @@
     </div>
 
 
+
 </body>
+<!--alert message script-->
+<script>
+        document.getElementById('successBox').style.display = 'none';
+        var successSignal = localStorage.getItem('state');
+
+        if(successSignal==1)
+        {
+            //if incorrect password
+            document.getElementById('alertBox').style.display = 'block';
+            document.getElementById('errorMsg').innerHTML = 'Incorrect password please try again';
+            console.log("okay");
+
+        }
+        else if(successSignal==2)
+        {
+            //if email is already taken
+            document.getElementById('alertBox').style.display = 'block';
+            document.getElementById('errorMsg').innerHTML = 'Sorry, this account is not existing';
+            console.log("okay");
+        }
+        else if(successSignal==3)
+        {
+            //if password doesn't matched
+            document.getElementById('alertBox').style.display = 'block';
+            document.getElementById('errorMsg').innerHTML = "Password doesn't match!";
+            console.log("okay");
+        }
+        else if(successSignal==4)
+        {
+            //if password doesn't matched
+            document.getElementById('successBox').style.display = 'block';
+            document.getElementById('successMsg').innerHTML = "Information Successfully saved!";
+            console.log("okay");
+        }
+
+        //To make signl back to normmal and to prevent for the success page to appear every time the page was reload or refresh
+        localStorage.setItem('state',0);
+    </script>
 </html>

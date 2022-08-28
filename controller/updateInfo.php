@@ -44,7 +44,7 @@
                     
                     $_SESSION['username'] = $data->getUsername();  
                     $_SESSION['password'] = $_POST['passwordTb'];  
-                    header('Location: ../pages/userDashboard.php');
+                    echo '<script> localStorage.setItem("state",4); window.location = "../pages/userDashboard.php";</script>';  
                }
                else
                {
@@ -92,8 +92,8 @@
 
                     UpdateAccountGuardian($conn,$data);
                     $_SESSION['username'] = $data->getUsername();
-                    $_SESSION['password'] = $_POST['passwordTb'];  
-                    header('Location: ../pages/userDashboard.php');
+                    $_SESSION['password'] = $_POST['passwordTb'];
+                    echo '<script> localStorage.setItem("state",4); window.location = "../pages/userDashboard.php";</script>';      
                 }
                 else
                 {

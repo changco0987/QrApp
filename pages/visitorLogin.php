@@ -90,6 +90,7 @@
 </body>
     <!--alert message script-->
     <script>
+        document.getElementById('successBox').style.display = 'none';
         document.getElementById('alertBox').style.display = 'none';
         var successSignal = localStorage.getItem('state');
 
