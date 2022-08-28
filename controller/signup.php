@@ -37,7 +37,7 @@
                     $data->setStatus('unlock');
 
                     CreateAccountVisitor($conn,$data);
-                    header('Location: ../pages/visitorLogin.php');
+                    echo '<script> localStorage.setItem("state",4); window.location = "../pages/visitorLogin.php";</script>';   
                 }
                 else
                 {
@@ -80,7 +80,7 @@
                     }
 
                     CreateAccountGuardian($conn,$data);
-                    header('Location: ../pages/guardianLogin.php');
+                    echo '<script> localStorage.setItem("state",4); window.location = "../pages/guardianLogin.php";</script>';  
                 }
                 else
                 {

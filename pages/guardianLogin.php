@@ -80,6 +80,13 @@
             <span aria-hidden="true">&times;</span>
         </button>
     </div>
+    <!-- Alert message container-->
+    <div id="successBox" class="alert alert-success alert-dismissible fade show" role="alert" style="display:block;">
+        <strong id="successMsg"></strong>
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
     
     
 </body>
@@ -109,6 +116,13 @@
             //if password doesn't matched
             document.getElementById('alertBox').style.display = 'block';
             document.getElementById('errorMsg').innerHTML = "Password doesn't match!";
+            console.log("okay");
+        }
+        else if(successSignal==4)
+        {
+            //if password doesn't matched
+            document.getElementById('successBox').style.display = 'block';
+            document.getElementById('successMsg').innerHTML = "Account Created Successfully!";
             console.log("okay");
         }
 
