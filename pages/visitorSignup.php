@@ -58,83 +58,109 @@ label{
 
 @media screen and (max-height: 850px) {
 
-    .containerForm {
-        background-color: #f1f1f1; /* Fallback color */
-        color: black;
-        font-weight: bold;
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translateX(-50%) translateY(-50%);
-        height: 675px;
-        width: 400px;
-        padding: 20px;
-        text-align: center;
-        border-radius: 15px;
-        box-shadow: -1px 1px 20px 6px black;
-    }
+.containerForm {
+    background-color: #f1f1f1; /* Fallback color */
+    color: black;
+    font-weight: bold;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translateX(-50%) translateY(-50%);
+    height: 700px;
+    width: 400px;
+    padding: 20px;
+    text-align: center;
+    border-radius: 15px;
+    box-shadow: -1px 1px 20px 6px black;
+}
+}
+
+@media screen and (max-width: 650px) {
+
+.containerForm {
+    background-color: #f1f1f1; /* Fallback color */
+    color: black;
+    font-weight: bold;
+    position: absolute;
+    top: 35%;
+    left: 50%;
+    transform: translateX(-50%) translateY(-35%);
+    height: 750px;
+    width: 385px;
+    padding: 20px;
+    text-align: center;
+    border-radius: 15px;
+    box-shadow: -1px 1px 20px 6px black;
+}
 }
 
 @media screen and (max-width: 450px) {
 
-    .containerForm {
-        background-color: #f1f1f1; /* Fallback color */
-        color: black;
-        font-weight: bold;
-        position: absolute;
-        top: 45%;
-        left: 50%;
-        transform: translateX(-50%) translateY(-45%);
-        height: 695px;
-        width: 385px;
-        padding: 20px;
-        text-align: center;
-        border-radius: 15px;
-        box-shadow: -1px 1px 20px 6px black;
-    }
+.containerForm {
+    background-color: #f1f1f1; /* Fallback color */
+    color: black;
+    font-weight: bold;
+    position: absolute;
+    top: 45%;
+    left: 50%;
+    transform: translateX(-50%) translateY(-45%);
+    height: 700px;
+    width: 385px;
+    padding: 20px;
+    text-align: center;
+    border-radius: 15px;
+    box-shadow: -1px 1px 20px 6px black;
+}
 }
 
 
 @media screen and (max-width: 360px) {
-
-    .containerForm {
-        background-color: #f1f1f1; /* Fallback color */
-        color: black;
-        font-weight: bold;
-        position: absolute;
-        top: 45%;
-        left: 50%;
-        transform: translateX(-50%) translateY(-45%);
-        height: 775px;
-        width: 350px;
-        padding: 20px;
-        text-align: center;
-        border-radius: 15px;
-        box-shadow: -1px 1px 20px 6px black;
-    }
+    body{  
+    background-color: #f1f1f1;
+    font-family: "Bahnschrift", Times, serif;
+}
+.containerForm {
+    background-color: #f1f1f1; /* Fallback color */
+    color: black;
+    font-weight: bold;
+    position: absolute;
+    top: 35%;
+    left: 50%;
+    transform: translateX(-50%) translateY(-35%);
+    height: 890px;
+    width: 350px;
+    padding: 20px;
+    text-align: center;
+    border-radius: 0px;
+    box-shadow: none;
+}
 }
 
 
 @media screen and (max-width: 320px) {
-    body{  
-        background-color: #f1f1f1;
-        font-family: "Bahnschrift", Times, serif;
-    }
-    .containerForm {
-        background-color: #f1f1f1; /* Fallback color */
-        color: black;
-        font-weight: bold;
-        position: absolute;
-        top: 40%;
-        left: 50%;
-        transform: translateX(-50%) translateY(-40%);
-        height: 785px;
-        width: 320px;
-        padding: 35px;
-        text-align: center;
-        border-radius: 0px;
-        box-shadow: none;
-    }
+body{  
+    background-color: #f1f1f1;
+    font-family: "Bahnschrift", Times, serif;
+}
+.containerForm {
+    background-color: #f1f1f1; /* Fallback color */
+    color: black;
+    font-weight: bold;
+    position: absolute;
+    top: 25%;
+    left: 50%;
+    transform: translateX(-50%) translateY(-25%);
+    height: 970px;
+    width: 320px;
+    padding: 35px;
+    text-align: center;
+    border-radius: 0px;
+    box-shadow: none;
+}
+footer * {
+    font-size: 12px;
+}
+
 }
     </style>
     <link rel="icon" href="../asset/icon.png">
@@ -147,7 +173,7 @@ label{
                 <div class="d-flex justify-content-center">
                     <form action="../controller/signup.php" method="post" enctype="multipart/form-data">
                         <input type="hidden" name="accType" value="visitor">
-                        <div class="form-group mt-2 pt-2">
+                        <div class="form-group mt-1 pt-1">
                             <center>
                                 <h1>Sign up <small style="font-size: 20px; font-weight:bold; color:#3466AA;">as visitor</small></h1>
                             </center>
@@ -214,10 +240,10 @@ label{
     <div class="row no-gutters">
     <footer class=" text-center text-lg-end fixed-bottom">
         <div class="d-flex justify-content-center p-3" style="background-color: #E78F14;">
-            <h5><a type="button" href="https://www.facebook.com/batangas.sti.edu/" target="_blank" class="mx-2"><i class="bi bi-facebook"></i></a></h5>
-            <h5><a type="button" href="mailto:richardjohn.encarnacion@batangas.sti.edu" target="_blank" class="mx-2"><i class="bi bi-envelope-fill"></i></a></h5>
-            <h5><a type="button" href="https://maps.google.com/?q=STI College - Batangas, 865 National Road, Batangas, 4200 Batangas" target="_blank" class="mx-2"><i class="bi bi-geo-alt-fill"></i></a></h5>
-            <h5><a type="button" href="https://www.sti.edu/campuses-details.asp?campus_id=BAT" target="_blank" class="mx-2"><i class="bi bi-info-square-fill"></i></a></h5>
+            <h5 style="background-color:#E78F14;"><a href="https://www.facebook.com/batangas.sti.edu/" target="_blank" class="mx-2" style="background-color:#E78F14;"><i class="bi bi-facebook" style="background-color:#E78F14;"></i></a></h5>
+            <h5 style="background-color:#E78F14;"><a href="mailto:richardjohn.encarnacion@batangas.sti.edu" target="_blank" class="mx-2"><i class="bi bi-envelope-fill" style="background-color:#E78F14;"></i></a></h5>
+            <h5 style="background-color:#E78F14;"><a href="https://maps.google.com/?q=STI College - Batangas, 865 National Road, Batangas, 4200 Batangas" target="_blank" class="mx-2"><i class="bi bi-geo-alt-fill" style="background-color:#E78F14;"></i></a></h5>
+            <h5 style="background-color:#E78F14;"><a href="https://www.sti.edu/campuses-details.asp?campus_id=BAT" target="_blank" class="mx-2"><i class="bi bi-info-square-fill" style="background-color:#E78F14;"></i></a></h5>
         </div>
     </footer>
     </div>

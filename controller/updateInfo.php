@@ -81,6 +81,7 @@
                     $data->setContact_number($_POST['contactTb']);
                     $data->setStudentId($_POST['studentidTb']);
                     $data->setStatus($_POST['statusTb']);
+                    $data->setNotification($_POST['notifCheckbox']);
 
                     UpdateAccountGuardian($conn,$data);
                     

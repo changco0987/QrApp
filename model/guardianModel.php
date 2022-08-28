@@ -11,6 +11,7 @@
         private $studentId;
         private $qr_ExDate;
         private $status;
+        private $notification;
 
 
         public function getId()
@@ -118,6 +119,24 @@
         public function setStatus($status)
         {
             $this->status = $status;
+        }
+
+
+        public function getNotification()
+        {
+            return $this->notification;   
+        }
+
+        public function setNotification($notification)
+        {
+            if($notification==null || $notification==false)
+            {
+                $this->notification = false;
+            }
+            else
+            {
+                $this->notification = $notification;
+            }
         }
 
     }

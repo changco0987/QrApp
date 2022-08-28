@@ -70,6 +70,7 @@
                     $data->setContact_number($_POST['contactTb']);
                     $data->setStudentId($_POST['studentidTb']);
                     $data->setStatus('unlock');
+                    $data->setNotification($_POST['notifCheckbox']);
 
                     CreateAccountGuardian($conn,$data);
                     header('Location: ../pages/guardianLogin.php');

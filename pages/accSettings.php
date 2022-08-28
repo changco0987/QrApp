@@ -66,7 +66,7 @@ label{
     top: 50%;
     left: 50%;
     transform: translateX(-50%) translateY(-50%);
-    height: 650px;
+    height: 600px;
     width: 650px;
     padding: 20px;
     text-align: center;
@@ -89,87 +89,111 @@ label{
 
 @media screen and (max-height: 850px) {
 
-    .containerForm {
-        background-color: #f1f1f1; /* Fallback color */
-        color: black;
-        font-weight: bold;
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translateX(-50%) translateY(-50%);
-        height: 665px;
-        width: 400px;
-        padding: 20px;
-        text-align: center;
-        border-radius: 15px;
-        box-shadow: -1px 1px 20px 6px black;
-    }
+.containerForm {
+    background-color: #f1f1f1; /* Fallback color */
+    color: black;
+    font-weight: bold;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translateX(-50%) translateY(-50%);
+    height: 700px;
+    width: 400px;
+    padding: 20px;
+    text-align: center;
+    border-radius: 15px;
+    box-shadow: -1px 1px 20px 6px black;
+}
+}
+
+@media screen and (max-width: 650px) {
+
+.containerForm {
+    background-color: #f1f1f1; /* Fallback color */
+    color: black;
+    font-weight: bold;
+    position: absolute;
+    top: 35%;
+    left: 50%;
+    transform: translateX(-50%) translateY(-35%);
+    height: 750px;
+    width: 385px;
+    padding: 20px;
+    text-align: center;
+    border-radius: 15px;
+    box-shadow: -1px 1px 20px 6px black;
+}
 }
 
 @media screen and (max-width: 450px) {
 
-    .containerForm {
-        background-color: #f1f1f1; /* Fallback color */
-        color: black;
-        font-weight: bold;
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translateX(-50%) translateY(-50%);
-        height: 740px;
-        width: 385px;
-        margin-top: 20px;
-        padding: 20px;
-        text-align: center;
-        border-radius: 15px;
-        box-shadow: -1px 1px 20px 6px black;
-    }
+.containerForm {
+    background-color: #f1f1f1; /* Fallback color */
+    color: black;
+    font-weight: bold;
+    position: absolute;
+    top: 35%;
+    left: 50%;
+    transform: translateX(-50%) translateY(-35%);
+    height: 790px;
+    width: 385px;
+    padding: 20px;
+    text-align: center;
+    border-radius: 15px;
+    box-shadow: -1px 1px 20px 6px black;
+}
 }
 
 
 @media screen and (max-width: 360px) {
-
-    .containerForm {
-        background-color: #f1f1f1; /* Fallback color */
-        color: black;
-        font-weight: bold;
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translateX(-50%) translateY(-50%);
-        height: 725px;
-        width: 350px;
-        margin-top: 20px;
-        padding: 20px;
-        text-align: center;
-        border-radius: 15px;
-        box-shadow: -1px 1px 20px 6px black;
-    }
+    body{  
+    background-color: #f1f1f1;
+    font-family: "Bahnschrift", Times, serif;
+}
+.containerForm {
+    background-color: #f1f1f1; /* Fallback color */
+    color: black;
+    font-weight: bold;
+    position: absolute;
+    top: 35%;
+    left: 50%;
+    transform: translateX(-50%) translateY(-35%);
+    height: 890px;
+    width: 350px;
+    padding: 20px;
+    text-align: center;
+    border-radius: 0px;
+    box-shadow: none;
+}
 }
 
 
 @media screen and (max-width: 320px) {
-    body{  
-        background-color: #f1f1f1;
-        font-family: "Bahnschrift", Times, serif;
-    }
-    .containerForm {
-        background-color: #f1f1f1; /* Fallback color */
-        color: black;
-        font-weight: bold;
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translateX(-50%) translateY(-50%);
-        height: 675px;
-        width: 320px;
-        margin-top: 20px;
-        padding: 20px;
-        text-align: center;
-        border-radius: 0px;
-        box-shadow: none;
-    }
+body{  
+    background-color: #f1f1f1;
+    font-family: "Bahnschrift", Times, serif;
 }
+.containerForm {
+    background-color: #f1f1f1; /* Fallback color */
+    color: black;
+    font-weight: bold;
+    position: absolute;
+    top: 25%;
+    left: 50%;
+    transform: translateX(-50%) translateY(-25%);
+    height: 970px;
+    width: 320px;
+    padding: 35px;
+    text-align: center;
+    border-radius: 0px;
+    box-shadow: none;
+}
+footer * {
+    font-size: 12px;
+}
+
+}
+
     </style>
 
     <link rel="icon" href="../asset/icon.png">
@@ -243,11 +267,135 @@ label{
                                 </div>
                             </div>
                         </div>
+                        <div class="form-group form-check-inline" id="notifDiv" style="display: none;">
+                            <div class="row ">
+                                <div class="col-sm-12 col-xs-12 col-md-12 col-lg-12">
+                                    <input class="form-check-input no-border" name="notifCheckbox" type="checkbox" value="<?php echo $row['notification'];?>" id="notifCheckbox">
+                                    <label class="form-check-label" for="notifCheckbox">Do you want to recieve sms notification?</label>
+                                </div>
+                            </div>
+                        </div>
                         <?php 
                               if($_POST['accType'] == 'guardian')
                               {
                                 ?>
-                                <script>$('#studentIdDiv').show();</script>
+                                <script>
+                                    $('#studentIdDiv').show();
+                                    $('#notifDiv').show();
+                                </script>
+                                <style>
+                                    .containerForm{
+                                        height: 715px;
+                                    }
+                                                                        
+                                    @media screen and (max-height: 850px) {
+
+                                    .containerForm {
+                                        background-color: #f1f1f1; /* Fallback color */
+                                        color: black;
+                                        font-weight: bold;
+                                        position: absolute;
+                                        top: 50%;
+                                        left: 50%;
+                                        transform: translateX(-50%) translateY(-50%);
+                                        height: 700px;
+                                        width: 400px;
+                                        padding: 20px;
+                                        text-align: center;
+                                        border-radius: 15px;
+                                        box-shadow: -1px 1px 20px 6px black;
+                                    }
+                                    }
+
+                                    @media screen and (max-width: 650px) {
+
+                                    .containerForm {
+                                        background-color: #f1f1f1; /* Fallback color */
+                                        color: black;
+                                        font-weight: bold;
+                                        position: absolute;
+                                        top: 35%;
+                                        left: 50%;
+                                        transform: translateX(-50%) translateY(-35%);
+                                        height: 750px;
+                                        width: 385px;
+                                        padding: 20px;
+                                        text-align: center;
+                                        border-radius: 15px;
+                                        box-shadow: -1px 1px 20px 6px black;
+                                    }
+                                    }
+
+                                    @media screen and (max-width: 450px) {
+
+                                    .containerForm {
+                                        background-color: #f1f1f1; /* Fallback color */
+                                        color: black;
+                                        font-weight: bold;
+                                        position: absolute;
+                                        top: 35%;
+                                        left: 50%;
+                                        transform: translateX(-50%) translateY(-35%);
+                                        height: 790px;
+                                        width: 385px;
+                                        padding: 20px;
+                                        text-align: center;
+                                        border-radius: 15px;
+                                        box-shadow: -1px 1px 20px 6px black;
+                                    }
+                                    }
+
+
+                                    @media screen and (max-width: 360px) {
+                                        body{  
+                                        background-color: #f1f1f1;
+                                        font-family: "Bahnschrift", Times, serif;
+                                    }
+                                    .containerForm {
+                                        background-color: #f1f1f1; /* Fallback color */
+                                        color: black;
+                                        font-weight: bold;
+                                        position: absolute;
+                                        top: 35%;
+                                        left: 50%;
+                                        transform: translateX(-50%) translateY(-35%);
+                                        height: 890px;
+                                        width: 350px;
+                                        padding: 20px;
+                                        text-align: center;
+                                        border-radius: 0px;
+                                        box-shadow: none;
+                                    }
+                                    }
+
+
+                                    @media screen and (max-width: 320px) {
+                                    body{  
+                                        background-color: #f1f1f1;
+                                        font-family: "Bahnschrift", Times, serif;
+                                    }
+                                    .containerForm {
+                                        background-color: #f1f1f1; /* Fallback color */
+                                        color: black;
+                                        font-weight: bold;
+                                        position: absolute;
+                                        top: 25%;
+                                        left: 50%;
+                                        transform: translateX(-50%) translateY(-25%);
+                                        height: 970px;
+                                        width: 320px;
+                                        padding: 35px;
+                                        text-align: center;
+                                        border-radius: 0px;
+                                        box-shadow: none;
+                                    }
+                                    footer * {
+                                        font-size: 12px;
+                                    }
+
+                                    }
+
+                                </style>
                                 <?php
                               }
                         ?>
