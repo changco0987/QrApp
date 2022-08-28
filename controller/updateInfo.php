@@ -81,10 +81,16 @@
                     $data->setContact_number($_POST['contactTb']);
                     $data->setStudentId($_POST['studentidTb']);
                     $data->setStatus($_POST['statusTb']);
-                    $data->setNotification($_POST['notifCheckbox']);
+                    if(isset($_POST['notifCheckbox']))
+                    {
+                        $data->setNotification($_POST['notifCheckbox']);
+                    }
+                    else
+                    {
+                        $data->setNotification('false');
+                    }
 
                     UpdateAccountGuardian($conn,$data);
-                    
                     $_SESSION['username'] = $data->getUsername();
                     $_SESSION['password'] = $_POST['passwordTb'];  
                     header('Location: ../pages/userDashboard.php');

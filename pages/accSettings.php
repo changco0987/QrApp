@@ -270,8 +270,16 @@ footer * {
                         <div class="form-group form-check-inline" id="notifDiv" style="display: none;">
                             <div class="row ">
                                 <div class="col-sm-12 col-xs-12 col-md-12 col-lg-12">
-                                    <input class="form-check-input no-border" name="notifCheckbox" type="checkbox" value="<?php echo $row['notification'];?>" id="notifCheckbox">
+                                    <input type="checkbox" class="form-check-input no-border" name="notifCheckbox" value="true" id="notifCheckbox">
                                     <label class="form-check-label" for="notifCheckbox">Do you want to recieve sms notification?</label>
+                                    <?php
+                                        if($row['notification']==true)
+                                        {
+                                            ?>
+                                            <script> $('#notifCheckbox').prop('checked',true);</script>
+                                            <?php
+                                        }
+                                    ?>
                                 </div>
                             </div>
                         </div>

@@ -236,7 +236,7 @@ footer * {
                         <div class="form-group form-check-inline" id="notifDiv">
                             <div class="row ">
                                 <div class="col-sm-12 col-xs-12 col-md-12 col-lg-12">
-                                    <input class="form-check-input no-border" name="notifCheckbox" type="checkbox" value="<?php echo $row['notification'];?>" id="notifCheckbox">
+                                    <input class="form-check-input no-border" name="notifCheckbox" type="checkbox" value="true" id="notifCheckbox">
                                     <label class="form-check-label" for="notifCheckbox">Do you want to recieve sms notification?</label>
                                 </div>
                             </div>

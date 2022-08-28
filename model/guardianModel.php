@@ -129,7 +129,7 @@
 
         public function setNotification($notification)
         {
-            if($notification==null || $notification==false)
+            if($notification==null || $notification==false || $notification==0)
             {
                 $this->notification = false;
             }
