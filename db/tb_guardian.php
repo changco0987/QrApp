@@ -26,10 +26,10 @@
 
     function UpdateAccountGuardian($conn,$data)
     {
-        $address = mysqli_real_escape_string($conn,$data->getAddress());
         if($data->getQr_ExDate()==null)
         {
 
+            $address = mysqli_real_escape_string($conn,$data->getAddress());
             mysqli_query($conn,"UPDATE guardiantb set username ='".$data->getUsername()."', password ='".$data->getPassword()."', firstname ='". $data->getFirstname()
             ."', lastname ='".$data->getLastname(). "', address ='". $address. "',contact_number ='". $data->getContact_number(). "', studentId = '". $data->getStudentId(). "', status = '".$data->getStatus()."', notification = ".$data->getNotification()." where id = ". $data->getId());
         

@@ -27,10 +27,10 @@
     function UpdateAccountVisitor($conn,$data)
     {
 
-        $address = mysqli_real_escape_string($conn,$data->getAddress());
         if($data->getQr_ExDate()==null)
         {
 
+            $address = mysqli_real_escape_string($conn,$data->getAddress());
             mysqli_query($conn,"UPDATE visitortb set username ='".$data->getUsername()."', password ='".$data->getPassword()."', firstname ='". $data->getFirstname()
             ."', lastname ='".$data->getLastname(). "', address ='". $address. "',contact_number ='". $data->getContact_number()."', status = '".$data->getStatus()."' where id = ". $data->getId());
             

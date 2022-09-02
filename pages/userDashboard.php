@@ -64,6 +64,59 @@
 
     <!-- My CSS-->
     <link type="text/css" rel="stylesheet" href="../css/userDashboard.css">
+    <style>
+        .my-custom-scrollbar {
+        position: relative;
+        height: 200px;
+        overflow: auto;
+        }
+        .table-wrapper-scroll-y {
+        display: block;
+        }
+                
+        @media screen and (max-height: 850px) {
+
+        #accHistoryModal {
+
+            font-size: 12px;
+        }
+        }
+
+        @media screen and (max-width: 650px) {
+
+            #accHistoryModal {
+
+                font-size: 12px;
+            }
+        }
+
+        @media screen and (max-width: 450px) {
+
+            #accHistoryModal {
+
+                font-size: 12px;
+            }
+        }
+
+
+        @media screen and (max-width: 360px) {
+
+            #accHistoryModal {
+
+                font-size: 12px;
+            }
+        }
+
+
+        @media screen and (max-width: 320px) {
+
+            #accHistoryModal {
+
+                font-size: 12px;
+            }
+
+        }
+    </style>
     <script>
 
         //The qr generator function
@@ -253,57 +306,43 @@
                 <div class="modal-body">
                     <div class="row pt-1 mt-1">
                         <div class="col-sm-12 col-xs-12 col-md-12 col-lg-12 col-xl-12">
-                            <table class="table table-striped table-bordered table-hover table-sm text-justify" id="<?php echo $value;?>">
-                                    <caption id="tbCaption"></caption>
-                                    <thead class="bg-primary text-light">
-                                        <tr>
-                                            <th scope="col">#</th>
-                                            <th scope="col">Activity</th>
-                                            <th class="text-center" scope="col">Time and Date</th>
-                                            <th class="text-center" scope="col">IP Address</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <?php
-                                            $log = new logsModel();
-                                            $log->setCreator($_SESSION['username']);
-                                            $result = ReadLog($conn,$log);
-                                            $rowCount = 1;
-                                            while($row = mysqli_fetch_assoc($result))
-                                            {
-                                                ?>
-                                                
-                                                    <tr class="table-primary">
-                                                        <td><?php echo $rowCount;?></td>
-                                                        <td><?php echo $row['activity'];?></td>
-                                                        <td><?php echo date("M d, Y h:i a", strtotime($row['dateStamp']));?></td>
-                                                        <td><?php echo $row['ipAdd'];?></td>
-                                                    </tr>
-                                                <?php
-                                                $rowCount++;
+                            <div class="table-wrapper-scroll-y my-custom-scrollbar">
+                                <table class="table table-striped table-bordered table-hover table-sm text-justify  mb-0" id="<?php echo $value;?>">
+                                        <caption id="tbCaption"></caption>
+                                        <thead class="bg-primary text-light">
+                                            <tr>
+                                                <th scope="col">#</th>
+                                                <th scope="col">Activity</th>
+                                                <th class="text-center" scope="col">Time and Date</th>
+                                                <th class="text-center" scope="col">IP Address</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <?php
+                                                $log = new logsModel();
+                                                $log->setCreator($_SESSION['username']);
+                                                $result = ReadLog($conn,$log);
+                                                $rowCount = 1;
+                                                while($row = mysqli_fetch_assoc($result))
+                                                {
+                                                    ?>
+                                                    
+                                                        <tr class="table-primary">
+                                                            <td><?php echo $rowCount;?></td>
+                                                            <td><?php echo $row['activity'];?></td>
+                                                            <td><?php echo date("M d, Y h:i a", strtotime($row['dateStamp']));?></td>
+                                                            <td><?php echo $row['ipAdd'];?></td>
+                                                        </tr>
+                                                    <?php
+                                                    $rowCount++;
 
-                                            }
-                                        ?>
-                                    </tbody>
-                            </table>
+                                                }
+                                            ?>
+                                        </tbody>
+                                </table>
+                            </div>
                         </div>
-                        
-                        <div class="col-sm-12 col-xs-12 col-md-12 col-lg-12 col-xl-12">
-                            <nav aria-label="...">
-                                <ul class="pagination pagination-sm">
-                                    <li class="page-item disabled">
-                                    <span class="page-link">Previous</span>
-                                    </li>
-                                    <li class="page-item active"><a class="page-link" href="#">1</a></li>
-                                    <li class="page-item"><a class="page-link" href="#">2</a></li>
-    
-                                    <li class="page-item"><a class="page-link" href="#">3</a></li>
-                                    <li class="page-item">
-                                    <a class="page-link" href="#">Next</a>
-                                    </li>
-                                </ul>
-                            </nav>
-                        </div>
+
                     </div>
                 </div>
             </div>
