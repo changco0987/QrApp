@@ -1,9 +1,41 @@
 <?php
+    include_once '../db/connection.php';
 
+    include_once '../model/visitorModel.php';
+    include_once '../db/tb_visitor.php';
+
+    include_once '../model/guardianModel.php';
+    include_once '../db/tb_guardian.php';
+    
+    include_once '../model/logsModel.php';
+    include_once '../db/tb_logs.php';
+
+    //This will check if the user is truely login
     session_start();
     if(!isset($_SESSION['username']))
     {
         header("Location: ../index.php");
+    }
+    
+    date_default_timezone_set('Asia/Manila');
+
+    $row = array();
+
+    if($_SESSION['accType'] == 'visitor')
+    {
+        $data = new visitorModel();
+        $data->setUsername($_SESSION['username']);
+
+        $result = ReadAccountVisitor($conn,$data);
+        $row =  mysqli_fetch_assoc($result);
+    }
+    else if($_SESSION['accType'] == 'guardian')
+    {
+        $data = new guardianModel();
+        $data->setUsername($_SESSION['username']);
+        
+        $result = ReadAccountGuardian($conn,$data);
+        $row =  mysqli_fetch_assoc($result);
     }
     
     date_default_timezone_set('Asia/Manila');
@@ -196,13 +228,81 @@
                         </div>
                         
                         <div class="col-sm-6 col-xs-6 col-md-6 col-lg-6">
-                            <form action="../pages/accHistory.php" method="post" enctype="multipart/form-data">
-                                <div class="form-group">
-                                    <input type="hidden" id="accType" name="accType" value="<?php echo $_SESSION['accType'];?>">
-                                    <input type="hidden" id="usernameTb" name="usernameTb" value="<?php echo $_SESSION['username'];?>">
-                                    <button type="submit" class="form-control btn btn-warning d-flex justify-content-center" data-toggle="modal" data-target="#accSettModal" id="submitBtn2"><i class="bi bi-clock-history mr-2"></i>Log in History</button>
-                                </div>
-                            </form>
+                            <div class="form-group">
+                                <input type="hidden" id="accType" name="accType" value="<?php echo $_SESSION['accType'];?>">
+                                <input type="hidden" id="usernameTb" name="usernameTb" value="<?php echo $_SESSION['username'];?>">
+                                <button type="button" class="form-control btn btn-warning d-flex justify-content-center" data-toggle="modal" data-target="#accHistoryModal" id="submitBtn2"><i class="bi bi-clock-history mr-2"></i>Log in History</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Account History Modal -->
+    <div class="modal fade" id="accHistoryModal" tabindex="-1" role="dialog" aria-labelledby="accSettModalTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="accSettModalLongTitle">Account History</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="row pt-1 mt-1">
+                        <div class="col-sm-12 col-xs-12 col-md-12 col-lg-12 col-xl-12">
+                            <table class="table table-striped table-bordered table-hover table-sm text-justify" id="<?php echo $value;?>">
+                                    <caption id="tbCaption"></caption>
+                                    <thead class="bg-primary text-light">
+                                        <tr>
+                                            <th scope="col">#</th>
+                                            <th scope="col">Activity</th>
+                                            <th class="text-center" scope="col">Time and Date</th>
+                                            <th class="text-center" scope="col">IP Address</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <?php
+                                            $log = new logsModel();
+                                            $log->setCreator($_SESSION['username']);
+                                            $result = ReadLog($conn,$log);
+                                            $rowCount = 1;
+                                            while($row = mysqli_fetch_assoc($result))
+                                            {
+                                                ?>
+                                                
+                                                    <tr class="table-primary">
+                                                        <td><?php echo $rowCount;?></td>
+                                                        <td><?php echo $row['activity'];?></td>
+                                                        <td><?php echo date("M d, Y h:i a", strtotime($row['dateStamp']));?></td>
+                                                        <td><?php echo $row['ipAdd'];?></td>
+                                                    </tr>
+                                                <?php
+                                                $rowCount++;
+
+                                            }
+                                        ?>
+                                    </tbody>
+                            </table>
+                        </div>
+                        
+                        <div class="col-sm-12 col-xs-12 col-md-12 col-lg-12 col-xl-12">
+                            <nav aria-label="...">
+                                <ul class="pagination pagination-sm">
+                                    <li class="page-item disabled">
+                                    <span class="page-link">Previous</span>
+                                    </li>
+                                    <li class="page-item active"><a class="page-link" href="#">1</a></li>
+                                    <li class="page-item"><a class="page-link" href="#">2</a></li>
+    
+                                    <li class="page-item"><a class="page-link" href="#">3</a></li>
+                                    <li class="page-item">
+                                    <a class="page-link" href="#">Next</a>
+                                    </li>
+                                </ul>
+                            </nav>
                         </div>
                     </div>
                 </div>

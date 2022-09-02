@@ -6,6 +6,12 @@
     
     include_once '../db/tb_visitor.php';//tb_visitor.php
     include_once '../model/visitorModel.php';//visitorModel.php
+    
+    include_once '../db/tb_logs.php';
+    include_once '../model/logsModel.php';    
+
+    date_default_timezone_set('Asia/Manila'); 
+    $log = new logsModel();
 
     date_default_timezone_set('Asia/Manila'); 
     $currentDateTime = date('Y-m-d h:i:s a');
@@ -46,7 +52,13 @@
                          //echo 'null '.$row['qr_ExDate'];
                     }
                     
+                    //create log
+                    $log->setActivity('log-in');
+                    $log->setIpAdd();
+                    $log->setCreator($_SESSION['username']);
 
+                    CreateLog($conn,$log);
+                    
                     //$_SESSION['qr_ExDate'] = $row['qr_ExDate'];
                     header("Location: ../pages/userDashboard.php");
                     exit;
@@ -96,6 +108,13 @@
                          $_SESSION['qr_ExDate'] = null;
                          //echo 'null '.$row['qr_ExDate'];
                     }
+
+                    //create log
+                    $log->setActivity('log-in');
+                    $log->setIpAdd();
+                    $log->setCreator($_SESSION['username']);
+
+                    CreateLog($conn,$log);
                     
                     //$_SESSION['qr_ExDate'] = $row['qr_ExDate'];
                     header("Location: ../pages/userDashboard.php");

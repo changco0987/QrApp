@@ -45,9 +45,9 @@
             return $this->ipAdd;   
         }
 
-        public function setIpAdd($ipAdd)
+        public function setIpAdd()
         {
-            $this->ipAdd = $ipAdd;
+            $this->ipAdd = getHostByName(getHostName());
         }
 
         public function getDateStamp()
