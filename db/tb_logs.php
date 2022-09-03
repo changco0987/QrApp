@@ -8,8 +8,8 @@
         date_default_timezone_set('Asia/Manila');
         $date = date('Y-m-d h:i:s a');
         //$address = mysqli_real_escape_string($conn,$data->getAddress());
-        mysqli_query($conn,"INSERT INTO logstb(activity,creator,ipAdd,dateStamp) values('".$logs->getActivity()."','".$logs->getCreator().
-        "','".$logs->getIpAdd()."','".$date."')");
+        mysqli_query($conn,"INSERT INTO logstb(activity,creator,ipAdd,accType,dateStamp) values('".$logs->getActivity()."','".$logs->getCreator().
+        "','".$logs->getIpAdd()."','".$logs->getAccType()."','".$date."')");
     }
 
     function ReadLog($conn,$logs)
@@ -32,7 +32,7 @@
         $date = date('Y-m-d h:i:s a');
         //$address = mysqli_real_escape_string($conn,$logs->getAddress());
         mysqli_query($conn,"UPDATE logstb set activity = '".$logs->getActivity()."', creator = '".$logs->getCreator()."', ipApp = '".$logs->getIpAdd()
-        ."', dateStamp = '".$date."' where id =".$logs->getId());
+        ."', accType = '".$logs->getAccType()."', dateStamp = '".$date."' where id =".$logs->getId());
     }
 
     function DeleteLog($conn,$logs)

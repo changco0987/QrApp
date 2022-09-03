@@ -42,6 +42,7 @@
                 //create log
                 $log->setActivity('Generated new QR pass');
                 $log->setIpAdd();
+                $log->setAccType($_SESSION['accType']);
                 $log->setCreator($_SESSION['username']);
 
                 CreateLog($conn,$log);
@@ -80,6 +81,7 @@
                 //create log
                 $log->setActivity('Generated new QR pass');
                 $log->setIpAdd();
+                $log->setAccType($_SESSION['accType']);
                 $log->setCreator($_SESSION['username']);
 
                 CreateLog($conn,$log);

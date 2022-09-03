@@ -5,6 +5,7 @@
         private $activity;
         private $creator;
         private $ipAdd;
+        private $accType;
         private $dateStamp;
 
 
@@ -48,6 +49,16 @@
         public function setIpAdd()
         {
             $this->ipAdd = getHostByName(getHostName());
+        }
+
+        public function getAccType()
+        {
+            return $this->accType;   
+        }
+
+        public function setAccType($accType)
+        {
+            $this->accType = $accType;
         }
 
         public function getDateStamp()

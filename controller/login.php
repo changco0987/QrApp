@@ -55,6 +55,7 @@
                     //create log
                     $log->setActivity('log-in');
                     $log->setIpAdd();
+                    $log->setAccType($_SESSION['accType']);
                     $log->setCreator($_SESSION['username']);
 
                     CreateLog($conn,$log);
@@ -112,6 +113,7 @@
                     //create log
                     $log->setActivity('log-in');
                     $log->setIpAdd();
+                    $log->setAccType($_SESSION['accType']);
                     $log->setCreator($_SESSION['username']);
 
                     CreateLog($conn,$log);

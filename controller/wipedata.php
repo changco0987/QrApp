@@ -11,6 +11,7 @@
     //create log
     $log->setActivity('Sign-out');
     $log->setIpAdd();
+    $log->setAccType($_SESSION['accType']);
     $log->setCreator($_SESSION['username']);
 
     CreateLog($conn,$log);

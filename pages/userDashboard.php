@@ -325,16 +325,21 @@
                                                 $rowCount = 1;
                                                 while($row = mysqli_fetch_assoc($result))
                                                 {
-                                                    ?>
+                                                    if($row['accType']==$_SESSION['accType'])
+                                                    {
+                                                        
+                                                        ?>
+                                                        
+                                                            <tr class="table-primary">
+                                                                <td><?php echo $rowCount;?></td>
+                                                                <td><?php echo $row['activity'];?></td>
+                                                                <td><?php echo date("M d, Y h:i a", strtotime($row['dateStamp']));?></td>
+                                                                <td><?php echo $row['ipAdd'];?></td>
+                                                            </tr>
+                                                        <?php
+                                                        $rowCount++;
                                                     
-                                                        <tr class="table-primary">
-                                                            <td><?php echo $rowCount;?></td>
-                                                            <td><?php echo $row['activity'];?></td>
-                                                            <td><?php echo date("M d, Y h:i a", strtotime($row['dateStamp']));?></td>
-                                                            <td><?php echo $row['ipAdd'];?></td>
-                                                        </tr>
-                                                    <?php
-                                                    $rowCount++;
+                                                    }   
 
                                                 }
                                             ?>
