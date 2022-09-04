@@ -48,7 +48,8 @@
 
         public function setIpAdd()
         {
-            $this->ipAdd = getHostByName(getHostName());
+            //$this->ipAdd = getHostByName(getHostName());
+            $this->ipAdd = $_SERVER['REMOTE_ADDR'];
         }
 
         public function getAccType()
