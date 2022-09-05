@@ -174,7 +174,7 @@
 
     </script>
 
-    <link rel="icon" href="../asset/icon.png">
+    <link rel="icon" href="../asset/qr.png">
     <title>Entrance Monitoring sys - Dashboard</title>
 </head>
 <body>

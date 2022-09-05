@@ -30,10 +30,17 @@
     <script src="../javascript/linked.js"></script>
     <link rel="stylesheet" href="../css/login.css">
 
-    <link rel="icon" href="../asset/icon.png">
+    <link rel="icon" href="../asset/qr.png">
     <title>Entrance Monitoring sys - Login</title>
 </head>
 <body>
+    <!-- Image and text Header-->
+    <nav class="navbar navbar-light" style="background-color: #114084;">
+        <a class="navbar-brand" href="#" style="font-weight:bold; color: whitesmoke; text-shadow: 1px 1px #1C1C1C;">
+        <img src="../asset/qr.png" width="40" height="40" class="d-inline-block align-top" alt="">
+            QR <small style="color: whitesmoke; text-shadow: 1px 1px #1C1C1C;">Entrance Monitoring System</small>
+        </a>
+     </nav>
 
     <div class="row myRow mt-5 pt-5 mx-auto">
         <div class="col-sm-12 col-xs-12 col-md-12 col-lg-12 my-5 py-5">

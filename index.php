@@ -18,10 +18,11 @@
     <link type="text/css" rel="stylesheet" href="css/index.css"/>
     <script src="javascript/linked.js"></script>
 
-    <link rel="icon" href="asset/icon.png">
+    <link rel="icon" href="asset/qr.png">
     <title>Entrance Monitoring sys - Home page</title>
 </head>
 <body>
+
     <div class="row no-gutters">
         <div class="col-sm-8 col-xs-8 col-md-8 col-lg-8">
             <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
@@ -68,7 +69,7 @@
             <div class="container pagination-centered text-center mx-auto pt-5 mt-5" style="background-color: #F1F1F1; border-radius: 15px; box-shadow: -2px 2px 18px 4px black;">
                 <div class="row no-gutters d-flex">
                     <div class="col-sm-12 col-xs-12 col-md-12">
-                        <h1 id="pageTitle" class="pt-2 mt-2">Entrance Monitoring System</h1>
+                        <h1 id="pageTitle" class="pt-2 mt-2">QR Entrance Monitoring System</h1>
                     </div>
                 </div>
                 <div class="row no-gutters d-flex justify-content-center mb-5 px-2 mx-2 pt-5 mt-5">
