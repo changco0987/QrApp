@@ -1,5 +1,6 @@
 body{
     font-family: Comic Sans MS, Comic Sans;
+    background-color: #3466AA;
 }
 
 p{
@@ -41,6 +42,13 @@ p{
     animation-name: hoverBtn;
     animation-duration: 2s;
     animation-iteration-count: infinite;
+}
+
+#pageTitle{
+    font-family: Verdana, Arial, Tahoma, Serif;
+    text-shadow: 2px 2px whitesmoke;
+    font-weight: bolder;
+    color: #1C1C1C;
 }
 
 

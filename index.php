@@ -64,11 +64,11 @@
             </div>
         </div>
 
-        <div class="col-sm-4 col-xs-4 col-md-4 col-lg-4 px-2 py-5" style="background-color: #3466AA;">
-            <div class="container pagination-centered text-center mx-auto pt-5 mt-5" style="background-color: #F1F1F1; border-radius: 20px; box-shadow: -2px 2px 18px 4px black;">
+        <div class="col-sm-4 col-xs-4 col-md-4 col-lg-4 px-2 py-5">
+            <div class="container pagination-centered text-center mx-auto pt-5 mt-5" style="background-color: #F1F1F1; border-radius: 15px; box-shadow: -2px 2px 18px 4px black;">
                 <div class="row no-gutters d-flex">
                     <div class="col-sm-12 col-xs-12 col-md-12">
-                        <h1 class="pt-2 mt-2">Entrance Monitoring System</h1>
+                        <h1 id="pageTitle" class="pt-2 mt-2">Entrance Monitoring System</h1>
                     </div>
                 </div>
                 <div class="row no-gutters d-flex justify-content-center mb-5 px-2 mx-2 pt-5 mt-5">
