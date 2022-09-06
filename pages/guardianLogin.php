@@ -109,9 +109,9 @@
     color: black;
     font-weight: bold;
     position: absolute;
-    top: 35%;
+    top: 50%;
     left: 50%;
-    transform: translateX(-50%) translateY(-35%);
+    transform: translateX(-50%) translateY(-50%);
     height: 890px;
     width: 350px;
     padding: 20px;
@@ -131,9 +131,9 @@ body{
     color: black;
     font-weight: bold;
     position: absolute;
-    top: 25%;
+    top: 50%;
     left: 50%;
-    transform: translateX(-50%) translateY(-25%);
+    transform: translateX(-50%) translateY(-50%);
     height:max-content;
     width:max-content;
     padding: 5px;
@@ -142,7 +142,7 @@ body{
     box-shadow: none;
 }
 footer * {
-    font-size: 12px;
+    font-size: 17px;
 }
 
 }  
@@ -169,7 +169,7 @@ body{
     box-shadow: none;
 }
 footer * {
-    font-size: 12px;
+    font-size: 17px;
 }
 
 }
@@ -204,7 +204,7 @@ footer * {
                         <div class="form-group">
                             <div class="row pt-1 mt-1">
                                 <div class="col-sm-12 col-xs-12 col-md-12 col-lg-12">
-                                    <input type="text" class="form-control" id="usernameTb" name="usernameTb" placeholder="Username" maxlength="20" required style="width: 300px;">
+                                    <input type="text" class="form-control" id="usernameTb" name="usernameTb" placeholder="Username" maxlength="20" required>
                                 </div>
                             </div>
                         </div>

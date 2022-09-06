@@ -46,9 +46,9 @@ label{
 
 .myRow{
     position: absolute;
-    top: 30%;
+    top: 40%;
     left: 50%;
-    transform: translateX(-50%) translateY(-30%);
+    transform: translateX(-50%) translateY(-40%);
 }
 
 .form-control{
@@ -76,7 +76,10 @@ label{
 }
 
 @media screen and (max-width: 650px) {
-
+    body{  
+    background-color: #f1f1f1;
+    font-family: "Bahnschrift", Times, serif;
+}
 .containerForm {
     background-color: #f1f1f1; /* Fallback color */
     color: black;
@@ -87,33 +90,37 @@ label{
     transform: translateX(-50%) translateY(-35%);
     height: 750px;
     width: 385px;
-    padding: 20px;
+    padding: 5px;
     text-align: center;
-    border-radius: 15px;
-    box-shadow: -1px 1px 20px 6px black;
+    border-radius: 0px;
+    box-shadow: none;
 }
 }
 
+/* S20 Ultra and iphone6/7/8 Plus*/
 @media screen and (max-width: 450px) {
-
+    body{  
+    background-color: #f1f1f1;
+    font-family: "Bahnschrift", Times, serif;
+}
 .containerForm {
     background-color: #f1f1f1; /* Fallback color */
     color: black;
     font-weight: bold;
     position: absolute;
-    top: 45%;
+    top: 40%;
     left: 50%;
-    transform: translateX(-50%) translateY(-45%);
+    transform: translateX(-50%) translateY(-40%);
     height: 700px;
     width: 385px;
     padding: 20px;
     text-align: center;
-    border-radius: 15px;
-    box-shadow: -1px 1px 20px 6px black;
+    border-radius: 0px;
+    box-shadow: none;
 }
 }
 
-
+/* S8+ */
 @media screen and (max-width: 360px) {
     body{  
     background-color: #f1f1f1;
@@ -129,14 +136,14 @@ label{
     transform: translateX(-50%) translateY(-35%);
     height: 890px;
     width: 350px;
-    padding: 20px;
+    padding: 5px;
     text-align: center;
     border-radius: 0px;
     box-shadow: none;
 }
 }
 
-
+/* S9 */
 @media screen and (max-width: 320px) {
 body{  
     background-color: #f1f1f1;
@@ -150,23 +157,33 @@ body{
     top: 25%;
     left: 50%;
     transform: translateX(-50%) translateY(-25%);
-    height: 970px;
-    width: 320px;
-    padding: 35px;
+    height: 750px;
+    width: 300px;
+    padding: 5px;
     text-align: center;
     border-radius: 0px;
     box-shadow: none;
 }
+
 footer * {
-    font-size: 12px;
+    font-size: 17px;
 }
 
 }
+
     </style>
     <link rel="icon" href="../asset/qr.png">
     <title>Entrance Monitoring sys - Sign up</title>
 </head>
 <body>
+    
+    <!-- Image and text Header-->
+    <nav class="navbar navbar-light" style="background-color: #114084;">
+        <a class="navbar-brand" href="#" style="font-weight:bold; color: whitesmoke; text-shadow: 1px 1px #1C1C1C;">
+        <img src="../asset/qr.png" width="40" height="40" class="d-inline-block align-top" alt="">
+            QR <small style="color: whitesmoke; text-shadow: 1px 1px #1C1C1C;">Entrance Monitoring System</small>
+        </a>
+     </nav>
     <div class="row myRow mt-5 pt-5 mx-auto">
         <div class="col-sm-12 col-xs-12 col-md-12 col-lg-12 my-5 py-5">
             <div class="containerForm">

@@ -46,9 +46,9 @@ label{
 
 .myRow{
     position: absolute;
-    top: 30%;
+    top: 40%;
     left: 50%;
-    transform: translateX(-50%) translateY(-30%);
+    transform: translateX(-50%) translateY(-40%);
 }
 
 .form-control{
@@ -66,34 +66,37 @@ label{
     top: 50%;
     left: 50%;
     transform: translateX(-50%) translateY(-50%);
-    height: 700px;
-    width: 400px;
-    padding: 20px;
+    height: 790px;
+    width: 385px;
+    padding: 5px;
     text-align: center;
-    border-radius: 15px;
-    box-shadow: -1px 1px 20px 6px black;
+    border-radius: 0px;
+    box-shadow: none;
 }
 }
 
 @media screen and (max-width: 650px) {
-
+    body{  
+    background-color: #f1f1f1;
+    font-family: "Bahnschrift", Times, serif;
+}
 .containerForm {
     background-color: #f1f1f1; /* Fallback color */
     color: black;
     font-weight: bold;
     position: absolute;
-    top: 35%;
+    top: 50%;
     left: 50%;
-    transform: translateX(-50%) translateY(-35%);
-    height: 750px;
+    transform: translateX(-50%) translateY(-50%);
+    height: 790px;
     width: 385px;
-    padding: 20px;
+    padding: 5px;
     text-align: center;
-    border-radius: 15px;
-    box-shadow: -1px 1px 20px 6px black;
+    border-radius: 0px;
+    box-shadow: none;
 }
 }
-
+/* S20 Ultra */
 @media screen and (max-width: 450px) {
 
 .containerForm {
@@ -101,19 +104,20 @@ label{
     color: black;
     font-weight: bold;
     position: absolute;
-    top: 35%;
+    top: 30%;
     left: 50%;
-    transform: translateX(-50%) translateY(-35%);
-    height: 790px;
+    transform: translateX(-50%) translateY(-30%);
+    height: max-content;
     width: 385px;
-    padding: 20px;
+    padding: 5px;
     text-align: center;
-    border-radius: 15px;
-    box-shadow: -1px 1px 20px 6px black;
+    border-radius: 0px;
+    box-shadow: none;
 }
 }
 
 
+/* S8+ */
 @media screen and (max-width: 360px) {
     body{  
     background-color: #f1f1f1;
@@ -136,7 +140,7 @@ label{
 }
 }
 
-
+/* S9 */
 @media screen and (max-width: 320px) {
 body{  
     background-color: #f1f1f1;
@@ -158,7 +162,10 @@ body{
     box-shadow: none;
 }
 footer * {
-    font-size: 12px;
+    font-size: 17px;
+}
+#smsNotifLbl{
+    font-size: 11px;
 }
 
 }
@@ -168,6 +175,15 @@ footer * {
     <title>Entrance Monitoring sys - Sign up</title>
 </head>
 <body>
+
+
+    <!-- Image and text Header-->
+    <nav class="navbar navbar-light" style="background-color: #114084;">
+        <a class="navbar-brand" href="#" style="font-weight:bold; color: whitesmoke; text-shadow: 1px 1px #1C1C1C;">
+        <img src="../asset/qr.png" width="40" height="40" class="d-inline-block align-top" alt="">
+            QR <small style="color: whitesmoke; text-shadow: 1px 1px #1C1C1C;">Entrance Monitoring System</small>
+        </a>
+     </nav>
     <div class="row myRow mt-5 pt-5 mx-auto">
         <div class="col-sm-12 col-xs-12 col-md-12 col-lg-12 my-5 py-5">
             <div class="containerForm">
@@ -237,7 +253,7 @@ footer * {
                             <div class="row ">
                                 <div class="col-sm-12 col-xs-12 col-md-12 col-lg-12">
                                     <input class="form-check-input no-border" name="notifCheckbox" type="checkbox" value="true" id="notifCheckbox">
-                                    <label class="form-check-label" for="notifCheckbox">Do you want to recieve sms notification?</label>
+                                    <label id="smsNotifLbl" class="form-check-label" for="notifCheckbox">Do you want to recieve sms notification?</label>
                                 </div>
                             </div>
                         </div>
