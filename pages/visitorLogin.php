@@ -30,6 +30,150 @@
     <script src="../javascript/linked.js"></script>
     <link rel="stylesheet" href="../css/login.css">
 
+    <style>
+ 
+
+
+
+ @media screen and (max-height: 850px) {
+
+.container {
+    background-color: #f1f1f1; /* Fallback color */
+    color: black;
+    font-weight: bold;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translateX(-50%) translateY(-50%);
+    height:max-content;
+    width:max-content;
+    padding: 5px;
+    text-align: center;
+    border-radius: 15px;
+    box-shadow: -1px 1px 20px 6px black;
+}
+}
+
+@media screen and (max-width: 650px) {
+    body{  
+    background-color: #f1f1f1;
+    font-family: "Bahnschrift", Times, serif;
+}
+.container {
+    background-color: #f1f1f1; /* Fallback color */
+    color: black;
+    font-weight: bold;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translateX(-50%) translateY(-50%);
+    height:max-content;
+    width:max-content;
+    padding: 5px;
+    text-align: center;
+    border-radius: 0px;
+    box-shadow: none;
+}
+}
+
+@media screen and (max-width: 450px) {
+    body{  
+    background-color: #f1f1f1;
+    font-family: "Bahnschrift", Times, serif;
+}
+.container {
+    background-color: #f1f1f1; /* Fallback color */
+    color: black;
+    font-weight: bold;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translateX(-50%) translateY(-50%);
+    height:max-content;
+    width:max-content;
+    padding: 5px;
+    text-align: center;
+    border-radius: 0px;
+    box-shadow: none;
+}
+}
+
+
+@media screen and (max-width: 360px) {
+    body{  
+    background-color: #f1f1f1;
+    font-family: "Bahnschrift", Times, serif;
+}
+.container {
+    background-color: #f1f1f1; /* Fallback color */
+    color: black;
+    font-weight: bold;
+    position: absolute;
+    top: 35%;
+    left: 50%;
+    transform: translateX(-50%) translateY(-35%);
+    height: 890px;
+    width: 350px;
+    padding: 20px;
+    text-align: center;
+    border-radius: 0px;
+    box-shadow: none;
+}
+}
+
+/* S8+ */
+@media screen and (max-width: 375px) {
+body{  
+    background-color: #f1f1f1;
+}
+.container {
+    background-color: #f1f1f1; /* Fallback color */
+    color: black;
+    font-weight: bold;
+    position: absolute;
+    top: 25%;
+    left: 50%;
+    transform: translateX(-50%) translateY(-25%);
+    height:max-content;
+    width:max-content;
+    padding: 5px;
+    text-align: center;
+    border-radius: 0px;
+    box-shadow: none;
+}
+footer * {
+    font-size: 12px;
+}
+
+}  
+
+/* S9 */
+@media screen and (max-width: 320px) {
+body{  
+    background-color: #f1f1f1;
+    font-family: "Bahnschrift", Times, serif;
+}
+.container {
+    background-color: #f1f1f1; /* Fallback color */
+    color: black;
+    font-weight: bold;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translateX(-50%) translateY(-50%);
+    height:max-content;
+    width:max-content;
+    padding: 5px;
+    text-align: center;
+    border-radius: 0px;
+    box-shadow: none;
+}
+footer * {
+    font-size: 12px;
+}
+
+}
+    </style>
     <link rel="icon" href="../asset/qr.png">
     <title>Entrance Monitoring sys - Login</title>
 </head>
