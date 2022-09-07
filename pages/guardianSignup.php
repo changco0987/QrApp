@@ -63,12 +63,12 @@ label{
     color: black;
     font-weight: bold;
     position: absolute;
-    top: 50%;
+    top: 45%;
     left: 50%;
-    transform: translateX(-50%) translateY(-50%);
-    height: 790px;
+    transform: translateX(-50%) translateY(-45%);
+    height: 760px;
     width: 385px;
-    padding: 5px;
+    padding: 15px;
     text-align: center;
     border-radius: 0px;
     box-shadow: none;
@@ -78,16 +78,15 @@ label{
 @media screen and (max-width: 650px) {
     body{  
     background-color: #f1f1f1;
-    font-family: "Bahnschrift", Times, serif;
 }
 .containerForm {
     background-color: #f1f1f1; /* Fallback color */
     color: black;
     font-weight: bold;
     position: absolute;
-    top: 50%;
+    top: 40%;
     left: 50%;
-    transform: translateX(-50%) translateY(-50%);
+    transform: translateX(-50%) translateY(-40%);
     height: 790px;
     width: 385px;
     padding: 5px;

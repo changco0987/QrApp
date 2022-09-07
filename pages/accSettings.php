@@ -75,7 +75,7 @@ label{
     top: 50%;
     left: 50%;
     transform: translateX(-50%) translateY(-50%);
-    height: 600px;
+    height: 630px;
     width: 650px;
     padding: 20px;
     text-align: center;
@@ -224,6 +224,7 @@ footer * {
                         <div class="form-group">
                             <center>
                                 <h1>Edit Info</h1>
+                                <small class="text-danger font-weight-bold">(Edit your info below to change it otherwise leave it as is)</small>
                             </center>
                             <hr style="height:2px;border-width:0;color:gray;background-color:gray">
                         </div>
@@ -306,7 +307,7 @@ footer * {
                                 </script>
                                 <style>
                                     .containerForm{
-                                        height: 715px;
+                                        height: 745px;
                                     }
                                                                         
                                     @media screen and (max-height: 850px) {
@@ -348,7 +349,9 @@ footer * {
                                     }
 
                                     @media screen and (max-width: 450px) {
-
+                                        body{  
+                                                background-color: #f1f1f1;
+                                            }
                                     .containerForm {
                                         background-color: #f1f1f1; /* Fallback color */
                                         color: black;
@@ -361,8 +364,8 @@ footer * {
                                         width: 385px;
                                         padding: 20px;
                                         text-align: center;
-                                        border-radius: 15px;
-                                        box-shadow: -1px 1px 20px 6px black;
+                                        border-radius: 0px;
+                                        box-shadow: none;
                                     }
                                     }
 
@@ -422,10 +425,10 @@ footer * {
                         ?>
                         <div class="form-group">
                             <div class="row">
-                                <div class="col-sm-6 col-xs-6 col-md-6 col-lg-6">
+                                <div class="col-sm-6 col-xs-6 col-md-6 col-lg-6 mt-1">
                                     <button type="submit" class="form-control btn" id="submitBtn" style="background-color: #3466AA; color:white;">Submit</button>
                                 </div>
-                                <div class="col-sm-6 col-xs-6 col-md-6 col-lg-6">
+                                <div class="col-sm-6 col-xs-6 col-md-6 col-lg-6 mt-1">
                                     <a type="button" class="form-control btn btn-warning" id="cancelBtn" href="userDashboard.php">Cancel</a>
                                 </div>
                             </div>

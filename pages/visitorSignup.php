@@ -66,9 +66,9 @@ label{
     top: 50%;
     left: 50%;
     transform: translateX(-50%) translateY(-50%);
-    height: 700px;
+    height: 610px;
     width: 400px;
-    padding: 20px;
+    padding: 15px;
     text-align: center;
     border-radius: 15px;
     box-shadow: -1px 1px 20px 6px black;
@@ -101,7 +101,6 @@ label{
 @media screen and (max-width: 450px) {
     body{  
     background-color: #f1f1f1;
-    font-family: "Bahnschrift", Times, serif;
 }
 .containerForm {
     background-color: #f1f1f1; /* Fallback color */
@@ -113,7 +112,7 @@ label{
     transform: translateX(-50%) translateY(-40%);
     height: 700px;
     width: 385px;
-    padding: 20px;
+    padding: 5px;
     text-align: center;
     border-radius: 0px;
     box-shadow: none;
