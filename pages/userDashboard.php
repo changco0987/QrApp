@@ -226,11 +226,27 @@
                             ?>
                             
                             </center>
-                            <img src="../asset/picture.png" width="60" height="60" class="d-inline-block align-top img-fluid border border-dark" alt="" style="border-radius: 50%;">
+
+                            <?php
+                            //This will assign the image name to the image html element and if null it will assign the default image
+                                if($row['imageName']==null)
+                                {
+                                    ?>
+                                        <img src="../asset/user.png" width="60" height="60" class="d-inline-block align-top img-fluid border border-dark" alt="" style="border-radius: 50%;">
+                                    <?php
+                                }
+                                else
+                                {
+                                    ?>
+                                        <img src="../asset/<?php echo $row['imageName'];?>" width="60" height="60" class="d-inline-block align-top img-fluid border border-dark" alt="" style="border-radius: 50%;">
+                                    <?php
+                                }
+                            ?>
                             <!-- Name of the user (visitor or guardian)-->
                             <small id="usernameLb" name="usernameLb" style="font-size: 28px;" class="ml-2"><?php echo $_SESSION['username'];?></small>
                             <br>
                             <?php
+                            //This will fix the spacing/margin of the account type text at the bottom of the image
                                 if($_SESSION['accType']=='visitor')
                                 {
                                     ?>

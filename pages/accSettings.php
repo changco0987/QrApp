@@ -75,7 +75,7 @@ label{
     top: 50%;
     left: 50%;
     transform: translateX(-50%) translateY(-50%);
-    height: 630px;
+    height: 795px;
     width: 650px;
     padding: 20px;
     text-align: center;
@@ -86,9 +86,9 @@ label{
 
 .myRow{
     position: absolute;
-    top: 30%;
+    top: 40%;
     left: 50%;
-    transform: translateX(-50%) translateY(-30%);
+    transform: translateX(-50%) translateY(-40%);
 }
 
 .form-control{
@@ -103,10 +103,10 @@ label{
     color: black;
     font-weight: bold;
     position: absolute;
-    top: 50%;
+    top: 35%;
     left: 50%;
-    transform: translateX(-50%) translateY(-50%);
-    height: 700px;
+    transform: translateX(-50%) translateY(-35%);
+    height: 815px;
     width: 400px;
     padding: 20px;
     text-align: center;
@@ -135,7 +135,10 @@ label{
 }
 
 @media screen and (max-width: 450px) {
-
+    body{  
+    background-color: #f1f1f1;
+    font-family: "Bahnschrift", Times, serif;
+}
 .containerForm {
     background-color: #f1f1f1; /* Fallback color */
     color: black;
@@ -148,8 +151,8 @@ label{
     width: 385px;
     padding: 20px;
     text-align: center;
-    border-radius: 15px;
-    box-shadow: -1px 1px 20px 6px black;
+    border-radius: 0px;
+    box-shadow: none;
 }
 }
 
@@ -230,6 +233,39 @@ footer * {
                         </div>
                         <div class="form-group">
                             <div class="row">
+                                <div class="col-sm-12 col-xs-12 col-md-12 col-lg-12 pt-1 mt-1">
+                                <?php
+                                    //This will assign the image name to the image html element and if null it will assign the default image
+                                    if($row['imageName']==null)
+                                    {
+                                        ?>
+                                            <img src="../asset/user.png" width="90" height="90" class="d-inline-block align-top img-fluid border border-dark" alt="" style="border-radius: 50%;">
+                                        <?php
+                                    }
+                                    else
+                                    {
+                                        ?>
+                                            <img src="../asset/<?php echo $row['imageName'];?>" width="90" height="90" class="d-inline-block align-top img-fluid border border-dark" alt="" style="border-radius: 50%;">
+                                        <?php
+                                    }
+                                ?>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="row">
+                                
+                                <div class="col-sm-12 col-xs-12 col-md-12 col-lg-12">
+                                    <!--input type="file" class="form-control custom-file-input" name="fileTb" id="fileTb"-->
+                                    <div class="custom-file" style="width:fit-content;">
+                                        <input type="file" accept=".jpg, .png, .jpeg" class="custom-file-input" id="customFile">
+                                        <label class="custom-file-label text-left" for="customFile">Change Picture</label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="row">
                                 <div class="col-sm-12 col-xs-12 col-md-6 col-lg-6 pt-2 mt-2">
                                     <label class="d-flex align-items-start" for="fnameTb">First name</label>
                                     <input type="text" class="form-control no-border" id="fnameTb" name="fnameTb" placeholder="First name" maxlength="50" required value="<?php echo $row['firstname'];?>">
@@ -307,7 +343,8 @@ footer * {
                                 </script>
                                 <style>
                                     .containerForm{
-                                        height: 745px;
+                                        height: 905px;
+                                        padding: 10px;
                                     }
                                                                         
                                     @media screen and (max-height: 850px) {
