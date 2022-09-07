@@ -226,10 +226,24 @@
                             ?>
                             
                             </center>
-                            <img src="../asset/user.png" width="60" height="60" class="d-inline-block align-top img-fluid border border-dark" alt="" style="border-radius: 50%;">
+                            <img src="../asset/picture.png" width="60" height="60" class="d-inline-block align-top img-fluid border border-dark" alt="" style="border-radius: 50%;">
                             <!-- Name of the user (visitor or guardian)-->
                             <small id="usernameLb" name="usernameLb" style="font-size: 28px;" class="ml-2"><?php echo $_SESSION['username'];?></small>
-                            <br><small class="ml-1 pl-1 text-danger" style="font-size: 15px;"><?php echo $_SESSION['accType'];?></small>
+                            <br>
+                            <?php
+                                if($_SESSION['accType']=='visitor')
+                                {
+                                    ?>
+                                        <small class="ml-1 pl-1 text-danger" style="font-size: 15px;"><?php echo $_SESSION['accType'];?></small>
+                                    <?php
+                                }
+                                else
+                                {
+                                    ?>
+                                        <small class="text-danger" style="font-size: 15px;"><?php echo $_SESSION['accType'];?></small>
+                                    <?php
+                                }
+                            ?>
 
                         <hr style="height:1px; border-width:0;background-color: #3466AA">
                     </div>
