@@ -9,6 +9,9 @@
     date_default_timezone_set('Asia/Manila'); 
     $currentDateTime = date('Y-m-d h:i:s a');
     session_start();
+    $imgPath = '../upload/';
+    $tempFilename = '';
+    $fileExtension = pathinfo($_FILES['fileTb']['name'],PATHINFO_EXTENSION);
 
     //This will be used by 2 page the visitor and guardian login
     if(isset($_POST['accType']))
@@ -39,6 +42,13 @@
                     $data->setAddress($_POST['addressTb']);
                     $data->setContact_number($_POST['contactTb']);
                     $data->setStatus($_POST['statusTb']);
+
+                    if($_FILES['fileTb']['name']!="")
+                    {
+                        $data->setImageName($_POST['usernameTb'].$_SESSION['accType']. "." .$fileExtension);
+                        $uploadedFile = $_FILES['fileTb']['tmp_name'];
+                        copy($uploadedFile,$imgPath.$data->getImageName());//This will move the uploaded file into file directory (web)
+                    }
 
                     UpdateAccountVisitor($conn,$data);
                     
@@ -90,6 +100,14 @@
                         $data->setNotification('false');
                     }
 
+                    
+                    if($_FILES['fileTb']['name']!="")
+                    {
+                        $data->setImageName($_POST['usernameTb'].$_SESSION['accType']. "." .$fileExtension);
+                        $uploadedFile = $_FILES['fileTb']['tmp_name'];
+                        copy($uploadedFile,$imgPath.$data->getImageName());//This will move the uploaded file into file directory (web)
+                    }
+                    
                     UpdateAccountGuardian($conn,$data);
                     $_SESSION['username'] = $data->getUsername();
                     $_SESSION['password'] = $_POST['passwordTb'];

@@ -238,7 +238,7 @@
                                 else
                                 {
                                     ?>
-                                        <img src="../asset/<?php echo $row['imageName'];?>" width="60" height="60" class="d-inline-block align-top img-fluid border border-dark" alt="" style="border-radius: 50%;">
+                                        <img src="../upload/<?php echo $row['imageName'];?>" width="60" height="60" class="d-inline-block align-top border border-dark" alt="" style="border-radius: 50%;">
                                     <?php
                                 }
                             ?>

@@ -239,13 +239,13 @@ footer * {
                                     if($row['imageName']==null)
                                     {
                                         ?>
-                                            <img src="../asset/user.png" width="90" height="90" class="d-inline-block align-top img-fluid border border-dark" alt="" style="border-radius: 50%;">
+                                            <img src="../asset/user.png" width="90" height="90" class="d-inline-block align-top border border-dark" alt="" style="border-radius: 50%;" id="userImg">
                                         <?php
                                     }
                                     else
                                     {
                                         ?>
-                                            <img src="../asset/<?php echo $row['imageName'];?>" width="90" height="90" class="d-inline-block align-top img-fluid border border-dark" alt="" style="border-radius: 50%;">
+                                            <img src="../upload/<?php echo $row['imageName'];?>" width="90" height="90" class="d-inline-block align-top border border-dark" alt="" style="border-radius: 50%;" id="userImg">
                                         <?php
                                     }
                                 ?>
@@ -258,8 +258,8 @@ footer * {
                                 <div class="col-sm-12 col-xs-12 col-md-12 col-lg-12">
                                     <!--input type="file" class="form-control custom-file-input" name="fileTb" id="fileTb"-->
                                     <div class="custom-file" style="width:fit-content;">
-                                        <input type="file" accept=".jpg, .png, .jpeg" class="custom-file-input" id="customFile">
-                                        <label class="custom-file-label text-left" for="customFile">Change Picture</label>
+                                        <input type="file" accept=".jpg, .png, .jpeg" class="custom-file-input" id="fileTb" name="fileTb">
+                                        <label class="custom-file-label text-left" for="fileTb">Change Picture</label>
                                     </div>
                                 </div>
                             </div>
@@ -525,5 +525,13 @@ footer * {
 
         //To make signl back to normmal and to prevent for the success page to appear every time the page was reload or refresh
         localStorage.setItem('state',0);
+
+        //this will make a image preview before it was uploaded
+        fileTb.onchange = evt => {
+        const [file] = fileTb.files
+        if (file) {
+            userImg.src = URL.createObjectURL(file)
+        }
+        }
     </script>
 </html>
