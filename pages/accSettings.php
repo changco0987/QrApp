@@ -97,7 +97,9 @@ label{
 
 
 @media screen and (max-height: 850px) {
-
+    body{  
+    background-color: #f1f1f1;
+}
 .containerForm {
     background-color: #f1f1f1; /* Fallback color */
     color: black;
@@ -108,15 +110,17 @@ label{
     transform: translateX(-50%) translateY(-35%);
     height: 815px;
     width: 400px;
-    padding: 20px;
+    padding: 15px;
     text-align: center;
-    border-radius: 15px;
-    box-shadow: -1px 1px 20px 6px black;
+    border-radius: 0px;
+    box-shadow: none;
 }
 }
 
 @media screen and (max-width: 650px) {
-
+    body{  
+    background-color: #f1f1f1;
+}
 .containerForm {
     background-color: #f1f1f1; /* Fallback color */
     color: black;
@@ -127,10 +131,10 @@ label{
     transform: translateX(-50%) translateY(-35%);
     height: 750px;
     width: 385px;
-    padding: 20px;
+    padding: 15px;
     text-align: center;
-    border-radius: 15px;
-    box-shadow: -1px 1px 20px 6px black;
+    border-radius: 0px;
+    box-shadow: none;
 }
 }
 
@@ -348,7 +352,9 @@ footer * {
                                     }
                                                                         
                                     @media screen and (max-height: 850px) {
-
+                                        body{  
+                                                background-color: #f1f1f1;
+                                            }
                                     .containerForm {
                                         background-color: #f1f1f1; /* Fallback color */
                                         color: black;
@@ -359,15 +365,17 @@ footer * {
                                         transform: translateX(-50%) translateY(-50%);
                                         height: 700px;
                                         width: 400px;
-                                        padding: 20px;
+                                        padding: 15px;
                                         text-align: center;
-                                        border-radius: 15px;
-                                        box-shadow: -1px 1px 20px 6px black;
+                                        border-radius: 0px;
+                                        box-shadow: none;
                                     }
                                     }
 
                                     @media screen and (max-width: 650px) {
-
+                                        body{  
+                                                background-color: #f1f1f1;
+                                            }
                                     .containerForm {
                                         background-color: #f1f1f1; /* Fallback color */
                                         color: black;
@@ -378,10 +386,10 @@ footer * {
                                         transform: translateX(-50%) translateY(-35%);
                                         height: 750px;
                                         width: 385px;
-                                        padding: 20px;
+                                        padding: 15px;
                                         text-align: center;
-                                        border-radius: 15px;
-                                        box-shadow: -1px 1px 20px 6px black;
+                                        border-radius: 0px;
+                                        box-shadow: none;
                                     }
                                     }
 
