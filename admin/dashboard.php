@@ -15,10 +15,10 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.3/font/bootstrap-icons.css">
 
     <!--My CSS and JS-->
-    <!--link type="text/css" rel="stylesheet" href="css/index.css"/>
+    <!--link type="text/css" rel="stylesheet" href="../css/index.css"/>
     <script src="javascript/linked.js"></script-->
 
-    <link rel="icon" href="asset/qr.png">
+    <link rel="icon" href="../asset/qr.png">
     <title>Admin Dashboard</title>
 <style>
 body {
@@ -95,7 +95,13 @@ div.content {
 </div>
 
 <div class="content">
-  <h2>Responsive Sidebar Example</h2>
+  <div class="row mt-2 pt-2"> 
+    <div class="col-sm-12 col-xs-12 col-md-12 col-lg-12 col-xl-12" style="background-color: red;">
+      <h3>Resize the browser window to see the effect.</h3>
+
+    </div>
+
+  </div>
   <div class="row">
     <div class="col-sm-12 col-xs-12 col-md-12 col-lg-12 col-xl-12" style="background-color: red;">
       <h3>Resize the browser window to see the effect.</h3>
