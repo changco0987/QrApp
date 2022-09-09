@@ -51,7 +51,7 @@
 <body>
         
     <!-- Alert message container-->
-    <div id="successBox" class="alert alert-success alert-dismissible fade show" role="alert" style="display:block;">
+    <div id="successBox" class="alert alert-danger alert-dismissible fade show" role="alert" style="display:block;">
         <strong id="successMsg"></strong>
         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
             <span aria-hidden="true">&times;</span>
@@ -112,24 +112,24 @@
 
         if(successSignal==1)
         {
-            //if incorrect password
-            document.getElementById('alertBox').style.display = 'block';
-            document.getElementById('errorMsg').innerHTML = 'Incorrect password please try again';
+            //if password or username is incorrect
+            document.getElementById('successBox').style.display = 'block';
+            document.getElementById('successMsg').innerHTML = "Username or password is incorrect";
             console.log("okay");
 
         }
         else if(successSignal==2)
         {
-            //if email is already taken
-            document.getElementById('alertBox').style.display = 'block';
-            document.getElementById('errorMsg').innerHTML = 'Sorry, this account is not existing';
+            //if password doesn't matched
+            document.getElementById('successBox').style.display = 'block';
+            document.getElementById('successMsg').innerHTML = "This username doesn't exist";
             console.log("okay");
         }
         else if(successSignal==3)
         {
             //if password doesn't matched
-            document.getElementById('alertBox').style.display = 'block';
-            document.getElementById('errorMsg').innerHTML = "Password doesn't match!";
+            document.getElementById('successBox').style.display = 'block';
+            document.getElementById('successMsg').innerHTML = "Information Successfully saved!";
             console.log("okay");
         }
         else if(successSignal==4)
