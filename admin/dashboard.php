@@ -1,3 +1,40 @@
+<?php
+    include_once '../db/connection.php';
+
+    include_once '../model/adminModel.php';
+    include_once '../db/tb_admin.php';
+
+    //This will check if the user is truely login
+    session_start();
+    if(!isset($_SESSION['adminNameTb']))
+    {
+        header("Location: ../admin.php");
+    }
+    /*
+    date_default_timezone_set('Asia/Manila');
+
+    $row = array();
+
+    if($_SESSION['accType'] == 'visitor')
+    {
+        $data = new visitorModel();
+        $data->setUsername($_SESSION['username']);
+
+        $result = ReadAccountVisitor($conn,$data);
+        $row =  mysqli_fetch_assoc($result);
+    }
+    else if($_SESSION['accType'] == 'guardian')
+    {
+        $data = new guardianModel();
+        $data->setUsername($_SESSION['username']);
+        
+        $result = ReadAccountGuardian($conn,$data);
+        $row =  mysqli_fetch_assoc($result);
+    }
+    
+    date_default_timezone_set('Asia/Manila');
+    */
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -17,7 +54,7 @@
     <!--My CSS and JS-->
     <!--link type="text/css" rel="stylesheet" href="../css/index.css"/>
     <script src="javascript/linked.js"></script-->
-
+    <!-- Custom fonts for this template-->
     <link rel="icon" href="../asset/qr.png">
     <title>Admin Dashboard</title>
 <style>
@@ -40,6 +77,12 @@ body {
 #adminTitle{
   font-weight: bolder;
   color: #82B7DC;
+  text-shadow: 1px 1px #1C1C1C;
+}
+
+#pageTitle{
+  font-weight: bold;
+  color: #F1F1F1;
   text-shadow: 1px 1px #1C1C1C;
 }
 
@@ -95,19 +138,21 @@ div.content {
 </div>
 
 <div class="content">
-  <div class="row mt-2 pt-2"> 
-    <div class="col-sm-12 col-xs-12 col-md-12 col-lg-12 col-xl-12" style="background-color: red;">
-      <h3>Resize the browser window to see the effect.</h3>
-
-    </div>
-
-  </div>
   <div class="row">
-    <div class="col-sm-12 col-xs-12 col-md-12 col-lg-12 col-xl-12" style="background-color: red;">
-      <h3>Resize the browser window to see the effect.</h3>
+    <div class="col-sm-10 col-xs-10 col-md-10 col-lg-10 col-xl-11" style="background-color: #4e82c9;">
+      <h3 class="d-flex justify-content-center mt-2 pt-1" id="pageTitle" >Announcements and Event Control</h3>
+    </div>
+    <div class="col-sm-2 col-xs-2 col-md-2 col-lg-2 col-xl-1" style="background-color: #4e82c9;">
+      <div class="w-100 d-flex justify-content-end">
+          <a type="button" class="btn d-flex justify-content-start mt-2 mb-1 pt-1 btn-danger"  href="../controller/adminWipeData.php"><i class="bi bi-power mr-2"></i></span>Logout</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-sm-12 col-xs-12 col-md-12 col-lg-12 col-xl-12" >
 
     </div>
-
   </div>
 </div>
 

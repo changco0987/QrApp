@@ -15,6 +15,8 @@
 
             if($row['username']==$data->getUsername() && $row['password']==$data->getPassword())
             {
+                session_start();
+                $_SESSION['adminNameTb'] = $row['username'];
                 header("Location: ../admin/dashboard.php");
             }
             else
