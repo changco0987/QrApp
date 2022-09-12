@@ -18,8 +18,15 @@
 
     function UpdateEvent($conn,$event)
     {
-        mysqli_query($conn,"UPDATE announcementtb set heading = '".$event->getHeading()."', content = '".$event->getContent().
-        "', imageName = '".$event->getImageName()."', isShow = ".$event->getIsShow().", type = '".$event->getType()."' date=".$event->getDate()."' where id = ". $event->getId());
+        if($event->getIsShow()==null)
+        {
+            mysqli_query($conn,"UPDATE announcementtb set heading = '".$event->getHeading()."', content = '".$event->getContent().
+            "', imageName = '".$event->getImageName()."', type = '".$event->getType()."' date=".$event->getDate()."' where id = ". $event->getId());
+        }
+        else
+        {
+            mysqli_query($conn,"UPDATE announcementtb set isShow = ".$event->getIsShow()." where id = ". $event->getId());
+        }
     }
 
     function DeleteEvent($conn,$event)

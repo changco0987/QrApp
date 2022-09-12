@@ -248,8 +248,9 @@ label{
                                 ?>
                                   <!--Publish Button-->
                                   <td id="<?php echo $row['id'];?>">
-                                    <form action="" method="POST">
+                                    <form action="../controller/publish.php" method="POST" enctype="multipart/form-data">
                                       <input type="hidden" name="idTb" id="idTb" value="<?php echo $row['id'];?>">
+                                      <input type="hidden" name="publishTb" id="publishTb" value="1">
                                       <button type="submit" class="btn btn-sm d-flex justify-content-start btn-success"><i class="bi bi-paperclip mr-1"></i>Publish</button>
                                     </form>
                                   </td>
@@ -261,9 +262,10 @@ label{
                                 ?>
                                   <!--Publish Button-->
                                   <td id="<?php echo $row['id'];?>">
-                                    <form action="" method="POST">
+                                    <form action="../controller/publish.php" method="POST" enctype="multipart/form-data">
                                       <input type="hidden" name="idTb" id="idTb" value="<?php echo $row['id'];?>">
-                                      <button type="submit" class="btn btn-sm d-flex justify-content-start btn-secondary"><i class="bi bi-x-circle mr-1"></i>Unpublish</button>
+                                      <input type="hidden" name="publishTb" id="publishTb" value="false">
+                                      <button type="submit" class="btn btn-sm d-flex justify-content-start btn-secondary"><i class="bi bi-x-circle mr-1"></i>Unpublished</button>
                                     </form>
                                   </td>
                                 <?php
@@ -272,7 +274,7 @@ label{
 
                             <!--Edit Button-->
                             <td id="<?php echo $row['id'];?>">
-                              <form action="" method="POST">
+                              <form action="" method="POST" enctype="multipart/form-data">
                                 <input type="hidden" name="idTb" id="idTb" value="<?php echo $row['id'];?>">
                                 <button type="submit" class="btn btn-sm d-flex justify-content-start btn-warning"><i class="bi bi-pencil-square mr-1"></i>Edit</button>
                               </form>
@@ -280,7 +282,7 @@ label{
 
                             <!--Delete Button-->
                             <td id="<?php echo $row['id'];?>">
-                              <form action="" method="POST">
+                              <form action="" method="POST" enctype="multipart/form-data">
                                 <input type="hidden" name="idTb" id="idTb" value="<?php echo $row['id'];?>">
                                 <button type="submit" class="btn btn-sm d-flex justify-content-start btn-danger"><i class="bi bi-trash mr-1"></i>Delete</button>
                               </form>
