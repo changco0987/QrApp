@@ -340,7 +340,7 @@
                     <div class="row pt-1 mt-1">
                         <div class="col-sm-12 col-xs-12 col-md-12 col-lg-12 col-xl-12">
                             <div class="table-wrapper-scroll-y my-custom-scrollbar">
-                                <table class="table table-striped table-bordered table-hover table-sm text-justify  mb-0" id="<?php echo $value;?>">
+                                <table class="table table-striped table-bordered table-hover table-sm text-justify  mb-0" id="<?php echo $_SESSION['username'];?>">
                                         <caption id="tbCaption"></caption>
                                         <thead class="bg-primary text-light">
                                             <tr>

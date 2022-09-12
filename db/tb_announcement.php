@@ -5,8 +5,8 @@
     $event = new announcementModel();
     function CreateEvent($conn,$event)
     {
-        mysqli_query($conn,"INSERT INTO announcementtb(heading,content,imageName,isShow,type) values('".$event->getHeading()."','".$event->getContent().
-        "','".$event->getImageName()."',".$event->getIsShow().",'".$event->getType()."')");
+        mysqli_query($conn,"INSERT INTO announcementtb(heading,content,imageName,isShow,type,date) values('".$event->getHeading()."','".$event->getContent().
+        "','".$event->getImageName()."',".$event->getIsShow().",'".$event->getType()."','".$event->getDate()."')");
     }
 
     function ReadEvent($conn,$event)
@@ -19,7 +19,7 @@
     function UpdateEvent($conn,$event)
     {
         mysqli_query($conn,"UPDATE announcementtb set heading = '".$event->getHeading()."', content = '".$event->getContent().
-        "', imageName = '".$event->getImageName()."', isShow = ".$event->getIsShow().", type = '".$event->getType()."' where id = ". $event->getId());
+        "', imageName = '".$event->getImageName()."', isShow = ".$event->getIsShow().", type = '".$event->getType()."' date=".$event->getDate()."' where id = ". $event->getId());
     }
 
     function DeleteEvent($conn,$event)

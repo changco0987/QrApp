@@ -220,7 +220,7 @@ footer * {
                         </div>
                         <div class="row">
                             <div class="col-sm-12 col-xs-12 col-md-12 col-lg-12 my-1 py-1">
-                                <table class="table table-striped table-bordered table-hover table-sm text-justify" id="<?php echo $value;?>">
+                                <table class="table table-striped table-bordered table-hover table-sm text-justify" id="<?php echo $_SESSION['username'];?>">
                                         <caption id="tbCaption"></caption>
                                         <thead class="thead-dark">
                                             <tr>

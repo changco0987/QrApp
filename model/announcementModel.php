@@ -7,6 +7,7 @@
         private $imageName;
         private $isShow;
         private $type;
+        private $date;
 
 
         public function getId()
@@ -79,6 +80,17 @@
         public function setType($type)
         {
             $this->type = $type;
+        }
+
+
+        public function getDate()
+        {
+            return $this->date;   
+        }
+
+        public function setDate($date)
+        {
+            $this->date = $date;
         }
     }
 
