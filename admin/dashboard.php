@@ -137,6 +137,12 @@ div.content {
     float: none;
   }
 }
+
+label{
+  font-size: 12px;
+  color: #234471;
+  font-weight: bolder;
+}
 </style>
 </head>
 <body>
@@ -180,7 +186,7 @@ div.content {
     </div>
 
     <div class="col-sm-4 col-xs-2 col-md-4 col-lg-2 col-xl-8 pl-3 pr-2 my-2 py-2 d-flex justify-content-end h-100 mx-auto my-auto">
-          <button type="button" class="btn d-flex justify-content-start btn-primary" href="../controller/adminWipeData.php" style="background-color:#3466AA;"><i class="bi bi-plus-square mr-2"></i>Add Announcement</button>
+          <button type="button" class="btn d-flex justify-content-start btn-primary" href="../controller/adminWipeData.php" style="background-color:#3466AA;" data-toggle="modal" data-target="#addAnnouncement"><i class="bi bi-plus-square mr-2"></i>Add Announcement</button>
     </div>
   </div>
 
@@ -194,10 +200,10 @@ div.content {
           <thead class="bg-primary text-light">
               <tr>
                   <th scope="col">#</th>
-                  <th scope="col">Heading</th>
-                  <th scope="col">Content</th>
-                  <th scope="col">Image</th>
-                  <th scope="col">Date</th>
+                  <th scope="col" class="text-center" >Heading</th>
+                  <th scope="col" class="text-center" >Content</th>
+                  <th scope="col" class="text-center" >Image</th>
+                  <th scope="col" class="text-center" >Date</th>
                   <th colspan="3" class="text-center" scope="col">Actions</th><!-- Edit button and Delete button-->
               </tr>
           </thead>
@@ -209,19 +215,35 @@ div.content {
                   while($row = mysqli_fetch_assoc($result))
                   {
 
-                    if($row['type']=='events')
+                    if($row['type']=='event')
                     {
                       ?>
                         <tr class="table-primary">
                             <td><?php echo $rowCount;?></td>
-                            <td><?php echo $row['activity'];?></td>
-                            <td><?php echo date("M d, Y h:i a", strtotime($row['dateStamp']));?></td>
-                            <td><?php echo $row['ipAdd'];?></td>
-                            <td><?php echo date("M d, Y h:i a", strtotime($row['dateStamp']));?></td>
+                            <td><?php echo $row['heading'];?></td>
+                            <td><?php echo $row['content'];?></td>
+                            <td class="text-center">
+                              <?php
+                                  //This will assign the image name to the image html element and if null, it will not show anything
+                                  if($row['imageName']==null)
+                                  {
+                                      ?>
+                                          <!--img src="../asset/user.png" width="60" height="60" class="d-inline-block align-top img-fluid border border-dark" alt="" style="border-radius: 50%;"-->
+                                      <?php
+                                  }
+                                  else
+                                  {
+                                      ?>
+                                        <img src="../upload/events/<?php echo $row['imageName'];?>" width="90" height="90" class="d-inline-block align-top border border-dark" alt="" style="border-radius: 10px;" id="userImg">
+                                      <?php
+                                  }
+                              ?>
+                            </td>
+                            <td><?php echo date("M d, Y ", strtotime($row['date']));?></td>
                             
                             <?php
                               //This is to check the current status of event data if its already shown or not
-                              if($row['isShow']==true)
+                              if($row['isShow']==0)
                               {
                                 ?>
                                   <!--Publish Button-->
@@ -273,12 +295,80 @@ div.content {
           </tbody>
         </table>
       </div>
-
     </div>
-
-
   </div>
 </div>
 
+  
+  <!--Modal for adding announcement-->
+  <div class="modal fade" id="addAnnouncement" tabindex="-1" role="dialog" aria-labelledby="addAnnouncementCenterTitle" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered" role="document">
+          <div class="modal-content">
+              <div class="modal-header">
+                  <h5 class="modal-title font-weight-bold" id="addAnnouncementLongTitle">Add Event</h5>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                  </button>
+              </div>
+              <div class="modal-body">
+                  <form action="../controller/addAnnouncement.php" method="post" enctype="multipart/form-data">
+                    <div class="form-group">
+                      <!--Changes the hidden input depending on the report type example: headcount, growth etc-->
+                      <input type="hidden" id="typeTb" name="typeTb" value="event">
+                      <div class="row pt-1 mt-1">
+                        <div class="col-sm-12 col-xs-12 col-md-12 col-lg-12">
+                            <label class="d-flex align-items-start" for="contentTb">Heading</label>
+                            <input type="text" class="form-control form-control-sm" id="headingTb" name="headingTb" placeholder="Heading" maxlength="50" required>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="row pt-1 mt-1">
+                            <div class="col-sm-12 col-xs-12 col-md-12 col-lg-12">
+                              <label class="d-flex align-items-start" for="contentTb">Content</label>
+                              <textarea type="text" class="form-control form-control-sm" id="contentTb" name="contentTb" placeholder="Elaborate the context max of 500 letters" maxlength="500"style="height: 125px;"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="row pt-1 mt-1">
+                            <div class="col-sm-12 col-xs-12 col-md-12 col-lg-12">
+                              <img src="../asset/emptyPicture.png" width="90" height="90" class="d-inline-block align-top border border-dark" alt="" style="border-radius: 10px;" id="userImg">
+                            </div>
+                            <div class="col-sm-6 col-xs-6 col-md-6 col-lg-6">
+                              <div class="custom-file" style="width:fit-content;">
+                                  <input type="file" accept=".jpg, .png, .jpeg" class="custom-file-input" id="fileTb" name="fileTb">
+                                  <label class="custom-file-label text-left mt-2 pt-2" for="fileTb">Upload Photo</label>
+                              </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="row pt-1 mt-1">
+                            <div class="col-sm-12 col-xs-12 col-md-12 col-lg-12">
+                              <label id="dateLb" for="dateTb" >Choose Event Date</label>
+                              <input class="form-control" type="date" id="dateTb" name="dateTb" required>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-primary">Add Event</button>
+                    </div>
+                  </form>
+              </div>
+          </div>
+      </div>
+    </div>
+
+
 </body>
+<script>
+      //this will make a image preview before it was uploaded
+      fileTb.onchange = evt => {
+    const [file] = fileTb.files
+    if (file) {
+        userImg.src = URL.createObjectURL(file)
+    }
+    }
+</script>
 </html>

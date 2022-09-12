@@ -5,8 +5,8 @@
     $event = new announcementModel();
     function CreateEvent($conn,$event)
     {
-        mysqli_query($conn,"INSERT INTO announcementtb(heading,content,imageName,isShow,type,date) values('".$event->getHeading()."','".$event->getContent().
-        "','".$event->getImageName()."',".$event->getIsShow().",'".$event->getType()."','".$event->getDate()."')");
+        mysqli_query($conn,"INSERT INTO announcementtb(heading,content,imageName,type,date) values('".$event->getHeading()."','".$event->getContent().
+        "','".$event->getImageName()."','".$event->getType()."','".$event->getDate()."')");
     }
 
     function ReadEvent($conn,$event)
