@@ -190,46 +190,87 @@ div.content {
 
       <div class="table-wrapper-scroll-y my-custom-scrollbar">
         <table class="table table-striped table-bordered table-hover table-sm text-justify mb-0" style="border-radius: 10px;" id="1">
-                <caption id="tbCaption"></caption>
-                <thead class="bg-primary text-light">
-                    <tr>
-                        <th scope="col">#</th>
-                        <th scope="col">Heading</th>
-                        <th scope="col">Content</th>
-                        <th scope="col">Image</th>
-                        <th scope="col">Publish</th>
-                        <th scope="col">Date</th>
-                        <th colspan="2" class="text-center" scope="col">Actions</th><!-- Edit button and Delete button-->
-                    </tr>
-                </thead>
-                <tbody>
-                    <?php
-                        $log = new logsModel();
-                        $result = ReadLog($conn,$log);
-                        $rowCount = 1;
-                        while($row = mysqli_fetch_assoc($result))
-                        {
-                                
-                                ?>
-                                
-                                    <tr class="table-primary">
-                                        <td><?php echo $rowCount;?></td>
-                                        <td><?php echo $row['activity'];?></td>
-                                        <td><?php echo date("M d, Y h:i a", strtotime($row['dateStamp']));?></td>
-                                        <td><?php echo $row['ipAdd'];?></td>
-                                        <td><?php echo date("M d, Y h:i a", strtotime($row['dateStamp']));?></td>
-                                        <td><?php echo $row['ipAdd'];?></td>
-                                        <td><?php echo date("M d, Y h:i a", strtotime($row['dateStamp']));?></td>
-                                        <td><?php echo $row['ipAdd'];?></td>
-                                    </tr>
-                                <?php
-                                $rowCount++;
-                            
-                            
+          <caption id="tbCaption"></caption>
+          <thead class="bg-primary text-light">
+              <tr>
+                  <th scope="col">#</th>
+                  <th scope="col">Heading</th>
+                  <th scope="col">Content</th>
+                  <th scope="col">Image</th>
+                  <th scope="col">Date</th>
+                  <th colspan="3" class="text-center" scope="col">Actions</th><!-- Edit button and Delete button-->
+              </tr>
+          </thead>
+          <tbody>
+              <?php
+                  $event = new announcementModel();
+                  $result = ReadEvent($conn,$event);
+                  $rowCount = 1;
+                  while($row = mysqli_fetch_assoc($result))
+                  {
 
-                        }
-                    ?>
-                </tbody>
+                    if($row['type']=='events')
+                    {
+                      ?>
+                        <tr class="table-primary">
+                            <td><?php echo $rowCount;?></td>
+                            <td><?php echo $row['activity'];?></td>
+                            <td><?php echo date("M d, Y h:i a", strtotime($row['dateStamp']));?></td>
+                            <td><?php echo $row['ipAdd'];?></td>
+                            <td><?php echo date("M d, Y h:i a", strtotime($row['dateStamp']));?></td>
+                            
+                            <?php
+                              //This is to check the current status of event data if its already shown or not
+                              if($row['isShow']==true)
+                              {
+                                ?>
+                                  <!--Publish Button-->
+                                  <td id="<?php echo $row['id'];?>">
+                                    <form action="" method="POST">
+                                      <input type="hidden" name="idTb" id="idTb" value="<?php echo $row['id'];?>">
+                                      <button type="submit" class="btn btn-sm d-flex justify-content-start btn-success"><i class="bi bi-paperclip mr-1"></i>Publish</button>
+                                    </form>
+                                  </td>
+
+                                <?php
+                              } 
+                              else
+                              {
+                                ?>
+                                  <!--Publish Button-->
+                                  <td id="<?php echo $row['id'];?>">
+                                    <form action="" method="POST">
+                                      <input type="hidden" name="idTb" id="idTb" value="<?php echo $row['id'];?>">
+                                      <button type="submit" class="btn btn-sm d-flex justify-content-start btn-secondary"><i class="bi bi-x-circle mr-1"></i>Unpublish</button>
+                                    </form>
+                                  </td>
+                                <?php
+                              }
+                            ?>
+
+                            <!--Edit Button-->
+                            <td id="<?php echo $row['id'];?>">
+                              <form action="" method="POST">
+                                <input type="hidden" name="idTb" id="idTb" value="<?php echo $row['id'];?>">
+                                <button type="submit" class="btn btn-sm d-flex justify-content-start btn-warning"><i class="bi bi-pencil-square mr-1"></i>Edit</button>
+                              </form>
+                            </td>
+
+                            <!--Delete Button-->
+                            <td id="<?php echo $row['id'];?>">
+                              <form action="" method="POST">
+                                <input type="hidden" name="idTb" id="idTb" value="<?php echo $row['id'];?>">
+                                <button type="submit" class="btn btn-sm d-flex justify-content-start btn-danger"><i class="bi bi-trash mr-1"></i>Delete</button>
+                              </form>
+                            </td>
+                        </tr>
+                      <?php
+                      $rowCount++;
+                    }
+
+                  }
+              ?>
+          </tbody>
         </table>
       </div>
 
