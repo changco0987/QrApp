@@ -79,7 +79,7 @@
                     <form action="../controller/editAnnouncement.php" method="post" enctype="multipart/form-data">
                         <div class="form-group">
                         <!--Changes the hidden input depending on the report type example: headcount, growth etc-->
-                        <input type="hidden" id="typeTb" name="typeTb" value="event">
+                        <input type="hidden" id="rowId" name="rowId" value="<?php echo $_POST['rowId'];?>">
                         <div class="row pt-1 mt-1">
                             <div class="col-sm-12 col-xs-12 col-md-12 col-lg-12">
                                 <label class="d-flex align-items-start" for="contentTb">Heading</label>

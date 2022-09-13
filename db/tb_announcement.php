@@ -25,10 +25,15 @@
 
     function UpdateEvent($conn,$event)
     {
-        if($event->getIsShow()==null)
+        if($event->getIsShow()==null && $event->getImageName()!=null)
         {
             mysqli_query($conn,"UPDATE announcementtb set heading = '".$event->getHeading()."', content = '".$event->getContent().
-            "', imageName = '".$event->getImageName()."', type = '".$event->getType()."' date=".$event->getDate()."' where id = ". $event->getId());
+            "', imageName = '".$event->getImageName()."', date='".$event->getDate()."' where id = ". $event->getId());
+        }
+        else if($event->getIsShow()==null)
+        {
+            mysqli_query($conn,"UPDATE announcementtb set heading = '".$event->getHeading()."', content = '".$event->getContent().
+            "', date='".$event->getDate()."' where id = ". $event->getId());
         }
         else
         {

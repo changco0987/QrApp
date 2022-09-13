@@ -1,4 +1,14 @@
+<?php
 
+    include_once '../db/connection.php';
+    include_once '../db/tb_announcement.php';
+    include_once '../model/announcementModel.php';
+
+    $event = new announcementModel();
+    $result1 = ReadEvent($conn,$event);
+    $result2 = ReadEvent($conn,$event);
+    $rowCount = 0;
+?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -17,13 +27,13 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.3/font/bootstrap-icons.css">
 
     <!--My CSS and JS-->
-    <link type="text/css" rel="stylesheet" href="css/index.css"/>
-    <script src="javascript/linked.js"></script>
+    <link type="text/css" rel="stylesheet" href="../css/index.css"/>
+    <script src="../javascript/linked.js"></script>
 
-    <link rel="icon" href="asset/qr.png">
+    <link rel="icon" href="../asset/qr.png">
     <title>Entrance Monitoring sys - Home page</title>
 </head>
-<body onload=window.location='pages/index2.php'>
+<body>
 
     <div class="row no-gutters">
         <div class="col-sm-8 col-xs-8 col-md-8 col-lg-8">
@@ -66,7 +76,7 @@
                                 {
                                     ?>
                                         <div class="carousel-item active">
-                                            <img class="d-block" src="upload/events/<?php echo $row['imageName'];?>" alt="<?php echo $rowCount. 'slide';?>" style="width: 100%; height: 874px;">
+                                            <img class="d-block" src="../upload/events/<?php echo $row['imageName'];?>" alt="<?php echo $rowCount. 'slide';?>" style="width: 100%; height: 874px;">
                                             <div class="carousel-caption">
                                                 <h4 id="announceHead1"><?php echo $row['heading'];?></h4>
                                                 <p id="context1" class="text-justify"><?php echo $row['content'];?></p>
@@ -80,7 +90,7 @@
                                 {
                                     ?>
                                         <div class="carousel-item">
-                                            <img class="d-block" src="upload/events/<?php echo $row['imageName'];?>" alt="<?php echo $rowCount. 'slide';?>" style="width: 100%; height: 874px;">
+                                            <img class="d-block" src="../upload/events/<?php echo $row['imageName'];?>" alt="<?php echo $rowCount. 'slide';?>" style="width: 100%; height: 874px;">
                                             <div class="carousel-caption">
                                                 <h4 id="announceHead1"><?php echo $row['heading'];?></h4>
                                                 <p id="context1" class="text-justify"><?php echo $row['content'];?></p>
