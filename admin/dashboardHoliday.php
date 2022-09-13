@@ -174,11 +174,11 @@ label{
     <div class="col-sm-4 col-xs-2 col-md-4 col-lg-2 col-xl-2 pl-3 pr-2 my-2 py-2">        
         <!--h6 class="pr-2" id="btnLabel">Types: </h6-->
         <button type="button" class="btn btn-success dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-        <i class="bi bi-calendar-event mr-1"></i>Events
+        <i class="bi bi-flag-fill mr-1"></i>Holidays
         </button>
         <div class="dropdown-menu" style="border-radius: 15px;">
-            <a class="dropdown-item active" href="../pages/reporthc.php"><i class="bi bi-calendar-event mr-1"></i>Events</a>
-            <a class="dropdown-item" href="../admin/dashboardHoliday.php"><i class="bi bi-flag-fill mr-1"></i>Holidays</a>
+            <a class="dropdown-item" href="../admin/dashboard.php"><i class="bi bi-calendar-event mr-1"></i>Events</a>
+            <a class="dropdown-item active" href="../admin/dashboardHoliday.php"><i class="bi bi-flag-fill mr-1"></i>Holidays</a>
             <a class="dropdown-item" href="../admin/dashboardExam.php"><i class="bi bi-pencil-fill mr-1"></i>Examination Schedule</a>
             <a class="dropdown-item" href="../admin/dashboardEnrollment.php"><i class="bi bi-calendar-check-fill mr-1"></i>Enrollment</a>
         </div>
@@ -217,7 +217,7 @@ label{
                   while($row = mysqli_fetch_assoc($result))
                   {
 
-                    if($row['type']=='event')
+                    if($row['type']=='holiday')
                     {
                       ?>
                         <tr class="table-primary">
@@ -251,7 +251,7 @@ label{
                                   <!--Publish Button-->
                                   <td id="<?php echo $row['id'];?>">
                                     <form action="../controller/publish.php" method="POST" enctype="multipart/form-data">
-                                      <input type="hidden" name="typeTb" id="typeTb" value="event">
+                                      <input type="hidden" name="typeTb" id="typeTb" value="holiday">
                                       <input type="hidden" name="idTb" id="idTb" value="<?php echo $row['id'];?>">
                                       <input type="hidden" name="publishTb" id="publishTb" value="1">
                                       <button type="submit" class="btn btn-sm d-flex justify-content-start btn-success"><i class="bi bi-paperclip mr-1"></i>Publish</button>
@@ -266,7 +266,7 @@ label{
                                   <!--Publish Button-->
                                   <td id="<?php echo $row['id'];?>">
                                     <form action="../controller/publish.php" method="POST" enctype="multipart/form-data">
-                                      <input type="hidden" name="typeTb" id="typeTb" value="event">
+                                      <input type="hidden" name="typeTb" id="typeTb" value="holiday">
                                       <input type="hidden" name="idTb" id="idTb" value="<?php echo $row['id'];?>">
                                       <input type="hidden" name="publishTb" id="publishTb" value="false">
                                       <button type="submit" class="btn btn-sm d-flex justify-content-start btn-secondary"><i class="bi bi-x-circle mr-1"></i>Unpublished</button>
@@ -287,7 +287,7 @@ label{
                             <!--Delete Button-->
                             <td id="<?php echo $row['id'];?>">
                               <form action="../controller/deleteAnnouncement.php" method="POST" enctype="multipart/form-data">
-                                <input type="hidden" name="typeTb" id="typeTb" value="event">
+                                <input type="hidden" name="typeTb" id="typeTb" value="holiday">
                                 <input type="hidden" name="idTb" id="idTb" value="<?php echo $row['id'];?>">
                                 <button type="submit" class="btn btn-sm d-flex justify-content-start btn-danger"><i class="bi bi-trash mr-1"></i>Delete</button>
                               </form>
@@ -312,7 +312,7 @@ label{
       <div class="modal-dialog modal-dialog-centered" role="document">
           <div class="modal-content">
               <div class="modal-header">
-                  <h5 class="modal-title font-weight-bold" id="addAnnouncementLongTitle">Add Event</h5>
+                  <h5 class="modal-title font-weight-bold" id="addAnnouncementLongTitle">Add Holiday</h5>
                   <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                   <span aria-hidden="true">&times;</span>
                   </button>
@@ -321,7 +321,7 @@ label{
                   <form action="../controller/addAnnouncement.php" method="post" enctype="multipart/form-data">
                     <div class="form-group">
                       <!--Changes the hidden input depending on the report type example: headcount, growth etc-->
-                      <input type="hidden" id="typeTb" name="typeTb" value="event">
+                      <input type="hidden" id="typeTb" name="typeTb" value="holiday">
                       <div class="row pt-1 mt-1">
                         <div class="col-sm-12 col-xs-12 col-md-12 col-lg-12">
                             <label class="d-flex align-items-start" for="contentTb">Heading</label>
@@ -353,13 +353,13 @@ label{
                     <div class="form-group">
                         <div class="row pt-1 mt-1">
                             <div class="col-sm-12 col-xs-12 col-md-12 col-lg-12">
-                              <label id="dateLb" for="dateTb" >Choose Event Date</label>
+                              <label id="dateLb" for="dateTb" >Choose Holiday Date</label>
                               <input class="form-control" type="date" id="dateTb" name="dateTb" required>
                             </div>
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <button type="submit" class="btn btn-primary">Add Event</button>
+                        <button type="submit" class="btn btn-primary">Add Holiday</button>
                     </div>
                   </form>
               </div>
@@ -383,7 +383,7 @@ label{
           
           <div class="modal-content">
               <div class="modal-header">
-                  <h5 class="modal-title font-weight-bold" id="editAnnouncementLongTitle">Edit Event</h5>
+                  <h5 class="modal-title font-weight-bold" id="editAnnouncementLongTitle">Edit Holiday</h5>
                   <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                   <span aria-hidden="true">&times;</span>
                   </button>
@@ -391,7 +391,7 @@ label{
               <div class="modal-body">
                   <form action="../controller/addAnnouncement.php" method="post" enctype="multipart/form-data">
                     <div class="form-group">
-                      <input type="hidden" id="typeTb" name="typeTb" value="event">
+                      <input type="hidden" id="typeTb" name="typeTb" value="holiday">
                       <div class="row pt-1 mt-1">
                         <div class="col-sm-12 col-xs-12 col-md-12 col-lg-12">
                             <label class="d-flex align-items-start" for="contentTb">Heading</label>
@@ -410,7 +410,7 @@ label{
                     <div class="form-group">
                         <div class="row pt-1 mt-1">
                             <div class="col-sm-12 col-xs-12 col-md-12 col-lg-12">
-                              <img src="../asset/emptyPicture.png" width="90" height="90" class="d-inline-block align-top border border-dark" alt="" style="border-radius: 10px;" id="userImg">
+                              <img src="../asset/emptyPicture.png" width="90" height="90" class="d-inline-block align-top border border-dark" alt="" style="border-radius: 10px;">
                             </div>
                             <div class="col-sm-6 col-xs-6 col-md-6 col-lg-6">
                               <div class="custom-file" style="width:fit-content;">
@@ -423,13 +423,13 @@ label{
                     <div class="form-group">
                         <div class="row pt-1 mt-1">
                             <div class="col-sm-12 col-xs-12 col-md-12 col-lg-12">
-                              <label id="dateLb" for="dateTb" >Choose Event Date</label>
+                              <label id="dateLb" for="dateTb" >Choose Holiday Date</label>
                               <input class="form-control" type="date" id="dateTb" name="dateTb" required>
                             </div>
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <button type="submit" class="btn btn-primary">Add Event</button>
+                        <button type="submit" class="btn btn-primary">Submit Changes</button>
                     </div>
                   </form>
               </div>

@@ -80,6 +80,7 @@
                         <div class="form-group">
                         <!--Changes the hidden input depending on the report type example: headcount, growth etc-->
                         <input type="hidden" id="rowId" name="rowId" value="<?php echo $_POST['rowId'];?>">
+                        <input type="hidden" id="typeTb" name="typeTb" value="<?php echo $row['type'];?>">
                         <div class="row pt-1 mt-1">
                             <div class="col-sm-12 col-xs-12 col-md-12 col-lg-12">
                                 <label class="d-flex align-items-start" for="contentTb">Heading</label>
@@ -135,7 +136,7 @@
 <script>
         document.getElementById('successBox').style.display = 'none';
         var successSignal = localStorage.getItem('state');
-
+/*
         if(successSignal==1)
         {
             //if password or username is incorrect
@@ -165,7 +166,7 @@
             document.getElementById('successMsg').innerHTML = "Information Successfully saved!";
             console.log("okay");
         }
-
+*/
         //To make signl back to normmal and to prevent for the success page to appear every time the page was reload or refresh
         localStorage.setItem('state',0);
 

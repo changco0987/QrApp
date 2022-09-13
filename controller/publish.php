@@ -12,7 +12,27 @@
         $event->setIsShow($_POST['publishTb']);
 
         UpdateEvent($conn,$event);
-        echo '<script> localStorage.setItem("state",2); window.location = "../admin/dashboard.php";</script>';//success message
+
+        if($_POST['typeTb']=='event')
+        {
+            //header('Location: ../admin/dashboard.php');
+            echo '<script> localStorage.setItem("state",3); window.location = "../admin/dashboard.php";</script>';//success message
+        }
+        else if($_POST['typeTb']=='holiday')
+        {
+            //header('Location: ../admin/dashboard.php');
+            echo '<script> localStorage.setItem("state",3); window.location = "../admin/dashboardHoliday.php";</script>';//success message
+        }
+        else if($_POST['typeTb']=='exam')
+        {
+            //header('Location: ../admin/dashboard.php');
+            echo '<script> localStorage.setItem("state",3); window.location = "../admin/dashboardExam.php";</script>';//success message
+        }
+        else if($_POST['typeTb']=='enrollment')
+        {
+            //header('Location: ../admin/dashboard.php');
+            echo '<script> localStorage.setItem("state",3); window.location = "../admin/dashboardEnrollment.php";</script>';//success message
+        }
     }
 
 ?>

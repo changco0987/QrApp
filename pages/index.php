@@ -74,29 +74,61 @@
                             {
                                 if($rowCount==0)
                                 {
-                                    ?>
-                                        <div class="carousel-item active">
-                                            <img class="d-block" src="../upload/events/<?php echo $row['imageName'];?>" alt="<?php echo $rowCount. 'slide';?>" style="width: 100%; height: 874px;">
-                                            <div class="carousel-caption">
-                                                <h4 id="announceHead1"><?php echo $row['heading'];?></h4>
-                                                <p id="context1" class="text-justify"><?php echo $row['content'];?></p>
+                                    if($row['imageName']==null)
+                                    {
+                                        ?>
+                                            <div class="carousel-item active">
+                                                <img class="d-block" src="../asset/sti.jpg" alt="<?php echo $rowCount. 'slide';?>" style="width: 100%; height: 874px;">
+                                                <div class="carousel-caption">
+                                                    <h4 id="announceHead1"><?php echo $row['heading'];?></h4>
+                                                    <p id="context1" class="text-justify"><?php echo $row['content'];?></p>
+                                                </div>
                                             </div>
-                                        </div>
-                                        
-                                    <?php
+                                        <?php
+                                    }
+                                    else
+                                    {
+                                        ?>
+                                            <div class="carousel-item active">
+                                                <img class="d-block" src="../upload/events/<?php echo $row['imageName'];?>" alt="<?php echo $rowCount. 'slide';?>" style="width: 100%; height: 874px;">
+                                                <div class="carousel-caption">
+                                                    <h4 id="announceHead1"><?php echo $row['heading'];?></h4>
+                                                    <p id="context1" class="text-justify"><?php echo $row['content'];?></p>
+                                                </div>
+                                            </div>
+                                        <?php
+                                    }
+
                                     $rowCount++;
                                 }
                                 else
                                 {
-                                    ?>
-                                        <div class="carousel-item">
-                                            <img class="d-block" src="../upload/events/<?php echo $row['imageName'];?>" alt="<?php echo $rowCount. 'slide';?>" style="width: 100%; height: 874px;">
-                                            <div class="carousel-caption">
-                                                <h4 id="announceHead1"><?php echo $row['heading'];?></h4>
-                                                <p id="context1" class="text-justify"><?php echo $row['content'];?></p>
+                                    if($row['imageName']==null)
+                                    {
+                                        ?>
+                                            <div class="carousel-item">
+                                                <img class="d-block" src="../asset/sti.jpg" alt="<?php echo $rowCount. 'slide';?>" style="width: 100%; height: 874px;">
+                                                <div class="carousel-caption">
+                                                    <h4 id="announceHead1"><?php echo $row['heading'];?></h4>
+                                                    <p id="context1" class="text-justify"><?php echo $row['content'];?></p>
+                                                </div>
                                             </div>
-                                        </div>
-                                    <?php
+                                        <?php
+                                    }
+                                    else
+                                    {
+                                        ?>
+                                            <div class="carousel-item">
+                                                <img class="d-block" src="../upload/events/<?php echo $row['imageName'];?>" alt="<?php echo $rowCount. 'slide';?>" style="width: 100%; height: 874px;">
+                                                <div class="carousel-caption">
+                                                    <h4 id="announceHead1"><?php echo $row['heading'];?></h4>
+                                                    <p id="context1" class="text-justify"><?php echo $row['content'];?></p>
+                                                </div>
+                                            </div>
+                                        <?php
+                                    }
+                                 
+                                    $rowCount++;
                                 }
                             }
                             
@@ -130,8 +162,8 @@
                     </div>
                     <!--Visitor and Guardian Button to login-->
                     <div class="col-sm-12 col-xs-12 col-md-12 pt-2 mt-2 d-flex justify-content-center">
-                        <a type="button" class="btn btn-lg mx-auto pl-3" id="myBtn" style="width: 150px; background-color: #3466AA; color:white;" href="pages/visitorLogin.php">Visitor</a>
-                        <a type="button" class="btn btn-lg mx-auto pr-3" id="myBtn" style="width: 150px; background-color:#114084; color:white;" href="pages/guardianLogin.php">Guardian</a>
+                        <a type="button" class="btn btn-lg mx-auto pl-3" id="myBtn" style="width: 150px; background-color: #3466AA; color:white;" href="../pages/visitorLogin.php">Visitor</a>
+                        <a type="button" class="btn btn-lg mx-auto pr-3" id="myBtn" style="width: 150px; background-color:#114084; color:white;" href="../pages/guardianLogin.php">Guardian</a>
                     </div>
                     <div class="col-sm-12 col-xs-12 col-md-12 pt-2 mt-2 pb-4 mb-5 d-flex justify-content-center">
 
