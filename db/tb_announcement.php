@@ -11,7 +11,14 @@
 
     function ReadEvent($conn,$event)
     {
-        $dbData = mysqli_query($conn,"SELECT * FROM announcementtb");
+        if($event->getId()==null)
+        {
+            $dbData = mysqli_query($conn,"SELECT * FROM announcementtb");
+        }
+        else
+        {
+            $dbData = mysqli_query($conn,"SELECT * FROM announcementtb where id = ".$event->getId());
+        }
 
         return $dbData;
     }

@@ -57,6 +57,7 @@
     <!--Bootstrap icon--> 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.3/font/bootstrap-icons.css">
 
+    <!--script src="https://code.jquery.com/jquery-1.8.3.min.js"></script-->
     <!--My CSS and JS-->
     <!--link type="text/css" rel="stylesheet" href="../css/index.css"/>
     <script src="javascript/linked.js"></script-->
@@ -144,6 +145,7 @@ label{
   font-weight: bolder;
 }
 </style>
+
 </head>
 <body>
 
@@ -234,7 +236,7 @@ label{
                                   else
                                   {
                                       ?>
-                                        <img src="../upload/events/<?php echo $row['imageName'];?>" width="90" height="90" class="d-inline-block align-top border border-dark" alt="" style="border-radius: 10px;" id="userImg">
+                                        <img src="../upload/events/<?php echo $row['imageName'];?>" width="90" height="90" class="d-inline-block align-top border border-dark" alt="" style="border-radius: 10px;">
                                       <?php
                                   }
                               ?>
@@ -274,15 +276,15 @@ label{
 
                             <!--Edit Button-->
                             <td id="<?php echo $row['id'];?>">
-                              <form action="" method="POST" enctype="multipart/form-data">
-                                <input type="hidden" name="idTb" id="idTb" value="<?php echo $row['id'];?>">
-                                <button type="submit" class="btn btn-sm d-flex justify-content-start btn-warning"><i class="bi bi-pencil-square mr-1"></i>Edit</button>
+                              <form action="../admin/editAnnouncement.php" method="POST" enctype="multipart/form-data">
+                                <input type="hidden" name="rowId" id="rowId" value="<?php echo $row['id'];?>">
+                                <button type="submit" class="btn btn-sm d-flex justify-content-start btn-warning" name="submitEdit"><i class="bi bi-pencil-square mr-1"></i>Edit</button>
                               </form>
                             </td>
 
                             <!--Delete Button-->
                             <td id="<?php echo $row['id'];?>">
-                              <form action="" method="POST" enctype="multipart/form-data">
+                              <form action="../controller/deleteAnnouncement.php" method="POST" enctype="multipart/form-data">
                                 <input type="hidden" name="idTb" id="idTb" value="<?php echo $row['id'];?>">
                                 <button type="submit" class="btn btn-sm d-flex justify-content-start btn-danger"><i class="bi bi-trash mr-1"></i>Delete</button>
                               </form>
@@ -362,11 +364,135 @@ label{
       </div>
     </div>
 
+    
+  <!--Modal for editing announcement-->
+  <div class="modal fade" id="editAnnouncement" tabindex="-1" role="dialog" aria-labelledby="editAnnouncementCenterTitle" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered" role="document">
+        <?php
+        /*
+              $event = new announcementModel();
+              $event->setId($_SESSION['rowId']);
+              $result = ReadEvent($conn,$event);
+              $row = mysqli_fetch_assoc($result);
+              */
+              
+        ?>
+          
+          <div class="modal-content">
+              <div class="modal-header">
+                  <h5 class="modal-title font-weight-bold" id="editAnnouncementLongTitle">Edit Event</h5>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                  </button>
+              </div>
+              <div class="modal-body">
+                  <form action="../controller/addAnnouncement.php" method="post" enctype="multipart/form-data">
+                    <div class="form-group">
+                      <!--Changes the hidden input depending on the report type example: headcount, growth etc-->
+                      <input type="hidden" id="typeTb" name="typeTb" value="event">
+                      <div class="row pt-1 mt-1">
+                        <div class="col-sm-12 col-xs-12 col-md-12 col-lg-12">
+                            <label class="d-flex align-items-start" for="contentTb">Heading</label>
+                            <input type="text" class="form-control form-control-sm" id="headingTb" name="headingTb" placeholder="Heading" maxlength="50" required value="<?php echo $row['heading'];?>">
+                        </div>
+                      </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="row pt-1 mt-1">
+                            <div class="col-sm-12 col-xs-12 col-md-12 col-lg-12">
+                              <label class="d-flex align-items-start" for="contentTb">Content</label>
+                              <textarea type="text" class="form-control form-control-sm" id="contentTb" name="contentTb" placeholder="Elaborate the context max of 500 letters" maxlength="500"style="height: 125px;"><?php echo $row['content'];?></textarea>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="row pt-1 mt-1">
+                            <div class="col-sm-12 col-xs-12 col-md-12 col-lg-12">
+                              <img src="../asset/emptyPicture.png" width="90" height="90" class="d-inline-block align-top border border-dark" alt="" style="border-radius: 10px;" id="userImg">
+                            </div>
+                            <div class="col-sm-6 col-xs-6 col-md-6 col-lg-6">
+                              <div class="custom-file" style="width:fit-content;">
+                                  <input type="file" accept=".jpg, .png, .jpeg" class="custom-file-input" id="fileTb" name="fileTb">
+                                  <label class="custom-file-label text-left mt-2 pt-2" for="fileTb">Upload Photo</label>
+                              </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="row pt-1 mt-1">
+                            <div class="col-sm-12 col-xs-12 col-md-12 col-lg-12">
+                              <label id="dateLb" for="dateTb" >Choose Event Date</label>
+                              <input class="form-control" type="date" id="dateTb" name="dateTb" required>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-primary">Add Event</button>
+                    </div>
+                  </form>
+              </div>
+          </div>
+      </div>
+    </div>
+    
+  <!--Modal for deleting announcement-->
+  <div class="modal fade" id="deleteAnnouncement" tabindex="-1" role="dialog" aria-labelledby="deleteAnnouncementCenterTitle" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered" role="document">
+          <div class="modal-content">
+              <div class="modal-header">
+                  <h5 class="modal-title font-weight-bold" id="deleteAnnouncementLongTitle">Add Event</h5>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                  </button>
+              </div>
+              <div class="modal-body">
+                  <form action="../controller/deleteAnnouncement.php" method="post" enctype="multipart/form-data">
+                    <div class="form-group">
+                      <!--Changes the hidden input depending on the report type example: headcount, growth etc-->
+                      <input type="hidden" id="typeTb" name="typeTb" value="<?php echo $_POST['idTb'];?>">
+                      <div class="row pt-1 mt-1">
+                        <div class="col-sm-12 col-xs-12 col-md-12 col-lg-12">
+                            <h3>Are you sure you want to delete this one?</h3>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-primary">Add Event</button>
+                    </div>
+                  </form>
+              </div>
+          </div>
+      </div>
+    </div>
+
+    
+
 
 </body>
 <script>
-      //this will make a image preview before it was uploaded
-      fileTb.onchange = evt => {
+
+    //Edit
+
+    /*To submit the form without reloading it
+    function openEdit()
+    {
+      var http = new XMLHttpRequest();
+      http.open("POST", "../controller/editAnnouncement.php", true);
+      http.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+      //This is the form input fields data
+      var params = "rowId=" + document.getElementById("rowId").value; // probably use document.getElementById(...).value
+      http.send(params);
+      http.onload = function()
+      { 
+          var data = http.responseText;
+          console.log(data);
+          $('#editAnnouncement').modal();
+      }
+    }
+    */
+
+    //this will make a image preview before it was uploaded
+    fileTb.onchange = evt => {
     const [file] = fileTb.files
     if (file) {
         userImg.src = URL.createObjectURL(file)

@@ -1,0 +1,20 @@
+<?php
+    include_once '../db/connection.php';
+    include_once '../db/tb_announcement.php';
+    include_once '../model/announcementModel.php';
+
+
+    if(isset($_POST['idTb']))
+    {
+        $event = new announcementModel();
+        $event->setId($_POST['idTb']);
+
+        DeleteEvent($conn,$event);
+        echo '<script> localStorage.setItem("state",3); window.location = "../admin/dashboard.php";</script>';//success message
+    }
+    else
+    {
+        //this will occur incase an error posting idTb
+        echo '<script> window.location = "../admin/dashboard.php";</script>';
+    }
+?>
