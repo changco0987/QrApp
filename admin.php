@@ -51,12 +51,12 @@
 <body>
         
     <!-- Alert message container-->
-    <div id="successBox" class="alert alert-danger alert-dismissible fade show" role="alert" style="display:block;">
+    <!--div id="successBox" class="alert alert-danger alert-dismissible fade show" role="alert" style="display:block;">
         <strong id="successMsg"></strong>
         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
             <span aria-hidden="true">&times;</span>
         </button>
-    </div>
+    </div-->
     
     <div class="container">
         <div class="row">
@@ -107,6 +107,7 @@
 </body>
 <!--alert message script-->
 <script>
+    /*
         document.getElementById('successBox').style.display = 'none';
         var successSignal = localStorage.getItem('state');
 
@@ -142,5 +143,6 @@
 
         //To make signl back to normmal and to prevent for the success page to appear every time the page was reload or refresh
         localStorage.setItem('state',0);
+        */
     </script>
 </html>

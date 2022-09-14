@@ -30,6 +30,52 @@
     <link type="text/css" rel="stylesheet" href="../css/index.css"/>
     <script src="../javascript/linked.js"></script>
 
+    <style>
+    img{
+        width: 100%; 
+        height: 874px;
+    }
+        
+@media screen and (max-height: 850px) {
+
+    img{  
+   height: 500px;
+}
+}
+
+@media screen and (max-width: 650px) {
+
+    img{  
+   height: 500px;
+}
+}
+
+@media screen and (max-width: 450px) {
+
+    img{  
+   height: 330px;
+}
+}
+
+
+@media screen and (max-width: 360px) {
+    
+    img{  
+   height: 500px;
+}
+}
+
+
+@media screen and (max-width: 320px) {
+
+    img{  
+   height: 500px;
+}
+
+}
+    </style>
+
+
     <link rel="icon" href="../asset/qr.png">
     <title>Entrance Monitoring sys - Home page</title>
 </head>
@@ -78,7 +124,7 @@
                                     {
                                         ?>
                                             <div class="carousel-item active">
-                                                <img class="d-block" src="../asset/sti.jpg" alt="<?php echo $rowCount. 'slide';?>" style="width: 100%; height: 874px;">
+                                                <img class="d-block" src="../asset/sti.jpg" alt="<?php echo $rowCount. 'slide';?>">
                                                 <div class="carousel-caption">
                                                     <h4 id="announceHead1"><?php echo $row['heading'];?></h4>
                                                     <p id="context1" class="text-justify"><?php echo $row['content'];?></p>
@@ -90,7 +136,7 @@
                                     {
                                         ?>
                                             <div class="carousel-item active">
-                                                <img class="d-block" src="../upload/events/<?php echo $row['imageName'];?>" alt="<?php echo $rowCount. 'slide';?>" style="width: 100%; height: 874px;">
+                                                <img class="d-block" src="../upload/events/<?php echo $row['imageName'];?>" alt="<?php echo $rowCount. 'slide';?>">
                                                 <div class="carousel-caption">
                                                     <h4 id="announceHead1"><?php echo $row['heading'];?></h4>
                                                     <p id="context1" class="text-justify"><?php echo $row['content'];?></p>
@@ -107,7 +153,7 @@
                                     {
                                         ?>
                                             <div class="carousel-item">
-                                                <img class="d-block" src="../asset/sti.jpg" alt="<?php echo $rowCount. 'slide';?>" style="width: 100%; height: 874px;">
+                                                <img class="d-block" src="../asset/sti.jpg" alt="<?php echo $rowCount. 'slide';?>">
                                                 <div class="carousel-caption">
                                                     <h4 id="announceHead1"><?php echo $row['heading'];?></h4>
                                                     <p id="context1" class="text-justify"><?php echo $row['content'];?></p>
@@ -119,7 +165,7 @@
                                     {
                                         ?>
                                             <div class="carousel-item">
-                                                <img class="d-block" src="../upload/events/<?php echo $row['imageName'];?>" alt="<?php echo $rowCount. 'slide';?>" style="width: 100%; height: 874px;">
+                                                <img class="d-block" src="../upload/events/<?php echo $row['imageName'];?>" alt="<?php echo $rowCount. 'slide';?>" >
                                                 <div class="carousel-caption">
                                                     <h4 id="announceHead1"><?php echo $row['heading'];?></h4>
                                                     <p id="context1" class="text-justify"><?php echo $row['content'];?></p>
