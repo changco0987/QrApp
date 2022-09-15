@@ -107,6 +107,16 @@
                             }
                             
                         }
+                        
+                        //This will check if the rowCount variable doesn't increase or if still has 0 value
+                        if($rowCount==0)
+                        {
+                            //This will occur if there is no published announcement
+                            ?>
+                                <li data-target="#carouselExampleIndicators" data-slide-to="First slide" class="active"></li>
+                            <?php
+                        }
+
                         $rowCount=0;
                     
                     ?>
@@ -177,6 +187,21 @@
                                 }
                             }
                             
+                        }
+                        
+                        //This will check if the rowCount variable doesn't increase or if still has 0 value
+                        if($rowCount===0)
+                        {
+                            //This will occur if there is no published announcement
+                            ?>
+                                <div class="carousel-item active">
+                                    <img class="d-block" src="asset/sti.jpg" alt="first slide" >
+                                    <div class="carousel-caption">
+                                        <h4 id="announceHead1">Welcome</h4>
+                                        <p id="context1" class="text-justify"></p>
+                                    </div>
+                                </div>
+                            <?php
                         }
                         $rowCount=0;
                     
