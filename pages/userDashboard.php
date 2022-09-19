@@ -116,6 +116,16 @@
             }
 
         }
+
+        
+  @media print{
+    body * {
+        visibility: hidden;
+    }
+    #qrcode * {
+        visibility: visible;
+    }
+}
     </style>
     <script>
 
@@ -194,7 +204,8 @@
                     <div class="form-group">
                         <center>
                             <small id="qrIndicator"></small>
-                            <div class="py-3 my-3" id="qrcode"></div>
+                            <button type="submit" class="btn-success form-control btn d-flex justify-content-end" id="submitBtn" onclick="window.print();" style="width:max-content;"><i class="bi bi bi-qr-code mr-2"></i>Print</button>
+                            <div class="pb-3 mb-3 pt-1 mt-1" id="qrcode"></div>
                             <?php
                                                                 
                                 //This will get/generate the default qr code for the user if the user somehow have a previous qr code
@@ -209,7 +220,6 @@
                                             generateQRCode(data);
                                         </script>
                                     <?php
-
                                 }
                                 else
                                 {
@@ -340,7 +350,7 @@
                     <div class="row pt-1 mt-1">
                         <div class="col-sm-12 col-xs-12 col-md-12 col-lg-12 col-xl-12">
                             <div class="table-wrapper-scroll-y my-custom-scrollbar">
-                                <table class="table table-striped table-bordered table-hover table-sm text-justify  mb-0" id="<?php echo $_SESSION['username'];?>">
+                                <table class="table table-striped table-bordered table-hover table-sm text-justify mb-0" id="<?php echo $_SESSION['username'];?>">
                                         <caption id="tbCaption"></caption>
                                         <thead class="bg-primary text-light">
                                             <tr>

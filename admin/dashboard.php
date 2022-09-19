@@ -141,17 +141,92 @@ label{
   color: #234471;
   font-weight: bolder;
 }
+
+#collapseUtilities, #collapseMaintenance{
+  background-color:#234471 ;
+}
+
+.collapseBtn{
+  color:whitesmoke;
+  background-color: #3466AA;
+  width: 150px;
+}
+.collapseBtn:hover {
+  background-color:#114084;
+}
 </style>
 
 </head>
 <body>
+          
+<!-- Alert message container-->
+<div id="successBox" class="alert alert-success alert-dismissible fade show" role="alert" style="display:block;">
+    <strong id="successMsg"></strong>
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+    </button>
+</div>
+    
+<!-- Alert message container-->
+<div id="failBox" class="alert alert-danger alert-dismissible fade show" role="alert" style="display:none;">
+    <strong id="failMsg"></strong>
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+    </button>
+</div>
+
 
 <div class="sidebar">
   <h3 class="d-flex justify-content-center mx-auto px-auto mt-2 pt-1" id="adminTitle">Admin Panel</h2>
   <a class="active mt-1" href="#home"><i class="bi bi-megaphone-fill mr-1"></i> Announcements</a>
-  <a class=" mt-1" href="#news"><i class="bi bi-wrench-adjustable mr-1"></i> Account Maintenance</a>
+  <a type="button" class=" mt-1" href="#maintenance" data-toggle="collapse" data-target="#collapseMaintenance" aria-expanded="true" aria-controls="collapseMaintenance"><i class="bi bi-wrench-adjustable mr-1"></i> Account Maintenance</a>
+    <div id="collapseMaintenance" class="collapse my-1" aria-labelledby="headingUtilities" data-parent="#accordionSidebar" >
+        <div class="py-2 collapse-inner rounded mx-4">
+            <h6 class="collapse-header" style="font-size: 13px;"></h6>
+ 
+              <form action="../pages/reporthc.php" method="post" enctype="multipart/form-data">
+                  <!--input type="hidden" name="departmentName" value=""-->
+                      <button type="submit" class="collapse-item btn btn-sm my-1 collapseBtn" >Students</button><br>
+              </form>
+              <form action="../pages/reporthc.php" method="post" enctype="multipart/form-data">
+                  <!--input type="hidden" name="departmentName" value=""-->
+                      <button type="submit" class="collapse-item btn btn-sm my-1 collapseBtn" >Faculty/Staff</button><br>
+              </form>
+              <form action="../pages/reporthc.php" method="post" enctype="multipart/form-data">
+                  <!--input type="hidden" name="departmentName" value=""-->
+                      <button type="submit" class="collapse-item btn btn-sm my-1 collapseBtn" >Visitors</button><br>
+              </form>
+              <form action="../pages/reporthc.php" method="post" enctype="multipart/form-data">
+                  <!--input type="hidden" name="departmentName" value=""-->
+                      <button type="submit" class="collapse-item btn btn-sm my-1 collapseBtn" >Guardians</button><br>
+              </form>
+      
+        </div>
+    </div>
   <a class=" mt-1" href="#contact"><i class="bi bi-card-checklist mr-1"></i> Health Records</a>
-  <a class=" mt-1" href="#about"><i class="bi bi-tools mr-1"></i> Utilities</a>
+  
+  <a type="button" class=" mt-1" href="#about" data-toggle="collapse" data-target="#collapseUtilities" aria-expanded="true" aria-controls="collapseUtilities"><i class="bi bi-tools mr-1"></i> Utilities</a>
+    <div id="collapseUtilities" class="collapse my-1" aria-labelledby="headingUtilities" data-parent="#accordionSidebar" >
+        <div class="py-2 collapse-inner rounded mx-4">
+            <h6 class="collapse-header" style="font-size: 13px;"></h6>
+ 
+              <form action="../pages/reporthc.php" method="post" enctype="multipart/form-data">
+                  <!--input type="hidden" name="departmentName" value=""-->
+                      <button type="submit" class="collapse-item btn btn-sm my-1 collapseBtn" >User Account</button><br>
+              </form>
+              <form action="../pages/reporthc.php" method="post" enctype="multipart/form-data">
+                  <!--input type="hidden" name="departmentName" value=""-->
+                      <button type="submit" class="collapse-item btn btn-sm my-1 collapseBtn" >Back up and Restore</button><br>
+              </form>
+              <form action="../pages/reporthc.php" method="post" enctype="multipart/form-data">
+                  <!--input type="hidden" name="departmentName" value=""-->
+                      <button type="submit" class="collapse-item btn btn-sm my-1 collapseBtn" >QR Settings</button><br>
+              </form>
+              <!--input type="hidden" name="departmentName" value=""-->
+              <button type="submit" class="collapse-item btn btn-sm my-1 collapseBtn" data-toggle="modal" data-target="#ChangePass">Change Password</button><br>
+      
+        </div>
+    </div>
 </div>
 <div class="content">
   <!--Header of the page-->
@@ -304,8 +379,8 @@ label{
 </div>
 
   
-  <!--Modal for adding announcement-->
-  <div class="modal fade" id="addAnnouncement" tabindex="-1" role="dialog" aria-labelledby="addAnnouncementCenterTitle" aria-hidden="true">
+    <!--Modal for adding announcement-->
+    <div class="modal fade" id="addAnnouncement" tabindex="-1" role="dialog" aria-labelledby="addAnnouncementCenterTitle" aria-hidden="true">
       <div class="modal-dialog modal-dialog-centered" role="document">
           <div class="modal-content">
               <div class="modal-header">
@@ -364,6 +439,56 @@ label{
       </div>
     </div>
 
+
+    <!-- Modal for Utilities->Change Password -->
+    <div class="modal fade" id="ChangePass" tabindex="-1" role="dialog" aria-labelledby="addAnnouncementCenterTitle" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered" role="document">
+          <div class="modal-content">
+              <div class="modal-header">
+                  <h5 class="modal-title font-weight-bold" id="addAnnouncementLongTitle">Change Admin Password</h5>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                  </button>
+              </div>
+              <div class="modal-body">
+                  <form action="../controller/adminUpdate.php" method="POST" enctype="multipart/form-data">
+                    <?php 
+                      $admin = new adminModel();
+                      $admin->setUsername($_SESSION['adminNameTb']);
+                      $result = ReadAdmin($conn,$admin);
+
+                      while($row = mysqli_fetch_assoc($result))
+                      {
+                        ?>
+                          <input type="hidden" name="idTb" value="<?php echo $row['id'];?>">
+                        <?php
+                      }
+                    ?>
+                    <div class="form-group">
+                      <div class="row pt-1 mt-1">
+                        <div class="col-sm-12 col-xs-12 col-md-12 col-lg-12">
+                            <label class="d-flex align-items-start" for="contentTb">Current Password</label>
+                            <input type="password" class="form-control form-control-sm" id="oldPassTb" name="oldPassTb" placeholder="Heading" maxlength="50" required>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <div class="row pt-1 mt-1">
+                        <div class="col-sm-12 col-xs-12 col-md-12 col-lg-12">
+                            <label class="d-flex align-items-start" for="contentTb">New Password</label>
+                            <input type="password" class="form-control form-control-sm" id="newPassTb" name="newPassTb" placeholder="Heading" maxlength="50" required>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-primary">Add Event</button>
+                    </div>
+                  </form>
+              </div>
+          </div>
+      </div>
+    </div>
+
     
 
 
@@ -390,6 +515,42 @@ label{
     }
     */
 
+    document.getElementById('successBox').style.display = 'none';
+    var successSignal = localStorage.getItem('signal');
+
+    if(successSignal==1)
+    {
+        //if password or username is incorrect
+        document.getElementById('successBox').style.display = 'block';
+        document.getElementById('successMsg').innerHTML = "Password Changed Successfully";
+        console.log("okay");
+
+    }
+    else if(successSignal==2)
+    {
+        //if password doesn't matched
+        document.getElementById('failBox').style.display = 'block';
+        document.getElementById('failMsg').innerHTML = "Incorrect Password";
+        console.log("okay");
+    }
+    else if(successSignal==3)
+    {
+        //if password doesn't matched
+        document.getElementById('successBox').style.display = 'block';
+        document.getElementById('successMsg').innerHTML = "Information Successfully saved!";
+        console.log("okay");
+    }
+    else if(successSignal==4)
+    {
+        //if password doesn't matched
+        document.getElementById('successBox').style.display = 'block';
+        document.getElementById('successMsg').innerHTML = "Information Successfully saved!";
+        console.log("okay");
+    }
+
+    //To make signl back to normmal and to prevent for the success page to appear every time the page was reload or refresh
+    localStorage.setItem('signal',0);
+    
     //this will make a image preview before it was uploaded
     fileTb.onchange = evt => {
     const [file] = fileTb.files

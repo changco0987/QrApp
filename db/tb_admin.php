@@ -10,13 +10,13 @@
 
     function ReadAdmin($conn,$data)
     {
-        if($data->getUsername()==null)
+        if($data->getId()==null)
         {
             $dbData = mysqli_query($conn,"SELECT * FROM admintb");
         }
         else
         {
-            $dbData = mysqli_query($conn,"SELECT * FROM admintb WHERE username = '".$data->getUsername()."'");
+            $dbData = mysqli_query($conn,"SELECT * FROM admintb WHERE id = ".$data->getId());
         }
 
         return $dbData;
