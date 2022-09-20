@@ -8,3 +8,8 @@ function gotoGuardianLogin()
 {
     window.location = '../pages/guardianLogin.php';
 }
+
+function gotoAdminStudent()
+{
+    window.location = '../admin/admin_students.php';
+}

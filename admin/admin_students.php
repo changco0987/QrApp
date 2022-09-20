@@ -178,14 +178,15 @@ label{
 
 <div class="sidebar">
   <h3 class="d-flex justify-content-center mx-auto px-auto mt-2 pt-1" id="adminTitle">Admin Panel</h2>
-  <a class="active mt-1" href="#home"><i class="bi bi-megaphone-fill mr-1"></i> Announcements</a>
-  <a type="button" class=" mt-1" href="#maintenance" data-toggle="collapse" data-target="#collapseMaintenance" aria-expanded="true" aria-controls="collapseMaintenance"><i class="bi bi-wrench-adjustable mr-1"></i> Account Maintenance</a>
+  <a class="mt-1" href="dashboard.php"><i class="bi bi-megaphone-fill mr-1"></i> Announcements</a>
+  <a type="button" class="active mt-1" href="#maintenance" data-toggle="collapse" data-target="#collapseMaintenance" aria-expanded="true" aria-controls="collapseMaintenance"><i class="bi bi-wrench-adjustable mr-1"></i> Account Maintenance</a>
     <div id="collapseMaintenance" class="collapse my-1" aria-labelledby="headingUtilities" data-parent="#accordionSidebar" >
         <div class="py-2 collapse-inner rounded mx-4">
             <h6 class="collapse-header" style="font-size: 13px;"></h6>
- 
+
               <!--input type="hidden" name="departmentName" value=""-->
-              <button type="button" onclick="gotoAdminStudent()" class="collapse-item btn btn-sm my-1 collapseBtn" >Students</button><br>
+              <button type="button" onclick="gotoAdminStudent()" class="collapse-item btn btn-sm my-1 collapseBtn">Students</button><br>
+
               <form action="../pages/reporthc.php" method="post" enctype="multipart/form-data">
                   <!--input type="hidden" name="departmentName" value=""-->
                   <button type="submit" class="collapse-item btn btn-sm my-1 collapseBtn" >Faculty/Staff</button><br>
@@ -230,7 +231,7 @@ label{
   <!--Header of the page-->
   <div class="row">
     <div class="col-sm-10 col-xs-10 col-md-10 col-lg-10 col-xl-11" style="background-color: #4e82c9;">
-      <h3 class="d-flex justify-content-center mt-2 pt-1" id="pageTitle" >Announcements and Event Control</h3>
+      <h3 class="d-flex justify-content-center mt-2 pt-1" id="pageTitle" >Students Account Control</h3>
     </div>
     <div class="col-sm-2 col-xs-2 col-md-2 col-lg-2 col-xl-1" style="background-color: #4e82c9;">
       <div class="w-100 d-flex justify-content-end">
@@ -243,22 +244,14 @@ label{
   <div class="row my-3 no-gutters" style="background-color:#F1F1F1; border-radius: 10px; box-shadow: -1px 1px 20px 6px #d9d9d9;">
     <div class="col-sm-4 col-xs-2 col-md-4 col-lg-2 col-xl-2 pl-3 pr-2 my-2 py-2">        
         <!--h6 class="pr-2" id="btnLabel">Types: </h6-->
-        <button type="button" class="btn btn-success dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-        <i class="bi bi-calendar-event mr-1"></i>Events
-        </button>
-        <div class="dropdown-menu" style="border-radius: 15px;">
-            <a class="dropdown-item active" href="../pages/reporthc.php"><i class="bi bi-calendar-event mr-1"></i>Events</a>
-            <a class="dropdown-item" href="../admin/dashboardHoliday.php"><i class="bi bi-flag-fill mr-1"></i>Holidays</a>
-            <a class="dropdown-item" href="../admin/dashboardExam.php"><i class="bi bi-pencil-fill mr-1"></i>Examination Schedule</a>
-            <a class="dropdown-item" href="../admin/dashboardEnrollment.php"><i class="bi bi-calendar-check-fill mr-1"></i>Enrollment</a>
-        </div>
+        <button type="button" class="btn d-flex justify-content-start btn-success" data-toggle="modal" data-target="#addAnnouncement"><i class="bi bi-plus-square mr-2"></i>Add Student Data</button>
     </div>
 
-    <div class="col-sm-4 col-xs-2 col-md-4 col-lg-2 col-xl-2 pl-3 pr-2 my-2 py-2">
+    <div class="col-sm-4 col-xs-2 col-md-4 col-lg-2 col-xl-2 pl-3 pr-1 my-2 py-2">
     </div>
 
     <div class="col-sm-4 col-xs-2 col-md-4 col-lg-2 col-xl-8 pl-3 pr-2 my-2 py-2 d-flex justify-content-end h-100 mx-auto my-auto">
-          <button type="button" class="btn d-flex justify-content-start btn-primary" href="../controller/adminWipeData.php" style="background-color:#3466AA;" data-toggle="modal" data-target="#addAnnouncement"><i class="bi bi-plus-square mr-2"></i>Add Announcement</button>
+          
     </div>
   </div>
 
@@ -377,42 +370,26 @@ label{
 </div>
 
   
-    <!--Modal for adding announcement-->
+    <!--Modal for adding student-->
     <div class="modal fade" id="addAnnouncement" tabindex="-1" role="dialog" aria-labelledby="addAnnouncementCenterTitle" aria-hidden="true">
       <div class="modal-dialog modal-dialog-centered" role="document">
-          <div class="modal-content">
+          <div class="modal-content" style="background-color: #e9e9e9;">
               <div class="modal-header">
-                  <h5 class="modal-title font-weight-bold" id="addAnnouncementLongTitle">Add Event</h5>
+                  <h5 class="modal-title font-weight-bold" id="addAnnouncementLongTitle">Add Student Data</h5>
                   <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                   <span aria-hidden="true">&times;</span>
                   </button>
               </div>
               <div class="modal-body">
-                  <form action="../controller/addAnnouncement.php" method="POST" enctype="multipart/form-data">
-                    <div class="form-group">
-                      <!--Changes the hidden input depending on the report type example: headcount, growth etc-->
-                      <input type="hidden" id="typeTb" name="typeTb" value="event">
-                      <div class="row pt-1 mt-1">
-                        <div class="col-sm-12 col-xs-12 col-md-12 col-lg-12">
-                            <label class="d-flex align-items-start" for="contentTb">Heading</label>
-                            <input type="text" class="form-control form-control-sm" id="headingTb" name="headingTb" placeholder="Heading" maxlength="50" required>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="form-group">
-                        <div class="row pt-1 mt-1">
-                            <div class="col-sm-12 col-xs-12 col-md-12 col-lg-12">
-                              <label class="d-flex align-items-start" for="contentTb">Content</label>
-                              <textarea type="text" class="form-control form-control-sm" id="contentTb" name="contentTb" placeholder="Elaborate the context max of 500 letters" maxlength="500"style="height: 125px;"></textarea>
-                            </div>
-                        </div>
-                    </div>
+                  <form action="../controller/addStudent.php" method="POST" enctype="multipart/form-data">
+                    <input type="hidden" id="typeTb" name="typeTb" value="event">
+                    <center>
                     <div class="form-group">
                         <div class="row pt-1 mt-1">
                             <div class="col-sm-12 col-xs-12 col-md-12 col-lg-12">
                               <img src="../asset/emptyPicture.png" width="90" height="90" class="d-inline-block align-top border border-dark" alt="" style="border-radius: 10px;" id="userImg">
                             </div>
-                            <div class="col-sm-6 col-xs-6 col-md-6 col-lg-6">
+                            <div class="col-sm-12 col-xs-12 col-md-12 col-lg-12">
                               <div class="custom-file" style="width:fit-content;">
                                   <input type="file" accept=".jpg, .png, .jpeg" class="custom-file-input" id="fileTb" name="fileTb">
                                   <label class="custom-file-label text-left mt-2 pt-2" for="fileTb">Upload Photo</label>
@@ -420,16 +397,92 @@ label{
                             </div>
                         </div>
                     </div>
-                    <div class="form-group">
-                        <div class="row pt-1 mt-1">
-                            <div class="col-sm-12 col-xs-12 col-md-12 col-lg-12">
-                              <label id="dateLb" for="dateTb" >Choose Event Date</label>
-                              <input class="form-control" type="date" id="dateTb" name="dateTb" required>
-                            </div>
+                    </center>
+                    <!-- Student Personal Info -->
+                    <div class="mx-2 px-2" style="background-color: #f9f9f9; border-radius:10px;">
+                      <div class="form-group">
+                          <div class="row">
+                              <div class="col-sm-12 col-xs-12 col-md-6 col-lg-6">
+                                  <label class="d-flex align-items-start" for="fnameTb">First name</label>
+                                  <input type="text" class="form-control no-border form-control-sm" id="fnameTb" name="fnameTb" placeholder="Ex. Marie" maxlength="50" required>
+                              </div>
+                              <div class="col-sm-12 col-xs-12 col-md-6 col-lg-6">
+                                  <label class="d-flex align-items-start" for="lnameTb">Last name</label> 
+                                  <input type="text" class="form-control form-control-sm" id="lnameTb" name="lnameTb" placeholder="Ex. Cruz" maxlength="50" required>
+                              </div>
+                          </div>
+                      </div>
+                      <div class="form-group">
+                          <div class="row">
+                              <div class="col-sm-12 col-xs-12 col-md-6 col-lg-6">
+                                  <div class="row">
+                                      <div class="col-sm-12 col-xs-12 col-md-12 col-lg-12">
+                                          <label for="">Gender</label>
+                                      </div>
+                                      <div class="col-sm-6 col-xs-6 col-md-6 col-lg-6">
+                                          <div class="form-check form-check-inline">
+                                              <input class="form-check-input" type="radio" name="genderRb" id="maleRadio" value="Male" checked>
+                                              <label class="form-check-label" for="maleRadio">
+                                                  male
+                                              </label>
+                                          </div>
+                                      </div>
+                                      <div class="col-sm-6 col-xs-6 col-md-6 col-lg-6">
+                                          <div class="form-check form-check-inline">
+                                              <input class="form-check-input" type="radio" name="genderRb" id="femaleRadio" value="Female">
+                                              <label class="form-check-label" for="femaleRadio">
+                                                  female
+                                              </label>
+                                          </div>
+                                      </div>
+                                  </div>
+                              </div>
+                              <div class="col-sm-12 col-xs-12 col-md-6 col-lg-6">
+                                  <label class="d-flex align-items-start" for="ageTb">Age</label> 
+                                  <input type="text" class="form-control form-control-sm" id="ageTb" name="ageTb" placeholder="Ex. 21" maxlength="50" required>
+                              </div>
+                          </div>
+                      </div>
+                      <div class="form-group">
+                        <div class="row pb-2">
+                          <div class="col-sm-12 col-xs-12 col-md-12 col-lg-12">
+                              <label class="d-flex align-items-start" for="contactNumTb">Contact Number</label>
+                              <input type="text" class="form-control form-control-sm" id="contactNumTb" name="contactNumTb" placeholder="Ex. 092X-XXX-XXXX" maxlength="50" required>
+                          </div>
                         </div>
+                      </div>
+                    </div>
+                    <!-- Student School Info -->
+                    <div class="mx-2 px-2" style="background-color: #f9f9f9; border-radius:10px;">
+                      <div class="form-group">
+                        <div class="row">
+                          <div class="col-sm-12 col-xs-12 col-md-12 col-lg-12">
+                              <label class="d-flex align-items-start" for="contentTb">Student ID</label>
+                              <input type="text" class="form-control form-control-sm" id="studentIdTb" name="studentIdTb" placeholder="Ex. 012-3456-7890" maxlength="50" required>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="form-group">
+                          <div class="row pb-2">
+                              <div class="col-sm-4 col-xs-4 col-md-4 col-lg-4">
+                                  <label class="d-flex align-items-start" for="courseTb">Course</label>
+                                  <input type="text" class="form-control no-border form-control-sm" id="courseTb" name="courseTb" placeholder="Ex. BSIT" maxlength="50" required>
+                              </div>
+                              <div class="col-sm-4 col-xs-4 col-md-4 col-lg-4">
+                                  <label class="d-flex align-items-start" for="sectionTb">Section</label> 
+                                  <input type="text" class="form-control form-control-sm" id="sectionTb" name="sectionTb" placeholder="Ex. ICT101" maxlength="50" required>
+                              </div>
+                              <div class="col-sm-4 col-xs-4 col-md-4 col-lg-4">
+                                  <label class="d-flex align-items-start" for="yearTb">Year Level</label> 
+                                  <input type="text" class="form-control form-control-sm" id="yearTb" name="yearTb" placeholder="Ex. 1st" maxlength="50" required>
+                              </div>
+                          </div>
+                      </div>
                     </div>
                     <div class="modal-footer">
-                        <button type="submit" class="btn btn-primary">Add Event</button>
+                        <div class="form-group">
+                            <button type="submit" class="btn btn-primary">Submit</button>
+                        </div>
                     </div>
                   </form>
               </div>
@@ -486,6 +539,10 @@ label{
           </div>
       </div>
     </div>
+
+    
+
+
 </body>
 <script>
 
@@ -552,6 +609,5 @@ label{
         userImg.src = URL.createObjectURL(file)
     }
     }
-    
 </script>
 </html>
