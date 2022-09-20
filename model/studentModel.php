@@ -11,8 +11,11 @@
         private $temperature;
         private $age;
         private $gender;
+        private $address;
         private $contact_number;
         private $imageName;
+        private $qr_ExDate;
+        private $status;
 
 
         public function getId()
@@ -124,6 +127,17 @@
         }
 
 
+        public function getAddress()
+        {
+            return $this->address;   
+        }
+
+        public function setAddress($address)
+        {
+            $this->address = $address;
+        }
+
+
         public function getContact_number()
         {
             return $this->contact_number;   
@@ -143,6 +157,28 @@
         public function setImageName($imageName)
         {
             $this->imageName = $imageName;
+        }
+
+
+        public function getQr_ExDate()
+        {
+            return $this->qr_ExDate;   
+        }
+
+        public function setQr_ExDate($qr_ExDate)
+        {
+            $this->qr_ExDate = $qr_ExDate;
+        }
+
+
+        public function getStatus()
+        {
+            return $this->status;   
+        }
+
+        public function setStatus($status)
+        {
+            $this->status = $status;
         }
 
     }
