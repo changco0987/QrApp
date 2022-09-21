@@ -54,7 +54,10 @@
     <!--Bootstrap icon--> 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.3/font/bootstrap-icons.css">
 
-    <!--script src="https://code.jquery.com/jquery-1.8.3.min.js"></script-->
+    <script src="https://code.jquery.com/jquery-1.8.3.min.js"></script>
+    <!-- QR code javascript -->
+    <script src="../javascript/qrcode.min.js"></script>
+    
     <!--My CSS and JS-->
     <!--link type="text/css" rel="stylesheet" href="../css/index.css"/-->
     <script src="../javascript/linked.js"></script>
@@ -154,7 +157,41 @@ label{
 .collapseBtn:hover {
   background-color:#114084;
 }
+  
+#qrcode{
+  position: absolute;
+  z-index: -2%;
+  visibility: hidden;
+}
+@media print{
+    body * {
+        visibility: hidden;
+    }
+    #qrcode * {
+        visibility: visible;
+        width: 800px;
+        height: 800px;
+    }
+}
 </style>
+
+<script>
+    //The qr generator function
+    var qrcode = undefined;
+    function generateQRCode(value)
+    {
+        if(qrcode === undefined)
+        {
+            qrcode = new QRCode(document.getElementById('qrcode'), value);
+            console.log(value);
+        }
+        else
+        {
+            qrcode.clear();
+            qrcode.makeCode(value);
+        }
+    }
+</script>
 
 </head>
 <body>
@@ -240,6 +277,9 @@ label{
     </div>
   </div>
 
+  <!-- QR pass container -->
+  <div class="pb-3 mb-3 pt-1 mt-1" id="qrcode"></div>
+
   <!--This is where the body content start-->
   <div class="row my-3 no-gutters" style="background-color:#F1F1F1; border-radius: 10px; box-shadow: -1px 1px 20px 6px #d9d9d9;">
     <div class="col-sm-4 col-xs-2 col-md-4 col-lg-2 col-xl-2 pl-3 pr-2 my-2 py-2">        
@@ -262,15 +302,15 @@ label{
       <div class="table-wrapper-scroll-y my-custom-scrollbar">
         <table class="table table-striped table-hover table-sm text-justify mb-0" style="border-radius: 10px;" id="1">
           <caption id="tbCaption"></caption>
-          <thead class="bg-primary text-light">
+          <thead class="text-light" style="background-color:#234471 ;">
               <tr>
                   <th scope="col">#</th>
                   <th scope="col" class="text-center" >Image</th>
-                  <th scope="col" >Name</th>
-                  <th scope="col" >Course/Sec/Year</th>
-                  <th scope="col"  >Age</th>
-                  <th scope="col"  >Gender</th>
-                  <th scope="col"  >Contact Number</th>
+                  <th scope="col">Name</th>
+                  <th scope="col">Course/Sec/Year</th>
+                  <th scope="col">Age</th>
+                  <th scope="col">Gender</th>
+                  <th scope="col">Contact Number</th>
                   <th colspan="4" class="text-center" scope="col">Actions</th><!-- Edit button and Delete button-->
               </tr>
           </thead>
@@ -281,9 +321,12 @@ label{
                   $rowCount = 1;
                   while($row = mysqli_fetch_assoc($result))
                   {
+                    //This where the QR data was collected
+                    $prevQRData = array("title"=>'qremsystem', "accType"=>'student', "id"=>$row['id'], "status"=>$row['status']);
+                    $convertedQRData = base64_encode(serialize($prevQRData));
 
                       ?>
-                        <tr class="table-primary">
+                        <tr style="background-color:#82B7DC;">
                             <td><?php echo $rowCount;?></td>
                             <td class="text-center">
                               <?php
@@ -307,13 +350,10 @@ label{
                             <td><?php echo $row['age'];?></td>
                             <td><?php echo $row['gender'];?></td>
                             <td><?php echo $row['contact_number'];?></td>
-                            <!--status Button-->
+
+                            <!--Print QR Button-->
                             <td id="<?php echo $row['id'];?>">
-                              <form action="../controller/studentStat.php" method="POST" enctype="multipart/form-data">
-                                <input type="hidden" name="idTb" id="idTb" value="<?php echo $row['id'];?>">
-                                <input type="hidden" name="statusTb" id="statusTb" value="unlocked">
-                                <button type="submit" class="btn btn-sm d-flex justify-content-start" style="background-color:#3466AA; color:white;"><i class="bi bi-printer-fill mr-1"></i>Print QR</button>
-                              </form>
+                              <button type="button" class="btn btn-sm d-flex justify-content-start" style="background-color:#3466AA; color:white;" id="<?php echo $convertedQRData;?>" onclick="generateQRCode(this.id); window.print();"><i class="bi bi-printer-fill mr-1"></i>Print QR</button>
                             </td>
                             
                             
@@ -325,8 +365,8 @@ label{
                                   <!--status Button-->
                                   <td id="<?php echo $row['id'];?>">
                                     <form action="../controller/studentStat.php" method="POST" enctype="multipart/form-data">
-                                      <input type="hidden" name="idTb" id="idTb" value="<?php echo $row['id'];?>">
-                                      <input type="hidden" name="statusTb" id="statusTb" value="locked">
+                                      <input type="hidden" name="idTb" id="<?php echo 'status1IdTb'.$row['id'];?>" value="<?php echo $row['id'];?>">
+                                      <input type="hidden" name="statusTb" id="<?php echo 'status1Tb'.$row['id']?>" value="locked">
                                       <button type="submit" class="btn btn-sm d-flex justify-content-start " style="background-color: #ca3635; color: white;"><i class="bi bi-lock-fill mr-1"></i>Lock</button>
                                     </form>
                                   </td>
@@ -339,8 +379,8 @@ label{
                                   <!--status Button-->
                                   <td id="<?php echo $row['id'];?>">
                                     <form action="../controller/studentStat.php" method="POST" enctype="multipart/form-data">
-                                      <input type="hidden" name="idTb" id="idTb" value="<?php echo $row['id'];?>">
-                                      <input type="hidden" name="statusTb" id="statusTb" value="unlocked">
+                                      <input type="hidden" name="idTb" id="<?php echo 'status2IdTb'.$row['id'];?>" value="<?php echo $row['id'];?>">
+                                      <input type="hidden" name="statusTb" id="<?php echo 'status2Tb'.$row['id']?>" value="unlocked">
                                       <button type="submit" class="btn btn-sm d-flex justify-content-start btn-success"><i class="bi bi-unlock-fill mr-1"></i>Unlock</button>
                                     </form>
                                   </td>
@@ -351,16 +391,15 @@ label{
                             <!--Edit Button-->
                             <td id="<?php echo $row['id'];?>">
                               <form action="../admin/editAnnouncement.php" method="POST" enctype="multipart/form-data">
-                                <input type="hidden" name="rowId" id="rowId" value="<?php echo $row['id'];?>">
+                                      <input type="hidden" name="idTb" id="<?php echo 'editIdTb'.$row['id'];?>" value="<?php echo $row['id'];?>">
                                 <button type="submit" class="btn btn-sm d-flex justify-content-start btn-warning" name="submitEdit"><i class="bi bi-pencil-square mr-1"></i>Edit</button>
                               </form>
                             </td>
 
                             <!--Delete Button-->
                             <td id="<?php echo $row['id'];?>">
-                              <form action="../controller/deleteAnnouncement.php" method="POST" enctype="multipart/form-data">
-                                <input type="hidden" name="typeTb" id="typeTb" value="event">
-                                <input type="hidden" name="idTb" id="idTb" value="<?php echo $row['id'];?>">
+                              <form action="../controller/deleteStudent.php" method="POST" enctype="multipart/form-data">
+                                <input type="hidden" name="idTb" id="<?php echo 'deleteIdTb'.$row['id'];?>" value="<?php echo $row['id'];?>">
                                 <button type="submit" class="btn btn-sm d-flex justify-content-start btn-danger"><i class="bi bi-trash mr-1"></i>Delete</button>
                               </form>
                             </td>
@@ -603,8 +642,8 @@ label{
     else if(successSignal==3)
     {
         //if password doesn't matched
-        document.getElementById('successBox').style.display = 'block';
-        document.getElementById('successMsg').innerHTML = "Information Successfully saved!";
+        document.getElementById('failBox').style.display = 'block';
+        document.getElementById('failMsg').innerHTML = "Data Removed Successfully";
         console.log("okay");
     }
     else if(successSignal==4)
