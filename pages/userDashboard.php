@@ -124,6 +124,8 @@
     }
     #qrcode * {
         visibility: visible;
+        width: 800px;
+        height: 800px;
     }
 }
     </style>
@@ -137,6 +139,7 @@
             {
                 qrcode = new QRCode(document.getElementById('qrcode'), value);
                 $('#qrcode').show();
+                $('#printBtn').show();
                 returnDate();
                 console.log(value);
             }
@@ -204,7 +207,10 @@
                     <div class="form-group">
                         <center>
                             <small id="qrIndicator"></small>
-                            <button type="submit" class="btn-success form-control btn d-flex justify-content-end" id="submitBtn" onclick="window.print();" style="width:max-content;"><i class="bi bi bi-qr-code mr-2"></i>Print</button>
+                            <div id="printBtn">
+                                <button type="button" class="form-control btn d-flex justify-content-end" onclick="window.print();" style="width:max-content; font-size:smaller; background-color:#3466AA; color:white;"><i class="bi bi-printer-fill mr-2"></i>Print</button>
+                            </div>
+                            
                             <div class="pb-3 mb-3 pt-1 mt-1" id="qrcode"></div>
                             <?php
                                                                 
@@ -229,6 +235,7 @@
                                         <script>
                                             $('#qrIndicator').html('Your QR is already expired');
                                             $('#qrcode').hide();
+                                            $('#printBtn').hide();
                                         </script>
                                     <?php
                                 }

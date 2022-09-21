@@ -4,8 +4,8 @@
     include_once '../model/adminModel.php';
     include_once '../db/tb_admin.php';
 
-    include_once '../model/announcementModel.php';
-    include_once '../db/tb_announcement.php';
+    include_once '../model/studentModel.php';
+    include_once '../db/tb_student.php';
 
     //This will check if the user is truely login
     session_start();
@@ -260,64 +260,74 @@ label{
     <div class="col-sm-12 col-xs-12 col-md-12 col-lg-12 col-xl-12 pl-3 pr-2 my-2 py-2">        
 
       <div class="table-wrapper-scroll-y my-custom-scrollbar">
-        <table class="table table-striped table-bordered table-hover table-sm text-justify mb-0" style="border-radius: 10px;" id="1">
+        <table class="table table-striped table-hover table-sm text-justify mb-0" style="border-radius: 10px;" id="1">
           <caption id="tbCaption"></caption>
           <thead class="bg-primary text-light">
               <tr>
                   <th scope="col">#</th>
-                  <th scope="col" class="text-center" >Heading</th>
-                  <th scope="col" class="text-center" >Content</th>
                   <th scope="col" class="text-center" >Image</th>
-                  <th scope="col" class="text-center" >Date</th>
-                  <th colspan="3" class="text-center" scope="col">Actions</th><!-- Edit button and Delete button-->
+                  <th scope="col" >Name</th>
+                  <th scope="col" >Course/Sec/Year</th>
+                  <th scope="col"  >Age</th>
+                  <th scope="col"  >Gender</th>
+                  <th scope="col"  >Contact Number</th>
+                  <th colspan="4" class="text-center" scope="col">Actions</th><!-- Edit button and Delete button-->
               </tr>
           </thead>
           <tbody>
               <?php
-                  $event = new announcementModel();
-                  $result = ReadEvent($conn,$event);
+                  $student = new studentModel();
+                  $result = ReadStudent($conn,$student);
                   $rowCount = 1;
                   while($row = mysqli_fetch_assoc($result))
                   {
 
-                    if($row['type']=='event')
-                    {
                       ?>
                         <tr class="table-primary">
                             <td><?php echo $rowCount;?></td>
-                            <td><?php echo $row['heading'];?></td>
-                            <td><?php echo $row['content'];?></td>
                             <td class="text-center">
                               <?php
                                   //This will assign the image name to the image html element and if null, it will not show anything
                                   if($row['imageName']==null)
                                   {
                                       ?>
-                                          <!--img src="../asset/user.png" width="60" height="60" class="d-inline-block align-top img-fluid border border-dark" alt="" style="border-radius: 50%;"-->
+                                          <img src="../asset/user.png" width="60" height="60" class="d-inline-block align-top img-fluid border border-dark" alt="" style="border-radius: 50%;">
                                       <?php
                                   }
                                   else
                                   {
                                       ?>
-                                        <img src="../upload/events/<?php echo $row['imageName'];?>" width="90" height="90" class="d-inline-block align-top border border-dark" alt="" style="border-radius: 10px;">
+                                        <img src="../upload/students/<?php echo $row['imageName'];?>" width="60" height="60" class="d-inline-block align-top border border-dark" alt="" style="border-radius: 50%;">
                                       <?php
                                   }
                               ?>
                             </td>
-                            <td><?php echo date("M d, Y ", strtotime($row['date']));?></td>
+                            <td><?php echo $row['firstname'].' '.$row['lastname'];?></td>
+                            <td><?php echo $row['course'].' - '.$row['section'].' - '.$row['year'];?></td>
+                            <td><?php echo $row['age'];?></td>
+                            <td><?php echo $row['gender'];?></td>
+                            <td><?php echo $row['contact_number'];?></td>
+                            <!--status Button-->
+                            <td id="<?php echo $row['id'];?>">
+                              <form action="../controller/studentStat.php" method="POST" enctype="multipart/form-data">
+                                <input type="hidden" name="idTb" id="idTb" value="<?php echo $row['id'];?>">
+                                <input type="hidden" name="statusTb" id="statusTb" value="unlocked">
+                                <button type="submit" class="btn btn-sm d-flex justify-content-start" style="background-color:#3466AA; color:white;"><i class="bi bi-printer-fill mr-1"></i>Print QR</button>
+                              </form>
+                            </td>
+                            
                             
                             <?php
                               //This is to check the current status of event data if its already shown or not
-                              if($row['isShow']==0)
+                              if($row['status']=='unlocked')
                               {
                                 ?>
-                                  <!--Publish Button-->
+                                  <!--status Button-->
                                   <td id="<?php echo $row['id'];?>">
-                                    <form action="../controller/publish.php" method="POST" enctype="multipart/form-data">
-                                      <input type="hidden" name="typeTb" id="typeTb" value="event">
+                                    <form action="../controller/studentStat.php" method="POST" enctype="multipart/form-data">
                                       <input type="hidden" name="idTb" id="idTb" value="<?php echo $row['id'];?>">
-                                      <input type="hidden" name="publishTb" id="publishTb" value="1">
-                                      <button type="submit" class="btn btn-sm d-flex justify-content-start btn-success"><i class="bi bi-paperclip mr-1"></i>Publish</button>
+                                      <input type="hidden" name="statusTb" id="statusTb" value="locked">
+                                      <button type="submit" class="btn btn-sm d-flex justify-content-start " style="background-color: #ca3635; color: white;"><i class="bi bi-lock-fill mr-1"></i>Lock</button>
                                     </form>
                                   </td>
 
@@ -326,13 +336,12 @@ label{
                               else
                               {
                                 ?>
-                                  <!--Publish Button-->
+                                  <!--status Button-->
                                   <td id="<?php echo $row['id'];?>">
-                                    <form action="../controller/publish.php" method="POST" enctype="multipart/form-data">
-                                      <input type="hidden" name="typeTb" id="typeTb" value="event">
+                                    <form action="../controller/studentStat.php" method="POST" enctype="multipart/form-data">
                                       <input type="hidden" name="idTb" id="idTb" value="<?php echo $row['id'];?>">
-                                      <input type="hidden" name="publishTb" id="publishTb" value="false">
-                                      <button type="submit" class="btn btn-sm d-flex justify-content-start btn-secondary"><i class="bi bi-x-circle mr-1"></i>Unpublished</button>
+                                      <input type="hidden" name="statusTb" id="statusTb" value="unlocked">
+                                      <button type="submit" class="btn btn-sm d-flex justify-content-start btn-success"><i class="bi bi-unlock-fill mr-1"></i>Unlock</button>
                                     </form>
                                   </td>
                                 <?php
@@ -358,7 +367,6 @@ label{
                         </tr>
                       <?php
                       $rowCount++;
-                    }
 
                   }
               ?>
@@ -373,7 +381,7 @@ label{
     <!--Modal for adding student-->
     <div class="modal fade" id="addAnnouncement" tabindex="-1" role="dialog" aria-labelledby="addAnnouncementCenterTitle" aria-hidden="true">
       <div class="modal-dialog modal-dialog-centered" role="document">
-          <div class="modal-content" style="background-color: #e9e9e9;">
+          <div class="modal-content" style="background-color: #e9e9e9; border-radius: 15px;">
               <div class="modal-header">
                   <h5 class="modal-title font-weight-bold" id="addAnnouncementLongTitle">Add Student Data</h5>
                   <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -382,12 +390,12 @@ label{
               </div>
               <div class="modal-body">
                   <form action="../controller/addStudent.php" method="POST" enctype="multipart/form-data">
-                    <input type="hidden" id="typeTb" name="typeTb" value="event">
+                    <!--input type="hidden" id="typeTb" name="typeTb" value="event"-->
                     <center>
                     <div class="form-group">
                         <div class="row pt-1 mt-1">
                             <div class="col-sm-12 col-xs-12 col-md-12 col-lg-12">
-                              <img src="../asset/emptyPicture.png" width="90" height="90" class="d-inline-block align-top border border-dark" alt="" style="border-radius: 10px;" id="userImg">
+                              <img src="../asset/user.png" width="90" height="90" class="d-inline-block align-top border border-dark" alt="" style="border-radius: 50%;" id="userImg">
                             </div>
                             <div class="col-sm-12 col-xs-12 col-md-12 col-lg-12">
                               <div class="custom-file" style="width:fit-content;">
@@ -439,15 +447,23 @@ label{
                               </div>
                               <div class="col-sm-12 col-xs-12 col-md-6 col-lg-6">
                                   <label class="d-flex align-items-start" for="ageTb">Age</label> 
-                                  <input type="text" class="form-control form-control-sm" id="ageTb" name="ageTb" placeholder="Ex. 21" maxlength="50" required>
+                                  <input type="number" class="form-control form-control-sm" id="ageTb" name="ageTb" placeholder="Ex. 21" required>
                               </div>
                           </div>
                       </div>
                       <div class="form-group">
                         <div class="row pb-2">
                           <div class="col-sm-12 col-xs-12 col-md-12 col-lg-12">
+                              <label class="d-flex align-items-start" for="contactNumTb">Address</label>
+                              <input type="text" class="form-control form-control-sm" id="addressTb" name="addressTb" placeholder="Ex. 2123 home st." maxlength="100" required>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="form-group">
+                        <div class="row pb-2">
+                          <div class="col-sm-12 col-xs-12 col-md-12 col-lg-12">
                               <label class="d-flex align-items-start" for="contactNumTb">Contact Number</label>
-                              <input type="text" class="form-control form-control-sm" id="contactNumTb" name="contactNumTb" placeholder="Ex. 092X-XXX-XXXX" maxlength="50" required>
+                              <input type="number" class="form-control form-control-sm" id="contactNumTb" name="contactNumTb" placeholder="Ex. 092X-XXX-XXXX" maxlength="11" required>
                           </div>
                         </div>
                       </div>
@@ -470,11 +486,11 @@ label{
                               </div>
                               <div class="col-sm-4 col-xs-4 col-md-4 col-lg-4">
                                   <label class="d-flex align-items-start" for="sectionTb">Section</label> 
-                                  <input type="text" class="form-control form-control-sm" id="sectionTb" name="sectionTb" placeholder="Ex. ICT101" maxlength="50" required>
+                                  <input type="text" class="form-control form-control-sm" id="sectionTb" name="sectionTb" placeholder="Ex. ICT101" maxlength="20" required>
                               </div>
                               <div class="col-sm-4 col-xs-4 col-md-4 col-lg-4">
                                   <label class="d-flex align-items-start" for="yearTb">Year Level</label> 
-                                  <input type="text" class="form-control form-control-sm" id="yearTb" name="yearTb" placeholder="Ex. 1st" maxlength="50" required>
+                                  <input type="text" class="form-control form-control-sm" id="yearTb" name="yearTb" placeholder="Ex. 1st" maxlength="20" required>
                               </div>
                           </div>
                       </div>
@@ -567,21 +583,21 @@ label{
     */
 
     document.getElementById('successBox').style.display = 'none';
-    var successSignal = localStorage.getItem('signal');
+    var successSignal = localStorage.getItem('studentMsg');
 
     if(successSignal==1)
     {
         //if password or username is incorrect
         document.getElementById('successBox').style.display = 'block';
-        document.getElementById('successMsg').innerHTML = "Password Changed Successfully";
+        document.getElementById('successMsg').innerHTML = "Data Added Successfully!";
         console.log("okay");
 
     }
     else if(successSignal==2)
     {
         //if password doesn't matched
-        document.getElementById('failBox').style.display = 'block';
-        document.getElementById('failMsg').innerHTML = "Incorrect Password";
+        document.getElementById('successBox').style.display = 'block';
+        document.getElementById('successMsg').innerHTML = "Changed Status Successfully";
         console.log("okay");
     }
     else if(successSignal==3)
@@ -600,7 +616,7 @@ label{
     }
 
     //To make signl back to normmal and to prevent for the success page to appear every time the page was reload or refresh
-    localStorage.setItem('signal',0);
+    localStorage.setItem('studentMsg',0);
     
     //this will make a image preview before it was uploaded
     fileTb.onchange = evt => {

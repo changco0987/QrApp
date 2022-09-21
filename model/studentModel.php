@@ -79,7 +79,7 @@
 
         public function setSection($section)
         {
-            $this->section = strtoupper($section);
+            $this->section = strtolower($section);
         }
 
 
