@@ -118,7 +118,7 @@
                             </div>
                         </div>
                         <div class="modal-footer">
-                            <button type="submit" class="btn btn-primary mr-2">Add Event</button>
+                            <button type="submit" class="btn btn-primary mr-2">Submit Changes</button>
                             <a type="button" class="btn btn-warning" href="../admin/dashboard.php">Cancel</a>
                         </div>
                     </form>

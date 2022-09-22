@@ -14,7 +14,6 @@
         private $address;
         private $contact_number;
         private $imageName;
-        private $qr_ExDate;
         private $status;
 
 
@@ -157,17 +156,6 @@
         public function setImageName($imageName)
         {
             $this->imageName = $imageName;
-        }
-
-
-        public function getQr_ExDate()
-        {
-            return $this->qr_ExDate;   
-        }
-
-        public function setQr_ExDate($qr_ExDate)
-        {
-            $this->qr_ExDate = $qr_ExDate;
         }
 
 

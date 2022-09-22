@@ -11,6 +11,7 @@
     if(isset($_SESSION['adminNameTb']))
     {
         $student = new studentModel();
+        $student->setId($_POST['idTb']);
         $student->setFirstname($_POST['fnameTb']);
         $student->setLastname($_POST['lnameTb']);
         $student->setGender($_POST['genderRb']);
@@ -21,7 +22,6 @@
         $student->setCourse($_POST['courseTb']);
         $student->setSection($_POST['sectionTb']);
         $student->setYear($_POST['yearTb']);
-        $student->setStatus('unlocked');
 
         
         if($_FILES['fileTb']['name']!="")
@@ -31,8 +31,8 @@
             copy($uploadedFile,$imgPath.$student->getImageName());//This will move the uploaded file into file directory (web)
         }
 
-        CreateStudent($conn,$student);
-        echo '<script> localStorage.setItem("studentMsg",1); window.location = "../admin/admin_students.php";</script>';//success message
+        UpdateStudent($conn,$student);
+        echo '<script> localStorage.setItem("studentMsg",4); window.location = "../admin/admin_students.php";</script>';//success message
     }
     else
     {

@@ -173,6 +173,10 @@ label{
         height: 800px;
     }
 }
+
+th{
+  border: 1px solid #d9d9d9;
+}
 </style>
 
 <script>
@@ -311,6 +315,7 @@ label{
                   <th scope="col">Age</th>
                   <th scope="col">Gender</th>
                   <th scope="col">Contact Number</th>
+                  <th scope="col">Address</th>
                   <th colspan="4" class="text-center" scope="col">Actions</th><!-- Edit button and Delete button-->
               </tr>
           </thead>
@@ -350,6 +355,7 @@ label{
                             <td><?php echo $row['age'];?></td>
                             <td><?php echo $row['gender'];?></td>
                             <td><?php echo $row['contact_number'];?></td>
+                            <td><?php echo $row['address'];?></td>
 
                             <!--Print QR Button-->
                             <td id="<?php echo $row['id'];?>">
@@ -390,7 +396,7 @@ label{
 
                             <!--Edit Button-->
                             <td id="<?php echo $row['id'];?>">
-                              <form action="../admin/editAnnouncement.php" method="POST" enctype="multipart/form-data">
+                              <form action="../admin/editStudent.php" method="POST" enctype="multipart/form-data">
                                       <input type="hidden" name="idTb" id="<?php echo 'editIdTb'.$row['id'];?>" value="<?php echo $row['id'];?>">
                                 <button type="submit" class="btn btn-sm d-flex justify-content-start btn-warning" name="submitEdit"><i class="bi bi-pencil-square mr-1"></i>Edit</button>
                               </form>
@@ -502,7 +508,7 @@ label{
                         <div class="row pb-2">
                           <div class="col-sm-12 col-xs-12 col-md-12 col-lg-12">
                               <label class="d-flex align-items-start" for="contactNumTb">Contact Number</label>
-                              <input type="number" class="form-control form-control-sm" id="contactNumTb" name="contactNumTb" placeholder="Ex. 092X-XXX-XXXX" maxlength="11" required>
+                              <input type="number" class="form-control form-control-sm" id="contactNumTb" name="contactNumTb" placeholder="Ex. 092X-XXX-XXXX" minlength="11" maxlength="11" required>
                           </div>
                         </div>
                       </div>
