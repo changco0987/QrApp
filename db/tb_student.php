@@ -36,8 +36,9 @@
         {
             $address = mysqli_real_escape_string($conn,$student->getAddress());
             mysqli_query($conn,"UPDATE studentstb set studentId = '".$student->getStudentId()."', firstname = '".$student->getFirstname()."', lastname = '".$student->getLastname().
-            "', course = '".$student->getCourse()."', section = '".$student->getSection()."', year = '".$student->getYear()."', age = ".$student->getAge().", gender = '".$student->getGender().
-            "', address = '".$address."', imageName = '".$student->getImageName()."' where id = ". $student->getId());
+            "', middlename = '".$student->getMiddlename()."', course = '".$student->getCourse()."', section = '".$student->getSection()."', year = '".$student->getYear().
+            "', age = ".$student->getAge().", gender = '".$student->getGender()."', address = '".$address."', imageName = '".$student->getImageName().
+            ", guardianName = '".$student->getGuardianName()."', guardianNum = '".$student->getGuardianNum()."' where id = ". $student->getId());
         }
     }
 

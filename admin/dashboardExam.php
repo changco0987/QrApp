@@ -56,8 +56,8 @@
 
     <!--script src="https://code.jquery.com/jquery-1.8.3.min.js"></script-->
     <!--My CSS and JS-->
-    <!--link type="text/css" rel="stylesheet" href="../css/index.css"/>
-    <script src="javascript/linked.js"></script-->
+    <!--link type="text/css" rel="stylesheet" href="../css/index.css"/-->
+    <script src="../javascript/linked.js"></script>
     <!-- Custom fonts for this template-->
     <link rel="icon" href="../asset/qr.png">
     <title>Admin Dashboard</title>

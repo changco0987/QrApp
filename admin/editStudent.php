@@ -110,7 +110,7 @@
                     <div class="mx-2 px-2" style="background-color: #f9f9f9; border-radius:10px;">
                       <div class="form-group">
                           <div class="row">
-                              <div class="col-sm-12 col-xs-12 col-md-6 col-lg-6">
+                              <div class="col-sm-12 col-xs-12 col-md-4 col-lg-4">
                                   <label class="d-flex align-items-start" for="fnameTb">First name</label>
                                   <input type="text" class="form-control no-border form-control-sm" id="fnameTb" name="fnameTb" placeholder="Ex. Marie" maxlength="50" required value="<?php echo $row['firstname'];?>">
                               </div>
@@ -118,7 +118,7 @@
                                   <label class="d-flex align-items-start" for="lnameTb">Middle name</label> 
                                   <input type="text" class="form-control form-control-sm" id="mnameTb" name="mnameTb" placeholder="Ex. Jimenez" maxlength="50" required value="<?php echo $row['middlename'];?>">
                               </div>
-                              <div class="col-sm-12 col-xs-12 col-md-6 col-lg-6">
+                              <div class="col-sm-12 col-xs-12 col-md-4 col-lg-4">
                                   <label class="d-flex align-items-start" for="lnameTb">Last name</label> 
                                   <input type="text" class="form-control form-control-sm" id="lnameTb" name="lnameTb" placeholder="Ex. Cruz" maxlength="50" required value="<?php echo $row['lastname'];?>">
                               </div>

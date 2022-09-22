@@ -14,6 +14,7 @@
         $student->setId($_POST['idTb']);
         $student->setFirstname($_POST['fnameTb']);
         $student->setLastname($_POST['lnameTb']);
+        $student->setLastname($_POST['mnameTb']);
         $student->setGender($_POST['genderRb']);
         $student->setAge($_POST['ageTb']);
         $student->setAddress($_POST['addressTb']);
@@ -22,6 +23,8 @@
         $student->setCourse($_POST['courseTb']);
         $student->setSection($_POST['sectionTb']);
         $student->setYear($_POST['yearTb']);
+        $student->setGuardianName($_POST['guardianNameTb']);
+        $student->setGuardianNum($_POST['guardianNumTb']);
 
         
         if($_FILES['fileTb']['name']!="")

@@ -176,7 +176,12 @@ label{
 
 th{
   border: 1px solid #d9d9d9;
+  font-size: 14px;
 }
+td{
+  font-size: 13px;
+}
+      
 </style>
 
 <script>
@@ -300,12 +305,12 @@ th{
   </div>
 
   <!--Table row-->
-  <div class="row my-3 no-gutters" style="background-color:#F1F1F1; border-radius: 10px; box-shadow: -1px 1px 20px 6px #d9d9d9;">
-    <div class="col-sm-12 col-xs-12 col-md-12 col-lg-12 col-xl-12 pl-3 pr-2 my-2 py-2">        
+  <div class="row my-3 no-gutters mx-auto" style="background-color:#F1F1F1; border-radius: 10px; box-shadow: -1px 1px 20px 6px #d9d9d9;">
+    <div class="col-sm-12 col-xs-12 col-md-12 col-lg-12 col-xl-12 pl-3 pr-3 my-2 py-2">        
 
       <div class="table-wrapper-scroll-y my-custom-scrollbar">
         <table class="table table-striped table-hover table-sm text-justify mb-0" style="border-radius: 10px;" id="1">
-          <caption id="tbCaption"></caption>
+          <!--caption id="tbCaption"></caption-->
           <thead class="text-light" style="background-color:#234471 ;">
               <tr>
                   <th scope="col">#</th>
@@ -363,7 +368,7 @@ th{
 
                             <!--Print QR Button-->
                             <td id="<?php echo $row['id'];?>">
-                              <button type="button" class="btn btn-sm d-flex justify-content-start" style="background-color:#3466AA; color:white;" id="<?php echo $convertedQRData;?>" onclick="generateQRCode(this.id); window.print();"><i class="bi bi-printer-fill mr-1"></i>Print QR</button>
+                              <button type="button" class="btn btn-sm d-flex justify-content-start" style="background-color:#3466AA; color:white; font-size: 13px;" id="<?php echo $convertedQRData;?>" onclick="generateQRCode(this.id); window.print();"><i class="bi bi-printer-fill mr-1"></i>Print QR</button>
                             </td>
                             
                             
@@ -377,7 +382,7 @@ th{
                                     <form action="../controller/studentStat.php" method="POST" enctype="multipart/form-data">
                                       <input type="hidden" name="idTb" id="<?php echo 'status1IdTb'.$row['id'];?>" value="<?php echo $row['id'];?>">
                                       <input type="hidden" name="statusTb" id="<?php echo 'status1Tb'.$row['id']?>" value="locked">
-                                      <button type="submit" class="btn btn-sm d-flex justify-content-start " style="background-color: #ca3635; color: white;"><i class="bi bi-lock-fill mr-1"></i>Lock</button>
+                                      <button type="submit" class="btn btn-sm d-flex justify-content-start " style="background-color: #ca3635; color: white; font-size: 13px;"><i class="bi bi-lock-fill mr-1"></i>Lock</button>
                                     </form>
                                   </td>
 
@@ -391,7 +396,7 @@ th{
                                     <form action="../controller/studentStat.php" method="POST" enctype="multipart/form-data">
                                       <input type="hidden" name="idTb" id="<?php echo 'status2IdTb'.$row['id'];?>" value="<?php echo $row['id'];?>">
                                       <input type="hidden" name="statusTb" id="<?php echo 'status2Tb'.$row['id']?>" value="unlocked">
-                                      <button type="submit" class="btn btn-sm d-flex justify-content-start btn-success"><i class="bi bi-unlock-fill mr-1"></i>Unlock</button>
+                                      <button type="submit" class="btn btn-sm d-flex justify-content-start btn-success" style="font-size: 13px;"><i class="bi bi-unlock-fill mr-1"></i>Unlock</button>
                                     </form>
                                   </td>
                                 <?php
@@ -401,8 +406,8 @@ th{
                             <!--Edit Button-->
                             <td id="<?php echo $row['id'];?>">
                               <form action="../admin/editStudent.php" method="POST" enctype="multipart/form-data">
-                                      <input type="hidden" name="idTb" id="<?php echo 'editIdTb'.$row['id'];?>" value="<?php echo $row['id'];?>">
-                                <button type="submit" class="btn btn-sm d-flex justify-content-start btn-warning" name="submitEdit"><i class="bi bi-pencil-square mr-1"></i>Edit</button>
+                                <input type="hidden" name="idTb" id="<?php echo 'editIdTb'.$row['id'];?>" value="<?php echo $row['id'];?>">
+                                <button type="submit" class="btn btn-sm d-flex justify-content-start btn-warning" name="submitEdit" style="font-size: 13px;"><i class="bi bi-pencil-square mr-1"></i>Edit</button>
                               </form>
                             </td>
 
@@ -410,7 +415,7 @@ th{
                             <td id="<?php echo $row['id'];?>">
                               <form action="../controller/deleteStudent.php" method="POST" enctype="multipart/form-data">
                                 <input type="hidden" name="idTb" id="<?php echo 'deleteIdTb'.$row['id'];?>" value="<?php echo $row['id'];?>">
-                                <button type="submit" class="btn btn-sm d-flex justify-content-start btn-danger"><i class="bi bi-trash mr-1"></i>Delete</button>
+                                <button type="submit" class="btn btn-sm d-flex justify-content-start btn-danger" style="font-size: 13px;"><i class="bi bi-trash mr-1"></i>Delete</button>
                               </form>
                             </td>
                         </tr>
