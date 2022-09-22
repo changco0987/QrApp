@@ -466,7 +466,7 @@ label{
                       <div class="row pt-1 mt-1">
                         <div class="col-sm-12 col-xs-12 col-md-12 col-lg-12">
                             <label class="d-flex align-items-start" for="contentTb">Current Password</label>
-                            <input type="password" class="form-control form-control-sm" id="oldPassTb" name="oldPassTb" placeholder="Heading" maxlength="50" required>
+                            <input type="password" class="form-control form-control-sm" id="oldPassTb" name="oldPassTb" placeholder="" maxlength="50" required>
                         </div>
                       </div>
                     </div>
@@ -474,7 +474,7 @@ label{
                       <div class="row pt-1 mt-1">
                         <div class="col-sm-12 col-xs-12 col-md-12 col-lg-12">
                             <label class="d-flex align-items-start" for="contentTb">New Password</label>
-                            <input type="password" class="form-control form-control-sm" id="newPassTb" name="newPassTb" placeholder="Heading" maxlength="50" required>
+                            <input type="password" class="form-control form-control-sm" id="newPassTb" name="newPassTb" placeholder="" maxlength="50" required>
                         </div>
                       </div>
                     </div>
