@@ -30,28 +30,28 @@
     <script src="javascript/linked.js"></script>
 
     <style>
-    img{
+    .imgEvent{
         width: 100%; 
         height: 874px;
     }
         
 @media screen and (max-height: 850px) {
 
-    img{  
+.imgEvent{  
    height: 500px;
 }
 }
 
 @media screen and (max-width: 650px) {
 
-    img{  
+.imgEvent{  
    height: 500px;
 }
 }
 
 @media screen and (max-width: 450px) {
 
-    img{  
+.imgEvent{  
    height: 330px;
 }
 }
@@ -59,7 +59,7 @@
 
 @media screen and (max-width: 360px) {
     
-    img{  
+.imgEvent{  
    height: 500px;
 }
 }
@@ -67,7 +67,7 @@
 
 @media screen and (max-width: 320px) {
 
-    img{  
+.imgEvent{  
    height: 500px;
 }
 
@@ -133,7 +133,7 @@
                                     {
                                         ?>
                                             <div class="carousel-item active">
-                                                <img class="d-block" src="asset/sti.jpg" alt="<?php echo $rowCount. 'slide';?>">
+                                                <img class="d-block imgEvent" src="asset/sti.jpg" alt="<?php echo $rowCount. 'slide';?>">
                                                 <div class="carousel-caption">
                                                     <h4 id="announceHead1"><?php echo $row['heading'];?></h4>
                                                     <p id="context1" class="text-justify"><?php echo $row['content'];?></p>
@@ -145,7 +145,7 @@
                                     {
                                         ?>
                                             <div class="carousel-item active">
-                                                <img class="d-block" src="upload/events/<?php echo $row['imageName'];?>" alt="<?php echo $rowCount. 'slide';?>">
+                                                <img class="d-block imgEvent" src="upload/events/<?php echo $row['imageName'];?>" alt="<?php echo $rowCount. 'slide';?>">
                                                 <div class="carousel-caption">
                                                     <h4 id="announceHead1"><?php echo $row['heading'];?></h4>
                                                     <p id="context1" class="text-justify"><?php echo $row['content'];?></p>
@@ -162,7 +162,7 @@
                                     {
                                         ?>
                                             <div class="carousel-item">
-                                                <img class="d-block" src="asset/sti.jpg" alt="<?php echo $rowCount. 'slide';?>">
+                                                <img class="d-block imgEvent" src="asset/sti.jpg" alt="<?php echo $rowCount. 'slide';?>">
                                                 <div class="carousel-caption">
                                                     <h4 id="announceHead1"><?php echo $row['heading'];?></h4>
                                                     <p id="context1" class="text-justify"><?php echo $row['content'];?></p>
@@ -174,7 +174,7 @@
                                     {
                                         ?>
                                             <div class="carousel-item">
-                                                <img class="d-block" src="upload/events/<?php echo $row['imageName'];?>" alt="<?php echo $rowCount. 'slide';?>" >
+                                                <img class="d-block imgEvent" src="upload/events/<?php echo $row['imageName'];?>" alt="<?php echo $rowCount. 'slide';?>" >
                                                 <div class="carousel-caption">
                                                     <h4 id="announceHead1"><?php echo $row['heading'];?></h4>
                                                     <p id="context1" class="text-justify"><?php echo $row['content'];?></p>
@@ -195,7 +195,7 @@
                             //This will occur if there is no published announcement
                             ?>
                                 <div class="carousel-item active">
-                                    <img class="d-block" src="asset/sti.jpg" alt="first slide" >
+                                    <img class="d-block imgEvent" src="asset/sti.jpg" alt="first slide" >
                                     <div class="carousel-caption">
                                         <h4 id="announceHead1">Welcome</h4>
                                         <p id="context1" class="text-justify"></p>

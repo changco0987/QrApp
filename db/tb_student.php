@@ -6,10 +6,10 @@
     function CreateStudent($conn,$student)
     {
         $address = mysqli_real_escape_string($conn,$student->getAddress());
-        mysqli_query($conn,"INSERT INTO studentstb(studentId, firstname, lastname, course, section, year, age, gender, address, contact_number, imageName, status)
-        values('".$student->getStudentId()."','".$student->getFirstname()."','".$student->getLastname()."','".$student->getCourse()."','"
+        mysqli_query($conn,"INSERT INTO studentstb(studentId, firstname, lastname, middlename, course, section, year, age, gender, address, contact_number, imageName, status, guardianName, guardianNum)
+        values('".$student->getStudentId()."','".$student->getFirstname()."','".$student->getLastname()."','".$student->getMiddlename()."','".$student->getCourse()."','"
         .$student->getSection()."','".$student->getYear()."',".$student->getAge().",'".$student->getGender()."','".$address."','"
-        .$student->getContact_number()."','".$student->getImageName()."','".$student->getStatus()."')");
+        .$student->getContact_number()."','".$student->getImageName()."','".$student->getStatus()."','".$student->getGuardianName()."','".$student->getGuardianNum()."')");
     }
 
     function ReadStudent($conn,$student)

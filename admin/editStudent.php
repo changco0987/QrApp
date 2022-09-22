@@ -114,6 +114,10 @@
                                   <label class="d-flex align-items-start" for="fnameTb">First name</label>
                                   <input type="text" class="form-control no-border form-control-sm" id="fnameTb" name="fnameTb" placeholder="Ex. Marie" maxlength="50" required value="<?php echo $row['firstname'];?>">
                               </div>
+                              <div class="col-sm-12 col-xs-12 col-md-4 col-lg-4">
+                                  <label class="d-flex align-items-start" for="lnameTb">Middle name</label> 
+                                  <input type="text" class="form-control form-control-sm" id="mnameTb" name="mnameTb" placeholder="Ex. Jimenez" maxlength="50" required value="<?php echo $row['middlename'];?>">
+                              </div>
                               <div class="col-sm-12 col-xs-12 col-md-6 col-lg-6">
                                   <label class="d-flex align-items-start" for="lnameTb">Last name</label> 
                                   <input type="text" class="form-control form-control-sm" id="lnameTb" name="lnameTb" placeholder="Ex. Cruz" maxlength="50" required value="<?php echo $row['lastname'];?>">
@@ -199,6 +203,26 @@
                           <div class="col-sm-12 col-xs-12 col-md-12 col-lg-12">
                               <label class="d-flex align-items-start" for="contactNumTb">Contact Number</label>
                               <input type="number" class="form-control form-control-sm" id="contactNumTb" name="contactNumTb" placeholder="Ex. 092X-XXX-XXXX" minlength="11" maxlength="11" required value="<?php echo $row['contact_number'];?>">
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    
+                    <!-- Guardian Info -->
+                    <div class="mx-2 px-2" style="background-color: #f9f9f9; border-radius:10px;">
+                      <div class="form-group">
+                        <div class="row">
+                          <div class="col-sm-12 col-xs-12 col-md-12 col-lg-12">
+                              <label class="d-flex align-items-start" for="contentTb">Guardian Name</label>
+                              <input type="text" class="form-control form-control-sm" id="guardianNameTb" name="guardianNameTb" placeholder="Ex. Joselita C. Jimenez" maxlength="100" required value="<?php echo $row['guardianName'];?>">
+                          </div>
+                        </div>
+                      </div>
+                      <div class="form-group">
+                        <div class="row pb-2">
+                          <div class="col-sm-12 col-xs-12 col-md-12 col-lg-12">
+                              <label class="d-flex align-items-start" for="contentTb">Guardian Number</label>
+                              <input type="number" class="form-control form-control-sm" id="guardianNumTb" name="guardianNumTb" placeholder="Ex. 092X-XXX-XXXX" minlength="11" maxlength="11" required value="<?php echo $row['guardianNum'];?>">
                           </div>
                         </div>
                       </div>

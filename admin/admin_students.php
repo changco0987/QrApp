@@ -316,6 +316,8 @@ th{
                   <th scope="col">Gender</th>
                   <th scope="col">Contact Number</th>
                   <th scope="col">Address</th>
+                  <th scope="col">Guardian Name</th>
+                  <th scope="col">Guardian Contact #</th>
                   <th colspan="4" class="text-center" scope="col">Actions</th><!-- Edit button and Delete button-->
               </tr>
           </thead>
@@ -356,6 +358,8 @@ th{
                             <td><?php echo $row['gender'];?></td>
                             <td><?php echo $row['contact_number'];?></td>
                             <td><?php echo $row['address'];?></td>
+                            <td><?php echo $row['guardianName'];?></td>
+                            <td><?php echo $row['guardianNum'];?></td>
 
                             <!--Print QR Button-->
                             <td id="<?php echo $row['id'];?>">
@@ -455,11 +459,15 @@ th{
                     <div class="mx-2 px-2" style="background-color: #f9f9f9; border-radius:10px;">
                       <div class="form-group">
                           <div class="row">
-                              <div class="col-sm-12 col-xs-12 col-md-6 col-lg-6">
+                              <div class="col-sm-12 col-xs-12 col-md-4 col-lg-4">
                                   <label class="d-flex align-items-start" for="fnameTb">First name</label>
                                   <input type="text" class="form-control no-border form-control-sm" id="fnameTb" name="fnameTb" placeholder="Ex. Marie" maxlength="50" required>
                               </div>
-                              <div class="col-sm-12 col-xs-12 col-md-6 col-lg-6">
+                              <div class="col-sm-12 col-xs-12 col-md-4 col-lg-4">
+                                  <label class="d-flex align-items-start" for="lnameTb">Middle name</label> 
+                                  <input type="text" class="form-control form-control-sm" id="mnameTb" name="mnameTb" placeholder="Ex. Jimenez" maxlength="50" required>
+                              </div>
+                              <div class="col-sm-12 col-xs-12 col-md-4 col-lg-4">
                                   <label class="d-flex align-items-start" for="lnameTb">Last name</label> 
                                   <input type="text" class="form-control form-control-sm" id="lnameTb" name="lnameTb" placeholder="Ex. Cruz" maxlength="50" required>
                               </div>
@@ -513,6 +521,28 @@ th{
                         </div>
                       </div>
                     </div>
+                    
+                    <!-- Guardian Info -->
+                    <div class="mx-2 px-2" style="background-color: #f9f9f9; border-radius:10px;">
+                      <div class="form-group">
+                        <div class="row">
+                          <div class="col-sm-12 col-xs-12 col-md-12 col-lg-12">
+                              <label class="d-flex align-items-start" for="contentTb">Guardian Name</label>
+                              <input type="text" class="form-control form-control-sm" id="guardianNameTb" name="guardianNameTb" placeholder="Ex. Joselita C. Jimenez" maxlength="100" required>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="form-group">
+                        <div class="row pb-2">
+                          <div class="col-sm-12 col-xs-12 col-md-12 col-lg-12">
+                              <label class="d-flex align-items-start" for="contentTb">Guardian Number</label>
+                              <input type="number" class="form-control form-control-sm" id="guardianNumTb" name="guardianNumTb" placeholder="Ex. 092X-XXX-XXXX" minlength="11" maxlength="11" required>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+
                     <!-- Student School Info -->
                     <div class="mx-2 px-2" style="background-color: #f9f9f9; border-radius:10px;">
                       <div class="form-group">
@@ -580,7 +610,7 @@ th{
                       <div class="row pt-1 mt-1">
                         <div class="col-sm-12 col-xs-12 col-md-12 col-lg-12">
                             <label class="d-flex align-items-start" for="contentTb">Current Password</label>
-                            <input type="password" class="form-control form-control-sm" id="oldPassTb" name="oldPassTb" placeholder="Heading" maxlength="50" required>
+                            <input type="password" class="form-control form-control-sm" id="oldPassTb" name="oldPassTb" placeholder="" maxlength="50" required>
                         </div>
                       </div>
                     </div>
@@ -588,7 +618,7 @@ th{
                       <div class="row pt-1 mt-1">
                         <div class="col-sm-12 col-xs-12 col-md-12 col-lg-12">
                             <label class="d-flex align-items-start" for="contentTb">New Password</label>
-                            <input type="password" class="form-control form-control-sm" id="newPassTb" name="newPassTb" placeholder="Heading" maxlength="50" required>
+                            <input type="password" class="form-control form-control-sm" id="newPassTb" name="newPassTb" placeholder="" maxlength="50" required>
                         </div>
                       </div>
                     </div>

@@ -5,6 +5,7 @@
         private $studentId;
         private $firstname;
         private $lastname;
+        private $middlename;
         private $course;
         private $section;
         private $year;
@@ -15,6 +16,8 @@
         private $contact_number;
         private $imageName;
         private $status;
+        private $guardianName;
+        private $guardianNum;
 
 
         public function getId()
@@ -57,6 +60,16 @@
         public function setLastname($lastname)
         {
             $this->lastname = $lastname;
+        }
+
+        public function getMiddlename()
+        {
+            return $this->middlename;   
+        }
+
+        public function setMiddlename($middlename)
+        {
+            $this->middlename = $middlename;
         }
 
 
@@ -167,6 +180,28 @@
         public function setStatus($status)
         {
             $this->status = $status;
+        }
+
+
+        public function getGuardianName()
+        {
+            return $this->guardianName;   
+        }
+
+        public function setGuardianName($guardianName)
+        {
+            $this->guardianName = $guardianName;
+        }
+
+
+        public function getGuardianNum()
+        {
+            return $this->guardianNum;   
+        }
+
+        public function setGuardianNum($guardianNum)
+        {
+            $this->guardianNum = $guardianNum;
         }
 
     }
