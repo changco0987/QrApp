@@ -38,7 +38,7 @@
             mysqli_query($conn,"UPDATE studentstb set studentId = '".$student->getStudentId()."', firstname = '".$student->getFirstname()."', lastname = '".$student->getLastname().
             "', middlename = '".$student->getMiddlename()."', course = '".$student->getCourse()."', section = '".$student->getSection()."', year = '".$student->getYear().
             "', age = ".$student->getAge().", gender = '".$student->getGender()."', address = '".$address."', imageName = '".$student->getImageName().
-            ", guardianName = '".$student->getGuardianName()."', guardianNum = '".$student->getGuardianNum()."' where id = ". $student->getId());
+            "', guardianName = '".$student->getGuardianName()."', guardianNum = '".$student->getGuardianNum()."' where id = ". $student->getId());
         }
     }
 
