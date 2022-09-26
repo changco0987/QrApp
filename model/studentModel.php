@@ -18,6 +18,7 @@
         private $status;
         private $guardianName;
         private $guardianNum;
+        private $gateStat;
 
 
         public function getId()
@@ -202,6 +203,17 @@
         public function setGuardianNum($guardianNum)
         {
             $this->guardianNum = $guardianNum;
+        }
+
+
+        public function getGateStat()
+        {
+            return $this->gateStat;   
+        }
+
+        public function setGateStat($gateStat)
+        {
+            $this->gateStat = $gateStat;
         }
 
     }

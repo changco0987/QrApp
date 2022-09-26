@@ -135,12 +135,20 @@
 }
 
 #codeInput{
-    width: 30;
-    height: 10;
+    width: 0;
+    height: 0;
     outline:none!important;
     border:0;
     outline:0;
     
+}
+h6{
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-weight:900;
+  color: #1C1C1C;
+}
+#scanTxt, #errorTxt{
+    display: none;
 }
     </style>
     <script>
@@ -157,7 +165,6 @@
             {
                 qrcode = new QRCode(document.getElementById('qrcode'), value);
                 $('#qrcode').show();
-                $('#printBtn').show();
                 returnDate();
                 console.log(value);
             }
@@ -175,14 +182,80 @@
             http.setRequestHeader("Content-type","application/x-www-form-urlencoded");
             //This is the form input fields data
             var params = "codeInput="+qrValue; // probably use document.getElementById(...).value
-            $('#noQR').hide();
             http.send(params);
             http.onload = function() {
                 var data = http.responseText;
+                if(data=='expired')
+                {
+                    $('#errorTxt').show();
+                    $('#errorTxt').html('QR already expired');
+                }
+                else if(data=='error')
+                {
+                    $('#errorTxt').show();
+                    $('#errorTxt').html('The QR is not belong to the system');
+                }
+                else
+                {
+                    getType(JSON.parse(data));
+                }
                 //returnDate();
                 console.log(data);
                 //console.log(params);
             }
+        }
+
+
+        //To identify the accType
+        function getType(arrVal)
+        {
+            /*for(var key in arrVal)
+            {
+            }*/
+                if(arrVal.accType=='student')
+                {
+
+                }
+                else if(arrVal.accType=='guardian')
+                {
+                    if(arrVal.imageName!=null)
+                    {
+                        document.getElementById("userPicture").src = '../upload/'+arrVal.imageName;
+                    }
+                    else
+                    {
+                        document.getElementById("userPicture").src = '../asset/user.png';
+                    }
+                    document.getElementById("scanLb").style.display = "none";
+
+                    $('#nameLb').html('Name: '+arrVal.name);
+                    $('#typeLb').html('('+arrVal.accType+')');
+                    $('#contactLb').html('Contact #: '+arrVal.contact);
+                    $('#addressLb').html('Address: '+arrVal.address);
+                    $('#scanTxt').show();
+                    const myTimeout = setTimeout(revokeView, 5000);
+                    console.log(arrVal.accType);
+
+                }
+                else if(arrVal.accType=='student')
+                {
+
+                }
+            
+        }
+
+        //This method will turn the display back to normal state
+        function revokeView()
+        {
+            document.getElementById("userPicture").src = '../asset/qrScan.png';
+            $('#scanLb').show();
+
+            $('#nameLb').html('');
+            $('#typeLb').html('');
+            $('#contactLb').html('');
+            $('#addressLb').html('');
+            $('#scanTxt').hide();
+            $('#errorTxt').hide();
         }
 
         //To get the user qr expiry date
@@ -221,14 +294,18 @@
     <div class="row myRow mt-4 pt-4 mx-auto">
         <div class="col-sm-12 col-xs-12 col-md-12 col-lg-12 my-4 py-4">
             <div class="container d-flex justify-content-center">
-                <div>
-                    <div class="form-group">
-                        <small id="qrIndicator"></small>
-                        <div id="printBtn">
-                            <button type="button" class="form-control btn d-flex justify-content-end" onclick="window.print();" style="width:max-content; font-size:smaller; background-color:#3466AA; color:white;"><i class="bi bi-printer-fill mr-2"></i>Print</button>
-                        </div>
-                        <input id="codeInput" oninput="clearVal()" onchange="getVal()" onblur="this.focus()" autofocus/> 
-                    </div>
+                <div style="min-width:max-content;">
+                <center>
+                    <img id="userPicture" src="../asset/qrScan.png" class="mx-auto text-center border border-dark" alt="" style="width:250px;height: 250px;">
+                    <h6 id="typeLb" style="font-size:13px; color:red;" class="mt-1"></h6>
+                    </center>
+                    <h2 id="scanLb" class="mx-auto text-center">Scan Here</h2>
+                    <h6 id="nameLb" class="mt-2"></h6>
+                    <h6 id="contactLb"></h6>
+                    <h6 id="addressLb"></h6>
+                    <h2 id="scanTxt" class="text-center" style="color:green; font-weight:bold;"><i class="bi bi-check2-circle mr-1"></i>Scanned</h2>
+                    <h2 id="errorTxt" class="text-center" style="color:red; font-weight:bold;"><i class="bbi bi-exclamation-diamond-fill mr-1"></i></h2>
+                    <input id="codeInput" oninput="clearVal()" onchange="getVal()" onblur="this.focus()" autofocus/> 
                 </div>
             </div>
         </div>
@@ -267,7 +344,7 @@ $(function() {
         function getVal()
         {
             var inputVal = $("#codeInput").val();
-            console.log(inputVal);
+            console.log('QR data: '+inputVal);
             submitForm(inputVal);
             $("#codeInput").val('');
         }

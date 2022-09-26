@@ -11,6 +11,7 @@
         private $qr_ExDate;
         private $imageName;
         private $status;
+        private $gateStat;
 
 
         public function getId()
@@ -117,6 +118,17 @@
         public function setStatus($status)
         {
             $this->status = $status;
+        }
+
+
+        public function getGateStat()
+        {
+            return $this->gateStat;   
+        }
+
+        public function setGateStat($gateStat)
+        {
+            $this->gateStat = $gateStat;
         }
 
     }

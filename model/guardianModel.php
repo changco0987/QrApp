@@ -13,6 +13,7 @@
         private $imageName;
         private $status;
         private $notification;
+        private $gateStat;
 
 
         public function getId()
@@ -149,6 +150,17 @@
             {
                 $this->notification = $notification;
             }
+        }
+
+
+        public function getGateStat()
+        {
+            return $this->gateStat;   
+        }
+
+        public function setGateStat($gateStat)
+        {
+            $this->gateStat = $gateStat;
         }
 
     }
