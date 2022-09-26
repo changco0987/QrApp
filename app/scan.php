@@ -197,9 +197,9 @@ h6{
                 }
                 else
                 {
+                }
                     console.log(data);
                     getType(JSON.parse(data));
-                }
                 //returnDate();
                 //console.log(params);
             }

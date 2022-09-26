@@ -14,6 +14,7 @@
         private $status;
         private $notification;
         private $gateStat;
+        private $dtrId;
 
 
         public function getId()
@@ -160,14 +161,18 @@
 
         public function setGateStat($gateStat)
         {
-            if($gateStat==null || $gateStat=='out')
-            {
-                $this->gateStat = 'in';
-            }
-            else
-            {
-                $this->gateStat = 'out';
-            }
+            $this->gateStat = $gateStat;   
+        }
+
+
+        public function getDtrId()
+        {
+            return $this->dtrId;   
+        }
+
+        public function setDtrId($dtrId)
+        {
+            $this->dtrId = $dtrId;
         }
 
     }

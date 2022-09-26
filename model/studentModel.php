@@ -19,6 +19,7 @@
         private $guardianName;
         private $guardianNum;
         private $gateStat;
+        private $dtrId;
 
 
         public function getId()
@@ -221,6 +222,17 @@
             {
                 $this->gateStat = 'out';
             }
+        }
+
+
+        public function getDtrId()
+        {
+            return $this->dtrId;   
+        }
+
+        public function setDtrId($dtrId)
+        {
+            $this->dtrId = $dtrId;
         }
 
     }

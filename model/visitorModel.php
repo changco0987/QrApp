@@ -12,6 +12,7 @@
         private $imageName;
         private $status;
         private $gateStat;
+        private $dtrId;
 
 
         public function getId()
@@ -136,6 +137,17 @@
             {
                 $this->gateStat = 'out';
             }
+        }
+
+
+        public function getDtrId()
+        {
+            return $this->dtrId;   
+        }
+
+        public function setDtrId($dtrId)
+        {
+            $this->dtrId = $dtrId;
         }
 
     }

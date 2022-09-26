@@ -6,6 +6,8 @@
     function CreateDtr($conn,$dtr)
     {
         mysqli_query($conn,"INSERT INTO dtr(dataId, accType, time_in) values('".$dtr->getDataId()."','".$dtr->getAccType()."','".$dtr->getTime_in()."')");
+        $id = mysqli_insert_id($conn);
+        return $id;
     }
 
     function ReadDtr($conn,$dtr)
@@ -24,7 +26,7 @@
 
     function UpdateDtr($conn,$dtr)
     {
-        mysqli_query($conn,"UPDATE dtr set username ='".$dtr->getUsername()."', password ='".$dtr->getPassword()."' where id = ". $dtr->getId());
+        mysqli_query($conn,"UPDATE dtr set time_out ='".$dtr->getTime_out()."' where id = ". $dtr->getId());
     }
 
     function DeleteDtr($conn,$dtr)

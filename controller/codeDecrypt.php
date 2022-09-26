@@ -32,9 +32,8 @@
             $result = ReadAccountGuardian($conn,$data);
 
             $row = mysqli_fetch_assoc($result);
-
             //This will check if the qr code is already expired
-            if($currentDateTime > $row['qr_ExDate'] || $row['qr_ExDate']==null)
+            if($currentDateTime < $row['qr_ExDate']  || $row['qr_ExDate']==null)
             {
                 $responseData = array("name"=>$row['firstname'].' '.$row['lastname'],
                                                "username"=>$row['username'],
@@ -42,11 +41,39 @@
                                                "accType"=>'guardian',
                                                "contact"=>$row['contact_number'],
                                                "address"=>$row['address']);
-                $dtr = new dtrModel();
-                $dtr->setDataId($row['id']);
-                $dtr->setAccType('guardian');
-                $dtr->setTime_in($currentDateTime);
-                CreateDtr($conn,$dtr);
+                
+
+                if($row['gateStat'] == 'out'||$row['gateStat'] == null)
+                {
+                    //Going in/enter
+                    //log to DTR
+                    $dtr = new dtrModel();
+                    $dtr->setDataId($row['id']);
+                    $dtr->setAccType('guardian');
+                    $dtr->setTime_in($currentDateTime);
+
+                    //This will update the userside dtr Log
+                    $data->setGateStat('in');
+                    $data->setDtrId(CreateDtr($conn,$dtr));
+                    UpdateAccountGuardian($conn,$data);
+                    
+                }
+                else
+                {
+                    //Going out/Exit
+                    //log to DTR
+                    $dtr = new dtrModel();
+                    $dtr->setId($row['dtrId']);
+                    $dtr->setTime_out($currentDateTime);
+                    UpdateDtr($conn,$dtr);
+
+                    //This will update the userside dtr Log
+                    $data->setGateStat('out');
+                    $data->setDtrId($row['dtrId']);//To make the UpdateAccountGuardian 1st condition valid
+                    UpdateAccountGuardian($conn,$data);
+                }
+                
+
             }
             else
             {
