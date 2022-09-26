@@ -155,7 +155,70 @@
         }
         else if($decryptedCode['accType']=='student')
         {
+            $data = new studentModel();
+            $data->setId($decryptedCode['id']);
+            $result = ReadStudent($conn,$data);
 
+            $row = mysqli_fetch_assoc($result);
+            //This will check if the qr code is already expired
+            if($decryptedCode['status']=='unlocked')
+            {   
+
+                if($row['gateStat'] == 'out'||$row['gateStat'] == null)
+                {
+                    $responseData = array("name"=>$row['firstname'].' '.$row['middlename'].' '.$row['lastname'],
+                                                   "course"=>$row['course'].' '.$row['year'].' - '.$row['section'],
+                                                   "imageName"=>$row['imageName'],
+                                                   "accType"=>'student',
+                                                   "contact"=>$row['contact_number'],
+                                                   "address"=>$row['address'],
+                                                   "guardianName"=>$row['guardianName'],
+                                                   "time"=>$currentDateTime,
+                                                   "state"=>'in');
+                    //Going in/enter
+                    //log to DTR
+                    $dtr = new dtrModel();
+                    $dtr->setDataId($row['id']);
+                    $dtr->setAccType('student');
+                    $dtr->setTime_in($currentDateTime);
+
+                    //This will update the userside dtr Log
+                    $data->setGateStat('in');
+                    $data->setDtrId(CreateDtr($conn,$dtr));
+                    UpdateStudent($conn,$data);
+                    
+                }
+                else
+                {
+                    $responseData = array("name"=>$row['firstname'].' '.$row['middlename'].' '.$row['lastname'],
+                                                   "course"=>$row['course'].' '.$row['year'].' - '.$row['section'],
+                                                   "imageName"=>$row['imageName'],
+                                                   "accType"=>'student',
+                                                   "contact"=>$row['contact_number'],
+                                                   "address"=>$row['address'],
+                                                   "guardianName"=>$row['guardianName'],
+                                                   "time"=>$currentDateTime,
+                                                   "state"=>'out');
+                    //Going out/Exit
+                    //log to DTR
+                    $dtr = new dtrModel();
+                    $dtr->setId($row['dtrId']);
+                    $dtr->setTime_out($currentDateTime);
+                    UpdateDtr($conn,$dtr);
+
+                    //This will update the userside dtr Log
+                    $data->setGateStat('out');
+                    $data->setDtrId($row['dtrId']);//To make the UpdateAccountGuardian 1st condition valid
+                    UpdateStudent($conn,$data);
+                }
+                
+
+            }
+            else
+            {
+                echo 'Locked';
+                exit;
+            }
         }
         else
         {
@@ -163,6 +226,8 @@
             echo 'error';
             exit;
         }
+        
         echo json_encode($responseData);
+        exit;
     }
 ?>

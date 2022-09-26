@@ -166,7 +166,7 @@ h6{
                 qrcode = new QRCode(document.getElementById('qrcode'), value);
                 $('#qrcode').show();
                 returnDate();
-                console.log(value);
+                //console.log(value);
             }
             else
             {
@@ -199,7 +199,7 @@ h6{
                 }
                 else
                 {
-                    console.log(data);
+                    //console.log(data);
                     getType(JSON.parse(data));
                 }
                 //returnDate();
@@ -273,12 +273,40 @@ h6{
                         $('#outTxt').show();
                     }
                     const myTimeout = setTimeout(revokeView, 5000);
-                    console.log(arrVal.accType);
+                    //console.log(arrVal.accType);
 
                 }
                 else if(arrVal.accType=='student')
                 {
+                    if(arrVal.imageName!=null)
+                    {
+                        document.getElementById("userPicture").src = '../upload/students/'+arrVal.imageName;
+                    }
+                    else
+                    {
+                        document.getElementById("userPicture").src = '../asset/user.png';
+                    }
+                    document.getElementById("scanLb").style.display = "none";
 
+                    $('#nameLb').html('Name: '+arrVal.name);
+                    $('#typeLb').html('('+arrVal.accType+')');
+                    $('#courseLb').html("Course y/s: "+arrVal.course);
+                    $('#contactLb').html('Contact #: '+arrVal.contact);
+                    $('#addressLb').html('Address: '+arrVal.address);
+                    $('#guardianLb').html("Parent's Name: "+arrVal.guardianName);
+                    //To check if the user is "in or out"
+                    if(arrVal.state == 'in')
+                    {
+                        $('#timeLb').html('Time: '+arrVal.time);
+                        $('#inTxt').show();
+                    }
+                    else
+                    {
+                        $('#timeLb').html('Time: '+arrVal.time);
+                        $('#outTxt').show();
+                    }
+                    const myTimeout = setTimeout(revokeView, 5000);
+                    //console.log(arrVal.accType);
                 }
             
         }
@@ -291,8 +319,10 @@ h6{
 
             $('#nameLb').html('');
             $('#typeLb').html('');
+            $('#courseLb').html('');
             $('#contactLb').html('');
             $('#addressLb').html('');
+            $('#guardianLb').html('');
             $('#timeLb').html('');
             $('#inTxt').hide();
             $('#outTxt').hide();
@@ -342,8 +372,10 @@ h6{
                     </center>
                     <h2 id="scanLb" class="mx-auto text-center">Scan Here</h2>
                     <h6 id="nameLb" class="mt-2"></h6>
+                    <h6 id="courseLb"></h6>
                     <h6 id="contactLb"></h6>
                     <h6 id="addressLb"></h6>
+                    <h6 id="guardianLb"></h6>
                     <h6 id="timeLb" class="text-success"></h6>
                     <h2 id="inTxt" class="text-center" style="color:green; font-weight:bold;"><i class="bi bi-check2-circle mr-1"></i>Time-in</h2>
                     <h2 id="outTxt" class="text-center" style="color:green; font-weight:bold;"><i class="bi bi-check2-circle mr-1"></i>Time-out</h2>
@@ -400,7 +432,7 @@ $(function() {
             //if incorrect password
             document.getElementById('alertBox').style.display = 'block';
             document.getElementById('errorMsg').innerHTML = 'Incorrect password please try again';
-            console.log("okay");
+            //console.log("okay");
 
         }
         else if(successSignal==2)
@@ -408,21 +440,21 @@ $(function() {
             //if email is already taken
             document.getElementById('alertBox').style.display = 'block';
             document.getElementById('errorMsg').innerHTML = 'Sorry, this account is not existing';
-            console.log("okay");
+            //console.log("okay");
         }
         else if(successSignal==3)
         {
             //if password doesn't matched
             document.getElementById('alertBox').style.display = 'block';
             document.getElementById('errorMsg').innerHTML = "Password doesn't match!";
-            console.log("okay");
+            //console.log("okay");
         }
         else if(successSignal==4)
         {
             //if password doesn't matched
             document.getElementById('successBox').style.display = 'block';
             document.getElementById('successMsg').innerHTML = "Information Successfully saved!";
-            console.log("okay");
+            //console.log("okay");
         }
 
         //To make signl back to normmal and to prevent for the success page to appear every time the page was reload or refresh

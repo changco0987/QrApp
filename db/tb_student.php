@@ -28,7 +28,11 @@
 
     function UpdateStudent($conn,$student)
     {
-        if($student->getStatus()!=null)
+        if($student->getDtrId()!=null)
+        {
+            mysqli_query($conn,"UPDATE studentstb set gateStat ='".$student->getGateStat()."', dtrId = '".$student->getDtrId()."' where id = '".$student->getId()."'");
+        }
+        else if($student->getStatus()!=null)
         {
             mysqli_query($conn,"UPDATE studentstb set status ='".$student->getStatus()."' where id = ". $student->getId());
         }
