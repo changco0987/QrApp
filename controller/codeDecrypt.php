@@ -23,7 +23,69 @@
         //Check on where the QR code belong
         if($decryptedCode['accType']=='visitor')
         {
+            $data = new visitorModel();
+            $data->setUsername($decryptedCode['username']);
+            $result = ReadAccountVisitor($conn,$data);
 
+            $row = mysqli_fetch_assoc($result);
+            //This will check if the qr code is already expired
+            if($currentDateTime < $row['qr_ExDate']  || $row['qr_ExDate']==null)
+            {   
+
+                if($row['gateStat'] == 'out'||$row['gateStat'] == null)
+                {
+                    $responseData = array("name"=>$row['firstname'].' '.$row['lastname'],
+                                            "username"=>$row['username'],
+                                            "imageName"=>$row['imageName'],
+                                            "accType"=>'visitor',
+                                            "contact"=>$row['contact_number'],
+                                            "address"=>$row['address'],
+                                            "time"=>$currentDateTime,
+                                            "state"=>'in');
+                    //Going in/enter
+                    //log to DTR
+                    $dtr = new dtrModel();
+                    $dtr->setDataId($row['id']);
+                    $dtr->setAccType('visitor');
+                    $dtr->setTime_in($currentDateTime);
+
+                    //This will update the userside dtr Log
+                    $data->setGateStat('in');
+                    $data->setDtrId(CreateDtr($conn,$dtr));
+                    UpdateAccountVisitor($conn,$data);
+                    
+                }
+                else
+                {
+                    $responseData = array("name"=>$row['firstname'].' '.$row['lastname'],
+                                            "username"=>$row['username'],
+                                            "imageName"=>$row['imageName'],
+                                            "accType"=>'visitor',
+                                            "contact"=>$row['contact_number'],
+                                            "address"=>$row['address'],
+                                            "time"=>$currentDateTime,
+                                            "state"=>'out');
+                    //Going out/Exit
+                    //log to DTR
+                    $dtr = new dtrModel();
+                    $dtr->setId($row['dtrId']);
+                    $dtr->setTime_out($currentDateTime);
+                    UpdateDtr($conn,$dtr);
+
+                    //This will update the userside dtr Log
+                    $data->setGateStat('out');
+                    $data->setDtrId($row['dtrId']);//To make the UpdateAccountGuardian 1st condition valid
+                    UpdateAccountVisitor($conn,$data);
+                }
+                
+
+            }
+            else
+            {
+                echo 'expired';
+                exit;
+            }
+            
         }
         else if($decryptedCode['accType']=='guardian')
         {
@@ -34,17 +96,18 @@
             $row = mysqli_fetch_assoc($result);
             //This will check if the qr code is already expired
             if($currentDateTime < $row['qr_ExDate']  || $row['qr_ExDate']==null)
-            {
-                $responseData = array("name"=>$row['firstname'].' '.$row['lastname'],
-                                               "username"=>$row['username'],
-                                               "imageName"=>$row['imageName'],
-                                               "accType"=>'guardian',
-                                               "contact"=>$row['contact_number'],
-                                               "address"=>$row['address']);
-                
+            {   
 
                 if($row['gateStat'] == 'out'||$row['gateStat'] == null)
                 {
+                    $responseData = array("name"=>$row['firstname'].' '.$row['lastname'],
+                                                   "username"=>$row['username'],
+                                                   "imageName"=>$row['imageName'],
+                                                   "accType"=>'guardian',
+                                                   "contact"=>$row['contact_number'],
+                                                   "address"=>$row['address'],
+                                                   "time"=>$currentDateTime,
+                                                   "state"=>'in');
                     //Going in/enter
                     //log to DTR
                     $dtr = new dtrModel();
@@ -60,6 +123,14 @@
                 }
                 else
                 {
+                    $responseData = array("name"=>$row['firstname'].' '.$row['lastname'],
+                                                   "username"=>$row['username'],
+                                                   "imageName"=>$row['imageName'],
+                                                   "accType"=>'guardian',
+                                                   "contact"=>$row['contact_number'],
+                                                   "address"=>$row['address'],
+                                                   "time"=>$currentDateTime,
+                                                   "state"=>'out');
                     //Going out/Exit
                     //log to DTR
                     $dtr = new dtrModel();

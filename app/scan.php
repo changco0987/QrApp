@@ -147,7 +147,7 @@ h6{
   font-weight:900;
   color: #1C1C1C;
 }
-#scanTxt, #errorTxt{
+#inTxt, #outTxt, #errorTxt{
     display: none;
 }
     </style>
@@ -189,17 +189,19 @@ h6{
                 {
                     $('#errorTxt').show();
                     $('#errorTxt').html('QR already expired');
+                    const myTimeout = setTimeout(revokeView, 5000);
                 }
                 else if(data=='error')
                 {
                     $('#errorTxt').show();
                     $('#errorTxt').html('The QR is not belong to the system');
+                    const myTimeout = setTimeout(revokeView, 5000);
                 }
                 else
                 {
-                }
                     console.log(data);
                     getType(JSON.parse(data));
+                }
                 //returnDate();
                 //console.log(params);
             }
@@ -212,8 +214,35 @@ h6{
             /*for(var key in arrVal)
             {
             }*/
-                if(arrVal.accType=='student')
+                if(arrVal.accType=='visitor')
                 {
+                    if(arrVal.imageName!=null)
+                    {
+                        document.getElementById("userPicture").src = '../upload/'+arrVal.imageName;
+                    }
+                    else
+                    {
+                        document.getElementById("userPicture").src = '../asset/user.png';
+                    }
+                    document.getElementById("scanLb").style.display = "none";
+
+                    $('#nameLb').html('Name: '+arrVal.name);
+                    $('#typeLb').html('('+arrVal.accType+')');
+                    $('#contactLb').html('Contact #: '+arrVal.contact);
+                    $('#addressLb').html('Address: '+arrVal.address);
+                    //To check if the user is "in or out"
+                    if(arrVal.state == 'in')
+                    {
+                        $('#timeLb').html('Time: '+arrVal.time);
+                        $('#inTxt').show();
+                    }
+                    else
+                    {
+                        $('#timeLb').html('Time: '+arrVal.time);
+                        $('#outTxt').show();
+                    }
+                    const myTimeout = setTimeout(revokeView, 5000);
+                    console.log(arrVal.accType);
 
                 }
                 else if(arrVal.accType=='guardian')
@@ -232,7 +261,17 @@ h6{
                     $('#typeLb').html('('+arrVal.accType+')');
                     $('#contactLb').html('Contact #: '+arrVal.contact);
                     $('#addressLb').html('Address: '+arrVal.address);
-                    $('#scanTxt').show();
+                    //To check if the user is "in or out"
+                    if(arrVal.state == 'in')
+                    {
+                        $('#timeLb').html('Time: '+arrVal.time);
+                        $('#inTxt').show();
+                    }
+                    else
+                    {
+                        $('#timeLb').html('Time: '+arrVal.time);
+                        $('#outTxt').show();
+                    }
                     const myTimeout = setTimeout(revokeView, 5000);
                     console.log(arrVal.accType);
 
@@ -254,7 +293,9 @@ h6{
             $('#typeLb').html('');
             $('#contactLb').html('');
             $('#addressLb').html('');
-            $('#scanTxt').hide();
+            $('#timeLb').html('');
+            $('#inTxt').hide();
+            $('#outTxt').hide();
             $('#errorTxt').hide();
         }
 
@@ -295,15 +336,17 @@ h6{
         <div class="col-sm-12 col-xs-12 col-md-12 col-lg-12 my-4 py-4">
             <div class="container d-flex justify-content-center">
                 <div style="min-width:max-content;">
-                <center>
-                    <img id="userPicture" src="../asset/qrScan.png" class="mx-auto text-center border border-dark" alt="" style="width:250px;height: 250px;">
-                    <h6 id="typeLb" style="font-size:13px; color:red;" class="mt-1"></h6>
+                    <center>
+                        <img id="userPicture" src="../asset/qrScan.png" class="mx-auto text-center border border-dark" alt="" style="width:250px;height: 250px;">
+                        <h6 id="typeLb" style="font-size:13px; color:red;" class="mt-1"></h6>
                     </center>
                     <h2 id="scanLb" class="mx-auto text-center">Scan Here</h2>
                     <h6 id="nameLb" class="mt-2"></h6>
                     <h6 id="contactLb"></h6>
                     <h6 id="addressLb"></h6>
-                    <h2 id="scanTxt" class="text-center" style="color:green; font-weight:bold;"><i class="bi bi-check2-circle mr-1"></i>Scanned</h2>
+                    <h6 id="timeLb" class="text-success"></h6>
+                    <h2 id="inTxt" class="text-center" style="color:green; font-weight:bold;"><i class="bi bi-check2-circle mr-1"></i>Time-in</h2>
+                    <h2 id="outTxt" class="text-center" style="color:green; font-weight:bold;"><i class="bi bi-check2-circle mr-1"></i>Time-out</h2>
                     <h2 id="errorTxt" class="text-center" style="color:red; font-weight:bold;"><i class="bbi bi-exclamation-diamond-fill mr-1"></i></h2>
                     <input id="codeInput" oninput="clearVal()" onchange="getVal()" onblur="this.focus()" autofocus/> 
                 </div>
