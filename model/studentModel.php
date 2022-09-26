@@ -213,7 +213,14 @@
 
         public function setGateStat($gateStat)
         {
-            $this->gateStat = $gateStat;
+            if($gateStat==null || $gateStat=='out')
+            {
+                $this->gateStat = 'in';
+            }
+            else
+            {
+                $this->gateStat = 'out';
+            }
         }
 
     }

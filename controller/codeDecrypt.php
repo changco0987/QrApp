@@ -4,11 +4,13 @@
     include_once '../db/tb_visitor.php';
     include_once '../db/tb_guardian.php';
     include_once '../db/tb_student.php';
+    include_once '../db/tb_dtr.php';
 
     //Model
     include_once '../model/visitorModel.php';
     include_once '../model/guardianModel.php';
     include_once '../model/studentModel.php';
+    include_once '../model/dtrModel.php';
 
 
     date_default_timezone_set('Asia/Manila'); 
@@ -40,6 +42,11 @@
                                                "accType"=>'guardian',
                                                "contact"=>$row['contact_number'],
                                                "address"=>$row['address']);
+                $dtr = new dtrModel();
+                $dtr->setDataId($row['id']);
+                $dtr->setAccType('guardian');
+                $dtr->setTime_in($currentDateTime);
+                CreateDtr($conn,$dtr);
             }
             else
             {
