@@ -29,7 +29,7 @@
 
             $row = mysqli_fetch_assoc($result);
             //This will check if the qr code is already expired
-            if($currentDateTime < $row['qr_ExDate']  || $row['qr_ExDate']==null)
+            if($currentDateTime < $row['qr_ExDate'] || $row['qr_ExDate']==null)
             {   
 
                 if($row['gateStat'] == 'out'||$row['gateStat'] == null)
@@ -161,7 +161,7 @@
 
             $row = mysqli_fetch_assoc($result);
             //This will check if the qr code is already expired
-            if($decryptedCode['status']=='unlocked')
+            if($row['status']=='unlocked')
             {   
 
                 if($row['gateStat'] == 'out'||$row['gateStat'] == null)

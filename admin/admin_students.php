@@ -58,6 +58,9 @@
     <!-- QR code javascript -->
     <script src="../javascript/qrcode.min.js"></script>
     
+    <!--Chart.js-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.8.2/chart.min.js" integrity="sha512-zjlf0U0eJmSo1Le4/zcZI51ks5SjuQXkU0yOdsOBubjSmio9iCUp8XPLkEAADZNBdR9crRy3cniZ65LF2w8sRA==" crossorigin="anonymous"></script>
+    
     <!--My CSS and JS-->
     <!--link type="text/css" rel="stylesheet" href="../css/index.css"/-->
     <script src="../javascript/linked.js"></script>
@@ -181,10 +184,41 @@ th{
 td{
   font-size: 13px;
 }
+
+#genderTitle {
+  background-image: linear-gradient(#b6d1fa, #fcb1c1);
+  border-radius: 10px; 
+  box-shadow: -1px 1px 20px 6px #d9d9d9; 
+  color:whitesmoke; 
+  height:max-content;
+  text-shadow: 1px 1px black;
+}
+
+#maleContainer {
+  background-color: #b6d1fa; 
+  border-radius: 10px; 
+  box-shadow: -1px 1px 20px 6px #d9d9d9; 
+  color: rgb(54, 162, 235); 
+  min-height: 134px; 
+  height: 185px;
+  text-shadow: 1px 1px black;
+}
+
+#femaleContainer {
+  background-color: #fcb1c1; 
+  border-radius: 10px; 
+  box-shadow: -1px 1px 20px 6px #d9d9d9; 
+  color: rgb(255, 99, 132); 
+  min-height: 134px; 
+  height: 185px;
+  text-shadow: 1px 1px black;
+}
       
 </style>
 
 <script>
+  var lockedData = 0;
+  var unlockedData = 0;
     //The qr generator function
     var qrcode = undefined;
     function generateQRCode(value)
@@ -290,6 +324,7 @@ td{
   <div class="pb-3 mb-3 pt-1 mt-1" id="qrcode"></div>
 
   <!--This is where the body content start-->
+
   <div class="row my-3 no-gutters" style="background-color:#F1F1F1; border-radius: 10px; box-shadow: -1px 1px 20px 6px #d9d9d9;">
     <div class="col-sm-4 col-xs-2 col-md-4 col-lg-2 col-xl-2 pl-3 pr-2 my-2 py-2">        
         <!--h6 class="pr-2" id="btnLabel">Types: </h6-->
@@ -304,14 +339,83 @@ td{
     </div>
   </div>
 
+  <?php
+  //This would be a gender count
+    $male = 0;
+    $female = 0;
+
+    $student = new studentModel();
+    $result = ReadStudent($conn,$student);
+
+    while($row = mysqli_fetch_assoc($result))
+    {
+      if($row['gender'] == 'male')
+      {
+        $male++;
+      }
+      else
+      {
+        $female++;
+      }
+    }
+  ?>
+  <div class="row my-3 no-gutters mx-auto">
+    <div class="col-sm-6 col-xs-6 col-md-6 col-lg-6 col-xl-4 pl-3 pr-2 my-2 py-2"> 
+      <div class="row">
+        <div class="col-sm-6 col-xs-6 col-md-6 col-lg-6 col-xl-12"> 
+          <div id="genderTitle" class="container d-flex justify-content-center">
+            <h1>Gender Count</h1>
+          </div>
+        </div>
+      </div>  
+      <div class="row">
+        <div class="col-sm-6 col-xs-6 col-md-6 col-lg-6 col-xl-6 my-2 py-2"> 
+          <div id="maleContainer" class="container text-center">
+            <br>
+            <h5><i class="bi bi-gender-male mr-1"></i>MALE: </h1>
+            <br>
+            <h3 style="font-weight:bolder;"><?php echo $male;?></h3>
+          </div>
+        </div>
+        <div class="col-sm-6 col-xs-6 col-md-6 col-lg-6 col-xl-6 my-2 py-2"> 
+          <div id="femaleContainer" class="container text-center ">
+            <br>
+            <h5><i class="bi bi-gender-female mr-1"></i>FEMALE: </h1>
+            <br>
+            <h3 style="font-weight:bolder;"><?php echo $female;?></h3>
+          </div>
+        </div>
+      </div>      
+      <div class="row">
+        <div class="col-sm-6 col-xs-6 col-md-6 col-lg-6 col-xl-12 mb-2 pb-2"> 
+          <div id="femaleContainer" class="container d-flex align-items-center">
+
+          </div>
+        </div>
+      </div>  
+    </div>
+
+  <!-- Graph part -->
+    <div class="col-sm-6 col-xs-6 col-md-6 col-lg-6 col-xl-4 pl-3 pr-3 my-2 py-2">
+      <div class="container d-flex justify-content-center"  style="background-color:#F1F1F1; border-radius: 10px; box-shadow: -1px 1px 20px 6px #d9d9d9; min-height: 180px;">
+        <canvas id="pie1" width="10"></canvas>
+      </div>        
+    </div>
+    <div class="col-sm-6 col-xs-6 col-md-6 col-lg-6 col-xl-4 pl-3 pr-3 my-2 py-2">
+      <div class="container"  style="background-color:#F1F1F1; border-radius: 10px; box-shadow: -1px 1px 20px 6px #d9d9d9;">
+        <canvas id="pie2"></canvas>
+      </div>        
+    </div>
+  </div>
+
   <!--Table row-->
   <div class="row my-3 no-gutters mx-auto" style="background-color:#F1F1F1; border-radius: 10px; box-shadow: -1px 1px 20px 6px #d9d9d9;">
     <div class="col-sm-12 col-xs-12 col-md-12 col-lg-12 col-xl-12 pl-3 pr-3 my-2 py-2">        
 
-      <div class="table-wrapper-scroll-y my-custom-scrollbar">
+      <div class="table-wrapper-scroll-y my-custom-scrollbar table-responsive">
         <table class="table table-striped table-hover table-sm text-justify mb-0" style="border-radius: 10px;" id="1">
           <!--caption id="tbCaption"></caption-->
-          <thead class="text-light" style="background-color:#234471 ;">
+          <thead class="text-light" style="background-color:#234471;">
               <tr>
                   <th scope="col">#</th>
                   <th scope="col" class="text-center" >Image</th>
@@ -334,7 +438,7 @@ td{
                   while($row = mysqli_fetch_assoc($result))
                   {
                     //This where the QR data was collected
-                    $prevQRData = array("title"=>'qremsystem', "accType"=>'student', "id"=>$row['id'], "status"=>$row['status']);
+                    $prevQRData = array("title"=>'qremsystem', "accType"=>'student', "id"=>$row['id']);
                     $convertedQRData = base64_encode(serialize($prevQRData));
 
                       ?>
@@ -377,7 +481,8 @@ td{
                               if($row['status']=='unlocked')
                               {
                                 ?>
-                                  <!--status Button-->
+                                  <!--status Button - Unlocked-->
+                                  <script>unlockedData++;</script>
                                   <td id="<?php echo $row['id'];?>">
                                     <form action="../controller/studentStat.php" method="POST" enctype="multipart/form-data">
                                       <input type="hidden" name="idTb" id="<?php echo 'status1IdTb'.$row['id'];?>" value="<?php echo $row['id'];?>">
@@ -391,7 +496,8 @@ td{
                               else
                               {
                                 ?>
-                                  <!--status Button-->
+                                  <!--status Button - Locked-->
+                                  <script>lockedData++;</script>
                                   <td id="<?php echo $row['id'];?>">
                                     <form action="../controller/studentStat.php" method="POST" enctype="multipart/form-data">
                                       <input type="hidden" name="idTb" id="<?php echo 'status2IdTb'.$row['id'];?>" value="<?php echo $row['id'];?>">
@@ -641,6 +747,57 @@ td{
 
 </body>
 <script>
+
+  
+                        
+
+
+var ctx = document.getElementById("pie1").getContext('2d');
+var dataStat = [lockedData,unlockedData];
+var myChart = new Chart(ctx, {
+    type: 'pie',
+    data: {
+        labels: ['Locked','Unlocked'],
+        datasets: [{
+            label: 'Status',
+            data: dataStat,
+            backgroundColor: [
+                'rgb(255, 99, 132)',
+                'rgb(54, 162, 235)',
+                '#8b0000',
+                '#234471',
+                '#AEC6CF',
+                '#0000FF',
+                '#FF00FF',
+                '#00FFFF',
+                '#ffa500',
+                '#9400d3',
+                '#808080',
+                '#00ffff',
+                '#8fbc8f',
+                '#1e90ff'
+
+            ],
+            borderWidth: 1
+        }]
+    },
+    options: {
+        plugins: {
+            title: {
+                display: true,
+                text: 'Status',
+                fontSize: 300
+            },
+            legend:{
+                position: 'bottom'
+            }
+        }
+    }
+});
+
+var ctx2 = document.getElementById("pie2").getContext('2d');
+
+
 
     //Edit
 

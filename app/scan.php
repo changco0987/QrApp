@@ -150,6 +150,10 @@ h6{
 #inTxt, #outTxt, #errorTxt{
     display: none;
 }
+
+#noPicture{
+    display: none;
+}
     </style>
     <script>
     /*
@@ -222,8 +226,10 @@ h6{
                     }
                     else
                     {
-                        document.getElementById("userPicture").src = '../asset/user.png';
+                        $('#userPicture').hide();
+                        $('#noPicture').show();
                     }
+                    //console.log(arrVal.imageName);
                     document.getElementById("scanLb").style.display = "none";
 
                     $('#nameLb').html('Name: '+arrVal.name);
@@ -253,7 +259,8 @@ h6{
                     }
                     else
                     {
-                        document.getElementById("userPicture").src = '../asset/user.png';
+                        $('#userPicture').hide();
+                        $('#noPicture').show();
                     }
                     document.getElementById("scanLb").style.display = "none";
 
@@ -278,14 +285,16 @@ h6{
                 }
                 else if(arrVal.accType=='student')
                 {
-                    if(arrVal.imageName!=null)
+                    if(arrVal.imageName)
                     {
                         document.getElementById("userPicture").src = '../upload/students/'+arrVal.imageName;
                     }
                     else
                     {
-                        document.getElementById("userPicture").src = '../asset/user.png';
+                        $('#userPicture').hide();
+                        $('#noPicture').show();
                     }
+                    console.log(arrVal.imageName);
                     document.getElementById("scanLb").style.display = "none";
 
                     $('#nameLb').html('Name: '+arrVal.name);
@@ -327,6 +336,8 @@ h6{
             $('#inTxt').hide();
             $('#outTxt').hide();
             $('#errorTxt').hide();
+            $('#userPicture').show();
+            $('#noPicture').hide();
         }
 
         //To get the user qr expiry date
@@ -353,6 +364,14 @@ h6{
     <title>Entrance Monitoring sys - Dashboard</title>
 </head>
 <body>
+    
+    <!-- Image and text Header-->
+    <nav class="navbar navbar-light" style="background-color: #114084;">
+        <a class="navbar-brand" href="#" style="font-weight:bold; color: whitesmoke; text-shadow: 1px 1px #1C1C1C;">
+        <img src="../asset/qr.png" width="40" height="40" class="d-inline-block align-top" alt="">
+            QR <small style="color: whitesmoke; text-shadow: 1px 1px #1C1C1C;">Entrance Monitoring System</small>
+        </a>
+     </nav>
         
     <!-- Alert message container-->
     <div id="successBox" class="alert alert-success alert-dismissible fade show" role="alert" style="display:block;">
@@ -368,6 +387,7 @@ h6{
                 <div style="min-width:max-content;">
                     <center>
                         <img id="userPicture" src="../asset/qrScan.png" class="mx-auto text-center border border-dark" alt="" style="width:250px;height: 250px;">
+                        <img id="noPicture" src="../asset/user.png" class="mx-auto text-center border border-dark" alt="" style="width:250px;height: 250px;">
                         <h6 id="typeLb" style="font-size:13px; color:red;" class="mt-1"></h6>
                     </center>
                     <h2 id="scanLb" class="mx-auto text-center">Scan Here</h2>
