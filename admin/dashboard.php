@@ -241,7 +241,7 @@ label{
 
   <!--This is where the body content start-->
   <div class="row my-3 no-gutters" style="background-color:#F1F1F1; border-radius: 10px; box-shadow: -1px 1px 20px 6px #d9d9d9;">
-    <div class="col-sm-4 col-xs-2 col-md-4 col-lg-2 col-xl-2 pl-3 pr-2 my-2 py-2">        
+    <div class="col-sm-4 col-xs-2 col-md-4 col-lg-2 col-xl-2 pl-3 pr-2  mx-auto my-auto py-2">        
         <!--h6 class="pr-2" id="btnLabel">Types: </h6-->
         <button type="button" class="btn btn-success dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
         <i class="bi bi-calendar-event mr-1"></i>Events
@@ -254,10 +254,11 @@ label{
         </div>
     </div>
 
-    <div class="col-sm-4 col-xs-2 col-md-4 col-lg-2 col-xl-2 pl-3 pr-2 my-2 py-2">
+    <div class="col-sm-4 col-xs-2 col-md-4 col-lg-2 col-xl-7 pl-3 pr-2 my-2 py-2 text-center">
+      <h2 style="font-weight:bolder; font-size:45px; color:#4e82c9; text-shadow: 1px 1px #234471;">Event view</h2>
     </div>
 
-    <div class="col-sm-4 col-xs-2 col-md-4 col-lg-2 col-xl-8 pl-3 pr-2 my-2 py-2 d-flex justify-content-end h-100 mx-auto my-auto">
+    <div class="col-sm-4 col-xs-2 col-md-4 col-lg-2 col-xl-3 pl-3 pr-2 my-2 py-2 d-flex justify-content-end h-100 mx-auto my-auto">
           <button type="button" class="btn d-flex justify-content-start btn-primary" href="../controller/adminWipeData.php" style="background-color:#3466AA;" data-toggle="modal" data-target="#addAnnouncement"><i class="bi bi-plus-square mr-2"></i>Add Announcement</button>
     </div>
   </div>
@@ -269,7 +270,7 @@ label{
       <div class="table-wrapper-scroll-y my-custom-scrollbar">
         <table class="table table-striped table-bordered table-hover table-sm text-justify mb-0" style="border-radius: 10px;" id="1">
           <caption id="tbCaption"></caption>
-          <thead class="bg-primary text-light">
+          <thead class="text-light" style="background-color:#234471;">
               <tr>
                   <th scope="col">#</th>
                   <th scope="col" class="text-center" >Heading</th>
@@ -290,7 +291,7 @@ label{
                     if($row['type']=='event')
                     {
                       ?>
-                        <tr class="table-primary">
+                        <tr style="background-color:#82B7DC;">
                             <td><?php echo $rowCount;?></td>
                             <td><?php echo $row['heading'];?></td>
                             <td><?php echo $row['content'];?></td>

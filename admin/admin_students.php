@@ -199,8 +199,7 @@ td{
   border-radius: 10px; 
   box-shadow: -1px 1px 20px 6px #d9d9d9; 
   color: rgb(54, 162, 235); 
-  min-height: 134px; 
-  height: 185px;
+  height: 130px;
   text-shadow: 1px 1px black;
 }
 
@@ -209,16 +208,50 @@ td{
   border-radius: 10px; 
   box-shadow: -1px 1px 20px 6px #d9d9d9; 
   color: rgb(255, 99, 132); 
-  min-height: 134px; 
-  height: 185px;
+  height: 130px;
   text-shadow: 1px 1px black;
+}
+
+#genderContainer {
+  background-color: whitesmoke;
+  border-radius: 10px; 
+  box-shadow: -1px 1px 20px 6px #d9d9d9; 
+  color: rgb(54, 162, 235); 
+  text-shadow: 1px 1px black;
+  height: 272px;
+}
+
+#activeStudHead {
+  background-color: #114084;
+  border-radius: 10px; 
+  box-shadow: -1px 1px 20px 6px #d9d9d9; 
+  color: #97bdf0;
+  height: 130px;
+  text-shadow: 1px 1px #d2e1fa;
+  font-weight:bolder;
+}
+
+#insideHead {
+  background-color: #97bdf0; 
+  border-radius: 10px; 
+  box-shadow: -1px 1px 20px 6px #d9d9d9; 
+  color:#114084; 
+  height: 78px;
+  text-shadow: 1px 1px black;
+  font-weight:bolder;
 }
       
 </style>
 
 <script>
+  var male = 0;
+  var female = 0;
+
   var lockedData = 0;
   var unlockedData = 0;
+
+  var inside = 0;
+  var outside = 0;
     //The qr generator function
     var qrcode = undefined;
     function generateQRCode(value)
@@ -340,24 +373,54 @@ td{
   </div>
 
   <?php
-  //This would be a gender count
+  //This would be a gender, active students, and in/out count
     $male = 0;
     $female = 0;
+    $in = 0;
+    $out = 0;
 
     $student = new studentModel();
     $result = ReadStudent($conn,$student);
 
     while($row = mysqli_fetch_assoc($result))
     {
-      if($row['gender'] == 'male')
+      //gender count
+      if($row['gender'] == 'male' && $row['status'] == 'unlocked')
       {
+        ?>
+          <script>male++</script>
+        <?php
         $male++;
+      }
+      else if($row['gender'] == 'female' && $row['status'] == 'unlocked')
+      {
+        ?>
+          <script>female++;</script>
+        <?php
+        $female++;
+      }
+      
+
+      //in and out count
+      if($row['gateStat'] == 'in')
+      {
+        ?>
+          <script>inside++;</script>
+        <?php
+        $in++;
       }
       else
       {
-        $female++;
+        ?>
+          <script>outside++;</script>
+        <?php
+        $out++;
       }
+
+
     }
+    //active/total students
+    $activeStudent = $male+$female;
   ?>
   <div class="row my-3 no-gutters mx-auto">
     <div class="col-sm-6 col-xs-6 col-md-6 col-lg-6 col-xl-4 pl-3 pr-2 my-2 py-2"> 
@@ -372,24 +435,22 @@ td{
         <div class="col-sm-6 col-xs-6 col-md-6 col-lg-6 col-xl-6 my-2 py-2"> 
           <div id="maleContainer" class="container text-center">
             <br>
-            <h5><i class="bi bi-gender-male mr-1"></i>MALE: </h1>
-            <br>
-            <h3 style="font-weight:bolder;"><?php echo $male;?></h3>
+            <h5><i class="bi bi-gender-male mr-1"></i>MALE: </h5>
+            <h3 style="font-weight:bolder; font-size:50px;"><?php echo $male;?></h3>
           </div>
         </div>
         <div class="col-sm-6 col-xs-6 col-md-6 col-lg-6 col-xl-6 my-2 py-2"> 
           <div id="femaleContainer" class="container text-center ">
             <br>
-            <h5><i class="bi bi-gender-female mr-1"></i>FEMALE: </h1>
-            <br>
-            <h3 style="font-weight:bolder;"><?php echo $female;?></h3>
+            <h5><i class="bi bi-gender-female mr-1"></i>FEMALE: </h5>
+            <h3 style="font-weight:bolder; font-size:50px;"><?php echo $female;?></h3>
           </div>
         </div>
       </div>      
       <div class="row">
         <div class="col-sm-6 col-xs-6 col-md-6 col-lg-6 col-xl-12 mb-2 pb-2"> 
-          <div id="femaleContainer" class="container d-flex align-items-center">
-
+          <div id="genderContainer" class="container d-flex align-items-center">
+            <canvas id="barGender"></canvas>
           </div>
         </div>
       </div>  
@@ -397,14 +458,37 @@ td{
 
   <!-- Graph part -->
     <div class="col-sm-6 col-xs-6 col-md-6 col-lg-6 col-xl-4 pl-3 pr-3 my-2 py-2">
-      <div class="container d-flex justify-content-center"  style="background-color:#F1F1F1; border-radius: 10px; box-shadow: -1px 1px 20px 6px #d9d9d9; min-height: 180px;">
+      <div class="container d-flex justify-content-center align-items-center"  style="background-color:#c8ddfa; border-radius: 10px; box-shadow: -1px 1px 20px 6px #d9d9d9; min-height: 361px; max-height: 490px;">
         <canvas id="pie1" width="10"></canvas>
       </div>        
     </div>
+
     <div class="col-sm-6 col-xs-6 col-md-6 col-lg-6 col-xl-4 pl-3 pr-3 my-2 py-2">
-      <div class="container"  style="background-color:#F1F1F1; border-radius: 10px; box-shadow: -1px 1px 20px 6px #d9d9d9;">
-        <canvas id="pie2"></canvas>
-      </div>        
+      <div class="row">
+        <div class="col-sm-6 col-xs-6 col-md-6 col-lg-6 col-xl-12 mb-2 pb-2">
+          <div id="activeStudHead" class="container d-flex align-items-center">
+            <h1><i class="bi bi-person-fill mr-1"></i>Active Students: </h1> 
+            <h1 style="font-weight:bolder; font-size:50px;"><?php echo $activeStudent;?></h1>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-sm-6 col-xs-6 col-md-6 col-lg-6 col-xl-12 mb-2 pb-2">
+          <div id="insideHead" class="container d-flex align-items-center">
+            <h2><i class="bi bi-people-fill mr-1"></i>Students Inside campus: </h2>
+            <h2 style="font-weight:bolder; font-size:35px;"><?php echo $in;?></h2>
+          </div> 
+        </div>
+      </div>    
+
+      <div class="row">
+        <div class="col-sm-6 col-xs-6 col-md-6 col-lg-6 col-xl-12">
+          <div class="container"  style="background-color:#F1F1F1; border-radius: 10px; box-shadow: -1px 1px 20px 6px #d9d9d9;">
+            <canvas id="barStat"></canvas>
+          </div> 
+        </div>
+      </div>       
     </div>
   </div>
 
@@ -762,8 +846,8 @@ var myChart = new Chart(ctx, {
             label: 'Status',
             data: dataStat,
             backgroundColor: [
-                'rgb(255, 99, 132)',
-                'rgb(54, 162, 235)',
+                '#EE4B2B',
+                '#50C878',
                 '#8b0000',
                 '#234471',
                 '#AEC6CF',
@@ -785,7 +869,7 @@ var myChart = new Chart(ctx, {
         plugins: {
             title: {
                 display: true,
-                text: 'Status',
+                text: 'Account Status',
                 fontSize: 300
             },
             legend:{
@@ -795,9 +879,96 @@ var myChart = new Chart(ctx, {
     }
 });
 
-var ctx2 = document.getElementById("pie2").getContext('2d');
+var ctx2 = document.getElementById("barGender").getContext('2d');
+var genderData = [male,female];
+                        var mybar = new Chart(ctx2, {
+                            type: 'bar',
+                            data: {
+                                labels: ['Male','Female'],
+                                datasets: [{
+                                    label: 'Count',
+                                    data: genderData,
+                                    backgroundColor: [
+                                        'rgb(54, 162, 235)',
+                                        'rgb(255, 99, 132)',
+                                        '#8b0000',
+                                        '#234471',
+                                        '#0000FF',
+                                        '#FF00FF',
+                                        '#00FFFF',
+                                        '#ffa500',
+                                        '#9400d3',
+                                        '#808080',
+                                        '#00ffff',
+                                        '#8fbc8f',
+                                        '#1e90ff'
+
+                                    ],
+                                    tension: 0.4,
+                                    fill: false,
+                                    spanGaps: true
+                                }]
+                            },
+                            options: {
+                                plugins: {
+                                    title: {
+                                        display: true,
+                                        text: 'Head Count',
+                                        fontSize: 300
+                                    },
+                                    legend:{
+                                        display: false
+                                    }
+                                }
+                            }
+                        });
 
 
+                        
+var ctx3 = document.getElementById("barStat").getContext('2d');
+var gateData = [inside,outside];
+                        var mybar = new Chart(ctx3, {
+                            type: 'bar',
+                            data: {
+                                labels: ['Inside','Outside'],
+                                datasets: [{
+                                    label: 'Count',
+                                    data: gateData,
+                                    backgroundColor: [
+                                        '#EE4B2B',
+                                        '#50C878',
+                                        '#8b0000',
+                                        '#234471',
+                                        '#0000FF',
+                                        '#FF00FF',
+                                        '#00FFFF',
+                                        '#ffa500',
+                                        '#9400d3',
+                                        '#808080',
+                                        '#00ffff',
+                                        '#8fbc8f',
+                                        '#1e90ff'
+
+                                    ],
+                                    tension: 0.4,
+                                    fill: false,
+                                    spanGaps: true
+                                }]
+                            },
+                            options: {
+                              indexAxis: 'y',
+                                plugins: {
+                                    title: {
+                                        display: true,
+                                        text: 'In campus student count',
+                                        fontSize: 300
+                                    },
+                                    legend:{
+                                        display: false
+                                    }
+                                }
+                            }
+                        });
 
     //Edit
 

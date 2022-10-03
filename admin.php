@@ -49,6 +49,14 @@
     <title>Entrance Monitoring sys - Dashboard</title>
 </head>
 <body>
+    
+    <!-- Image and text Header-->
+    <nav class="navbar navbar-light" style="background-color: #114084;">
+        <a class="navbar-brand" href="#" style="font-weight:bold; color: whitesmoke; text-shadow: 1px 1px #1C1C1C;">
+        <img src="asset/qr.png" width="40" height="40" class="d-inline-block align-top" alt="">
+            QR <small style="color: whitesmoke; text-shadow: 1px 1px #1C1C1C;">Entrance Monitoring System</small>
+        </a>
+     </nav>
         
     <!-- Alert message container-->
     <div id="successBox" class="alert alert-danger alert-dismissible fade show" role="alert" style="display:block;">
