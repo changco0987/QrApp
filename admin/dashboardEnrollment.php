@@ -364,7 +364,7 @@ label{
   <!--Modal for adding announcement-->
   <div class="modal fade" id="addAnnouncement" tabindex="-1" role="dialog" aria-labelledby="addAnnouncementCenterTitle" aria-hidden="true">
       <div class="modal-dialog modal-dialog-centered" role="document">
-          <div class="modal-content">
+          <div class="modal-content" style="background-color: #e9e9e9; border-radius: 15px;">
               <div class="modal-header">
                   <h5 class="modal-title font-weight-bold" id="addAnnouncementLongTitle">Add Enrollment Schedule</h5>
                   <button type="button" class="close" data-dismiss="modal" aria-label="Close">

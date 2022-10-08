@@ -364,11 +364,12 @@ td{
         <button type="button" class="btn d-flex justify-content-start btn-success" data-toggle="modal" data-target="#addAnnouncement"><i class="bi bi-plus-square mr-2"></i>Add Student Data</button>
     </div>
 
-    <div class="col-sm-4 col-xs-2 col-md-4 col-lg-2 col-xl-2 pl-3 pr-1 my-2 py-2">
+    <div class="col-sm-4 col-xs-2 col-md-4 col-lg-2 col-xl-7 pl-3 pr-1 my-2 py-2">
     </div>
 
-    <div class="col-sm-4 col-xs-2 col-md-4 col-lg-2 col-xl-8 pl-3 pr-2 my-2 py-2 d-flex justify-content-end h-100 mx-auto my-auto">
-          
+    <div class="col-sm-4 col-xs-2 col-md-4 col-lg-2 col-xl-3 pl-3 pr-2 my-2 py-2 d-flex justify-content-end h-100 mx-auto my-auto">
+        <input type="search" name="searchName" id="searchName" class="form-control no-border form-control-sm" placeholder="Type by Name or Surname">
+        <button type="submit" class="btn btn-sm d-flex justify-content-start" style="background-color:#3466AA; color:whitesmoke;"><i class="bi bi-search"></i></button>
     </div>
   </div>
 
@@ -818,7 +819,7 @@ td{
                       </div>
                     </div>
                     <div class="modal-footer">
-                        <button type="submit" class="btn btn-primary">Add Event</button>
+                        <button type="submit" class="btn btn-primary">Save Changes</button>
                     </div>
                   </form>
               </div>
