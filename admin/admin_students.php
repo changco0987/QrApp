@@ -267,6 +267,38 @@ td{
             qrcode.makeCode(value);
         }
     }
+
+    function searchVal()
+    {
+      var http = new XMLHttpRequest();
+            http.open("POST", "../controller/codeDecrypt.php", true);
+            http.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+            //This is the form input fields data
+            var params = "searchName="+document.getElementById("searchName").value; // probably use document.getElementById(...).value
+            http.send(params);
+            http.onload = function() {
+                var data = http.responseText;
+                if(data=='expired')
+                {
+                    $('#errorTxt').show();
+                    $('#errorTxt').html('QR already expired');
+                    const myTimeout = setTimeout(revokeView, 5000);
+                }
+                else if(data=='error')
+                {
+                    $('#errorTxt').show();
+                    $('#errorTxt').html('The QR is not belong to the system');
+                    const myTimeout = setTimeout(revokeView, 5000);
+                }
+                else
+                {
+                    //console.log(data);
+                    getType(JSON.parse(data));
+                }
+                //returnDate();
+                //console.log(params);
+            }
+    }
 </script>
 
 </head>
@@ -368,7 +400,7 @@ td{
     </div>
 
     <div class="col-sm-4 col-xs-2 col-md-4 col-lg-2 col-xl-3 pl-3 pr-2 my-2 py-2 d-flex justify-content-end h-100 mx-auto my-auto">
-        <input type="search" name="searchName" id="searchName" class="form-control no-border form-control-sm" placeholder="Type by Name or Surname">
+        <input type="search" name="searchName" id="searchName" class="form-control no-border form-control-sm" placeholder="Type by Name or Surname" oninput="searchVal()">
         <button type="submit" class="btn btn-sm d-flex justify-content-start" style="background-color:#3466AA; color:whitesmoke;"><i class="bi bi-search"></i></button>
     </div>
   </div>
@@ -497,7 +529,7 @@ td{
   <div class="row my-3 no-gutters mx-auto" style="background-color:#F1F1F1; border-radius: 10px; box-shadow: -1px 1px 20px 6px #d9d9d9;">
     <div class="col-sm-12 col-xs-12 col-md-12 col-lg-12 col-xl-12 pl-3 pr-3 my-2 py-2">        
 
-      <div class="table-wrapper-scroll-y my-custom-scrollbar table-responsive">
+      <div class="table-wrapper-scroll-y my-custom-scrollbar table-responsive" style="height: 500px;">
         <table class="table table-striped table-hover table-sm text-justify mb-0" style="border-radius: 10px;" id="1">
           <!--caption id="tbCaption"></caption-->
           <thead class="text-light" style="background-color:#234471;">
