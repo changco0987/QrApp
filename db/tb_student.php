@@ -14,7 +14,15 @@
 
     function ReadStudent($conn,$student)
     {
-        if($student->getId()==null)
+        if($student->getFirstname())
+        {
+            $dbData = mysqli_query($conn,"SELECT * FROM studentstb WHERE firstname = '".$student->getFirstname()."'");
+        }
+        else if($student->getLastname())
+        {
+            $dbData = mysqli_query($conn,"SELECT * FROM studentstb WHERE lastname = '".$student->getLastname()."'");
+        }
+        else if($student->getId()==null)
         {
             $dbData = mysqli_query($conn,"SELECT * FROM studentstb");
         }

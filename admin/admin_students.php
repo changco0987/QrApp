@@ -244,6 +244,8 @@ td{
 </style>
 
 <script>
+  var studentName = "";
+
   var male = 0;
   var female = 0;
 
@@ -268,37 +270,6 @@ td{
         }
     }
 
-    function searchVal()
-    {
-      var http = new XMLHttpRequest();
-            http.open("POST", "../controller/codeDecrypt.php", true);
-            http.setRequestHeader("Content-type","application/x-www-form-urlencoded");
-            //This is the form input fields data
-            var params = "searchName="+document.getElementById("searchName").value; // probably use document.getElementById(...).value
-            http.send(params);
-            http.onload = function() {
-                var data = http.responseText;
-                if(data=='expired')
-                {
-                    $('#errorTxt').show();
-                    $('#errorTxt').html('QR already expired');
-                    const myTimeout = setTimeout(revokeView, 5000);
-                }
-                else if(data=='error')
-                {
-                    $('#errorTxt').show();
-                    $('#errorTxt').html('The QR is not belong to the system');
-                    const myTimeout = setTimeout(revokeView, 5000);
-                }
-                else
-                {
-                    //console.log(data);
-                    getType(JSON.parse(data));
-                }
-                //returnDate();
-                //console.log(params);
-            }
-    }
 </script>
 
 </head>
@@ -396,12 +367,16 @@ td{
         <button type="button" class="btn d-flex justify-content-start btn-success" data-toggle="modal" data-target="#addAnnouncement"><i class="bi bi-plus-square mr-2"></i>Add Student Data</button>
     </div>
 
-    <div class="col-sm-4 col-xs-2 col-md-4 col-lg-2 col-xl-7 pl-3 pr-1 my-2 py-2">
+    <div class="col-sm-4 col-xs-2 col-md-4 col-lg-2 col-xl-6 pl-3 pr-1 my-2 py-2">
     </div>
 
-    <div class="col-sm-4 col-xs-2 col-md-4 col-lg-2 col-xl-3 pl-3 pr-2 my-2 py-2 d-flex justify-content-end h-100 mx-auto my-auto">
-        <input type="search" name="searchName" id="searchName" class="form-control no-border form-control-sm" placeholder="Type by Name or Surname" oninput="searchVal()">
-        <button type="submit" class="btn btn-sm d-flex justify-content-start" style="background-color:#3466AA; color:whitesmoke;"><i class="bi bi-search"></i></button>
+    <div class="col-sm-4 col-xs-2 col-md-4 col-lg-2 col-xl-4 pl-3 pr-2 my-2 py-2 d-flex justify-content-end h-100 mx-auto my-auto">
+      <form action="../controller/searchStudent.php" method="post" enctype="multipart/form-data">
+        <div class="input-group">
+          <input type="text" name="searchName" id="searchName" class="form-control no-border form-control-sm" placeholder="Type by Name or Surname">
+          <button type="submit" class="btn btn-sm d-flex justify-content-start" style="background-color:#3466AA; color:whitesmoke;"><i class="bi bi-search"></i></button>
+        </div>
+      </form>
     </div>
   </div>
 
@@ -550,6 +525,19 @@ td{
           <tbody>
               <?php
                   $student = new studentModel();
+                  if(isset($_SESSION["studentFname"]) && $_SESSION['studentFname'] != '')
+                  {
+                    $student->setFirstname($_SESSION["studentFname"]);
+                    $_SESSION['studentFname'] = '';
+                    unset($_SESSION['studentFname']);
+                  }
+                  else if(isset($_SESSION["studentLname"]) && $_SESSION['studentLname'] != '')
+                  {
+                    $student->setLastname($_SESSION["studentLname"]);
+                    $_SESSION['studentLname'] = '';
+                    unset($_SESSION['studentLname']);
+                  }
+
                   $result = ReadStudent($conn,$student);
                   $rowCount = 1;
                   while($row = mysqli_fetch_assoc($result))
