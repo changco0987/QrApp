@@ -12,14 +12,16 @@
 
         while($row = mysqli_fetch_assoc($result))
         {
-            if(strtolower($row['firstname']) == strtolower($_POST['searchName']))
+            if(strtolower($row['firstname']) == strtolower($_POST['searchName']) ||
+               str_contains(strtolower($row['firstname']),strtolower($_POST['searchName'])))
             {
                $_SESSION['studentFname'] = $row['firstname'];
                 header("location: ../admin/admin_students.php?Firstname=".$row['firstname']);
                 exit;
             }
 
-            if(strtolower($row['lastname']) == strtolower($_POST['searchName']))
+            if(strtolower($row['lastname']) == strtolower($_POST['searchName']) ||
+               str_contains(strtolower($row['lastname']),strtolower($_POST['searchName'])))
             {
                 $_SESSION['studentLname'] = $row['lastname'];
                 header("location: ../admin/admin_students.php?Lastname=".$row['lastname']);

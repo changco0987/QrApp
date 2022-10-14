@@ -250,7 +250,7 @@ label{
   <div class="row my-3 no-gutters" style="background-color:#F1F1F1; border-radius: 10px; box-shadow: -1px 1px 20px 6px #d9d9d9;">
     <div class="col-sm-12 col-xs-12 col-md-12 col-lg-12 col-xl-12 pl-3 pr-2 my-2 py-2">        
 
-      <div class="table-wrapper-scroll-y my-custom-scrollbar">
+      <div  class="table-wrapper-scroll-y my-custom-scrollbar table-responsive" style="height: 750px;">
         <table class="table table-striped table-bordered table-hover table-sm text-justify mb-0" style="border-radius: 10px;" id="1">
           <caption id="tbCaption"></caption>
           <thead class="text-light" style="background-color:#234471;">

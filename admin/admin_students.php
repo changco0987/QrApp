@@ -243,17 +243,17 @@ td{
       
 </style>
 
-<script>
-  var studentName = "";
+  <script>
+    var studentName = "";
 
-  var male = 0;
-  var female = 0;
+    var male = 0;
+    var female = 0;
 
-  var lockedData = 0;
-  var unlockedData = 0;
+    var lockedData = 0;
+    var unlockedData = 0;
 
-  var inside = 0;
-  var outside = 0;
+    var inside = 0;
+    var outside = 0;
     //The qr generator function
     var qrcode = undefined;
     function generateQRCode(value)
@@ -270,13 +270,13 @@ td{
         }
     }
 
-</script>
+  </script>
 
 </head>
 <body>
           
 <!-- Alert message container-->
-<div id="successBox" class="alert alert-success alert-dismissible fade show" role="alert" style="display:block;">
+<div id="successBox" class="alert alert-success alert-dismissible fade show" role="alert" style="display:none;">
     <strong id="successMsg"></strong>
     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
         <span aria-hidden="true">&times;</span>
