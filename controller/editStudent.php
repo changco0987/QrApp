@@ -33,6 +33,10 @@
             $uploadedFile = $_FILES['fileTb']['tmp_name'];
             copy($uploadedFile,$imgPath.$student->getImageName());//This will move the uploaded file into file directory (web)
         }
+        else
+        {
+            $data->setImageName($_POST['imageName']);
+        }
 
         UpdateStudent($conn,$student);
         echo '<script> localStorage.setItem("studentMsg",4); window.location = "../admin/admin_students.php";</script>';//success message

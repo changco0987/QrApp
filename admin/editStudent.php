@@ -78,6 +78,7 @@
                 <div class=" d-flex justify-content-center h-100">
                 <form action="../controller/editStudent.php" method="POST" enctype="multipart/form-data">
                     <input type="hidden" id="idTb" name="idTb" value="<?php echo $row['id'];?>">
+                    <input type="hidden" name="imageName" value="<?php echo $row['imageName'];?>">
                     <center>
                     <div class="form-group">
                         <div class="row pt-1 mt-1">

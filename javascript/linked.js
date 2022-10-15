@@ -13,3 +13,13 @@ function gotoAdminStudent()
 {
     window.location = '../admin/admin_students.php';
 }
+
+function gotoAdminVisitor()
+{
+    window.location = '../admin/admin_visitor.php';
+}
+
+function gotoAdminGuardian()
+{
+    window.location = '../admin/admin_guardian.php';
+}

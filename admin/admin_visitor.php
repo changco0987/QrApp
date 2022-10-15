@@ -307,14 +307,9 @@ td{
                   <!--input type="hidden" name="departmentName" value=""-->
                   <button type="submit" class="collapse-item btn btn-sm my-1 collapseBtn" >Faculty/Staff</button><br>
               </form>
-              <form action="../pages/reporthc.php" method="post" enctype="multipart/form-data">
-                  <!--input type="hidden" name="departmentName" value=""-->
-                  <button type="submit" class="collapse-item btn btn-sm my-1 collapseBtn" >Visitors</button><br>
-              </form>
-              <form action="../pages/reporthc.php" method="post" enctype="multipart/form-data">
-                  <!--input type="hidden" name="departmentName" value=""-->
-                  <button type="submit" class="collapse-item btn btn-sm my-1 collapseBtn" >Guardians</button><br>
-              </form>
+              <button type="button" onclick="gotoAdminVisitor()" class="collapse-item btn btn-sm my-1 collapseBtn">Visitors</button><br>
+          
+              <button type="button" onclick="gotoAdminGuardian()" class="collapse-item btn btn-sm my-1 collapseBtn">Guardians</button><br>
       
         </div>
     </div>
