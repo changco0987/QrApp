@@ -30,6 +30,10 @@
         {
             mysqli_query($conn,"UPDATE visitortb set gateStat ='".$data->getGateStat()."', dtrId = '".$data->getDtrId()."' where username = '".$data->getUsername()."'");
         }
+        else if($data->getStatus() != null)
+        {
+            mysqli_query($conn,"UPDATE visitortb SET status ='".$data->getStatus()."' WHERE id =".$data->getId());
+        }
         else if($data->getQr_ExDate()==null)
         {
 

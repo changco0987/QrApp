@@ -532,7 +532,7 @@ td{
                                   else
                                   {
                                       ?>
-                                        <img src="../upload/students/<?php echo $row['imageName'];?>" width="60" height="60" class="d-inline-block align-top border border-dark" alt="" style="border-radius: 50%;">
+                                        <img src="../upload/<?php echo $row['imageName'];?>" width="60" height="60" class="d-inline-block align-top border border-dark" alt="" style="border-radius: 50%;">
                                       <?php
                                   }
                               ?>
@@ -622,8 +622,8 @@ td{
                   </button>
               </div>
               <div class="modal-body">
-                  <form action="../controller/addStudent.php" method="POST" enctype="multipart/form-data">
-                    <!--input type="hidden" id="typeTb" name="typeTb" value="event"-->
+                  <form action="../controller/addAccount.php" method="POST" enctype="multipart/form-data">
+                      <input type="hidden" name="accType" value="visitor">
                     <center>
                     <div class="form-group">
                         <div class="row pt-1 mt-1">
@@ -643,48 +643,13 @@ td{
                     <div class="mx-2 px-2" style="background-color: #f9f9f9; border-radius:10px;">
                       <div class="form-group">
                           <div class="row">
-                              <div class="col-sm-12 col-xs-12 col-md-4 col-lg-4">
+                              <div class="col-sm-12 col-xs-12 col-md-6 col-lg-6">
                                   <label class="d-flex align-items-start" for="fnameTb">First name</label>
                                   <input type="text" class="form-control no-border form-control-sm" id="fnameTb" name="fnameTb" placeholder="Ex. Marie" maxlength="50" required>
                               </div>
-                              <div class="col-sm-12 col-xs-12 col-md-4 col-lg-4">
-                                  <label class="d-flex align-items-start" for="lnameTb">Middle name</label> 
-                                  <input type="text" class="form-control form-control-sm" id="mnameTb" name="mnameTb" placeholder="Ex. Jimenez" maxlength="50" required>
-                              </div>
-                              <div class="col-sm-12 col-xs-12 col-md-4 col-lg-4">
+                              <div class="col-sm-12 col-xs-12 col-md-6 col-lg-6">
                                   <label class="d-flex align-items-start" for="lnameTb">Last name</label> 
                                   <input type="text" class="form-control form-control-sm" id="lnameTb" name="lnameTb" placeholder="Ex. Cruz" maxlength="50" required>
-                              </div>
-                          </div>
-                      </div>
-                      <div class="form-group">
-                          <div class="row">
-                              <div class="col-sm-12 col-xs-12 col-md-6 col-lg-6">
-                                  <div class="row">
-                                      <div class="col-sm-12 col-xs-12 col-md-12 col-lg-12">
-                                          <label for="">Gender</label>
-                                      </div>
-                                      <div class="col-sm-6 col-xs-6 col-md-6 col-lg-6">
-                                          <div class="form-check form-check-inline">
-                                              <input class="form-check-input" type="radio" name="genderRb" id="maleRadio" value="Male" checked>
-                                              <label class="form-check-label" for="maleRadio">
-                                                  male
-                                              </label>
-                                          </div>
-                                      </div>
-                                      <div class="col-sm-6 col-xs-6 col-md-6 col-lg-6">
-                                          <div class="form-check form-check-inline">
-                                              <input class="form-check-input" type="radio" name="genderRb" id="femaleRadio" value="Female">
-                                              <label class="form-check-label" for="femaleRadio">
-                                                  female
-                                              </label>
-                                          </div>
-                                      </div>
-                                  </div>
-                              </div>
-                              <div class="col-sm-12 col-xs-12 col-md-6 col-lg-6">
-                                  <label class="d-flex align-items-start" for="ageTb">Age</label> 
-                                  <input type="number" class="form-control form-control-sm" id="ageTb" name="ageTb" placeholder="Ex. 21" required>
                               </div>
                           </div>
                       </div>
@@ -706,25 +671,6 @@ td{
                       </div>
                     </div>
                     
-                    <!-- Guardian Info -->
-                    <div class="mx-2 px-2" style="background-color: #f9f9f9; border-radius:10px;">
-                      <div class="form-group">
-                        <div class="row">
-                          <div class="col-sm-12 col-xs-12 col-md-12 col-lg-12">
-                              <label class="d-flex align-items-start" for="contentTb">Guardian Name</label>
-                              <input type="text" class="form-control form-control-sm" id="guardianNameTb" name="guardianNameTb" placeholder="Ex. Joselita C. Jimenez" maxlength="100" required>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="form-group">
-                        <div class="row pb-2">
-                          <div class="col-sm-12 col-xs-12 col-md-12 col-lg-12">
-                              <label class="d-flex align-items-start" for="contentTb">Guardian Number</label>
-                              <input type="number" class="form-control form-control-sm" id="guardianNumTb" name="guardianNumTb" placeholder="Ex. 092X-XXX-XXXX" minlength="11" maxlength="11" required>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
 
 
                     <!-- Student School Info -->
@@ -732,25 +678,18 @@ td{
                       <div class="form-group">
                         <div class="row">
                           <div class="col-sm-12 col-xs-12 col-md-12 col-lg-12">
-                              <label class="d-flex align-items-start" for="contentTb">Student ID</label>
-                              <input type="text" class="form-control form-control-sm" id="studentIdTb" name="studentIdTb" placeholder="Ex. 012-3456-7890" maxlength="50" required>
+                              <label class="d-flex align-items-start" for="contentTb">Username</label>
+                              <input type="text" class="form-control form-control-sm" id="usernameTb" name="usernameTb" placeholder="Ex. Marie0123" maxlength="20" required>
                           </div>
                         </div>
                       </div>
                       <div class="form-group">
                           <div class="row pb-2">
-                              <div class="col-sm-4 col-xs-4 col-md-4 col-lg-4">
-                                  <label class="d-flex align-items-start" for="courseTb">Course</label>
-                                  <input type="text" class="form-control no-border form-control-sm" id="courseTb" name="courseTb" placeholder="Ex. BSIT" maxlength="50" required>
-                              </div>
-                              <div class="col-sm-4 col-xs-4 col-md-4 col-lg-4">
-                                  <label class="d-flex align-items-start" for="sectionTb">Section</label> 
-                                  <input type="text" class="form-control form-control-sm" id="sectionTb" name="sectionTb" placeholder="Ex. ICT101" maxlength="20" required>
-                              </div>
-                              <div class="col-sm-4 col-xs-4 col-md-4 col-lg-4">
-                                  <label class="d-flex align-items-start" for="yearTb">Year Level</label> 
-                                  <input type="text" class="form-control form-control-sm" id="yearTb" name="yearTb" placeholder="Ex. 1st" maxlength="20" required>
-                              </div>
+                            <div class="col-sm-12 col-xs-12 col-md-12 col-lg-12">
+                                <label class="d-flex align-items-start" for="contentTb">Password</label>
+                                <input type="password" class="form-control form-control-sm" id="passwordTb" name="passwordTb" placeholder="Ex. CMarie123" minlength="8" maxlength="20" required>
+                                <small class="d-flex align-items-start" style="color:red;">Use at least 8 or up to 15 characters for your password </small>
+                            </div>
                           </div>
                       </div>
                     </div>
@@ -937,13 +876,13 @@ var gateData = [inside,outside];
     */
 
     document.getElementById('successBox').style.display = 'none';
-    var successSignal = localStorage.getItem('studentMsg');
+    var successSignal = localStorage.getItem('visitorMsg');
 
     if(successSignal==1)
     {
         //if password or username is incorrect
         document.getElementById('successBox').style.display = 'block';
-        document.getElementById('successMsg').innerHTML = "Data Added Successfully!";
+        document.getElementById('successMsg').innerHTML = "Data Saved Successfully!";
         console.log("okay");
 
     }
@@ -951,21 +890,21 @@ var gateData = [inside,outside];
     {
         //if password doesn't matched
         document.getElementById('successBox').style.display = 'block';
-        document.getElementById('successMsg').innerHTML = "Changed Status Successfully";
+        document.getElementById('successMsg').innerHTML = "Username already exist!";
         console.log("okay");
     }
     else if(successSignal==3)
     {
         //if password doesn't matched
         document.getElementById('failBox').style.display = 'block';
-        document.getElementById('failMsg').innerHTML = "Data Removed Successfully";
+        document.getElementById('failMsg').innerHTML = "Spaces is not a valid input!";
         console.log("okay");
     }
     else if(successSignal==4)
     {
         //if password doesn't matched
         document.getElementById('successBox').style.display = 'block';
-        document.getElementById('successMsg').innerHTML = "Information Successfully saved!";
+        document.getElementById('successMsg').innerHTML = "Data Removed Successfully";
         console.log("okay");
     }
 
