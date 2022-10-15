@@ -12,7 +12,15 @@
 
     function ReadAccountVisitor($conn,$data)
     {
-        if($data->getUsername()==null)
+        if($data->getFirstname()!=null)
+        {
+            $dbData = mysqli_query($conn,"SELECT * FROM visitortb WHERE firstname = '".$data->getFirstname()."'");
+        }
+        else if($data->getLastname()!=null)
+        {
+            $dbData = mysqli_query($conn,"SELECT * FROM visitortb WHERE lastname = '".$data->getLastname()."'");
+        }
+        else if($data->getUsername()==null)
         {
             $dbData = mysqli_query($conn,"SELECT * FROM visitortb");
         }
