@@ -551,15 +551,16 @@ td{
                             
                             <?php
                               //This is to check the current status of event data if its already shown or not
-                              if($row['status']=='unlocked')
+                              if($row['status']=='unlock')
                               {
                                 ?>
                                   <!--status Button - Unlocked-->
                                   <script>unlockedData++;</script>
                                   <td id="<?php echo $row['id'];?>">
-                                    <form action="../controller/studentStat.php" method="POST" enctype="multipart/form-data">
+                                    <form action="../controller/accountStat.php" method="POST" enctype="multipart/form-data">
+                                      <input type="hidden" name="accType" id="accType" value="visitor">
                                       <input type="hidden" name="idTb" id="<?php echo 'status1IdTb'.$row['id'];?>" value="<?php echo $row['id'];?>">
-                                      <input type="hidden" name="statusTb" id="<?php echo 'status1Tb'.$row['id']?>" value="locked">
+                                      <input type="hidden" name="statusTb" id="<?php echo 'status1Tb'.$row['id']?>" value="lock">
                                       <button type="submit" class="btn btn-sm d-flex justify-content-start " style="background-color: #ca3635; color: white; font-size: 13px;"><i class="bi bi-lock-fill mr-1"></i>Lock</button>
                                     </form>
                                   </td>
@@ -572,9 +573,10 @@ td{
                                   <!--status Button - Locked-->
                                   <script>lockedData++;</script>
                                   <td id="<?php echo $row['id'];?>">
-                                    <form action="../controller/studentStat.php" method="POST" enctype="multipart/form-data">
+                                    <form action="../controller/accountStat.php" method="POST" enctype="multipart/form-data">
+                                      <input type="hidden" name="accType" id="accType" value="visitor">
                                       <input type="hidden" name="idTb" id="<?php echo 'status2IdTb'.$row['id'];?>" value="<?php echo $row['id'];?>">
-                                      <input type="hidden" name="statusTb" id="<?php echo 'status2Tb'.$row['id']?>" value="unlocked">
+                                      <input type="hidden" name="statusTb" id="<?php echo 'status2Tb'.$row['id']?>" value="unlock">
                                       <button type="submit" class="btn btn-sm d-flex justify-content-start btn-success" style="font-size: 13px;"><i class="bi bi-unlock-fill mr-1"></i>Unlock</button>
                                     </form>
                                   </td>
@@ -592,7 +594,8 @@ td{
 
                             <!--Delete Button-->
                             <td id="<?php echo $row['id'];?>">
-                              <form action="../controller/deleteStudent.php" method="POST" enctype="multipart/form-data">
+                              <form action="../controller/deleteAccount.php" method="POST" enctype="multipart/form-data">
+                                <input type="hidden" name="accType" id="accType" value="visitor">
                                 <input type="hidden" name="idTb" id="<?php echo 'deleteIdTb'.$row['id'];?>" value="<?php echo $row['id'];?>">
                                 <button type="submit" class="btn btn-sm d-flex justify-content-start btn-danger" style="font-size: 13px;"><i class="bi bi-trash mr-1"></i>Delete</button>
                               </form>

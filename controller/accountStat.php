@@ -7,12 +7,20 @@
     
     if(isset($_POST['accType']))
     {
-        $student = new studentModel();
-        $student->setId($_POST['idTb']);
-        $student->setStatus($_POST['statusTb']);
+        if($_POST['accType']=='visitor')
+        {
+            $student = new visitorModel();
+            $student->setId($_POST['idTb']);
+            $student->setStatus($_POST['statusTb']);
+    
+            UpdateAccountVisitor($conn,$student);
+            echo '<script> localStorage.setItem("visitorMsg",1); window.location = "../admin/admin_visitor.php";</script>';//success message
+        }
+        else if($_POST['accType']=='guardian')
+        {
 
-        UpdateAccountVisitor($conn,$student);
-        echo '<script> localStorage.setItem("visitorMsg",1); window.location = "../admin/admin_visitor.php";</script>';//success message
+
+        }
     }
     else
     {
