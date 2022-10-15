@@ -12,21 +12,21 @@
 
     function ReadAccountVisitor($conn,$data)
     {
-        if($data->getFirstname()!=null)
+        if($data->getFirstname()!=null && $data->getUsername()==null)
         {
             $dbData = mysqli_query($conn,"SELECT * FROM visitortb WHERE firstname = '".$data->getFirstname()."'");
         }
-        else if($data->getLastname()!=null)
+        else if($data->getLastname()!=null && $data->getUsername()==null)
         {
             $dbData = mysqli_query($conn,"SELECT * FROM visitortb WHERE lastname = '".$data->getLastname()."'");
         }
-        else if($data->getUsername()==null)
+        else if($data->getUsername()!=null)
         {
-            $dbData = mysqli_query($conn,"SELECT * FROM visitortb");
+            $dbData = mysqli_query($conn,"SELECT * FROM visitortb WHERE username = '".$data->getUsername()."'");
         }
         else
         {
-            $dbData = mysqli_query($conn,"SELECT * FROM visitortb WHERE username = '".$data->getUsername()."'");
+            $dbData = mysqli_query($conn,"SELECT * FROM visitortb");
         }
 
         return $dbData;

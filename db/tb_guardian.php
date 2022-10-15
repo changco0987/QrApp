@@ -13,7 +13,16 @@
 
     function ReadAccountGuardian($conn,$data)
     {
-        if($data->getUsername()==null)
+        
+        if($data->getFirstname()!=null)
+        {
+            $dbData = mysqli_query($conn,"SELECT * FROM guardiantb WHERE firstname = '".$data->getFirstname()."'");
+        }
+        else if($data->getLastname()!=null)
+        {
+            $dbData = mysqli_query($conn,"SELECT * FROM guardiantb WHERE lastname = '".$data->getLastname()."'");
+        }
+        else if($data->getUsername()==null)
         {
             $dbData = mysqli_query($conn,"SELECT * FROM guardiantb");
         }

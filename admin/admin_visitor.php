@@ -587,8 +587,9 @@ td{
 
                             <!--Edit Button-->
                             <td id="<?php echo $row['id'];?>">
-                              <form action="../admin/editStudent.php" method="POST" enctype="multipart/form-data">
-                                <input type="hidden" name="idTb" id="<?php echo 'editIdTb'.$row['id'];?>" value="<?php echo $row['id'];?>">
+                              <form action="../admin/editVisitor.php" method="POST" enctype="multipart/form-data">
+                                <input type="hidden" name="accType" id="accType" value="visitor">
+                                <input type="hidden" name="usernameTb" id="<?php echo 'editIdTb'.$row['username'];?>" value="<?php echo $row['username'];?>">
                                 <button type="submit" class="btn btn-sm d-flex justify-content-start btn-warning" name="submitEdit" style="font-size: 13px;"><i class="bi bi-pencil-square mr-1"></i>Edit</button>
                               </form>
                             </td>
@@ -643,7 +644,7 @@ td{
                         </div>
                     </div>
                     </center>
-                    <!-- Student Personal Info -->
+                    <!-- Personal Info -->
                     <div class="mx-2 px-2" style="background-color: #f9f9f9; border-radius:10px;">
                       <div class="form-group">
                           <div class="row">
@@ -677,7 +678,7 @@ td{
                     
 
 
-                    <!-- Student School Info -->
+                    <!-- Account Info -->
                     <div class="mx-2 px-2" style="background-color: #f9f9f9; border-radius:10px;">
                       <div class="form-group">
                         <div class="row">
