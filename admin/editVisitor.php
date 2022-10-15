@@ -3,10 +3,15 @@
     include_once '../db/tb_visitor.php';
     include_once '../model/visitorModel.php';
 
+    session_start();
     $student = new visitorModel();
     $student->setUsername($_POST['usernameTb']);
     $result = ReadAccountVisitor($conn,$student);
     $row = mysqli_fetch_assoc($result);
+
+    //this is the backup for username
+    $_SESSION['username'] = $row['username'];
+    $_SESSION['accType'] = $_POST['accType'];
 ?>
 
 <!DOCTYPE html>
@@ -76,9 +81,12 @@
         <div class="row">
             <div class="col-sm-12 col-xs-12 col-md-12 col-lg-12">
                 <div class=" d-flex justify-content-center h-100">
-                <form action="../controller/editStudent.php" method="POST" enctype="multipart/form-data">
+                <form action="../controller/updateInfo.php" method="POST" enctype="multipart/form-data">
                     <input type="hidden" name="accType" value="visitor">
                     <input type="hidden" id="idTb" name="idTb" value="<?php echo $row['id'];?>">
+                    <input type="hidden" name="adminReq" value="true">
+                    <input type="hidden" name="statusTb" value="<?php echo $row['status'];?>">
+                    <input type="hidden" name="imageName" value="<?php echo $row['imageName'];?>">
                     <center>
                     <div class="form-group">
                         <div class="row pt-1 mt-1">
@@ -124,7 +132,7 @@
                       <div class="form-group">
                         <div class="row pb-2">
                           <div class="col-sm-12 col-xs-12 col-md-12 col-lg-12">
-                              <label class="d-flex align-items-start" for="contactNumTb">Address</label>
+                              <label class="d-flex align-items-start" for="addressTb">Address</label>
                               <input type="text" class="form-control form-control-sm" id="addressTb" name="addressTb" placeholder="Ex. 2123 home st." maxlength="100" required value="<?php echo $row['address'];?>">
                           </div>
                         </div>
@@ -132,8 +140,8 @@
                       <div class="form-group">
                         <div class="row pb-2">
                           <div class="col-sm-12 col-xs-12 col-md-12 col-lg-12">
-                              <label class="d-flex align-items-start" for="contactNumTb">Contact Number</label>
-                              <input type="number" class="form-control form-control-sm" id="contactNumTb" name="contactNumTb" placeholder="Ex. 092X-XXX-XXXX" minlength="11" maxlength="11" required value="<?php echo $row['contact_number'];?>">
+                              <label class="d-flex align-items-start" for="contactTb">Contact Number</label>
+                              <input type="number" class="form-control form-control-sm" id="contactTb" name="contactTb" placeholder="Ex. 092X-XXX-XXXX" minlength="11" maxlength="11" required value="<?php echo $row['contact_number'];?>">
                           </div>
                         </div>
                       </div>

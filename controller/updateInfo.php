@@ -31,7 +31,17 @@
             if($row>0 && $_SESSION['username']!==$data->getUsername())
             {
                 //Throws back to the signup page and show "This account is already existed"
-                echo '<script> localStorage.setItem("state",1); window.location = "../pages/accSettings.php";</script>';
+                
+                //This will tell the system that the update is made in the admin page
+                if($_POST['adminReq'] == 'true')
+                {
+                    echo '<script> localStorage.setItem("state",4); window.location = "../admin/admin_visitor.php";</script>';  
+                }
+                else
+                {
+                    echo '<script> localStorage.setItem("state",1); window.location = "../pages/accSettings.php";</script>';  
+
+                }
             }
             else
             {
@@ -43,23 +53,48 @@
                     $data->setContact_number($_POST['contactTb']);
                     $data->setStatus($_POST['statusTb']);
 
-                    if($_FILES['fileTb']['name']!="")
+                    if($_FILES['fileTb']['name'] != "")
                     {
                         $data->setImageName($_POST['usernameTb'].$_SESSION['accType']. "." .$fileExtension);
                         $uploadedFile = $_FILES['fileTb']['tmp_name'];
                         copy($uploadedFile,$imgPath.$data->getImageName());//This will move the uploaded file into file directory (web)
+                    }
+                    else
+                    {
+                        $data->setImageName($_POST['imageName']);
                     }
 
                     UpdateAccountVisitor($conn,$data);
                     
                     $_SESSION['username'] = $data->getUsername();  
                     $_SESSION['password'] = $_POST['passwordTb'];  
-                    echo '<script> localStorage.setItem("state",4); window.location = "../pages/userDashboard.php";</script>';  
+
+                    //This will tell the system that the update is made in the admin page
+                    if($_POST['adminReq'] == 'true')
+                    {
+                        echo '<script> localStorage.setItem("visitorMsg",1); window.location = "../admin/admin_visitor.php";</script>';  
+                        exit();
+                    }
+                    else
+                    {
+                        echo '<script> localStorage.setItem("state",4); window.location = "../pages/userDashboard.php";</script>';  
+
+                    }
                }
                else
                {
                     //Throws back to the signup page and show an error saying, spaces is illegal
-                    echo '<script> localStorage.setItem("state",2); window.location = "../pages/accSettings.php";</script>';    
+
+                    //This will tell the system that the update is made in the admin page
+                    if($_POST['adminReq'] == 'true')
+                    {
+                        echo '<script> localStorage.setItem("state",4); window.location = "../admin/admin_visitor.php";</script>';  
+                    }
+                    else
+                    {
+                        echo '<script> localStorage.setItem("state",2); window.location = "../pages/accSettings.php";</script>';  
+
+                    }
                }
           
 

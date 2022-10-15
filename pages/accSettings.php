@@ -228,6 +228,7 @@ footer * {
                         <input type="hidden" name="accType" value="<?php echo $_SESSION['accType'];?>">
                         <input type="hidden" name="statusTb" value="<?php echo $row['status'];?>">
                         <input type="hidden" name="idTb" value="<?php echo $row['id'];?>">
+                        <input type="hidden" name="imageName" value="<?php echo $row['imageName'];?>">
                         <div class="form-group">
                             <center>
                                 <h1>Edit Info</h1>
