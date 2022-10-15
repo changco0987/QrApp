@@ -294,6 +294,13 @@ footer * {
             document.getElementById('successMsg').innerHTML = "Account Created Successfully!";
             console.log("okay");
         }
+        else if(successSignal==5)
+        {
+            //if the account is locked
+            document.getElementById('alertBox').style.display = 'block';
+            document.getElementById('errorMsg').innerHTML = "This account is locked, please contact the admin";
+            console.log("okay");
+        }
 
         //To make signl back to normmal and to prevent for the success page to appear every time the page was reload or refresh
         localStorage.setItem('state',0);

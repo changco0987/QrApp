@@ -29,40 +29,51 @@
             while($row = mysqli_fetch_assoc($result))
             {
                //to check if the username and password is match
-               if($row['password']==$data->getPassword())
-               {          
-                    session_start();
-                    $_SESSION['accType'] = $_POST['accType'];
-                    $_SESSION['username'] = $row['username'];
-                    $_SESSION['password'] = $_POST['passwordTb'];
-
-                    //to format the datetime
-                    $formattedDate1 = strtotime($row['qr_ExDate']);
-                    $formattedDate2 = strtotime($currentDateTime);
-
-                    //to check if the qr(datetime) is expired
-                    if($row['qr_ExDate']!==null && $formattedDate1 > $formattedDate2)
+               if($row['password']==$data->getPassword() )
+               {         
+                    //This will check the user accoubt if its lock or unlock
+                    if($row['status'] == 'unlock')
                     {
-                         $_SESSION['qr_ExDate'] = $row['qr_ExDate'];
-                         //echo 'not null';
-                    }
-                    else
+                         session_start();
+                         $_SESSION['accType'] = $_POST['accType'];
+                         $_SESSION['username'] = $row['username'];
+                         $_SESSION['password'] = $_POST['passwordTb'];
+     
+                         //to format the datetime
+                         $formattedDate1 = strtotime($row['qr_ExDate']);
+                         $formattedDate2 = strtotime($currentDateTime);
+     
+                         //to check if the qr(datetime) is expired
+                         if($row['qr_ExDate']!==null && $formattedDate1 > $formattedDate2)
+                         {
+                              $_SESSION['qr_ExDate'] = $row['qr_ExDate'];
+                              //echo 'not null';
+                         }
+                         else
+                         {
+                              $_SESSION['qr_ExDate'] = null;
+                              //echo 'null '.$row['qr_ExDate'];
+                         }
+                         
+                         //create log
+                         $log->setActivity('log-in');
+                         $log->setIpAdd();
+                         $log->setAccType($_SESSION['accType']);
+                         $log->setCreator($_SESSION['username']);
+     
+                         CreateLog($conn,$log);
+                         
+                         //$_SESSION['qr_ExDate'] = $row['qr_ExDate'];
+                         header("Location: ../pages/userDashboard.php");
+                         exit;
+                    } 
+                    else if($row['status']=='lock')
                     {
-                         $_SESSION['qr_ExDate'] = null;
-                         //echo 'null '.$row['qr_ExDate'];
+
+                         //Throws back to the login page and show "Account is locked"
+                         echo '<script> localStorage.setItem("state",5); window.location = "../pages/visitorLogin.php";</script>';
                     }
                     
-                    //create log
-                    $log->setActivity('log-in');
-                    $log->setIpAdd();
-                    $log->setAccType($_SESSION['accType']);
-                    $log->setCreator($_SESSION['username']);
-
-                    CreateLog($conn,$log);
-                    
-                    //$_SESSION['qr_ExDate'] = $row['qr_ExDate'];
-                    header("Location: ../pages/userDashboard.php");
-                    exit;
                }
                else
                {
@@ -87,40 +98,49 @@
             {
                //to check if the username and password is match
                if($row['password']==$data->getPassword())
-               {          
-                    session_start();
-                    $_SESSION['accType'] = $_POST['accType'];
-                    $_SESSION['username'] = $row['username'];
-                    $_SESSION['password'] = $_POST['passwordTb'];
+               {           
+                    //This will check the user accoubt if its lock or unlock
+                    if($row['status'] == 'unlock')
+                    {      
+                         session_start();
+                         $_SESSION['accType'] = $_POST['accType'];
+                         $_SESSION['username'] = $row['username'];
+                         $_SESSION['password'] = $_POST['passwordTb'];
 
 
-                    //to format the datetime
-                    $formattedDate1 = strtotime($row['qr_ExDate']);
-                    $formattedDate2 = strtotime($currentDateTime);
+                         //to format the datetime
+                         $formattedDate1 = strtotime($row['qr_ExDate']);
+                         $formattedDate2 = strtotime($currentDateTime);
 
-                    //to check if the qr(datetime) is expired
-                    if($row['qr_ExDate']!==null && $formattedDate1 > $formattedDate2)
-                    {
-                         $_SESSION['qr_ExDate'] = $row['qr_ExDate'];
-                         //echo 'not null';
+                         //to check if the qr(datetime) is expired
+                         if($row['qr_ExDate']!==null && $formattedDate1 > $formattedDate2)
+                         {
+                              $_SESSION['qr_ExDate'] = $row['qr_ExDate'];
+                              //echo 'not null';
+                         }
+                         else
+                         {
+                              $_SESSION['qr_ExDate'] = null;
+                              //echo 'null '.$row['qr_ExDate'];
+                         }
+
+                         //create log
+                         $log->setActivity('log-in');
+                         $log->setIpAdd();
+                         $log->setAccType($_SESSION['accType']);
+                         $log->setCreator($_SESSION['username']);
+
+                         CreateLog($conn,$log);
+                         
+                         //$_SESSION['qr_ExDate'] = $row['qr_ExDate'];
+                         header("Location: ../pages/userDashboard.php");
+                         exit;
                     }
-                    else
+                    else if($row['status']=='lock')
                     {
-                         $_SESSION['qr_ExDate'] = null;
-                         //echo 'null '.$row['qr_ExDate'];
+                         //Throws back to the login page and show "This account is not existed"
+                         echo '<script> localStorage.setItem("state",5); window.location = "../pages/guardianLogin.php";</script>';
                     }
-
-                    //create log
-                    $log->setActivity('log-in');
-                    $log->setIpAdd();
-                    $log->setAccType($_SESSION['accType']);
-                    $log->setCreator($_SESSION['username']);
-
-                    CreateLog($conn,$log);
-                    
-                    //$_SESSION['qr_ExDate'] = $row['qr_ExDate'];
-                    header("Location: ../pages/userDashboard.php");
-                    exit;
                }
                else
                {
