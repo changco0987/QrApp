@@ -232,9 +232,13 @@
                     <div class="mx-2 px-2" style="background-color: #f9f9f9; border-radius:10px;">
                       <div class="form-group">
                         <div class="row">
-                          <div class="col-sm-12 col-xs-12 col-md-12 col-lg-12">
+                          <div class="col-sm-6 col-xs-6 col-md-6 col-lg-6">
                               <label class="d-flex align-items-start" for="contentTb">Student ID</label>
                               <input type="text" class="form-control form-control-sm" id="studentIdTb" name="studentIdTb" placeholder="Ex. 012-3456-7890" maxlength="50" required value="<?php echo $row['studentId'];?>">
+                          </div>
+                          <div class="col-sm-6 col-xs-6 col-md-6 col-lg-6">
+                              <label class="d-flex align-items-start" for="contentTb">School name</label>
+                              <input type="text" class="form-control form-control-sm" id="schoolTb" name="schoolTb" placeholder="Ex. STI College BALAYAN" maxlength="150" required value="<?php echo $row['school'];?>">
                           </div>
                         </div>
                       </div>

@@ -6,10 +6,10 @@
     function CreateStudent($conn,$student)
     {
         $address = mysqli_real_escape_string($conn,$student->getAddress());
-        mysqli_query($conn,"INSERT INTO studentstb(studentId, firstname, lastname, middlename, course, section, year, age, gender, address, contact_number, imageName, status, guardianName, guardianNum)
+        mysqli_query($conn,"INSERT INTO studentstb(studentId, firstname, lastname, middlename, course, section, year, age, gender, address, contact_number, imageName, status, guardianName, guardianNum, school)
         values('".$student->getStudentId()."','".$student->getFirstname()."','".$student->getLastname()."','".$student->getMiddlename()."','".$student->getCourse()."','"
         .$student->getSection()."','".$student->getYear()."',".$student->getAge().",'".$student->getGender()."','".$address."','"
-        .$student->getContact_number()."','".$student->getImageName()."','".$student->getStatus()."','".$student->getGuardianName()."','".$student->getGuardianNum()."')");
+        .$student->getContact_number()."','".$student->getImageName()."','".$student->getStatus()."','".$student->getGuardianName()."','".$student->getGuardianNum()."','".$student->getSchool()."')");
     }
 
     function ReadStudent($conn,$student)
@@ -47,10 +47,11 @@
         else
         {
             $address = mysqli_real_escape_string($conn,$student->getAddress());
+            $schoolName = mysqli_real_escape_string($conn,$student->getSchool());
             mysqli_query($conn,"UPDATE studentstb set studentId = '".$student->getStudentId()."', firstname = '".$student->getFirstname()."', lastname = '".$student->getLastname().
             "', middlename = '".$student->getMiddlename()."', course = '".$student->getCourse()."', section = '".$student->getSection()."', year = '".$student->getYear().
             "', age = ".$student->getAge().", gender = '".$student->getGender()."', address = '".$address."', imageName = '".$student->getImageName().
-            "', guardianName = '".$student->getGuardianName()."', guardianNum = '".$student->getGuardianNum()."' where id = ". $student->getId());
+            "', guardianName = '".$student->getGuardianName()."', guardianNum = '".$student->getGuardianNum()."', school = '".$schoolName."' where id = ". $student->getId());
         }
     }
 

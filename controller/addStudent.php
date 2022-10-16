@@ -25,6 +25,7 @@
         $student->setStatus('unlocked');
         $student->setGuardianName($_POST['guardianNameTb']);
         $student->setGuardianNum($_POST['guardianNumTb']);
+        $student->setSchool($_POST['schoolTb']);
 
         
         if($_FILES['fileTb']['name']!="")

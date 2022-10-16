@@ -18,6 +18,7 @@
         private $status;
         private $guardianName;
         private $guardianNum;
+        private $school;
         private $gateStat;
         private $dtrId;
 
@@ -204,6 +205,17 @@
         public function setGuardianNum($guardianNum)
         {
             $this->guardianNum = $guardianNum;
+        }
+
+
+        public function getSchool()
+        {
+            return $this->school;   
+        }
+
+        public function setSchool($school)
+        {
+            $this->school = $school;
         }
 
 

@@ -25,6 +25,7 @@
         $student->setYear($_POST['yearTb']);
         $student->setGuardianName($_POST['guardianNameTb']);
         $student->setGuardianNum($_POST['guardianNumTb']);
+        $student->setSchool($_POST['schoolTb']);
 
         
         if($_FILES['fileTb']['name']!="")
@@ -35,7 +36,7 @@
         }
         else
         {
-            $data->setImageName($_POST['imageName']);
+            $student->setImageName($_POST['imageName']);
         }
 
         UpdateStudent($conn,$student);
