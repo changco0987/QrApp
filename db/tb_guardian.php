@@ -14,21 +14,21 @@
     function ReadAccountGuardian($conn,$data)
     {
         
-        if($data->getFirstname()!=null)
+        if($data->getFirstname()!=null && $data->getUsername()==null)
         {
             $dbData = mysqli_query($conn,"SELECT * FROM guardiantb WHERE firstname = '".$data->getFirstname()."'");
         }
-        else if($data->getLastname()!=null)
+        else if($data->getLastname()!=null && $data->getUsername()==null)
         {
             $dbData = mysqli_query($conn,"SELECT * FROM guardiantb WHERE lastname = '".$data->getLastname()."'");
         }
-        else if($data->getUsername()==null)
+        else if($data->getUsername()!=null)
         {
-            $dbData = mysqli_query($conn,"SELECT * FROM guardiantb");
+            $dbData = mysqli_query($conn,"SELECT * FROM guardiantb WHERE username = '".$data->getUsername()."'");
         }
         else
         {
-            $dbData = mysqli_query($conn,"SELECT * FROM guardiantb WHERE username = '".$data->getUsername()."'");
+            $dbData = mysqli_query($conn,"SELECT * FROM guardiantb");
         }
 
         return $dbData;
@@ -39,6 +39,10 @@
         if($data->getDtrId()!=null)
         {
             mysqli_query($conn,"UPDATE guardiantb set gateStat ='".$data->getGateStat()."', dtrId = '".$data->getDtrId()."' where username = '".$data->getUsername()."'");
+        }
+        else if($data->getStatus() != null)
+        {
+            mysqli_query($conn,"UPDATE guardiantb SET status ='".$data->getStatus()."' WHERE id =".$data->getId());
         }
         else if($data->getQr_ExDate()==null)
         {
