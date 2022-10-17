@@ -28,7 +28,7 @@
             DeleteAccountGuardian($conn,$data);
     
             //header('Location: ../admin/dashboard.php');
-            echo '<script> localStorage.setItem("visitorMsg",4); window.location = "../admin/admin_guardian.php";</script>';//success message
+            echo '<script> localStorage.setItem("guardianMsg",4); window.location = "../admin/admin_guardian.php";</script>';//success message
         }
    
     }

@@ -692,6 +692,22 @@ td{
                             </div>
                           </div>
                       </div>
+                        <div class="form-group">
+                            <div class="row">
+                                <div class="col-sm-12 col-xs-12 col-md-12 col-lg-12">
+                                    <label class="d-flex align-items-start" for="studentidTb">Student ID</label>
+                                    <input type="text" class="form-control no-border" id="studentidTb" name="studentidTb" placeholder="Ex. 012-3456-7890" maxlength="80" required>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group form-check-inline" id="notifDiv">
+                            <div class="row ">
+                                <div class="col-sm-12 col-xs-12 col-md-12 col-lg-12">
+                                    <input class="form-check-input no-border" name="notifCheckbox" type="checkbox" value="true" id="notifCheckbox">
+                                    <label id="smsNotifLbl" class="form-check-label" for="notifCheckbox">Do you want to recieve sms notification?</label>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                     <div class="modal-footer">
                         <div class="form-group">

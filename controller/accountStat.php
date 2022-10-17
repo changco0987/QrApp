@@ -27,7 +27,7 @@
             $data->setStatus($_POST['statusTb']);
     
             UpdateAccountGuardian($conn,$data);
-            echo '<script> localStorage.setItem("visitorMsg",1); window.location = "../admin/admin_guardian.php";</script>';//success message
+            echo '<script> localStorage.setItem("guardianMsg",1); window.location = "../admin/admin_guardian.php";</script>';//success message
         }
     }
     else

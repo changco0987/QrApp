@@ -163,7 +163,7 @@
                     //This will tell the system that the update is made in the admin page
                     if($_POST['adminReq'] == 'true')
                     {
-                        echo '<script> localStorage.setItem("visitorMsg",1); window.location = "../admin/admin_guardian.php";</script>';  
+                        echo '<script> localStorage.setItem("guardianMsg",1); window.location = "../admin/admin_guardian.php";</script>';  
                         exit();
                     }
                     else
@@ -178,7 +178,7 @@
                     //This will tell the system that the update is made in the admin page
                     if($_POST['adminReq'] == 'true')
                     {
-                        echo '<script> localStorage.setItem("state",4); window.location = "../admin/admin_guardian.php";</script>';  
+                        echo '<script> localStorage.setItem("guardianMsg",4); window.location = "../admin/admin_guardian.php";</script>';  
                     }
                     else
                     {
