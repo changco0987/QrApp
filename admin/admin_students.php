@@ -543,8 +543,19 @@ td{
                     $prevQRData = array("title"=>'qremsystem', "accType"=>'student', "id"=>$row['id']);
                     $convertedQRData = base64_encode(serialize($prevQRData));
 
+                    if($row['status']=='locked')
+                    {
+                      ?>
+                        <tr style="background-color:#e9808d;">
+                      <?php
+                    }
+                    else
+                    {
                       ?>
                         <tr style="background-color:#82B7DC;">
+                      <?php
+                    }
+                    ?>
                             <td><?php echo $rowCount;?></td>
                             <td class="text-center">
                               <?php
