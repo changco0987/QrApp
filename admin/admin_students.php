@@ -508,8 +508,8 @@ td{
                   <th scope="col">#</th>
                   <th scope="col" class="text-center" >Image</th>
                   <th scope="col">Name</th>
+                  <th scope="col">Student ID</th>
                   <th scope="col">Course/Sec/Year</th>
-                  <th scope="col">Age</th>
                   <th scope="col">Gender</th>
                   <th scope="col">Contact Number</th>
                   <th scope="col">Address</th>
@@ -575,8 +575,8 @@ td{
                               ?>
                             </td>
                             <td><?php echo $row['firstname'].' '.$row['lastname'];?></td>
+                            <td><?php echo$row['studentId']?></td>
                             <td><?php echo $row['course'].' - '.$row['section'].' - '.$row['year'];?></td>
-                            <td><?php echo $row['age'];?></td>
                             <td><?php echo $row['gender'];?></td>
                             <td><?php echo $row['contact_number'];?></td>
                             <td><?php echo $row['address'];?></td>
