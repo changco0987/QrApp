@@ -135,6 +135,8 @@
                     $data->setContact_number($_POST['contactTb']);
                     $data->setStudentId($_POST['studentidTb']);
                     $data->setStatus($_POST['statusTb']);
+
+                    /* Removed the notif function
                     if(isset($_POST['notifCheckbox']))
                     {
                         $data->setNotification($_POST['notifCheckbox']);
@@ -143,6 +145,7 @@
                     {
                         $data->setNotification('false');
                     }
+                    */
 
                     
                     if($_FILES['fileTb']['name']!="")

@@ -96,12 +96,13 @@
             $result = ReadAccountGuardian($conn,$data);
             while($row = mysqli_fetch_assoc($result))
             {
+               echo $row['status']; 
                //to check if the username and password is match
                if($row['password']==$data->getPassword())
                {           
                     //This will check the user accoubt if its lock or unlock
                     if($row['status'] == 'unlock')
-                    {      
+                    {     
                          session_start();
                          $_SESSION['accType'] = $_POST['accType'];
                          $_SESSION['username'] = $row['username'];
@@ -140,17 +141,20 @@
                     {
                          //Throws back to the login page and show "This account is not existed"
                          echo '<script> localStorage.setItem("state",5); window.location = "../pages/guardianLogin.php";</script>';
+                         exit;
                     }
                }
                else
                {
                     //Throws back to the login page and show "Incorrect password"
                     echo '<script> localStorage.setItem("state",1); window.location = "../pages/guardianLogin.php";</script>';
+                    exit;
                }
             }
 
+            echo $data->getUsername();
            //Throws back to the login page and show "This account is not existed"
-          echo '<script> localStorage.setItem("state",2); window.location = "../pages/guardianLogin.php";</script>';
+          //echo '<script> localStorage.setItem("state",2); window.location = "../pages/guardianLogin.php";</script>';
           exit;
     
         }

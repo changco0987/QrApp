@@ -85,6 +85,8 @@
                             $data->setContact_number($_POST['contactTb']);
                             $data->setStudentId($_POST['studentidTb']);
                             $data->setStatus('unlock');
+
+                            /* Removed the notif function
                             if(isset($_POST['notifCheckbox']))
                             {
                                 $data->setNotification($_POST['notifCheckbox']);
@@ -93,6 +95,7 @@
                             {
                                 $data->setNotification('false');
                             }
+                            */
         
                             CreateAccountGuardian($conn,$data);
                             echo '<script> localStorage.setItem("state",4); window.location = "../pages/guardianLogin.php";</script>';  

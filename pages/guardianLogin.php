@@ -277,7 +277,7 @@ footer * {
         {
             //if email is already taken
             document.getElementById('alertBox').style.display = 'block';
-            document.getElementById('errorMsg').innerHTML = 'Sorry, this account is not existing';
+            document.getElementById('errorMsg').innerHTML = 'Sorry, this account does not exist';
             console.log("okay");
         }
         else if(successSignal==3)

@@ -594,7 +594,7 @@ td{
 
                             <!--Edit Button-->
                             <td id="<?php echo $row['id'];?>">
-                              <form action="../admin/editGuadian.php" method="POST" enctype="multipart/form-data">
+                              <form action="../admin/editGuardian.php" method="POST" enctype="multipart/form-data">
                                 <input type="hidden" name="accType" id="accType" value="guardian">
                                 <input type="hidden" name="usernameTb" id="<?php echo 'editIdTb'.$row['username'];?>" value="<?php echo $row['username'];?>">
                                 <button type="submit" class="btn btn-sm d-flex justify-content-start btn-warning" name="submitEdit" style="font-size: 13px;"><i class="bi bi-pencil-square mr-1"></i>Edit</button>
@@ -709,14 +709,6 @@ td{
                                 <div class="col-sm-12 col-xs-12 col-md-12 col-lg-12">
                                     <label class="d-flex align-items-start" for="studentidTb">Student ID</label>
                                     <input type="text" class="form-control no-border" id="studentidTb" name="studentidTb" placeholder="Ex. 012-3456-7890" maxlength="80" required>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="form-group form-check-inline" id="notifDiv">
-                            <div class="row ">
-                                <div class="col-sm-12 col-xs-12 col-md-12 col-lg-12">
-                                    <input class="form-check-input no-border" name="notifCheckbox" type="checkbox" value="true" id="notifCheckbox">
-                                    <label id="smsNotifLbl" class="form-check-label" for="notifCheckbox">Do you want to recieve sms notification?</label>
                                 </div>
                             </div>
                         </div>
