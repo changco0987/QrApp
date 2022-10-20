@@ -39,6 +39,7 @@
                 if($_POST['adminReq'] == 'true')
                 {
                     echo '<script> localStorage.setItem("visitorMsg",4); window.location = "../admin/editVisitor.php";</script>';  
+                    exit();
                 }
                 else
                 {
@@ -91,7 +92,7 @@
                     //This will tell the system that the update is made in the admin page
                     if($_POST['adminReq'] == 'true')
                     {
-                        echo '<script> localStorage.setItem("state",4); window.location = "../admin/editVisitor.php";</script>';  
+                        echo '<script> localStorage.setItem("visitorMsg",4); window.location = "../admin/editVisitor.php";</script>';  
                     }
                     else
                     {

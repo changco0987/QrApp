@@ -156,7 +156,6 @@
                       </div>
                     </div>
                     
-                    <?php echo $row["contact_number"];?>
 
                     <!-- Account Info -->
                     <div class="mx-2 px-2" style="background-color: #f9f9f9; border-radius:10px;">
@@ -234,7 +233,7 @@
         {
             //if password doesn't matched
             document.getElementById('failBox').style.display = 'block';
-            document.getElementById('failMsg').innerHTML = "Information Successfully saved!";
+            document.getElementById('failMsg').innerHTML = "This username is already in used!";
             console.log("okay");
         }
         else if(successSignal==5)

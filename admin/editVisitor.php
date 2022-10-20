@@ -4,14 +4,22 @@
     include_once '../model/visitorModel.php';
 
     session_start();
-    $student = new visitorModel();
-    $student->setUsername($_POST['usernameTb']);
-    $result = ReadAccountVisitor($conn,$student);
+    $data = new visitorModel();
+    if(isset($_SESSION['username']))
+    {
+        $data->setUsername($_SESSION['username']);
+        
+    }
+    else
+    {
+        $data->setUsername($_POST['usernameTb']);
+        $_SESSION['accType'] = $_POST['accType'];
+    }
+    $result = ReadAccountVisitor($conn,$data);
     $row = mysqli_fetch_assoc($result);
 
     //this is the backup for username
     $_SESSION['username'] = $row['username'];
-    $_SESSION['accType'] = $_POST['accType'];
 ?>
 
 <!DOCTYPE html>
@@ -141,7 +149,7 @@
                         <div class="row pb-2">
                           <div class="col-sm-12 col-xs-12 col-md-12 col-lg-12">
                               <label class="d-flex align-items-start" for="contactTb">Contact Number</label>
-                              <input type="number" class="form-control form-control-sm" id="contactTb" name="contactTb" placeholder="Ex. 092X-XXX-XXXX" minlength="11" maxlength="11" required value="<?php echo $row['contact_number'];?>">
+                              <input type="text" class="form-control form-control-sm" id="contactTb" name="contactTb" placeholder="Ex. 092X-XXX-XXXX" minlength="11" maxlength="11" required value="<?php echo $row['contact_number'];?>">
                           </div>
                         </div>
                       </div>
@@ -162,9 +170,9 @@
                       <div class="form-group">
                           <div class="row pb-2">
                             <div class="col-sm-12 col-xs-12 col-md-12 col-lg-12">
-                                <label class="d-flex align-items-start" for="contentTb">Password</label>
-                                <input type="password" class="form-control form-control-sm" id="passwordTb" name="passwordTb" placeholder="Ex. CMarie123" minlength="8" maxlength="20" required value="<?php echo $row['password'];?>">
-                                <small class="d-flex align-items-start" style="color:red;">Use at least 8 or up to 15 characters for your password </small>
+                                <label class="d-flex align-items-start" for="contentTb">New Password <small class="mx-1" style="color:red;">(Leave the password blank if you don't want to change it)</small></label>
+                                <input type="password" class="form-control form-control-sm" id="passwordTb" name="passwordTb" placeholder="Ex. CMarie123" minlength="8" maxlength="20">
+                                <small class="d-flex align-items-start" style="color:red;">Use at least 8 or up to 20 characters for your password </small>
                             </div>
                           </div>
                       </div>
@@ -217,7 +225,7 @@
         {
             //if password doesn't matched
             document.getElementById('failBox').style.display = 'block';
-            document.getElementById('failMsg').innerHTML = "Information Successfully saved!";
+            document.getElementById('failMsg').innerHTML = "This username is already used!";
             console.log("okay");
         }
         else if(successSignal==5)

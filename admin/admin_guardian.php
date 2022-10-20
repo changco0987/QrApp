@@ -14,7 +14,7 @@
         header("Location: ../admin.php");
     }
     unset($_SESSION['username']);
-    unset($_SESSION['password']);
+    //unset($_SESSION['password']);
     /*
     date_default_timezone_set('Asia/Manila');
 
