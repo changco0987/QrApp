@@ -45,10 +45,23 @@
         else if($data->getQr_ExDate()==null)
         {
 
-            $address = mysqli_real_escape_string($conn,$data->getAddress());
-            mysqli_query($conn,"UPDATE visitortb set username ='".$data->getUsername()."', password ='".$data->getPassword()."', firstname ='". $data->getFirstname()
-            ."', lastname ='".$data->getLastname(). "', address ='". $address. "',contact_number ='". $data->getContact_number().
-            "', imageName = '".$data->getImageName()."', status = '".$data->getStatus()."' where id = ". $data->getId());
+            //to filter if the password is changed
+            if($data->getPassword()==null)
+            {
+
+                $address = mysqli_real_escape_string($conn,$data->getAddress());
+                mysqli_query($conn,"UPDATE visitortb set username ='".$data->getUsername()."', firstname ='". $data->getFirstname()
+                ."', lastname ='".$data->getLastname(). "', address ='". $address. "',contact_number ='". $data->getContact_number().
+                "', imageName = '".$data->getImageName()."' where id = ". $data->getId());
+            }
+            else
+            {
+
+                $address = mysqli_real_escape_string($conn,$data->getAddress());
+                mysqli_query($conn,"UPDATE visitortb set username ='".$data->getUsername()."', password ='".$data->getPassword()."', firstname ='". $data->getFirstname()
+                ."', lastname ='".$data->getLastname(). "', address ='". $address. "',contact_number ='". $data->getContact_number().
+                "', imageName = '".$data->getImageName()."' where id = ". $data->getId());
+            }
             
 
         }

@@ -38,7 +38,7 @@
                 //This will tell the system that the update is made in the admin page
                 if($_POST['adminReq'] == 'true')
                 {
-                    echo '<script> localStorage.setItem("state",4); window.location = "../admin/admin_visitor.php";</script>';  
+                    echo '<script> localStorage.setItem("visitorMsg",4); window.location = "../admin/editVisitor.php";</script>';  
                 }
                 else
                 {
@@ -48,13 +48,12 @@
             }
             else
             {
-               if(checkSpaces($data->getUsername(),$data->getPassword()) == false)
+               if(checkSpaces($data->getUsername()) == false)
                {
                     $data->setFirstname($_POST['fnameTb']);
                     $data->setLastname($_POST['lnameTb']);
                     $data->setAddress($_POST['addressTb']);
                     $data->setContact_number($_POST['contactTb']);
-                    $data->setStatus($_POST['statusTb']);
 
                     if($_FILES['fileTb']['name'] != "")
                     {
@@ -69,17 +68,18 @@
 
                     UpdateAccountVisitor($conn,$data);
                     
-                    $_SESSION['username'] = $data->getUsername();  
-                    $_SESSION['password'] = $_POST['passwordTb'];  
 
                     //This will tell the system that the update is made in the admin page
                     if($_POST['adminReq'] == 'true')
                     {
+                        //this is the success message
                         echo '<script> localStorage.setItem("visitorMsg",1); window.location = "../admin/admin_visitor.php";</script>';  
                         exit();
                     }
                     else
                     {
+                        $_SESSION['username'] = $data->getUsername();  
+                        $_SESSION['password'] = $_POST['passwordTb'];  
                         echo '<script> localStorage.setItem("state",4); window.location = "../pages/userDashboard.php";</script>';  
 
                     }
@@ -91,7 +91,7 @@
                     //This will tell the system that the update is made in the admin page
                     if($_POST['adminReq'] == 'true')
                     {
-                        echo '<script> localStorage.setItem("state",4); window.location = "../admin/admin_visitor.php";</script>';  
+                        echo '<script> localStorage.setItem("state",4); window.location = "../admin/editVisitor.php";</script>';  
                     }
                     else
                     {
@@ -108,7 +108,11 @@
             $data = new guardianModel();
             $data->setId($_POST['idTb']);
             $data->setUsername($_POST['usernameTb']);
-            $data->setPassword($_POST['passwordTb']);
+
+            if($_POST['passwordTb']!='')
+            {
+                $data->setPassword($_POST['passwordTb']);
+            }
             
             //this will check the username if already used
             $read = ReadAccountGuardian($conn,$data);
@@ -119,7 +123,7 @@
                 //Throws back to the signup page and show "This account is already existed"
                 if($_POST['adminReq'] == 'true')
                 {
-                    echo '<script> localStorage.setItem("state",4); window.location = "../admin/admin_visitor.php";</script>';  
+                    echo '<script> localStorage.setItem("guardianMsg",4); window.location = "../admin/editGuardian.php";</script>';  
                 }
                 else
                 {
@@ -130,7 +134,7 @@
             }
             else
             {
-                if(checkSpaces($data->getUsername(),$data->getPassword()) == false)
+                if(checkSpaces($data->getUsername()) == false)
                 {
                     //this will check the studentid existance 
                     $studentId = str_replace(' ', '', $_POST['studentidTb']);//to remove all spaces in the inputted studentid
@@ -149,7 +153,6 @@
                             $data->setAddress($_POST['addressTb']);
                             $data->setContact_number($_POST['contactTb']);
                             $data->setStudentId($_POST['studentidTb']);
-                            $data->setStatus($_POST['statusTb']);
         
                             /* Removed the notif function
                             if(isset($_POST['notifCheckbox']))
@@ -175,17 +178,20 @@
                             }
                             
                             UpdateAccountGuardian($conn,$data);
-                            $_SESSION['username'] = $data->getUsername();
-                            $_SESSION['password'] = $_POST['passwordTb'];
         
                             //This will tell the system that the update is made in the admin page
                             if($_POST['adminReq'] == 'true')
                             {
+                                unset($_SESSION['username']);
+                                //This will occur if the changes was successfully
                                 echo '<script> localStorage.setItem("guardianMsg",1); window.location = "../admin/admin_guardian.php";</script>';  
+                                //echo $data->getPassword();
                                 exit();
                             }
                             else
                             {
+                                $_SESSION['username'] = $data->getUsername();
+                                $_SESSION['password'] = $_POST['passwordTb'];
                                 echo '<script> localStorage.setItem("state",4); window.location = "../pages/userDashboard.php";</script>';      
                             }
                         }
@@ -195,7 +201,7 @@
                     if($_POST['adminReq'] == 'true')
                     {
                         //This will return the studentid doesn't exist message
-                        echo '<script> localStorage.setItem("guardianMsg",5); window.location = "../admin/admin_guardian.php";</script>';  
+                        echo '<script> localStorage.setItem("guardianMsg",5); window.location = "../admin/editGuardian.php";</script>';  
                         exit;
                     }
                     else
@@ -213,7 +219,7 @@
                     //This will tell the system that the update is made in the admin page
                     if($_POST['adminReq'] == 'true')
                     {
-                        echo '<script> localStorage.setItem("guardianMsg",4); window.location = "../admin/admin_guardian.php";</script>';  
+                        echo '<script> localStorage.setItem("guardianMsg",4); window.location = "../admin/editGuardian.php";</script>';  
                     }
                     else
                     {
@@ -232,17 +238,13 @@
 
 
     //To check if there is spaces included in user input
-    function checkSpaces($username,$password)
+    function checkSpaces($username)
     {
         if ($username == trim($username) && str_contains($username, ' ')) 
         {
             return true;
         }        
 
-        if ($password == trim($password) && str_contains($password, ' ')) 
-        {
-            return true;
-        }  
 
 
         return false;

@@ -69,13 +69,13 @@
 </head>
 <body>
         
-    <!-- Alert message container-->
-    <div id="successBox" class="alert alert-danger alert-dismissible fade show" role="alert" style="display:block;">
-        <strong id="successMsg"></strong>
-        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-        </button>
-    </div>
+<!-- Alert message container-->
+<div id="failBox" class="alert alert-danger alert-dismissible fade show" role="alert" style="display:none;">
+    <strong id="failMsg"></strong>
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+    </button>
+</div>
     
     <div class="container">
         <div class="row">
@@ -188,41 +188,48 @@
 </body>
 <!--alert message script-->
 <script>
-        document.getElementById('successBox').style.display = 'none';
-        var successSignal = localStorage.getItem('state');
-/*
+        document.getElementById('failBox').style.display = 'none';
+        var successSignal = localStorage.getItem('visitorMsg');
+
         if(successSignal==1)
         {
             //if password or username is incorrect
-            document.getElementById('successBox').style.display = 'block';
-            document.getElementById('successMsg').innerHTML = "Username or password is incorrect";
+            document.getElementById('failBox').style.display = 'block';
+            document.getElementById('failMsg').innerHTML = "Username or password is incorrect";
             console.log("okay");
 
         }
         else if(successSignal==2)
         {
             //if password doesn't matched
-            document.getElementById('successBox').style.display = 'block';
-            document.getElementById('successMsg').innerHTML = "This username doesn't exist";
+            document.getElementById('failBox').style.display = 'block';
+            document.getElementById('failMsg').innerHTML = "This username doesn't exist";
             console.log("okay");
         }
         else if(successSignal==3)
         {
             //if password doesn't matched
-            document.getElementById('successBox').style.display = 'block';
-            document.getElementById('successMsg').innerHTML = "Information Successfully saved!";
+            document.getElementById('failBox').style.display = 'block';
+            document.getElementById('failMsg').innerHTML = "Information Successfully saved!";
             console.log("okay");
         }
         else if(successSignal==4)
         {
             //if password doesn't matched
-            document.getElementById('successBox').style.display = 'block';
-            document.getElementById('successMsg').innerHTML = "Information Successfully saved!";
+            document.getElementById('failBox').style.display = 'block';
+            document.getElementById('failMsg').innerHTML = "Information Successfully saved!";
             console.log("okay");
         }
-*/
+        else if(successSignal==5)
+        {
+            //if password doesn't matched
+            document.getElementById('failBox').style.display = 'block';
+            document.getElementById('failMsg').innerHTML = "This StudentID doesn't exist";
+            console.log("okay");
+        }
+
         //To make signl back to normmal and to prevent for the success page to appear every time the page was reload or refresh
-        localStorage.setItem('state',0);
+        localStorage.setItem('visitorMsg',0);
 
         //this will make a image preview before it was uploaded
         fileTb.onchange = evt => {

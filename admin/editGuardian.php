@@ -5,13 +5,22 @@
 
     session_start();
     $data = new guardianModel();
-    $data->setUsername($_POST['usernameTb']);
+    if(isset($_SESSION['username']))
+    {
+        $data->setUsername($_SESSION['username']);
+        
+    }
+    else
+    {
+        $data->setUsername($_POST['usernameTb']);
+        $_SESSION['accType'] = $_POST['accType'];
+    }
     $result = ReadAccountGuardian($conn,$data);
     $row = mysqli_fetch_assoc($result);
 
     //this is the backup for username
     $_SESSION['username'] = $row['username'];
-    $_SESSION['accType'] = $_POST['accType'];
+    //unset($_SESSION['username']);
 ?>
 
 <!DOCTYPE html>
@@ -69,13 +78,13 @@
 </head>
 <body>
         
-    <!-- Alert message container-->
-    <div id="successBox" class="alert alert-danger alert-dismissible fade show" role="alert" style="display:block;">
-        <strong id="successMsg"></strong>
-        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-        </button>
-    </div>
+<!-- Alert message container-->
+<div id="failBox" class="alert alert-danger alert-dismissible fade show" role="alert" style="display:none;">
+    <strong id="failMsg"></strong>
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+    </button>
+</div>
     
     <div class="container">
         <div class="row">
@@ -141,13 +150,13 @@
                         <div class="row pb-2">
                           <div class="col-sm-12 col-xs-12 col-md-12 col-lg-12">
                               <label class="d-flex align-items-start" for="contactTb">Contact Number</label>
-                              <input type="number" class="form-control form-control-sm" id="contactTb" name="contactTb" placeholder="Ex. 092X-XXX-XXXX" minlength="11" maxlength="11" required value="<?php echo $row['contact_number'];?>">
+                              <input type="text" class="form-control form-control-sm" id="contactTb" name="contactTb" placeholder="Ex. 092X-XXX-XXXX" minlength="11" maxlength="11" required value="<?php echo $row['contact_number'];?>">
                           </div>
                         </div>
                       </div>
                     </div>
                     
-
+                    <?php echo $row["contact_number"];?>
 
                     <!-- Account Info -->
                     <div class="mx-2 px-2" style="background-color: #f9f9f9; border-radius:10px;">
@@ -162,9 +171,9 @@
                       <div class="form-group">
                           <div class="row pb-2">
                             <div class="col-sm-12 col-xs-12 col-md-12 col-lg-12">
-                                <label class="d-flex align-items-start" for="contentTb">Password</label>
-                                <input type="password" class="form-control form-control-sm" id="passwordTb" name="passwordTb" placeholder="Ex. CMarie123" minlength="8" maxlength="20" required value="<?php echo $row['password'];?>">
-                                <small class="d-flex align-items-start" style="color:red;">Use at least 8 or up to 15 characters for your password </small>
+                                <label class="d-flex align-items-start" for="contentTb">New Password <small class="mx-1" style="color:red;">(Leave the password blank if you don't want to change it)</small></label>
+                                <input type="password" class="form-control form-control-sm" id="passwordTb" name="passwordTb" placeholder="Ex. CMarie123" minlength="8" maxlength="20">
+                                <small class="d-flex align-items-start" style="color:red;">Use at least 8 or up to 20 characters for your password </small>
                             </div>
                           </div>
                       </div>
@@ -196,41 +205,48 @@
 </body>
 <!--alert message script-->
 <script>
-        document.getElementById('successBox').style.display = 'none';
-        var successSignal = localStorage.getItem('state');
-/*
+        //document.getElementById('failBox').style.display = 'none';
+        var successSignal = localStorage.getItem('guardianMsg');
+
         if(successSignal==1)
         {
             //if password or username is incorrect
-            document.getElementById('successBox').style.display = 'block';
-            document.getElementById('successMsg').innerHTML = "Username or password is incorrect";
+            document.getElementById('failBox').style.display = 'block';
+            document.getElementById('failMsg').innerHTML = "Username or password is incorrect";
             console.log("okay");
 
         }
         else if(successSignal==2)
         {
             //if password doesn't matched
-            document.getElementById('successBox').style.display = 'block';
-            document.getElementById('successMsg').innerHTML = "This username doesn't exist";
+            document.getElementById('failBox').style.display = 'block';
+            document.getElementById('failMsg').innerHTML = "This username doesn't exist";
             console.log("okay");
         }
         else if(successSignal==3)
         {
             //if password doesn't matched
-            document.getElementById('successBox').style.display = 'block';
-            document.getElementById('successMsg').innerHTML = "Information Successfully saved!";
+            document.getElementById('failBox').style.display = 'block';
+            document.getElementById('failMsg').innerHTML = "Information Successfully saved!";
             console.log("okay");
         }
         else if(successSignal==4)
         {
             //if password doesn't matched
-            document.getElementById('successBox').style.display = 'block';
-            document.getElementById('successMsg').innerHTML = "Information Successfully saved!";
+            document.getElementById('failBox').style.display = 'block';
+            document.getElementById('failMsg').innerHTML = "Information Successfully saved!";
             console.log("okay");
         }
-*/
+        else if(successSignal==5)
+        {
+            //if password doesn't matched
+            document.getElementById('failBox').style.display = 'block';
+            document.getElementById('failMsg').innerHTML = "This StudentID doesn't exist";
+            console.log("okay");
+        }
+
         //To make signl back to normmal and to prevent for the success page to appear every time the page was reload or refresh
-        localStorage.setItem('state',0);
+        localStorage.setItem('guardianMsg',0);
 
         //this will make a image preview before it was uploaded
         fileTb.onchange = evt => {
