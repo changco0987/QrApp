@@ -180,7 +180,7 @@
                     <div class="modal-footer">
                         <div class="form-group">
                             <button type="submit" class="btn btn-primary">Submit</button>
-                            <a type="button" class="btn btn-warning" href="../admin/admin_visitor.php">Cancel</a>
+                            <a type="button" class="btn btn-warning" href="../admin/admin_guardian.php">Cancel</a>
                         </div>
                     </div>
                   </form>

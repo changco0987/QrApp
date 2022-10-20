@@ -6,6 +6,9 @@
     include_once '../db/tb_visitor.php';//tb_visitor.php
     include_once '../model/visitorModel.php';//visitorModel.php
 
+    include_once '../db/tb_student.php';
+    include_once '../model/studentModel.php';
+
     date_default_timezone_set('Asia/Manila'); 
     $currentDateTime = date('Y-m-d h:i:s a');
     session_start();
@@ -129,51 +132,80 @@
             {
                 if(checkSpaces($data->getUsername(),$data->getPassword()) == false)
                 {
-                    $data->setFirstname($_POST['fnameTb']);
-                    $data->setLastname($_POST['lnameTb']);
-                    $data->setAddress($_POST['addressTb']);
-                    $data->setContact_number($_POST['contactTb']);
-                    $data->setStudentId($_POST['studentidTb']);
-                    $data->setStatus($_POST['statusTb']);
+                    //this will check the studentid existance 
+                    $studentId = str_replace(' ', '', $_POST['studentidTb']);//to remove all spaces in the inputted studentid
+                    $student = new studentModel();
+                    $result = ReadStudent($conn,$student);
 
-                    /* Removed the notif function
-                    if(isset($_POST['notifCheckbox']))
+                    while($studentDbRow = mysqli_fetch_assoc($result))
                     {
-                        $data->setNotification($_POST['notifCheckbox']);
+                        $rowStudentId = str_replace(' ', '', $studentDbRow['studentId']);//to remove all spaces in the retrieved studentid
+                        
+                        if(strtolower($studentId) == strtolower($rowStudentId))
+                        {
+                            //This will occur when the student id is existed in the database
+                            $data->setFirstname($_POST['fnameTb']);
+                            $data->setLastname($_POST['lnameTb']);
+                            $data->setAddress($_POST['addressTb']);
+                            $data->setContact_number($_POST['contactTb']);
+                            $data->setStudentId($_POST['studentidTb']);
+                            $data->setStatus($_POST['statusTb']);
+        
+                            /* Removed the notif function
+                            if(isset($_POST['notifCheckbox']))
+                            {
+                                $data->setNotification($_POST['notifCheckbox']);
+                            }
+                            else
+                            {
+                                $data->setNotification('false');
+                            }
+                            */
+        
+                            
+                            if($_FILES['fileTb']['name']!="")
+                            {
+                                $data->setImageName($_POST['usernameTb'].$_SESSION['accType']. "." .$fileExtension);
+                                $uploadedFile = $_FILES['fileTb']['tmp_name'];
+                                copy($uploadedFile,$imgPath.$data->getImageName());//This will move the uploaded file into file directory (web)
+                            }
+                            else
+                            {
+                                $data->setImageName($_POST['imageName']);
+                            }
+                            
+                            UpdateAccountGuardian($conn,$data);
+                            $_SESSION['username'] = $data->getUsername();
+                            $_SESSION['password'] = $_POST['passwordTb'];
+        
+                            //This will tell the system that the update is made in the admin page
+                            if($_POST['adminReq'] == 'true')
+                            {
+                                echo '<script> localStorage.setItem("guardianMsg",1); window.location = "../admin/admin_guardian.php";</script>';  
+                                exit();
+                            }
+                            else
+                            {
+                                echo '<script> localStorage.setItem("state",4); window.location = "../pages/userDashboard.php";</script>';      
+                            }
+                        }
                     }
-                    else
-                    {
-                        $data->setNotification('false');
-                    }
-                    */
-
-                    
-                    if($_FILES['fileTb']['name']!="")
-                    {
-                        $data->setImageName($_POST['usernameTb'].$_SESSION['accType']. "." .$fileExtension);
-                        $uploadedFile = $_FILES['fileTb']['tmp_name'];
-                        copy($uploadedFile,$imgPath.$data->getImageName());//This will move the uploaded file into file directory (web)
-                    }
-                    else
-                    {
-                        $data->setImageName($_POST['imageName']);
-                    }
-                    
-                    UpdateAccountGuardian($conn,$data);
-                    $_SESSION['username'] = $data->getUsername();
-                    $_SESSION['password'] = $_POST['passwordTb'];
-
+        
                     //This will tell the system that the update is made in the admin page
                     if($_POST['adminReq'] == 'true')
                     {
-                        echo '<script> localStorage.setItem("guardianMsg",1); window.location = "../admin/admin_guardian.php";</script>';  
-                        exit();
+                        //This will return the studentid doesn't exist message
+                        echo '<script> localStorage.setItem("guardianMsg",5); window.location = "../admin/admin_guardian.php";</script>';  
+                        exit;
                     }
                     else
                     {
-                        echo '<script> localStorage.setItem("state",4); window.location = "../pages/userDashboard.php";</script>';      
-
+                        //This will return the studentid doesn't exist message
+                        echo '<script> localStorage.setItem("state",5); window.location = "../pages/accSettings.php";</script>';  
+                        exit;
                     }
+
+                    
                 }
                 else
                 {

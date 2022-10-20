@@ -900,8 +900,8 @@ var gateData = [inside,outside];
     else if(successSignal==2)
     {
         //if password doesn't matched
-        document.getElementById('successBox').style.display = 'block';
-        document.getElementById('successMsg').innerHTML = "Username already exist!";
+        document.getElementById('failBox').style.display = 'block';
+        document.getElementById('failMsg').innerHTML = "Username already exist!";
         console.log("okay");
     }
     else if(successSignal==3)
