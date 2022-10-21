@@ -219,7 +219,7 @@
                                         <button type="button" class="form-control btn" id="printBtn" onclick="window.print();" style="width:max-content; font-size:smaller; background-color:#3466AA; color:white;"><i class="bi bi-printer-fill mr-2"></i>Print</button>
                                     </div>
                                     <div class="col-sm-6 col-xs-6 col-md-6 col-lg-6 col-xl-6 d-flex justify-content-end">
-                                        <button type="button" class="form-control btn" data-toggle="modal" data-target="#notifModal" style="width:max-content; font-size:smaller; background-color:#3466AA; color:white;"><i class="bi bi-bell-fill"></i></button>
+                                        <button type="button" id="notifBtn" class="form-control btn" data-toggle="modal" data-target="#notifModal" style="width:max-content; font-size:smaller; background-color:#3466AA; color:white;"><i class="bi bi-bell-fill"></i></button>
                                     </div>
                                 </div>
                                 
@@ -280,6 +280,9 @@
                                 if($_SESSION['accType']=='visitor')
                                 {
                                     ?>
+                                    <script>
+                                        $('#notifBtn').hide();
+                                    </script>
                                         <small class="ml-1 pl-1 text-danger" style="font-size: 15px;"><?php echo $_SESSION['accType'];?></small>
                                     <?php
                                 }
