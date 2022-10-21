@@ -22,6 +22,10 @@
         {
             $dbData = mysqli_query($conn,"SELECT * FROM studentstb WHERE lastname = '".$student->getLastname()."'");
         }
+        else if($student->getStudentId()!=null)
+        {
+            $dbData = mysqli_query($conn,"SELECT * FROM studentstb where studentId = '".$student->getStudentId()."'");
+        }
         else if($student->getId()==null)
         {
             $dbData = mysqli_query($conn,"SELECT * FROM studentstb");

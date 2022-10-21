@@ -9,6 +9,12 @@
     
     include_once '../model/logsModel.php';
     include_once '../db/tb_logs.php';
+    
+    include_once '../model/studentModel.php';
+    include_once '../db/tb_student.php';
+    
+    include_once '../model/dtrModel.php';
+    include_once '../db/tb_dtr.php';
 
     //This will check if the user is truely login
     session_start();
@@ -36,6 +42,7 @@
         
         $result = ReadAccountGuardian($conn,$data);
         $row =  mysqli_fetch_assoc($result);
+        $studentId = $row['studentId'];
     }
     
     date_default_timezone_set('Asia/Manila');
@@ -193,7 +200,7 @@
 <body>
         
     <!-- Alert message container-->
-    <div id="successBox" class="alert alert-success alert-dismissible fade show" role="alert" style="display:block;">
+    <div id="successBox" class="alert alert-success alert-dismissible fade show" role="alert" style="display:none;">
         <strong id="successMsg"></strong>
         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
             <span aria-hidden="true">&times;</span>
@@ -207,11 +214,17 @@
                     <div class="form-group">
                         <center>
                             <small id="qrIndicator"></small>
-                            <div id="printBtn">
-                                <button type="button" class="form-control btn d-flex justify-content-end" onclick="window.print();" style="width:max-content; font-size:smaller; background-color:#3466AA; color:white;"><i class="bi bi-printer-fill mr-2"></i>Print</button>
-                            </div>
+                                <div class="row mb-1 pb-1">
+                                    <div class="col-sm-6 col-xs-6 col-md-6 col-lg-6 col-xl-6 d-flex justify-content-start">
+                                        <button type="button" class="form-control btn" id="printBtn" onclick="window.print();" style="width:max-content; font-size:smaller; background-color:#3466AA; color:white;"><i class="bi bi-printer-fill mr-2"></i>Print</button>
+                                    </div>
+                                    <div class="col-sm-6 col-xs-6 col-md-6 col-lg-6 col-xl-6 d-flex justify-content-end">
+                                        <button type="button" class="form-control btn" data-toggle="modal" data-target="#notifModal" style="width:max-content; font-size:smaller; background-color:#3466AA; color:white;"><i class="bi bi-bell-fill"></i></button>
+                                    </div>
+                                </div>
+                                
                             
-                            <div class="pb-3 mb-3 pt-1 mt-1" id="qrcode"></div>
+                            <div class="pb-3 mb-3 " id="qrcode"></div>
                             <?php
                                                                 
                                 //This will get/generate the default qr code for the user if the user somehow have a previous qr code
@@ -310,7 +323,7 @@
         </div>
     </div>
 
-        <!-- Account Settings Modal -->
+    <!-- Account Settings Modal -->
     <div class="modal fade" id="accSettModal" tabindex="-1" role="dialog" aria-labelledby="accSettModalTitle" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
@@ -389,6 +402,100 @@
                                                         <?php
                                                         $rowCount++;
                                                     
+                                                    }   
+
+                                                }
+                                            ?>
+                                        </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Notification Modal -->
+    <div class="modal fade" id="notifModal" tabindex="-1" role="dialog" aria-labelledby="accSettModalTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="accSettModalLongTitle">Notifications</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <?php
+                
+                        $student = new studentModel();
+                        $student->setStudentId($studentId);
+                        $result = ReadStudent($conn,$student);
+                        $row = mysqli_fetch_assoc($result);
+                ?>
+                <div class="modal-body">
+                    <div class="row pt-1 mt-1">
+                        <div class="col-sm-12 col-xs-12 col-md-12 col-lg-12 col-xl-12">
+                            <h6>Name: <?php echo $row['firstname'].' '.$row['lastname'];?></h6>
+                            <h6 style="font-size:small ;">ID: <?php echo $row['studentId'];?></h6>
+                            <div class="table-wrapper-scroll-y my-custom-scrollbar">
+                                <table class="table table-striped table-hover table-sm text-justify mb-0" id="<?php echo $_SESSION['username'];?>" style="font-size:small;">
+                                        <caption id="tbCaption"></caption>
+                                        <thead class="text-light" style="background-color:#234471;">
+                                            <tr>
+                                                <th scope="col" class="text-center">Activities</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody >
+                                            <?php
+
+                                                $dtr = new dtrModel();
+                                                $dtrData = ReadDtr($conn,$dtr);
+                                                while($dtrRow = mysqli_fetch_assoc($dtrData))
+                                                {
+                                                    if($dtrRow['accType']=='student')
+                                                    {
+                                                        if($row['id']==$dtrRow['dataId'])
+                                                        {
+                                                            ?>
+                                                                <tr class="table-primary">
+                                                            <?php
+                                                            //This iteration is to check if the time-in and time-out is null in dtr database or not
+                                                            if($dtrRow['time_in']==null)
+                                                            {
+                                                                ?>
+                                                                    <td></td>
+                                                                <?php
+                                                            }
+                                                            else
+                                                            {
+                                                                ?>
+                                                                    <td style="width: 225px;"><?php echo "Dear parent, your child entered to campus at ".date("M d, Y h:i a", strtotime($dtrRow['time_in']));?></td>
+                                                                <?php
+                                                            }
+                                                            ?>
+                                                                </tr>
+                                                                <tr style="background-color:#82B7DC;">
+                                                            <?php
+
+                                                            if($dtrRow['time_out']==null)
+                                                            {
+                                                                ?>
+                                                                    <td></td>
+                                                                <?php
+                                                            }
+                                                            else
+                                                            {
+                                                                ?>
+                                                                    <td style="width: 225px;"><?php echo "Dear parent, your child has left the campus at ".date("M d, Y h:i a", strtotime($dtrRow['time_out']));?></td>
+                                                                
+                                                                <?php
+                                                            }
+                                                            ?>
+                                                                </tr>
+                                                            <?php
+                                                        }
                                                     }   
 
                                                 }
