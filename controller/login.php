@@ -96,7 +96,7 @@
             $result = ReadAccountGuardian($conn,$data);
             while($row = mysqli_fetch_assoc($result))
             {
-               echo $row['status']; 
+               //echo $row['status']; 
                //to check if the username and password is match
                if($row['password']==$data->getPassword())
                {           
@@ -134,7 +134,8 @@
                          CreateLog($conn,$log);
                          
                          //$_SESSION['qr_ExDate'] = $row['qr_ExDate'];
-                         header("Location: ../pages/userDashboard.php");
+                         echo '<script>window.location = "../pages/userDashboard.php";</script>';
+                         //header("Location: ../pages/userDashboard.php");
                          exit;
                     }
                     else if($row['status']=='lock')

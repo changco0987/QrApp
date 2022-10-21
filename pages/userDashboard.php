@@ -214,11 +214,11 @@
                     <div class="form-group">
                         <center>
                             <small id="qrIndicator"></small>
-                                <div class="row mb-1 pb-1">
-                                    <div class="col-sm-6 col-xs-6 col-md-6 col-lg-6 col-xl-6 d-flex justify-content-start">
+                                <div class="row mb-1 pb-1 d-flex justify-content-end">
+                                    <div class="col-sm-10 col-xs-10 col-md-10 col-lg-10 col-xl-10 d-flex justify-content-end" style="width:max-content;">
                                         <button type="button" class="form-control btn" id="printBtn" onclick="window.print();" style="width:max-content; font-size:smaller; background-color:#3466AA; color:white;"><i class="bi bi-printer-fill mr-2"></i>Print</button>
                                     </div>
-                                    <div class="col-sm-6 col-xs-6 col-md-6 col-lg-6 col-xl-6 d-flex justify-content-end">
+                                    <div class="col-sm-2 col-xs-2 col-md-2 col-lg-2 col-xl-2 d-flex justify-content-end" style="width:max-content;">
                                         <button type="button" id="notifBtn" class="form-control btn" data-toggle="modal" data-target="#notifModal" style="width:max-content; font-size:smaller; background-color:#3466AA; color:white;"><i class="bi bi-bell-fill"></i></button>
                                     </div>
                                 </div>
