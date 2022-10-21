@@ -278,7 +278,7 @@ td{
 <body>
           
 <!-- Alert message container-->
-<div id="successBox" class="alert alert-success alert-dismissible fade show" role="alert" style="display:none;">
+<div id="successBox" class="alert alert-success alert-dismissible fade show" role="alert" style="position:absolute; display:none; z-index: 1;">
     <strong id="successMsg"></strong>
     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
         <span aria-hidden="true">&times;</span>
@@ -286,7 +286,7 @@ td{
 </div>
     
 <!-- Alert message container-->
-<div id="failBox" class="alert alert-danger alert-dismissible fade show" role="alert" style="display:none;">
+<div id="failBox" class="alert alert-danger alert-dismissible fade show" role="alert" style="position:absolute; display:none; z-index: 1;">
     <strong id="failMsg"></strong>
     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
         <span aria-hidden="true">&times;</span>
