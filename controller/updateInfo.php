@@ -36,7 +36,7 @@
                 //Throws back to the signup page and show "This account is already existed"
                 
                 //This will tell the system that the update is made in the admin page
-                if($_POST['adminReq'] == 'true')
+                if(isset($_POST['adminReq']))
                 {
                     echo '<script> localStorage.setItem("visitorMsg",4); window.location = "../admin/editVisitor.php";</script>';  
                     exit();
@@ -71,7 +71,7 @@
                     
 
                     //This will tell the system that the update is made in the admin page
-                    if($_POST['adminReq'] == 'true')
+                    if(isset($_POST['adminReq']))
                     {
                         //this is the success message
                         echo '<script> localStorage.setItem("visitorMsg",1); window.location = "../admin/admin_visitor.php";</script>';  
@@ -90,7 +90,7 @@
                     //Throws back to the signup page and show an error saying, spaces is illegal
 
                     //This will tell the system that the update is made in the admin page
-                    if($_POST['adminReq'] == 'true')
+                    if(isset($_POST['adminReq']))
                     {
                         echo '<script> localStorage.setItem("visitorMsg",4); window.location = "../admin/editVisitor.php";</script>';  
                     }
@@ -122,7 +122,7 @@
             if($row>0 && $_SESSION['username']!==$data->getUsername())
             {
                 //Throws back to the signup page and show "This account is already existed"
-                if($_POST['adminReq'] == 'true')
+                if(isset($_POST['adminReq']))
                 {
                     echo '<script> localStorage.setItem("guardianMsg",4); window.location = "../admin/editGuardian.php";</script>';  
                 }
@@ -181,7 +181,7 @@
                             UpdateAccountGuardian($conn,$data);
         
                             //This will tell the system that the update is made in the admin page
-                            if($_POST['adminReq'] == 'true')
+                            if(isset($_POST['adminReq']))
                             {
                                 unset($_SESSION['username']);
                                 //This will occur if the changes was successfully
@@ -199,7 +199,7 @@
                     }
         
                     //This will tell the system that the update is made in the admin page
-                    if($_POST['adminReq'] == 'true')
+                    if(isset($_POST['adminReq']))
                     {
                         //This will return the studentid doesn't exist message
                         echo '<script> localStorage.setItem("guardianMsg",5); window.location = "../admin/editGuardian.php";</script>';  
@@ -218,7 +218,7 @@
                 {
                     //Throws back to the signup page and show an error saying, spaces is illegal
                     //This will tell the system that the update is made in the admin page
-                    if($_POST['adminReq'] == 'true')
+                    if(isset($_POST['adminReq']))
                     {
                         echo '<script> localStorage.setItem("guardianMsg",4); window.location = "../admin/editGuardian.php";</script>';  
                     }

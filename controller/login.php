@@ -152,9 +152,9 @@
                }
             }
 
-            echo $data->getUsername();
+            //echo $data->getUsername();
            //Throws back to the login page and show "This account is not existed"
-          //echo '<script> localStorage.setItem("state",2); window.location = "../pages/guardianLogin.php";</script>';
+          echo '<script> localStorage.setItem("state",2); window.location = "../pages/guardianLogin.php";</script>';
           exit;
     
         }

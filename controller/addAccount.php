@@ -45,10 +45,11 @@
                         $uploadedFile = $_FILES['fileTb']['tmp_name'];
                         copy($uploadedFile,$imgPath.$data->getImageName());//This will move the uploaded file into file directory (web)
                     }
-                    echo '<script> localStorage.setItem("visitorMsg",1);</script>';   
+                    
+                    echo '<script> localStorage.setItem("visitorMsg",1); window.location = "../admin/admin_visitor.php";</script>';   
                     CreateAccountVisitor($conn,$data); 
-
-                    header("location: ../admin/admin_visitor.php?success");
+                    exit();
+                    //header("location: ../admin/admin_visitor.php?success");
                }
                else
                {
