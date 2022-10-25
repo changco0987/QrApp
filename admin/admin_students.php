@@ -303,10 +303,7 @@ td{
               <!--input type="hidden" name="departmentName" value=""-->
               <button type="button" onclick="gotoAdminStudent()" class="collapse-item btn btn-sm my-1 collapseBtn">Students</button><br>
 
-              <form action="../pages/reporthc.php" method="post" enctype="multipart/form-data">
-                  <!--input type="hidden" name="departmentName" value=""-->
-                  <button type="submit" class="collapse-item btn btn-sm my-1 collapseBtn" >Faculty/Staff</button><br>
-              </form>
+              <button type="button" onclick="gotoAdminFaculty()" class="collapse-item btn btn-sm my-1 collapseBtn">Faculty/Staff</button><br>
               
               <button type="button" onclick="gotoAdminVisitor()" class="collapse-item btn btn-sm my-1 collapseBtn">Visitors</button><br>
           
@@ -321,16 +318,13 @@ td{
             <h6 class="collapse-header" style="font-size: 13px;"></h6>
 
               <!--input type="hidden" name="departmentName" value=""-->
-              <button type="button" onclick="gotoAdminStudent()" class="collapse-item btn btn-sm my-1 collapseBtn">Students</button><br>
+              <button type="button" onclick="gotoRecordStudent()" class="collapse-item btn btn-sm my-1 collapseBtn">Students</button><br>
 
-              <form action="../pages/reporthc.php" method="post" enctype="multipart/form-data">
-                  <!--input type="hidden" name="departmentName" value=""-->
-                  <button type="submit" class="collapse-item btn btn-sm my-1 collapseBtn" >Faculty/Staff</button><br>
-              </form>
+              <button type="button" onclick="gotoRecordFaculty()" class="collapse-item btn btn-sm my-1 collapseBtn">Faculty/Staff</button><br>
               
-              <button type="button" onclick="gotoAdminVisitor()" class="collapse-item btn btn-sm my-1 collapseBtn">Visitors</button><br>
+              <button type="button" onclick="gotoRecordVisitor()" class="collapse-item btn btn-sm my-1 collapseBtn">Visitors</button><br>
           
-              <button type="button" onclick="gotoAdminGuardian()" class="collapse-item btn btn-sm my-1 collapseBtn">Guardians</button><br>
+              <button type="button" onclick="gotoRecordGuardian()" class="collapse-item btn btn-sm my-1 collapseBtn">Guardians</button><br>
       
         </div>
     </div>
