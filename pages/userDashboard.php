@@ -23,7 +23,8 @@
         header("Location: ../index.php");
     }
     
-    date_default_timezone_set('Asia/Manila');
+    date_default_timezone_set('Asia/Manila'); 
+    $currentDateTime = date('Y-m-d h:i:s a');
 
     $row = array();
 
@@ -43,6 +44,7 @@
         $result = ReadAccountGuardian($conn,$data);
         $row =  mysqli_fetch_assoc($result);
         $studentId = $row['studentId'];
+
     }
     
     date_default_timezone_set('Asia/Manila');
@@ -64,7 +66,10 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
     <!--Bootstrap icon--> 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.3/font/bootstrap-icons.css">
-    
+    <!--Jquery-->
+    <!--script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script-->
+
+
     <script src="https://code.jquery.com/jquery-1.8.3.min.js"></script>
     <!-- QR code javascript -->
     <script src="../javascript/qrcode.min.js"></script>
@@ -310,7 +315,7 @@
                     <div class="form-group">
                         <div class="row pt-1 mt-1">
                             <div class="col-sm-12 col-xs-12 col-md-12 col-lg-12">
-                                <button type="button" class="form-control btn  d-flex justify-content-center" data-toggle="modal" data-target="#accSettModal" id="submitBtn" style="background-color: #3466AA; color:white;"><i class="bi bi bi-sliders mr-2"></i>Account Settings</button>
+                                <button type="button" class="form-control btn d-flex justify-content-center" data-toggle="modal" data-target="#accSettModal" id="accSettBtn" style="background-color: #3466AA; color:white;"><i class="bi bi bi-sliders mr-2"></i>Account Settings</button>
                             </div>
                         </div>
                     </div>
@@ -325,6 +330,17 @@
             </div>
         </div>
     </div>
+
+    <?php
+
+        $formattedCurrDate = strtotime($currentDateTime);
+        $formattedLatestDate = '';
+        if($formattedCurrDate==$formattedLatestDate)
+        {
+
+        }
+    
+    ?>
 
     <!-- Account Settings Modal -->
     <div class="modal fade" id="accSettModal" tabindex="-1" role="dialog" aria-labelledby="accSettModalTitle" aria-hidden="true">
@@ -393,9 +409,7 @@
                                                 {
                                                     if($row['accType']==$_SESSION['accType'])
                                                     {
-                                                        
                                                         ?>
-                                                        
                                                             <tr class="table-primary">
                                                                 <td><?php echo $rowCount;?></td>
                                                                 <td><?php echo $row['activity'];?></td>
@@ -404,7 +418,6 @@
                                                             </tr>
                                                         <?php
                                                         $rowCount++;
-                                                    
                                                     }   
 
                                                 }
@@ -420,6 +433,7 @@
         </div>
     </div>
 
+
     <!-- Notification Modal -->
     <div class="modal fade" id="notifModal" tabindex="-1" role="dialog" aria-labelledby="accSettModalTitle" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" role="document">
@@ -431,11 +445,10 @@
                     </button>
                 </div>
                 <?php
-                
-                        $student = new studentModel();
-                        $student->setStudentId($studentId);
-                        $result = ReadStudent($conn,$student);
-                        $row = mysqli_fetch_assoc($result);
+                    $student = new studentModel();
+                    $student->setStudentId($studentId);
+                    $result = ReadStudent($conn,$student);
+                    $row = mysqli_fetch_assoc($result);
                 ?>
                 <div class="modal-body">
                     <div class="row pt-1 mt-1">
@@ -452,7 +465,6 @@
                                         </thead>
                                         <tbody >
                                             <?php
-
                                                 $dtr = new dtrModel();
                                                 $dtrData = ReadDtr($conn,$dtr);
                                                 while($dtrRow = mysqli_fetch_assoc($dtrData))
@@ -476,6 +488,7 @@
                                                                 ?>
                                                                     <td style="width: 225px;"><?php echo "Dear parent, your child entered to campus at ".date("M d, Y h:i a", strtotime($dtrRow['time_in']));?></td>
                                                                 <?php
+                                                                $formattedLatestDate = strtotime($dtrRow['time_in']);
                                                             }
                                                             ?>
                                                                 </tr>
@@ -494,15 +507,16 @@
                                                                     <td style="width: 225px;"><?php echo "Dear parent, your child has left the campus at ".date("M d, Y h:i a", strtotime($dtrRow['time_out']));?></td>
                                                                 
                                                                 <?php
+                                                                $formattedLatestDate = strtotime($dtrRow['time_out']);
                                                             }
                                                             ?>
                                                                 </tr>
                                                             <?php
                                                         }
                                                     }   
-
                                                 }
                                             ?>
+                                            <script>document.getElementById('accSettBtn').click();</script>
                                         </tbody>
                                 </table>
                             </div>

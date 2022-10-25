@@ -148,7 +148,7 @@ label{
   font-weight: bolder;
 }
 
-#collapseUtilities, #collapseMaintenance{
+#collapseUtilities, #collapseMaintenance, #collapseHealthRecord{
   background-color:#234471 ;
 }
 
@@ -314,8 +314,27 @@ td{
       
         </div>
     </div>
-  <a class=" mt-1" href="#contact"><i class="bi bi-card-checklist mr-1"></i> Health Records</a>
-  
+    <!--Health Record button-->
+  <a type="button" class="mt-1" href="#healthRecord" data-toggle="collapse" data-target="#collapseHealthRecord" aria-expanded="true" aria-controls="collapseHealthRecord"><i class="bi bi-card-checklist mr-1"></i> Health Records</a>
+    <div id="collapseHealthRecord" class="collapse my-1" aria-labelledby="headingUtilities" data-parent="#accordionSidebar" >
+        <div class="py-2 collapse-inner rounded mx-4">
+            <h6 class="collapse-header" style="font-size: 13px;"></h6>
+
+              <!--input type="hidden" name="departmentName" value=""-->
+              <button type="button" onclick="gotoAdminStudent()" class="collapse-item btn btn-sm my-1 collapseBtn">Students</button><br>
+
+              <form action="../pages/reporthc.php" method="post" enctype="multipart/form-data">
+                  <!--input type="hidden" name="departmentName" value=""-->
+                  <button type="submit" class="collapse-item btn btn-sm my-1 collapseBtn" >Faculty/Staff</button><br>
+              </form>
+              
+              <button type="button" onclick="gotoAdminVisitor()" class="collapse-item btn btn-sm my-1 collapseBtn">Visitors</button><br>
+          
+              <button type="button" onclick="gotoAdminGuardian()" class="collapse-item btn btn-sm my-1 collapseBtn">Guardians</button><br>
+      
+        </div>
+    </div>
+
   <a type="button" class=" mt-1" href="#about" data-toggle="collapse" data-target="#collapseUtilities" aria-expanded="true" aria-controls="collapseUtilities"><i class="bi bi-tools mr-1"></i> Utilities</a>
     <div id="collapseUtilities" class="collapse my-1" aria-labelledby="headingUtilities" data-parent="#accordionSidebar" >
         <div class="py-2 collapse-inner rounded mx-4">
