@@ -190,18 +190,32 @@
                     $data->setGateStat('in');
                     $data->setDtrId(CreateDtr($conn,$dtr));
 
-                    //The message sent to guardian
-                    $message = "Dear parent, your child entered to campus at ".date("M d, Y h:i a", strtotime($dtr->getTime_in()));
-                    
-
-                    //this will check if the guardian number is at the format +63
-                    if(str_contains($row['guardianNum'], '+63')==false)
+                    //This will get the guardian details to check if the guardian has turned the notif on or off
+                    $guardian = new guardianModel();
+                    $result = ReadAccountGuardian($conn,$guardian);
+                    while($guardianRow = mysqli_fetch_assoc($result))
                     {
-                        $phone =  substr_replace($row['guardianNum'],'+63',0,1);
+                        $guardianName = $guardianRow['firstname'].' '.$guardianRow['lastname'];
+                        //this will find the guardian name
+                        if(strtolower($guardianName) == strtolower($row['guardianName']))
+                        {
+                            //This will check if the guardian notification is on or off to send an sms
+                            if($guardianRow['notification'] == true)
+                            {
+                                //The message sent to guardian
+                                $message = "Dear parent, your child entered to campus at ".date("M d, Y h:i a", strtotime($dtr->getTime_in()));
+                                
+        
+                                //this will check if the guardian number is at the format +63
+                                if(str_contains($row['guardianNum'], '+63')==false)
+                                {
+                                    $phone =  substr_replace($row['guardianNum'],'+63',0,1);
+                                }
+        
+                                sendMessage($ch,$key,$device,$sim,$priority,$phone,$message);//This will send the sms notification to the student guardian
+                            }
+                        }
                     }
-
-                    sendMessage($ch,$key,$device,$sim,$priority,$phone,$message);//This will send the sms notification to the student guardian
-
                     UpdateStudent($conn,$data);
                     
                 }
@@ -227,18 +241,32 @@
                     $data->setGateStat('out');
                     $data->setDtrId($row['dtrId']);//To make the UpdateAccountGuardian 1st condition valid
 
-                    
-                    //The message sent to guardian
-                    $message = "Dear parent, your child has left the campus at ".date("M d, Y h:i a", strtotime($dtr->getTime_out()));
-                    
-
-                    //this will check if the guardian number is at the format +63
-                    if(str_contains($row['guardianNum'], '+63')==false)
+                    //This will get the guardian details to check if the guardian has turned the notif on or off
+                    $guardian = new guardianModel();
+                    $result = ReadAccountGuardian($conn,$guardian);
+                    while($guardianRow = mysqli_fetch_assoc($result))
                     {
-                        $phone =  substr_replace($row['guardianNum'],'+63',0,1);
+                        $guardianName = $guardianRow['firstname'].' '.$guardianRow['lastname'];
+                        //this will find the guardian name
+                        if(strtolower($guardianName) == strtolower($row['guardianName']))
+                        {
+                            //This will check if the guardian notification is on or off to send an sms
+                            if($guardianRow['notification'] == true)
+                            {
+                                //The message sent to guardian
+                                $message = "Dear parent, your child has left the campus at ".date("M d, Y h:i a", strtotime($dtr->getTime_out()));
+                                
+        
+                                //this will check if the guardian number is at the format +63
+                                if(str_contains($row['guardianNum'], '+63')==false)
+                                {
+                                    $phone =  substr_replace($row['guardianNum'],'+63',0,1);
+                                }
+        
+                                sendMessage($ch,$key,$device,$sim,$priority,$phone,$message);//This will send the sms notification to the student guardian
+                            }
+                        }
                     }
-
-                    sendMessage($ch,$key,$device,$sim,$priority,$phone,$message);//This will send the sms notification to the student guardian
 
                     UpdateStudent($conn,$data);
                 }
