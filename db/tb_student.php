@@ -16,22 +16,27 @@
     {
         if($student->getFirstname())
         {
+            //to get data using firstname
             $dbData = mysqli_query($conn,"SELECT * FROM studentstb WHERE firstname = '".$student->getFirstname()."'");
         }
         else if($student->getLastname())
         {
+            //to get data using lastname
             $dbData = mysqli_query($conn,"SELECT * FROM studentstb WHERE lastname = '".$student->getLastname()."'");
         }
         else if($student->getStudentId()!=null)
         {
+            //to get data using studentId
             $dbData = mysqli_query($conn,"SELECT * FROM studentstb where studentId = '".$student->getStudentId()."'");
         }
         else if($student->getId()==null)
         {
+            //to get all data in this table
             $dbData = mysqli_query($conn,"SELECT * FROM studentstb");
         }
         else
         {
+            //to get data using id
             $dbData = mysqli_query($conn,"SELECT * FROM studentstb where id = ".$student->getId());
         }
 

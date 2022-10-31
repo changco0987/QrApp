@@ -19,7 +19,7 @@
     
     <script src="https://code.jquery.com/jquery-1.8.3.min.js"></script>
     <!-- QR code javascript -->
-    <script src="../javascript/qrcode.min.js"></script>
+    <script src="javascript/qrcode.min.js"></script>
 
     <!-- My CSS-->
     <link type="text/css" rel="stylesheet" href="css/userDashboard.css">

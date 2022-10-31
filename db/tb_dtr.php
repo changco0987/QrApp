@@ -12,12 +12,19 @@
 
     function ReadDtr($conn,$dtr)
     {
-        if($dtr->getId()==null)
+        if($dtr->getDataId()!=null)
         {
+            //to get all data in this table
+            $dbData = mysqli_query($conn,"SELECT * FROM dtr WHERE dataId = ".$dtr->getDataId());
+        }
+        else if($dtr->getId()==null)
+        {
+            //to get all data in this table
             $dbData = mysqli_query($conn,"SELECT * FROM dtr");
         }
         else
         {
+            //to get data using id
             $dbData = mysqli_query($conn,"SELECT * FROM dtr WHERE id = ".$dtr->getId());
         }
 

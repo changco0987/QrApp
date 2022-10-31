@@ -12,6 +12,10 @@
     include_once '../model/studentModel.php';
     include_once '../model/dtrModel.php';
 
+    //sms API
+    include_once '../API/apiData.php';
+    include_once 'smsAPI.php';
+
 
     date_default_timezone_set('Asia/Manila'); 
     $currentDateTime = date('Y-m-d h:i:s a');
@@ -185,6 +189,19 @@
                     //This will update the userside dtr Log
                     $data->setGateStat('in');
                     $data->setDtrId(CreateDtr($conn,$dtr));
+
+                    //The message sent to guardian
+                    $message = "Dear parent, your child entered to campus at ".date("M d, Y h:i a", strtotime($dtr->getTime_in()));
+                    
+
+                    //this will check if the guardian number is at the format +63
+                    if(str_contains($row['guardianNum'], '+63')==false)
+                    {
+                        $phone =  substr_replace($row['guardianNum'],'+63',0,1);
+                    }
+
+                    sendMessage($ch,$key,$device,$sim,$priority,$phone,$message);//This will send the sms notification to the student guardian
+
                     UpdateStudent($conn,$data);
                     
                 }
@@ -209,6 +226,20 @@
                     //This will update the userside dtr Log
                     $data->setGateStat('out');
                     $data->setDtrId($row['dtrId']);//To make the UpdateAccountGuardian 1st condition valid
+
+                    
+                    //The message sent to guardian
+                    $message = "Dear parent, your child has left the campus at ".date("M d, Y h:i a", strtotime($dtr->getTime_out()));
+                    
+
+                    //this will check if the guardian number is at the format +63
+                    if(str_contains($row['guardianNum'], '+63')==false)
+                    {
+                        $phone =  substr_replace($row['guardianNum'],'+63',0,1);
+                    }
+
+                    sendMessage($ch,$key,$device,$sim,$priority,$phone,$message);//This will send the sms notification to the student guardian
+
                     UpdateStudent($conn,$data);
                 }
                 
