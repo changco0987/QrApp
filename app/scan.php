@@ -391,12 +391,12 @@ h6{
                         <h6 id="typeLb" style="font-size:13px; color:red;" class="mt-1"></h6>
                     </center>
                     <h2 id="scanLb" class="mx-auto text-center">Scan Here</h2>
-                    <h6 id="nameLb" class="mt-2"></h6>
-                    <h6 id="courseLb"></h6>
-                    <h6 id="contactLb"></h6>
-                    <h6 id="addressLb"></h6>
-                    <h6 id="guardianLb"></h6>
-                    <h6 id="timeLb" class="text-success"></h6>
+                    <h3 id="nameLb" class="mt-2" style=" font-weight:bold;"></h3>
+                    <h4 id="courseLb"></h4>
+                    <h4 id="contactLb"></h4>
+                    <h4 id="addressLb"></h4>
+                    <h4 id="guardianLb"></h4>
+                    <h4 id="timeLb" class="text-success"></h4>
                     <h2 id="inTxt" class="text-center" style="color:green; font-weight:bold;"><i class="bi bi-check2-circle mr-1"></i>Time-in</h2>
                     <h2 id="outTxt" class="text-center" style="color:green; font-weight:bold;"><i class="bi bi-check2-circle mr-1"></i>Time-out</h2>
                     <h2 id="errorTxt" class="text-center" style="color:red; font-weight:bold;"><i class="bbi bi-exclamation-diamond-fill mr-1"></i></h2>
