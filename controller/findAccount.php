@@ -92,12 +92,12 @@
         }
         else
         {
-            header("Location: ../index.php");
+            header("Location: wipedata.php");
         }
     }
     else
     {
-        header("Location: ../index.php");
+        header("Location: wipedata.php");
     }
 
 

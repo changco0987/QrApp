@@ -194,8 +194,8 @@ footer * {
     <div class="row myRow mt-5 pt-5 mx-auto">
         <div class="col-sm-12 col-xs-12 col-md-12 col-lg-12 my-5 py-5">
             <div class="container">
-                <div class="d-flex justify-content-center my-5 py-1">
-                    <form action="../controller/findAccount.php" method="post" enctype="multipart/form-data">
+                <div class="d-flex justify-content-center my-2">
+                    <form action="../controller/resetPass.php" method="post" enctype="multipart/form-data">
                         <input type="hidden" name="accType" value="<?php echo $_SESSION['accType'];?>">
                         <div class="form-group">
                             <center>
@@ -207,8 +207,16 @@ footer * {
                         <div class="form-group">
                             <div class="row">
                                 <div class="col-sm-12 col-xs-12 col-md-12 col-lg-12">
+                                    <label class="d-flex align-items-start" for="otpTb">OTP code</label>
+                                    <input type="text" class="form-control form-control-sm" id="otpTb" name="otpTb" placeholder="Ex. 12345678" minlength="8" maxlength="8" required>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="row">
+                                <div class="col-sm-12 col-xs-12 col-md-12 col-lg-12">
                                     <label class="d-flex align-items-start" for="passwordTb">New password</label>
-                                    <input type="password" class="form-control" id="passwordTb" name="passwordTb" placeholder="Ex. CMarie123" minlength="8" maxlength="15" required>
+                                    <input type="password" class="form-control form-control-sm" id="passwordTb" name="passwordTb" placeholder="Ex. CMarie123" minlength="8" maxlength="15" required>
                                     <small class="d-flex align-items-start" style="color:red;">Use at least 8 or up to 15 characters for your password </small>
                                 </div>
                             </div>
@@ -273,9 +281,9 @@ footer * {
         }
         else if(successSignal==2)
         {
-            //if email is already taken
+            //if incorrect otp
             document.getElementById('alertBox').style.display = 'block';
-            document.getElementById('errorMsg').innerHTML = 'Sorry, this account does not exist';
+            document.getElementById('errorMsg').innerHTML = 'Incorrect OTP';
             console.log("okay");
         }
         else if(successSignal==3)

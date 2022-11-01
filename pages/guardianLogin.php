@@ -304,6 +304,13 @@ footer * {
             document.getElementById('errorMsg').innerHTML = "This account is locked, please contact the admin";
             console.log("okay");
         }
+        else if(successSignal==6)
+        {
+            //if the user is successfully reset password
+            document.getElementById('successBox').style.display = 'block';
+            document.getElementById('successMsg').innerHTML = "Reset Password Successfully!";
+            console.log("okay");
+        }
 
         //To make signl back to normmal and to prevent for the success page to appear every time the page was reload or refresh
         localStorage.setItem('state',0);

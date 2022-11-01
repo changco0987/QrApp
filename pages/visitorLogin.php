@@ -242,7 +242,7 @@ footer * {
 
 
     <!-- Alert message container-->
-    <div id="alertBox" class="alert alert-danger alert-dismissible fade show" role="alert" style="display:block ;">
+    <div id="alertBox" class="alert alert-danger alert-dismissible fade show" role="alert" style="display:block;">
         <strong id="errorMsg">Holy guacamole!</strong>
         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
             <span aria-hidden="true">&times;</span>
@@ -297,6 +297,13 @@ footer * {
             //if the account is locked
             document.getElementById('alertBox').style.display = 'block';
             document.getElementById('errorMsg').innerHTML = "This account is locked, please contact the admin";
+            console.log("okay");
+        }
+        else if(successSignal==6)
+        {
+            //if the user is successfully reset password
+            document.getElementById('successBox').style.display = 'block';
+            document.getElementById('successMsg').innerHTML = "Reset Password Successfully!";
             console.log("okay");
         }
 
