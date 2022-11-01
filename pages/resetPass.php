@@ -178,7 +178,7 @@ footer * {
 }
     </style>
     <link rel="icon" href="../asset/qr.png">
-    <title>Entrance Monitoring sys - Login</title>
+    <title>Entrance Monitoring sys - Reset Password</title>
 </head>
 <body>
     <!-- Image and text Header-->

@@ -1,9 +1,5 @@
 <?php
     session_start();
-    if(isset($_SESSION['username']))
-    {
-        header("Location: userDashboard.php");
-    }
     
     date_default_timezone_set('Asia/Manila');
 
@@ -180,7 +176,7 @@ footer * {
 }
     </style>
     <link rel="icon" href="../asset/qr.png">
-    <title>Entrance Monitoring sys - Login</title>
+    <title>Entrance Monitoring sys - Reset Password</title>
 </head>
 <body>
     <!-- Image and text Header-->
