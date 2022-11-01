@@ -189,7 +189,7 @@ footer * {
     <div class="row myRow mt-5 pt-5 mx-auto">
         <div class="col-sm-12 col-xs-12 col-md-12 col-lg-12 my-5 py-5">
             <div class="container">
-                <div class="d-flex justify-content-center my-4">
+                <div class="d-flex justify-content-center my-3">
                     <form action="../controller/login.php" method="post" enctype="multipart/form-data">  
                         <input type="hidden" name="accType" value="visitor">
                         <div class="form-group">
@@ -213,10 +213,13 @@ footer * {
                             </div>
                         </div>
                         <div class="form-group">
-                            <div class="row pt-1 mt-1">
+                            <div class="row">
                                 <div class="col-sm-12 col-xs-12 col-md-12 col-lg-12">
                                     <button type="submit" class="form-control btn" id="submitBtn" style="background-color: #3466AA; color:white;">Login</button>
-                                    <small>Don't have any account? <a class="text-primary" href="visitorSignup.php">Just Click here</a></small>
+                                    <small>Don't have any account? <a class="text-primary" href="visitorSignup.php">Just Click here</a></small><br>
+
+                                    <?php $_SESSION['accType'] = 'visitor';?>
+                                    <small><button type="submit" class="text-primary border-0" onclick="gotoResetPass();">Forgot Password?</button></small>
                                 </div>
                             </div>
                         </div>

@@ -51,3 +51,10 @@ function gotoRecordFaculty()
 {
     //window.location = '../admin/admin_guardian.php';
 }
+
+
+//This will go to reset password page
+function gotoResetPass()
+{
+    window.location = '../pages/resetPass.php';
+}
