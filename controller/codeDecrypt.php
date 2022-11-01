@@ -210,7 +210,7 @@
                                 //this will check if the guardian number is at the format +63
                                 if(str_contains($row['guardianNum'], '+63')==false)
                                 {
-                                    $phone =  substr_replace($row['guardianNum'],'+63',0,1);
+                                    $phone =  substr_replace($row['guardianNum'],'+63',0,1);//this will replace the 0 in the start of the number and replace with +63
                                 }
         
                                 sendMessage($ch,$key,$device,$sim,$priority,$phone,$message);//This will send the sms notification to the student guardian
@@ -262,7 +262,7 @@
                                 //this will check if the guardian number is at the format +63
                                 if(str_contains($row['guardianNum'], '+63')==false)
                                 {
-                                    $phone =  substr_replace($row['guardianNum'],'+63',0,1);
+                                    $phone =  substr_replace($row['guardianNum'],'+63',0,1);//this will replace the 0 in the start of the number and replace with +63
                                 }
         
                                 sendMessage($ch,$key,$device,$sim,$priority,$phone,$message);//This will send the sms notification to the student guardian

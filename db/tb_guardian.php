@@ -36,7 +36,11 @@
 
     function UpdateAccountGuardian($conn,$data)
     {
-        if($data->getDtrId()!=null)
+        if($data->getOtp()!=null)
+        {
+            mysqli_query($conn,"UPDATE guardiantb set otp ='".$data->getOtp()."' where username = '".$data->getUsername()."'");
+        }
+        else if($data->getDtrId()!=null)
         {
             mysqli_query($conn,"UPDATE guardiantb set gateStat ='".$data->getGateStat()."', dtrId = '".$data->getDtrId()."' where username = '".$data->getUsername()."'");
         }

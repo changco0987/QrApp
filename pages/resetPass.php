@@ -4,7 +4,6 @@
     {
         header("Location: userDashboard.php");
     }
-    
     date_default_timezone_set('Asia/Manila');
 
 
@@ -196,12 +195,12 @@ footer * {
     <div class="row myRow mt-5 pt-5 mx-auto">
         <div class="col-sm-12 col-xs-12 col-md-12 col-lg-12 my-5 py-5">
             <div class="container">
-                <div class="d-flex justify-content-center my-4 py-1">
+                <div class="d-flex justify-content-center my-5 py-1">
                     <form action="../controller/findAccount.php" method="post" enctype="multipart/form-data">
                         <input type="hidden" name="accType" value="<?php echo $_SESSION['accType'];?>">
                         <div class="form-group">
                             <center>
-                            <h2>Find your account</h2>
+                            <h2>Reset Password</h2>
 
                             </center>
                             <hr style="height:2px; border-width:0;background-color: #3466AA">
@@ -209,9 +208,9 @@ footer * {
                         <div class="form-group">
                             <div class="row">
                                 <div class="col-sm-12 col-xs-12 col-md-12 col-lg-12">
-                                    <label class="d-flex align-items-start" for="usernameTb">Username</label>
-                                    <input type="text" class="form-control" id="usernameTb" name="usernameTb" placeholder="Ex. Marie0123" maxlength="20" required>
-                                    <small style="color:red; font-size:12px;">This will send the OTP authentication to the linked<br>mobile number of your username</small>
+                                    <label class="d-flex align-items-start" for="passwordTb">New password</label>
+                                    <input type="password" class="form-control" id="passwordTb" name="passwordTb" placeholder="Ex. CMarie123" minlength="8" maxlength="15" required>
+                                    <small class="d-flex align-items-start" style="color:red;">Use at least 8 or up to 15 characters for your password </small>
                                 </div>
                             </div>
                         </div>
@@ -268,8 +267,8 @@ footer * {
         if(successSignal==1)
         {
             //if incorrect password
-            document.getElementById('alertBox').style.display = 'block';
-            document.getElementById('errorMsg').innerHTML = 'Username does not exist!';
+            document.getElementById('successBox').style.display = 'block';
+            document.getElementById('successMsg').innerHTML = 'The OTP code has been sent to your mobile number';
             console.log("okay");
 
         }
