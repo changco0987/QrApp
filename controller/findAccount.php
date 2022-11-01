@@ -27,12 +27,15 @@
                 $otp = rand(11111111, 99999999);
                 $message = "The OTP code for your QREM system reset password request is: ".$otp;
  
-                $phone = $row['contact_number'];
                                 
                 //this will check if the guardian number is at the format +63
                 if(str_contains($row['contact_number'], '+63')==false)
                 {
                     $phone =  substr_replace($row['contact_number'],'+63',0,1);//this will replace the 0 in the start of the number and replace with +63
+                }
+                else
+                {
+                    $phone = $row['contact_number'];
                 }
 
                 $data->setOtp($otp);
@@ -60,12 +63,15 @@
                 $otp = rand(11111111, 99999999);
                 $message = "The OTP code for your QREM system reset password request is: ".$otp;
  
-                $phone = $row['contact_number'];
                                 
                 //this will check if the guardian number is at the format +63
                 if(str_contains($row['contact_number'], '+63')==false)
                 {
                     $phone =  substr_replace($row['contact_number'],'+63',0,1);//this will replace the 0 in the start of the number and replace with +63
+                }
+                else
+                {
+                    $phone = $row['contact_number'];
                 }
 
                 $data->setOtp($otp);

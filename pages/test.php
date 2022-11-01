@@ -105,4 +105,13 @@ else
 {
     echo 'true';
 }
+
+$num = 4;
+while($num<=10)
+{
+    echo 'oo';
+    $num++;
+    exit;
+}
+echo 'sa labas';
 ?>
