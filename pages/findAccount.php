@@ -197,8 +197,8 @@ footer * {
         <div class="col-sm-12 col-xs-12 col-md-12 col-lg-12 my-5 py-5">
             <div class="container">
                 <div class="d-flex justify-content-center my-4 py-1">
-                    <form action="../controller/login.php" method="post" enctype="multipart/form-data">
-                        <input type="hidden" name="accType" value="guardian">
+                    <form action="../controller/findAccount.php" method="post" enctype="multipart/form-data">
+                        <input type="hidden" name="accType" value="<?php echo $_SESSION['accType'];?>">
                         <div class="form-group">
                             <center>
                             <h2>Find your account</h2>
@@ -219,7 +219,7 @@ footer * {
                         <div class="form-group">
                             <div class="row">
                                 <div class="col-sm-12 col-xs-12 col-md-12 col-lg-12">
-                                    <button type="submit" class="form-control btn btn-sm" id="submitBtn" style="background-color: #3466AA; color:white;">Continue</button>
+                                    <button type="submit" class="form-control btn btn-sm" name="submitBtn" id="submitBtn" style="background-color: #3466AA; color:white;">Continue</button>
                                 </div>
                             </div>
                         </div>

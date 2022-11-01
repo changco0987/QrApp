@@ -205,7 +205,8 @@
                                 //The message sent to guardian
                                 $message = "Dear parent, your child entered to campus at ".date("M d, Y h:i a", strtotime($dtr->getTime_in()));
                                 
-        
+                                $phone = $row['guardianNum'];
+
                                 //this will check if the guardian number is at the format +63
                                 if(str_contains($row['guardianNum'], '+63')==false)
                                 {
@@ -256,7 +257,8 @@
                                 //The message sent to guardian
                                 $message = "Dear parent, your child has left the campus at ".date("M d, Y h:i a", strtotime($dtr->getTime_out()));
                                 
-        
+                                $phone = $row['guardianNum'];
+                                
                                 //this will check if the guardian number is at the format +63
                                 if(str_contains($row['guardianNum'], '+63')==false)
                                 {

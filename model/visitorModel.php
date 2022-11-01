@@ -13,6 +13,7 @@
         private $status;
         private $gateStat;
         private $dtrId;
+        private $otp;
 
 
         public function getId()
@@ -141,6 +142,17 @@
         public function setDtrId($dtrId)
         {
             $this->dtrId = $dtrId;
+        }
+
+
+        public function getOtp()
+        {
+            return $this->otp;   
+        }
+
+        public function setOtp($otp)
+        {
+            $this->otp = $otp;
         }
 
     }

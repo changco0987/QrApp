@@ -34,7 +34,11 @@
 
     function UpdateAccountVisitor($conn,$data)
     {
-        if($data->getDtrId()!=null)
+        if($data->getOtp())
+        {
+            mysqli_query($conn,"UPDATE visitortb set gateStat ='".$data->getGateStat()."', dtrId = '".$data->getDtrId()."' where username = '".$data->getUsername()."'");
+        }
+        else if($data->getDtrId()!=null)
         {
             mysqli_query($conn,"UPDATE visitortb set gateStat ='".$data->getGateStat()."', dtrId = '".$data->getDtrId()."' where username = '".$data->getUsername()."'");
         }
