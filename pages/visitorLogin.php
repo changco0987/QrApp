@@ -219,7 +219,7 @@ footer * {
                                     <small>Don't have any account? <a class="text-primary" href="visitorSignup.php">Just Click here</a></small><br>
 
                                     <?php $_SESSION['accType'] = 'visitor';?>
-                                    <small><button type="submit" class="text-primary border-0" onclick="gotoResetPass();">Forgot Password?</button></small>
+                                    <small><button type="submit" class="text-primary border-0" onclick="gotoFindAccount();">Forgot Password?</button></small>
                                 </div>
                             </div>
                         </div>

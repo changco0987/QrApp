@@ -33,6 +33,11 @@
     <style>
  
 
+ label{
+    font-size: 12px;
+    color: #234471;
+    font-weight: bold;
+}
 
 
  @media screen and (max-height: 850px) {
@@ -191,38 +196,30 @@ footer * {
     <div class="row myRow mt-5 pt-5 mx-auto">
         <div class="col-sm-12 col-xs-12 col-md-12 col-lg-12 my-5 py-5">
             <div class="container">
-                <div class="d-flex justify-content-center my-3">
+                <div class="d-flex justify-content-center my-4 py-1">
                     <form action="../controller/login.php" method="post" enctype="multipart/form-data">
                         <input type="hidden" name="accType" value="guardian">
                         <div class="form-group">
                             <center>
-                            <h2>Log in as guardian</h2>
+                            <h2>Find your account</h2>
 
                             </center>
                             <hr style="height:2px; border-width:0;background-color: #3466AA">
                         </div>
                         <div class="form-group">
-                            <div class="row pt-1 mt-1">
+                            <div class="row">
                                 <div class="col-sm-12 col-xs-12 col-md-12 col-lg-12">
-                                    <input type="text" class="form-control" id="usernameTb" name="usernameTb" placeholder="Username" maxlength="20" required>
+                                    <label class="d-flex align-items-start" for="usernameTb">Username</label>
+                                    <input type="text" class="form-control" id="usernameTb" name="usernameTb" placeholder="Ex. Marie0123" maxlength="20" required>
+                                    <small style="color:red; font-size:12px;">This will send the OTP authentication to the linked<br>mobile number of your username</small>
                                 </div>
                             </div>
                         </div>
-                        <div class="form-group">
-                            <div class="row pt-1 mt-1">
-                                <div class="col-sm-12 col-xs-12 col-md-12 col-lg-12">
-                                    <input type="password" class="form-control" id="passwordTb" name="passwordTb" placeholder="Password" minlength="8" maxlength="20" required>
-                                </div>
-                            </div>
-                        </div>
+
                         <div class="form-group">
                             <div class="row">
                                 <div class="col-sm-12 col-xs-12 col-md-12 col-lg-12">
-                                    <button type="submit" class="form-control btn" id="submitBtn" style="background-color: #3466AA; color:white;">Login</button>
-                                    <small>Don't have any account? <a class="text-primary" href="guardianSignup.php">Just Click here</a></small><br/>
-
-                                    <?php $_SESSION['accType'] = 'guardian';?>
-                                    <small><button type="submit" class="text-primary border-0" onclick="gotoFindAccount();">Forgot Password?</button></small>
+                                    <button type="submit" class="form-control btn btn-sm" id="submitBtn" style="background-color: #3466AA; color:white;">Continue</button>
                                 </div>
                             </div>
                         </div>

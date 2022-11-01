@@ -53,7 +53,13 @@ function gotoRecordFaculty()
 }
 
 
-//This will go to reset password page
+//This will go to reset password pages
+function gotoFindAccount()
+{
+    window.location = '../pages/findAccount.php';
+}
+
+
 function gotoResetPass()
 {
     window.location = '../pages/resetPass.php';
