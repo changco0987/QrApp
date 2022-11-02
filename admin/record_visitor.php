@@ -4,8 +4,8 @@
     include_once '../model/adminModel.php';
     include_once '../db/tb_admin.php';
 
-    include_once '../model/studentModel.php';
-    include_once '../db/tb_student.php';
+    include_once '../model/visitorModel.php';
+    include_once '../db/tb_visitor.php';
 
     include_once '../model/dtrModel.php';
     include_once '../db/tb_dtr.php';
@@ -359,7 +359,7 @@ td{
   <!--Header of the page-->
   <div class="row">
     <div class="col-sm-10 col-xs-10 col-md-10 col-lg-10 col-xl-11" style="background-color: #4e82c9;">
-      <h3 class="d-flex justify-content-center mt-2 pt-1" id="pageTitle" >Health Records - Student</h3>
+      <h3 class="d-flex justify-content-center mt-2 pt-1" id="pageTitle" >Health Records - Visitor</h3>
     </div>
     <div class="col-sm-2 col-xs-2 col-md-2 col-lg-2 col-xl-1" style="background-color: #4e82c9;">
       <div class="w-100 d-flex justify-content-end">
@@ -410,17 +410,17 @@ td{
           </thead>
           <tbody>
               <?php
-                  $student = new studentModel();
+                  $data = new visitorModel();
                   $dtr = new dtrModel();
                   if(isset($_SESSION["studentFname"]) && $_SESSION['studentFname'] != '')
                   {
-                    $student->setFirstname($_SESSION["studentFname"]);
+                    $data->setFirstname($_SESSION["studentFname"]);
                     $_SESSION['studentFname'] = '';
                     unset($_SESSION['studentFname']);
                   }
                   else if(isset($_SESSION["studentLname"]) && $_SESSION['studentLname'] != '')
                   {
-                    $student->setLastname($_SESSION["studentLname"]);
+                    $data->setLastname($_SESSION["studentLname"]);
                     $_SESSION['studentLname'] = '';
                     unset($_SESSION['studentLname']);
                   }
@@ -430,8 +430,8 @@ td{
                   $changeColor = 0;//This is to change the color
                   while($dtrRow = mysqli_fetch_assoc($dtrData))
                   {
-                    $student->setId($dtrRow['dataId']);
-                    $result = ReadStudent($conn,$student);
+                    $data->setId($dtrRow['dataId']);
+                    $result = ReadAccountVisitor($conn,$data);
                     while($row = mysqli_fetch_assoc($result))
                     {
                       //This where the QR data was collected
