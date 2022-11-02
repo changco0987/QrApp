@@ -4,8 +4,8 @@
     include_once '../model/adminModel.php';
     include_once '../db/tb_admin.php';
 
-    include_once '../model/visitorModel.php';
-    include_once '../db/tb_visitor.php';
+    include_once '../model/guardianModel.php';
+    include_once '../db/tb_guardian.php';
 
     include_once '../model/dtrModel.php';
     include_once '../db/tb_dtr.php';
@@ -359,7 +359,7 @@ td{
   <!--Header of the page-->
   <div class="row">
     <div class="col-sm-10 col-xs-10 col-md-10 col-lg-10 col-xl-11" style="background-color: #4e82c9;">
-      <h3 class="d-flex justify-content-center mt-2 pt-1" id="pageTitle" >Health Records - Visitor</h3>
+      <h3 class="d-flex justify-content-center mt-2 pt-1" id="pageTitle" >Health Records - Guardian</h3>
     </div>
     <div class="col-sm-2 col-xs-2 col-md-2 col-lg-2 col-xl-1" style="background-color: #4e82c9;">
       <div class="w-100 d-flex justify-content-end">
@@ -410,7 +410,7 @@ td{
           </thead>
           <tbody>
               <?php
-                  $data = new visitorModel();
+                  $data = new guardianModel();
                   $dtr = new dtrModel();
                   if(isset($_SESSION["studentFname"]) && $_SESSION['studentFname'] != '')
                   {
@@ -431,7 +431,7 @@ td{
                   while($dtrRow = mysqli_fetch_assoc($dtrData))
                   {
                     $data->setId($dtrRow['dataId']);
-                    $result = ReadAccountVisitor($conn,$data);
+                    $result = ReadAccountGuardian($conn,$data);
                     while($row = mysqli_fetch_assoc($result))
                     {
                       //This where the QR data was collected
