@@ -521,6 +521,7 @@ td{
                     $guardian->setLastname($_SESSION["accountLname"]);
                     $_SESSION['accountLname'] = '';
                     unset($_SESSION['accountLname']);
+                    session_unset();
                   }
 
                   $result = ReadAccountGuardian($conn,$guardian);

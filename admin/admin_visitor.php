@@ -519,6 +519,7 @@ td{
                     $visitor->setLastname($_SESSION["accountLname"]);
                     $_SESSION['accountLname'] = '';
                     unset($_SESSION['accountLname']);
+                    session_unset();
                   }
 
                   $result = ReadAccountVisitor($conn,$visitor);

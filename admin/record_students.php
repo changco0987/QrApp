@@ -384,6 +384,7 @@ td{
     <div class="col-sm-4 col-xs-2 col-md-4 col-lg-2 col-xl-4 pl-3 pr-2 my-2 py-2 d-flex justify-content-end h-100 mx-auto my-auto">
       <form action="../controller/searchStudent.php" method="post" enctype="multipart/form-data">
         <div class="input-group">
+          <input type="hidden" name="record" value="recordPage">
           <input type="text" name="searchName" id="searchName" class="form-control no-border form-control-sm" placeholder="Type by Name or Surname">
           <button type="submit" class="btn btn-sm d-flex justify-content-start" style="background-color:#3466AA; color:whitesmoke;"><i class="bi bi-search"></i></button>
         </div>

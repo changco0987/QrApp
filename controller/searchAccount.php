@@ -21,21 +21,47 @@
                 if(strtolower($row['firstname']) == strtolower($_POST['searchName']) ||
                    str_contains(strtolower($row['firstname']),strtolower($_POST['searchName'])))
                 {
+                    //This will check if the record is set, this means that it is search from health record page
                    $_SESSION['accountFname'] = $row['firstname'];
-                    header("location: ../admin/admin_visitor.php?Firstname=".$row['firstname']);
-                    exit;
+                   if(isset($_POST['record']))
+                   {
+                        header("location: ../admin/record_visitor.php?Firstname=".$row['firstname']);
+                        exit;
+                   }
+                   else
+                   {
+                        header("location: ../admin/admin_visitor.php?Firstname=".$row['firstname']);
+                        exit;
+                   }
                 }
     
                 if(strtolower($row['lastname']) == strtolower($_POST['searchName']) ||
                    str_contains(strtolower($row['lastname']),strtolower($_POST['searchName'])))
                 {
                     $_SESSION['accountLname'] = $row['lastname'];
-                    header("location: ../admin/admin_visitor.php?Lastname=".$row['lastname']);
-                    exit;
+                    if(isset($_POST['record']))
+                    {
+                        header("location: ../admin/record_visitor.php?Firstname=".$row['lastname']);
+                        exit;
+                    }
+                    else
+                    {
+                        header("location: ../admin/admin_visitor.php?Lastname=".$row['lastname']);
+                        exit;
+                    }
                 }
             }
-            header("location: ../admin/admin_visitor.php?Empty");
-            exit;
+
+            if(isset($_POST['record']))
+            {
+                 header("location: ../admin/record_visitor.php?Empty");
+                 exit;
+            }
+            else
+            {
+                header("location: ../admin/admin_visitor.php?Empty");
+                exit;
+            }
         }
         else if($_POST['accType'] == 'guardian')
         {
@@ -48,20 +74,50 @@
                    str_contains(strtolower($row['firstname']),strtolower($_POST['searchName'])))
                 {
                    $_SESSION['accountFname'] = $row['firstname'];
-                    header("location: ../admin/admin_guardian.php?Firstname=".$row['firstname']);
-                    exit;
+                   
+                    //This will check if the record is set, this means that it is search from health record page
+                    if(isset($_POST['record']))
+                    {
+                        header("location: ../admin/record_guardian.php?Firstname=".$row['firstname']);
+                        exit;
+                    }
+                    else
+                    {
+                        header("location: ../admin/admin_guardian.php?Firstname=".$row['firstname']);
+                        exit;
+                    }
                 }
     
                 if(strtolower($row['lastname']) == strtolower($_POST['searchName']) ||
                    str_contains(strtolower($row['lastname']),strtolower($_POST['searchName'])))
                 {
                     $_SESSION['accountLname'] = $row['lastname'];
-                    header("location: ../admin/admin_guardian.php?Lastname=".$row['lastname']);
-                    exit;
+                                       
+                    //This will check if the record is set, this means that it is search from health record page
+                    if(isset($_POST['record']))
+                    {
+                        header("location: ../admin/record_guardian.php?lastname=".$row['lastname']);
+                        exit;
+                    }
+                    else
+                    {
+                        header("location: ../admin/admin_guardian.php?Lastname=".$row['lastname']);
+                        exit;
+                    }
                 }
             }
-            header("location: ../admin/admin_guardian.php?Empty");
-            exit;
+                               
+            //This will check if the record is set, this means that it is search from health record page
+            if(isset($_POST['record']))
+            {
+                header("location: ../admin/record_guardian.php?Empty");
+                exit;
+            }
+            else
+            {
+                header("location: ../admin/admin_guardian.php?Empty");
+                exit;
+            }
         }
         
     }
