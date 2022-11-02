@@ -4,8 +4,8 @@
     include_once '../model/adminModel.php';
     include_once '../db/tb_admin.php';
 
-    include_once '../model/guardianModel.php';
-    include_once '../db/tb_guardian.php';
+    include_once '../model/facultyModel.php';
+    include_once '../db/tb_faculty.php';
 
     //This will check if the user is truely login
     session_start();
@@ -13,8 +13,6 @@
     {
         header("Location: ../admin.php");
     }
-    unset($_SESSION['username']);
-    //unset($_SESSION['password']);
     /*
     date_default_timezone_set('Asia/Manila');
 
@@ -306,9 +304,9 @@ td{
               <button type="button" onclick="gotoAdminStudent()" class="collapse-item btn btn-sm my-1 collapseBtn">Students</button><br>
 
               <button type="button" onclick="gotoAdminStudent()" class="collapse-item btn btn-sm my-1 collapseBtn">Faculty/Staff</button><br>
-
+      
               <button type="button" onclick="gotoAdminVisitor()" class="collapse-item btn btn-sm my-1 collapseBtn">Visitors</button><br>
-
+          
               <button type="button" onclick="gotoAdminGuardian()" class="collapse-item btn btn-sm my-1 collapseBtn">Guardians</button><br>
       
         </div>
@@ -358,7 +356,7 @@ td{
   <!--Header of the page-->
   <div class="row">
     <div class="col-sm-10 col-xs-10 col-md-10 col-lg-10 col-xl-11" style="background-color: #4e82c9;">
-      <h3 class="d-flex justify-content-center mt-2 pt-1" id="pageTitle" >Guardian Account Control</h3>
+      <h3 class="d-flex justify-content-center mt-2 pt-1" id="pageTitle" >Visitor Account Control</h3>
     </div>
     <div class="col-sm-2 col-xs-2 col-md-2 col-lg-2 col-xl-1" style="background-color: #4e82c9;">
       <div class="w-100 d-flex justify-content-end">
@@ -375,7 +373,7 @@ td{
   <div class="row my-3 no-gutters" style="background-color:#F1F1F1; border-radius: 10px; box-shadow: -1px 1px 20px 6px #d9d9d9;">
     <div class="col-sm-4 col-xs-2 col-md-4 col-lg-2 col-xl-2 pl-3 pr-2 my-2 py-2">        
         <!--h6 class="pr-2" id="btnLabel">Types: </h6-->
-        <button type="button" class="btn d-flex justify-content-start btn-success" data-toggle="modal" data-target="#addAnnouncement"><i class="bi bi-plus-square mr-2"></i>Add Guardian Data</button>
+        <button type="button" class="btn d-flex justify-content-start btn-success" data-toggle="modal" data-target="#addAnnouncement"><i class="bi bi-plus-square mr-2"></i>Add Staff Data</button>
     </div>
 
     <div class="col-sm-4 col-xs-2 col-md-4 col-lg-2 col-xl-6 pl-3 pr-1 my-2 py-2">
@@ -384,7 +382,7 @@ td{
     <div class="col-sm-4 col-xs-2 col-md-4 col-lg-2 col-xl-4 pl-3 pr-2 my-2 py-2 d-flex justify-content-end h-100 mx-auto my-auto">
       <form action="../controller/searchAccount.php" method="post" enctype="multipart/form-data">
         <div class="input-group">
-          <input type="hidden" name="accType" value="guardian">
+          <input type="hidden" name="accType" value="visitor">
           <input type="text" name="searchName" id="searchName" class="form-control no-border form-control-sm" placeholder="Type by Name or Surname">
           <button type="submit" class="btn btn-sm d-flex justify-content-start" style="background-color:#3466AA; color:whitesmoke;"><i class="bi bi-search"></i></button>
         </div>
@@ -399,8 +397,8 @@ td{
     $in = 0;
     $out = 0;
     $count = 0;
-    $guardian = new guardianModel();
-    $result = ReadAccountGuardian($conn,$guardian);
+    $data = new facultyModel();
+    $result = ReadFaculty($conn,$data);
 
     while($row = mysqli_fetch_assoc($result))
     {
@@ -430,7 +428,7 @@ td{
         }
 
 
-      //Guardian headcount
+      //Visitor headcount
       $count++;
     }
   ?>
@@ -441,7 +439,7 @@ td{
         <div class="col-sm-6 col-xs-6 col-md-6 col-lg-12 col-xl-12"> 
           <div id="maleContainer" class="container text-center">
             <br>
-            <h5><i class="bi bi-person-fill mr-1"></i>Guardian Headcount: </h5>
+            <h5><i class="bi bi-person-fill mr-1"></i>Staff Headcount: </h5>
             <h3 style="font-weight:bolder; font-size:50px;"><?php echo $count;?></h3>
           </div>
         </div>
@@ -463,7 +461,7 @@ td{
       <div class="row">
         <div class="col-sm-6 col-xs-6 col-md-6 col-lg-6 col-xl-12 mb-2 pb-2">
           <div id="activeStudHead" class="container d-flex align-items-center">
-            <h1><i class="bi bi-person-fill mr-1"></i>Active Guardians: </h1> 
+            <h1><i class="bi bi-person-fill mr-1"></i>Active Staff: </h1> 
             <h1 style="font-weight:bolder; font-size:50px;"><?php echo $activeAccount;?></h1>
           </div>
         </div>
@@ -499,30 +497,29 @@ td{
                   <th scope="col" class="text-center" >Image</th>
                   <th scope="col">Name</th>
                   <th scope="col">Username</th>
-                  <th scope="col">Address</th>
-                  <th scope="col">Contact Number</th>
+                  <th scope="col">Department</th>
                   <th scope="col">Status</th>
                   <th colspan="4" class="text-center" scope="col">Actions</th><!-- Edit button and Delete button-->
               </tr>
           </thead>
           <tbody>
               <?php
-                  $guardian = new GuardianModel();
+                  $data = new facultyModel();
                   if(isset($_SESSION["accountFname"]) && $_SESSION['accountFname'] != '')
                   {
-                    $guardian->setFirstname($_SESSION["accountFname"]);
+                    $data->setFirstname($_SESSION["accountFname"]);
                     $_SESSION['accountFname'] = '';
                     unset($_SESSION['accountFname']);
                   }
                   else if(isset($_SESSION["accountLname"]) && $_SESSION['accountLname'] != '')
                   {
-                    $guardian->setLastname($_SESSION["accountLname"]);
+                    $data->setLastname($_SESSION["accountLname"]);
                     $_SESSION['accountLname'] = '';
                     unset($_SESSION['accountLname']);
                     session_unset();
                   }
 
-                  $result = ReadAccountGuardian($conn,$guardian);
+                  $result = ReadFaculty($conn,$data);
                   $rowCount = 1;
                   while($row = mysqli_fetch_assoc($result))
                   {
@@ -543,7 +540,6 @@ td{
                       <?php
                     }
                     ?>
-                      
                             <td><?php echo $rowCount;?></td>
                             <td class="text-center">
                               <?php
@@ -583,7 +579,7 @@ td{
                                   <script>unlockedData++;</script>
                                   <td id="<?php echo $row['id'];?>">
                                     <form action="../controller/accountStat.php" method="POST" enctype="multipart/form-data">
-                                      <input type="hidden" name="accType" id="accType" value="guardian">
+                                      <input type="hidden" name="accType" id="accType" value="visitor">
                                       <input type="hidden" name="idTb" id="<?php echo 'status1IdTb'.$row['id'];?>" value="<?php echo $row['id'];?>">
                                       <input type="hidden" name="statusTb" id="<?php echo 'status1Tb'.$row['id']?>" value="lock">
                                       <button type="submit" class="btn btn-sm d-flex justify-content-start " style="background-color: #ca3635; color: white; font-size: 13px;"><i class="bi bi-lock-fill mr-1"></i>Lock</button>
@@ -599,7 +595,7 @@ td{
                                   <script>lockedData++;</script>
                                   <td id="<?php echo $row['id'];?>">
                                     <form action="../controller/accountStat.php" method="POST" enctype="multipart/form-data">
-                                      <input type="hidden" name="accType" id="accType" value="guardian">
+                                      <input type="hidden" name="accType" id="accType" value="visitor">
                                       <input type="hidden" name="idTb" id="<?php echo 'status2IdTb'.$row['id'];?>" value="<?php echo $row['id'];?>">
                                       <input type="hidden" name="statusTb" id="<?php echo 'status2Tb'.$row['id']?>" value="unlock">
                                       <button type="submit" class="btn btn-sm d-flex justify-content-start btn-success" style="font-size: 13px;"><i class="bi bi-unlock-fill mr-1"></i>Unlock</button>
@@ -611,8 +607,8 @@ td{
 
                             <!--Edit Button-->
                             <td id="<?php echo $row['id'];?>">
-                              <form action="../admin/editGuardian.php" method="POST" enctype="multipart/form-data">
-                                <input type="hidden" name="accType" id="accType" value="guardian">
+                              <form action="../admin/editVisitor.php" method="POST" enctype="multipart/form-data">
+                                <input type="hidden" name="accType" id="accType" value="visitor">
                                 <input type="hidden" name="usernameTb" id="<?php echo 'editIdTb'.$row['username'];?>" value="<?php echo $row['username'];?>">
                                 <button type="submit" class="btn btn-sm d-flex justify-content-start btn-warning" name="submitEdit" style="font-size: 13px;"><i class="bi bi-pencil-square mr-1"></i>Edit</button>
                               </form>
@@ -621,7 +617,7 @@ td{
                             <!--Delete Button-->
                             <td id="<?php echo $row['id'];?>">
                               <form action="../controller/deleteAccount.php" method="POST" enctype="multipart/form-data">
-                                <input type="hidden" name="accType" id="accType" value="guardian">
+                                <input type="hidden" name="accType" id="accType" value="visitor">
                                 <input type="hidden" name="idTb" id="<?php echo 'deleteIdTb'.$row['id'];?>" value="<?php echo $row['id'];?>">
                                 <button type="submit" class="btn btn-sm d-flex justify-content-start btn-danger" style="font-size: 13px;"><i class="bi bi-trash mr-1"></i>Delete</button>
                               </form>
@@ -640,19 +636,19 @@ td{
 </div>
 
   
-    <!--Modal for adding guardian-->
+    <!--Modal for adding visitor-->
     <div class="modal fade" id="addAnnouncement" tabindex="-1" role="dialog" aria-labelledby="addAnnouncementCenterTitle" aria-hidden="true">
       <div class="modal-dialog modal-dialog-centered" role="document">
           <div class="modal-content" style="background-color: #e9e9e9; border-radius: 15px;">
               <div class="modal-header">
-                  <h5 class="modal-title font-weight-bold" id="addAnnouncementLongTitle">Add Guardian Data</h5>
+                  <h5 class="modal-title font-weight-bold" id="addAnnouncementLongTitle">Add Staff Data</h5>
                   <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                   <span aria-hidden="true">&times;</span>
                   </button>
               </div>
               <div class="modal-body">
                   <form action="../controller/addAccount.php" method="POST" enctype="multipart/form-data">
-                      <input type="hidden" name="accType" value="guardian">
+                      <input type="hidden" name="accType" value="visitor">
                     <center>
                     <div class="form-group">
                         <div class="row pt-1 mt-1">
@@ -721,14 +717,6 @@ td{
                             </div>
                           </div>
                       </div>
-                        <div class="form-group">
-                            <div class="row">
-                                <div class="col-sm-12 col-xs-12 col-md-12 col-lg-12">
-                                    <label class="d-flex align-items-start" for="studentidTb">Student ID</label>
-                                    <input type="text" class="form-control no-border" id="studentidTb" name="studentidTb" placeholder="Ex. 012-3456-7890" maxlength="80" required>
-                                </div>
-                            </div>
-                        </div>
                     </div>
                     <div class="modal-footer">
                         <div class="form-group">
@@ -882,7 +870,7 @@ var gateData = [inside,outside];
                                 plugins: {
                                     title: {
                                         display: true,
-                                        text: 'In campus guardian count',
+                                        text: 'In campus staff count',
                                         fontSize: 300
                                     },
                                     legend:{
@@ -913,7 +901,7 @@ var gateData = [inside,outside];
     */
 
     document.getElementById('successBox').style.display = 'none';
-    var successSignal = localStorage.getItem('guardianMsg');
+    var successSignal = localStorage.getItem('visitorMsg');
 
     if(successSignal==1)
     {
@@ -944,16 +932,9 @@ var gateData = [inside,outside];
         document.getElementById('successMsg').innerHTML = "Data Removed Successfully";
         console.log("okay");
     }
-    else if(successSignal==5)
-    {
-        //if password doesn't matched
-        document.getElementById('failBox').style.display = 'block';
-        document.getElementById('failMsg').innerHTML = "This StudentID doesn't exist";
-        console.log("okay");
-    }
 
     //To make signl back to normmal and to prevent for the success page to appear every time the page was reload or refresh
-    localStorage.setItem('guardianMsg',0);
+    localStorage.setItem('visitorMsg',0);
     
     //this will make a image preview before it was uploaded
     fileTb.onchange = evt => {

@@ -303,13 +303,12 @@ td{
               <!--input type="hidden" name="departmentName" value=""-->
               <button type="button" onclick="gotoAdminStudent()" class="collapse-item btn btn-sm my-1 collapseBtn">Students</button><br>
 
-              <form action="../pages/reporthc.php" method="post" enctype="multipart/form-data">
-                  <!--input type="hidden" name="departmentName" value=""-->
-                  <button type="submit" class="collapse-item btn btn-sm my-1 collapseBtn" >Faculty/Staff</button><br>
-              </form>
+              <button type="button" onclick="gotoAdminStudent()" class="collapse-item btn btn-sm my-1 collapseBtn">Faculty/Staff</button><br>
+
               <button type="button" onclick="gotoAdminVisitor()" class="collapse-item btn btn-sm my-1 collapseBtn">Visitors</button><br>
-          
+
               <button type="button" onclick="gotoAdminGuardian()" class="collapse-item btn btn-sm my-1 collapseBtn">Guardians</button><br>
+
       
         </div>
     </div>
@@ -873,7 +872,7 @@ var gateData = [inside,outside];
                                 plugins: {
                                     title: {
                                         display: true,
-                                        text: 'In campus student count',
+                                        text: 'In campus visitor count',
                                         fontSize: 300
                                     },
                                     legend:{

@@ -2,7 +2,7 @@
     include_once 'connection.php';
     include_once '../model/facultyModel.php';
 
-    $data = new visitorModel();
+    $data = new facultyModel();
     function CreateFaculty($conn,$data)
     {
         mysqli_query($conn,"INSERT INTO facultytb(firstname,lastname,imageName,department,status) values('".$data->getFirstname()."','".$data->getLastname().
@@ -46,7 +46,7 @@
         else
         {
 
-            $address = mysqli_real_escape_string($conn,$data->getAddress());
+            //$address = mysqli_real_escape_string($conn,$data->getAddress());
             mysqli_query($conn,"UPDATE facultytb set firstname ='". $data->getFirstname()
             ."', lastname ='".$data->getLastname(). "', department ='". $data->getDepartment()."', imageName = '".$data->getImageName()."' where id = ". $data->getId());
         }

@@ -27,7 +27,7 @@ function gotoAdminGuardian()
 
 function gotoAdminFaculty()
 {
-    //window.location = '../admin/admin_guardian.php';
+    window.location = '../admin/admin_faculty.php';
 }
 
 
@@ -49,7 +49,7 @@ function gotoRecordGuardian()
 
 function gotoRecordFaculty()
 {
-    //window.location = '../admin/admin_guardian.php';
+    window.location = '../admin/record_faculty.php';
 }
 
 

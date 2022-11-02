@@ -1,5 +1,5 @@
 <?php
-    class visitorModel
+    class facultyModel
     {
         private $id;
         private $firstname;
