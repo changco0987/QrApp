@@ -42,6 +42,7 @@
                 $data->setOtp($otp);
                 UpdateAccountVisitor($conn,$data);//This will also send otp code in to the database
 
+                //Removed temporarily to avoid while on QR scanning testing
                 //sendMessage($ch,$key,$device,$sim,$priority,$phone,$message);//This will send the sms notification to the student 
                 $_SESSION['username'] = $row['username'];
 
@@ -79,7 +80,8 @@
                 $data->setOtp($otp);
                 UpdateAccountGuardian($conn,$data);//This will also send otp code in to the database
 
-                sendMessage($ch,$key,$device,$sim,$priority,$phone,$message);//This will send the sms notification to the student 
+                //Removed temporarily to avoid while on QR scanning testing
+                //sendMessage($ch,$key,$device,$sim,$priority,$phone,$message);//This will send the sms notification to the student 
                 $_SESSION['username'] = $row['username'];
 
                 echo '<script> localStorage.setItem("otpMsg",1); window.location = "../pages/resetPass.php";</script>';  

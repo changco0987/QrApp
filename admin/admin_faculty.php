@@ -356,7 +356,7 @@ td{
   <!--Header of the page-->
   <div class="row">
     <div class="col-sm-10 col-xs-10 col-md-10 col-lg-10 col-xl-11" style="background-color: #4e82c9;">
-      <h3 class="d-flex justify-content-center mt-2 pt-1" id="pageTitle" >Visitor Account Control</h3>
+      <h3 class="d-flex justify-content-center mt-2 pt-1" id="pageTitle" >Faculty Account Control</h3>
     </div>
     <div class="col-sm-2 col-xs-2 col-md-2 col-lg-2 col-xl-1" style="background-color: #4e82c9;">
       <div class="w-100 d-flex justify-content-end">

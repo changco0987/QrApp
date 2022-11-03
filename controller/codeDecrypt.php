@@ -213,6 +213,7 @@
                                     $phone =  substr_replace($row['guardianNum'],'+63',0,1);//this will replace the 0 in the start of the number and replace with +63
                                 }
         
+                                //Removed temporarily to avoid while on QR scanning testing
                                 //sendMessage($ch,$key,$device,$sim,$priority,$phone,$message);//This will send the sms notification to the student guardian
                             }
                         }
@@ -265,6 +266,7 @@
                                     $phone =  substr_replace($row['guardianNum'],'+63',0,1);//this will replace the 0 in the start of the number and replace with +63
                                 }
         
+                                //Removed temporarily to avoid while on QR scanning testing
                                 //sendMessage($ch,$key,$device,$sim,$priority,$phone,$message);//This will send the sms notification to the student guardian
                             }
                         }
