@@ -18,7 +18,7 @@
 
     //This will check if the user is truely login
     session_start();
-    if(!isset($_SESSION['username']) || !isset($_SESSION['qr_ExDate']))
+    if(!isset($_SESSION['username']))
     {
         header("Location: ../index.php");
     }

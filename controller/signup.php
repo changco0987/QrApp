@@ -41,6 +41,7 @@
 
                     CreateAccountVisitor($conn,$data);
                     echo '<script> localStorage.setItem("state",4); window.location = "../pages/visitorLogin.php";</script>';   
+                    exit;
                 }
                 else
                 {

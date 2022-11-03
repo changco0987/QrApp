@@ -9,12 +9,14 @@
     $rowCount = 0;
 
     session_start();
+    /*This will be remove due to the admin affected by the unsetting even the important session
     $helper = array_keys($_SESSION);
     foreach ($helper as $key)
     {
         unset($_SESSION[$key]);
     } 
     session_unset();
+    */
 ?>
 
 <!DOCTYPE html>

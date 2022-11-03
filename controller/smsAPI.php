@@ -12,12 +12,15 @@ function sendMessage($ch,$key,$device,$sim,$priority,$phone,$message)
     if($result == false)
     {
         die("cURL Error: ".curl_error($ch));
+        curl_close($ch);
         return false;
     }
     else
     {
+        curl_close($ch);
         return true;
     }
+
 }
 
 
