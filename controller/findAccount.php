@@ -42,7 +42,7 @@
                 $data->setOtp($otp);
                 UpdateAccountVisitor($conn,$data);//This will also send otp code in to the database
 
-                sendMessage($ch,$key,$device,$sim,$priority,$phone,$message);//This will send the sms notification to the student 
+                //sendMessage($ch,$key,$device,$sim,$priority,$phone,$message);//This will send the sms notification to the student 
                 $_SESSION['username'] = $row['username'];
 
                 echo '<script> localStorage.setItem("otpMsg",1); window.location = "../pages/resetPass.php";</script>';  

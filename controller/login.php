@@ -64,6 +64,7 @@
                          CreateLog($conn,$log);
                          
                          //$_SESSION['qr_ExDate'] = $row['qr_ExDate'];
+                         $_SESSION['login'] = 'true';
                          header("Location: ../pages/userDashboard.php");
                          exit;
                     } 

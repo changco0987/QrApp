@@ -1,6 +1,6 @@
 <?php
     session_start();
-    if(isset($_SESSION['username']))
+    if(isset($_SESSION['username']) && isset($_SESSION['login']))
     {
         header("Location: userDashboard.php");
     }

@@ -9,6 +9,10 @@
     $rowCount = 0;
 
     session_start();
+    if(isset($_SESSION['username']) && isset($_SESSION['login']))
+    {
+        header('location: pages/userDashboard.php');
+    }
     /*This will be remove due to the admin affected by the unsetting even the important session
     $helper = array_keys($_SESSION);
     foreach ($helper as $key)
@@ -17,6 +21,7 @@
     } 
     session_unset();
     */
+
 ?>
 
 <!DOCTYPE html>
