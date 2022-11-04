@@ -310,7 +310,7 @@ footer * {
                             <div class="row pt-1 mt-1">
                                 <div class="col-sm-12 col-xs-12 col-md-12 col-lg-12">
                                     <label class="d-flex align-items-start" for="contactTb">Contact Number</label>
-                                    <input type="text" class="form-control no-border" id="contactTb" name="contactTb" placeholder="Ex. 0912345678901" maxlength="11" required value="<?php echo $row['contact_number'];?>">
+                                    <input type="text" class="form-control no-border" id="contactTb" name="contactTb" placeholder="Ex. 092X-XXX-XXXX" maxlength="11" required value="<?php echo $row['contact_number'];?>">
                                 </div>
                             </div>
                         </div>
