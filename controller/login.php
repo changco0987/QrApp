@@ -135,7 +135,8 @@
                          CreateLog($conn,$log);
                          
                          //$_SESSION['qr_ExDate'] = $row['qr_ExDate'];
-                         echo '<script>window.location = "../pages/userDashboard.php";</script>';
+                         $_SESSION['login'] = 'true';
+                         header("Location: ../pages/userDashboard.php");
                          //header("Location: ../pages/userDashboard.php");
                          exit;
                     }
@@ -143,14 +144,14 @@
                     {
                          //Throws back to the login page and show "This account is not existed"
                          echo '<script> localStorage.setItem("state",5); window.location = "../pages/guardianLogin.php";</script>';
-                         exit;
+                         
                     }
                }
                else
                {
                     //Throws back to the login page and show "Incorrect password"
                     echo '<script> localStorage.setItem("state",1); window.location = "../pages/guardianLogin.php";</script>';
-                    exit;
+                    
                }
             }
 

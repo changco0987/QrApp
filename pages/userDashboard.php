@@ -220,14 +220,35 @@
                     <div class="form-group">
                         <center>
                             <small id="qrIndicator"></small>
-                                <div class="row mb-1 pb-1 d-flex justify-content-end">
-                                    <div class="col-sm-10 col-xs-10 col-md-10 col-lg-10 col-xl-10 d-flex justify-content-end" style="width:max-content;">
-                                        <button type="button" class="form-control btn" id="printBtn" onclick="window.print();" style="width:max-content; font-size:smaller; background-color:#3466AA; color:white;"><i class="bi bi-printer-fill mr-2"></i>Print</button>
-                                    </div>
-                                    <div class="col-sm-2 col-xs-2 col-md-2 col-lg-2 col-xl-2 d-flex justify-content-end" style="width:max-content;">
-                                        <button type="button" id="notifBtn" class="form-control btn" data-toggle="modal" data-target="#notifModal" style="width:max-content; font-size:smaller; background-color:#3466AA; color:white;"><i class="bi bi-bell-fill"></i></button>
-                                    </div>
-                                </div>
+
+                            <?php
+
+                                if($_SESSION['accType']=='visitor')
+                                {
+                                    ?>
+                                        <div class="row mb-1 pb-1 d-flex justify-content-center">
+                                            <div class="col-sm-10 col-xs-10 col-md-10 col-lg-10 col-xl-10" style="width:max-content;">
+                                                <button type="button" class="form-control btn" id="printBtn" onclick="window.print();" style="width:max-content; font-size:smaller; background-color:#3466AA; color:white;"><i class="bi bi-printer-fill mr-2"></i>Print</button>
+                                            </div>
+                                        </div>
+                                    <?php
+                                }
+                                else if($_SESSION['accType']=='guardian')
+                                {
+                                    ?>
+                                        <div class="row mb-1 pb-1 d-flex justify-content-end">
+                                            <div class="col-sm-10 col-xs-10 col-md-10 col-lg-10 col-xl-10 d-flex justify-content-end" style="width:max-content;">
+                                                <button type="button" class="form-control btn" id="printBtn" onclick="window.print();" style="width:max-content; font-size:smaller; background-color:#3466AA; color:white;"><i class="bi bi-printer-fill mr-2"></i>Print</button>
+                                            </div>
+                                            <div class="col-sm-2 col-xs-2 col-md-2 col-lg-2 col-xl-2 d-flex justify-content-end" style="width:max-content;">
+                                                <button type="button" id="notifBtn" class="form-control btn" data-toggle="modal" data-target="#notifModal" style="width:max-content; font-size:smaller; background-color:#3466AA; color:white;"><i class="bi bi-bell-fill"></i></button>
+                                            </div>
+                                        </div>
+                                    <?php
+
+                                }
+                            
+                            ?>
                                 
                             
                             <div class="pb-3 mb-3 " id="qrcode"></div>
@@ -286,9 +307,6 @@
                                 if($_SESSION['accType']=='visitor')
                                 {
                                     ?>
-                                    <script>
-                                        $('#notifBtn').hide();
-                                    </script>
                                         <small class="ml-1 pl-1 text-danger" style="font-size: 15px;"><?php echo $_SESSION['accType'];?></small>
                                     <?php
                                 }
