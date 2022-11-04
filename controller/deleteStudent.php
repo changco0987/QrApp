@@ -13,13 +13,11 @@
 
         //header('Location: ../admin/dashboard.php');
         echo '<script> localStorage.setItem("studentMsg",3); window.location = "../admin/admin_students.php";</script>';//success message
-        exit;
    
     }
     else
     {
         //this will occur incase an error posting idTb
         echo '<script> window.location = "../admin.php";</script>';
-        exit;
     }
 ?>
