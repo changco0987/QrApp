@@ -274,3 +274,7 @@
 
 </body>
 </html>
+
+<?php
+    exit;
+?>

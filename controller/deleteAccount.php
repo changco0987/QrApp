@@ -19,6 +19,7 @@
     
             //header('Location: ../admin/dashboard.php');
             echo '<script> localStorage.setItem("visitorMsg",4); window.location = "../admin/admin_visitor.php";</script>';//success message
+            exit;
         }
         else if($_POST['accType'] == 'guardian')
         {
@@ -29,6 +30,7 @@
     
             //header('Location: ../admin/dashboard.php');
             echo '<script> localStorage.setItem("guardianMsg",4); window.location = "../admin/admin_guardian.php";</script>';//success message
+            exit;
         }
    
     }
@@ -36,5 +38,6 @@
     {
         //this will occur incase an error posting idTb
         echo '<script> window.location = "../admin.php";</script>';
+        exit;
     }
 ?>

@@ -566,3 +566,7 @@ label{
     
 </script>
 </html>
+
+<?php
+    exit;
+?>
