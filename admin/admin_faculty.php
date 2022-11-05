@@ -496,8 +496,8 @@ td{
                   <th scope="col">#</th>
                   <th scope="col" class="text-center" >Image</th>
                   <th scope="col">Name</th>
-                  <th scope="col">Username</th>
                   <th scope="col">Department</th>
+                  <th scope="col">Contact #</th>
                   <th scope="col">Status</th>
                   <th colspan="4" class="text-center" scope="col">Actions</th><!-- Edit button and Delete button-->
               </tr>
@@ -559,8 +559,7 @@ td{
                               ?>
                             </td>
                             <td><?php echo $row['firstname'].' '.$row['lastname'];?></td>
-                            <td><?php echo $row['username'];?></td>
-                            <td><?php echo $row['address'];?></td>
+                            <td><?php echo $row['department'];?></td>
                             <td><?php echo $row['contact_number'];?></td>
                             <td><?php echo $row['status'];?></td>
 
@@ -636,7 +635,7 @@ td{
 </div>
 
   
-    <!--Modal for adding visitor-->
+    <!--Modal for adding staff-->
     <div class="modal fade" id="addAnnouncement" tabindex="-1" role="dialog" aria-labelledby="addAnnouncementCenterTitle" aria-hidden="true">
       <div class="modal-dialog modal-dialog-centered" role="document">
           <div class="modal-content" style="background-color: #e9e9e9; border-radius: 15px;">
@@ -648,7 +647,6 @@ td{
               </div>
               <div class="modal-body">
                   <form action="../controller/addAccount.php" method="POST" enctype="multipart/form-data">
-                      <input type="hidden" name="accType" value="visitor">
                     <center>
                     <div class="form-group">
                         <div class="row pt-1 mt-1">
@@ -681,43 +679,22 @@ td{
                       <div class="form-group">
                         <div class="row pb-2">
                           <div class="col-sm-12 col-xs-12 col-md-12 col-lg-12">
-                              <label class="d-flex align-items-start" for="contactNumTb">Address</label>
-                              <input type="text" class="form-control form-control-sm" id="addressTb" name="addressTb" placeholder="Ex. 2123 home st." maxlength="100" required>
+                              <label class="d-flex align-items-start" for="contactNumTb">Contact Number</label>
+                              <input type="number" class="form-control form-control-sm" id="contactNumTb" name="contactNumTb" placeholder="Ex. 092X-XXX-XXXX" minlength="11" maxlength="11" required>
                           </div>
                         </div>
                       </div>
                       <div class="form-group">
                         <div class="row pb-2">
                           <div class="col-sm-12 col-xs-12 col-md-12 col-lg-12">
-                              <label class="d-flex align-items-start" for="contactNumTb">Contact Number</label>
-                              <input type="number" class="form-control form-control-sm" id="contactNumTb" name="contactNumTb" placeholder="Ex. 092X-XXX-XXXX" minlength="11" maxlength="11" required>
+                              <label class="d-flex align-items-start" for="contactNumTb">Department</label>
+                              <input type="text" class="form-control form-control-sm" id="departmentTb" name="departmentTb" placeholder="Ex. dept of science" maxlength="100" required>
                           </div>
                         </div>
                       </div>
                     </div>
                     
 
-
-                    <!-- Account Info -->
-                    <div class="mx-2 px-2" style="background-color: #f9f9f9; border-radius:10px;">
-                      <div class="form-group">
-                        <div class="row">
-                          <div class="col-sm-12 col-xs-12 col-md-12 col-lg-12">
-                              <label class="d-flex align-items-start" for="contentTb">Username</label>
-                              <input type="text" class="form-control form-control-sm" id="usernameTb" name="usernameTb" placeholder="Ex. Marie0123" maxlength="20" required>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="form-group">
-                          <div class="row pb-2">
-                            <div class="col-sm-12 col-xs-12 col-md-12 col-lg-12">
-                                <label class="d-flex align-items-start" for="contentTb">Password</label>
-                                <input type="password" class="form-control form-control-sm" id="passwordTb" name="passwordTb" placeholder="Ex. CMarie123" minlength="8" maxlength="20" required>
-                                <small class="d-flex align-items-start" style="color:red;">Use at least 8 or up to 15 characters for your password </small>
-                            </div>
-                          </div>
-                      </div>
-                    </div>
                     <div class="modal-footer">
                         <div class="form-group">
                             <button type="submit" class="btn btn-primary">Submit</button>

@@ -5,8 +5,8 @@
     $data = new facultyModel();
     function CreateFaculty($conn,$data)
     {
-        mysqli_query($conn,"INSERT INTO facultytb(firstname,lastname,imageName,department,status) values('".$data->getFirstname()."','".$data->getLastname().
-        "','".$data->getDepartment()."','".$data->getImageName()."','".$data->getStatus()."')");
+        mysqli_query($conn,"INSERT INTO facultytb(firstname,lastname,imageName,contact_number,department,status) values('".$data->getFirstname()."','".$data->getLastname().
+        "','".$data->getDepartment()."','".$data->getImageName()."','".$data->getContact_number()."','".$data->getStatus()."')");
     }
 
     function ReadFaculty($conn,$data)
@@ -48,7 +48,7 @@
 
             //$address = mysqli_real_escape_string($conn,$data->getAddress());
             mysqli_query($conn,"UPDATE facultytb set firstname ='". $data->getFirstname()
-            ."', lastname ='".$data->getLastname(). "', department ='". $data->getDepartment()."', imageName = '".$data->getImageName()."' where id = ". $data->getId());
+            ."', lastname ='".$data->getLastname()."', contact_number = '".$data->getContact_number()."', department ='". $data->getDepartment()."', imageName = '".$data->getImageName()."' where id = ". $data->getId());
         }
     }
 

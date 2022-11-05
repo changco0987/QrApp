@@ -1,9 +1,9 @@
 <?php
     include_once '../db/connection.php';
-    include_once '../db/tb_student.php';
-    include_once '../model/studentModel.php';
+    include_once '../db/tb_faculty.php';
+    include_once '../model/facultyModel.php';
 
-    $imgPath = '../upload/students/';
+    $imgPath = '../upload/faculty/';
     $tempFilename = '';
     $fileExtension = pathinfo($_FILES['fileTb']['name'],PATHINFO_EXTENSION);
 
@@ -13,7 +13,6 @@
         $student = new studentModel();
         $student->setFirstname($_POST['fnameTb']);
         $student->setLastname($_POST['lnameTb']);
-        $student->setMiddlename($_POST['mnameTb']);
         $student->setGender($_POST['genderRb']);
         $student->setAge($_POST['ageTb']);
         $student->setAddress($_POST['addressTb']);

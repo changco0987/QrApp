@@ -4,6 +4,7 @@
         private $id;
         private $firstname;
         private $lastname;
+        private $contact_number;
         private $department;
         private $imageName;
         private $status;
@@ -40,6 +41,17 @@
         public function setLastname($lastname)
         {
             $this->lastname = $lastname;
+        }
+        
+
+        public function getContact_number()
+        {
+            return $this->contact_number;   
+        }
+
+        public function setContact_number($contact_number)
+        {
+            $this->contact_number = $contact_number;
         }
 
 
