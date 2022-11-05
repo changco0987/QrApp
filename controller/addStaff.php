@@ -10,32 +10,23 @@
     session_start();
     if(isset($_SESSION['adminNameTb']))
     {
-        $student = new studentModel();
-        $student->setFirstname($_POST['fnameTb']);
-        $student->setLastname($_POST['lnameTb']);
-        $student->setGender($_POST['genderRb']);
-        $student->setAge($_POST['ageTb']);
-        $student->setAddress($_POST['addressTb']);
-        $student->setContact_number($_POST['contactNumTb']);
-        $student->setStudentId($_POST['studentIdTb']);
-        $student->setCourse($_POST['courseTb']);
-        $student->setSection($_POST['sectionTb']);
-        $student->setYear($_POST['yearTb']);
-        $student->setStatus('unlocked');
-        $student->setGuardianName($_POST['guardianNameTb']);
-        $student->setGuardianNum($_POST['guardianNumTb']);
-        $student->setSchool($_POST['schoolTb']);
+        $data = new FacultyModel();
+        $data->setFirstname($_POST['fnameTb']);
+        $data->setLastname($_POST['lnameTb']);
+        $data->setContact_number($_POST['contactNumTb']);
+        $data->setStatus('unlocked');
+        $data->setDepartment($_POST['departmentTb']);
 
         
         if($_FILES['fileTb']['name']!="")
         {
-            $student->setImageName('student'.rand(982,13100). "." .$fileExtension);
+            $data->setImageName('staff'.rand(982,13100). "." .$fileExtension);
             $uploadedFile = $_FILES['fileTb']['tmp_name'];
-            copy($uploadedFile,$imgPath.$student->getImageName());//This will move the uploaded file into file directory (web)
+            copy($uploadedFile,$imgPath.$data->getImageName());//This will move the uploaded file into file directory (web)
         }
 
-        CreateStudent($conn,$student);
-        echo '<script> localStorage.setItem("studentMsg",1); window.location = "../admin/admin_students.php";</script>';//success message
+        CreateFaculty($conn,$data);
+        echo '<script> localStorage.setItem("staffMsg",1); window.location = "../admin/admin_faculty.php";</script>';//success message
     }
     else
     {

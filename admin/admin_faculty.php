@@ -608,7 +608,7 @@ td{
                             <td id="<?php echo $row['id'];?>">
                               <form action="../admin/editVisitor.php" method="POST" enctype="multipart/form-data">
                                 <input type="hidden" name="accType" id="accType" value="visitor">
-                                <input type="hidden" name="usernameTb" id="<?php echo 'editIdTb'.$row['username'];?>" value="<?php echo $row['username'];?>">
+                                <input type="hidden" name="usernameTb" id="<?php echo 'editIdTb'.$row['id'];?>" value="<?php echo $row['id'];?>">
                                 <button type="submit" class="btn btn-sm d-flex justify-content-start btn-warning" name="submitEdit" style="font-size: 13px;"><i class="bi bi-pencil-square mr-1"></i>Edit</button>
                               </form>
                             </td>
@@ -646,7 +646,7 @@ td{
                   </button>
               </div>
               <div class="modal-body">
-                  <form action="../controller/addAccount.php" method="POST" enctype="multipart/form-data">
+                  <form action="../controller/addStaff.php" method="POST" enctype="multipart/form-data">
                     <center>
                     <div class="form-group">
                         <div class="row pt-1 mt-1">
@@ -878,7 +878,7 @@ var gateData = [inside,outside];
     */
 
     document.getElementById('successBox').style.display = 'none';
-    var successSignal = localStorage.getItem('visitorMsg');
+    var successSignal = localStorage.getItem('staffMsg');
 
     if(successSignal==1)
     {
@@ -911,7 +911,7 @@ var gateData = [inside,outside];
     }
 
     //To make signl back to normmal and to prevent for the success page to appear every time the page was reload or refresh
-    localStorage.setItem('visitorMsg',0);
+    localStorage.setItem('staffMsg',0);
     
     //this will make a image preview before it was uploaded
     fileTb.onchange = evt => {
