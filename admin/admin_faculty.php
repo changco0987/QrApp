@@ -604,9 +604,8 @@ td{
 
                             <!--Edit Button-->
                             <td id="<?php echo $row['id'];?>">
-                              <form action="../admin/editVisitor.php" method="POST" enctype="multipart/form-data">
-                                <input type="hidden" name="accType" id="accType" value="visitor">
-                                <input type="hidden" name="usernameTb" id="<?php echo 'editIdTb'.$row['id'];?>" value="<?php echo $row['id'];?>">
+                              <form action="../admin/editStaff.php" method="POST" enctype="multipart/form-data">
+                                <input type="hidden" name="idTb" id="<?php echo 'editIdTb'.$row['id'];?>" value="<?php echo $row['id'];?>">
                                 <button type="submit" class="btn btn-sm d-flex justify-content-start btn-warning" name="submitEdit" style="font-size: 13px;"><i class="bi bi-pencil-square mr-1"></i>Edit</button>
                               </form>
                             </td>
@@ -614,7 +613,6 @@ td{
                             <!--Delete Button-->
                             <td id="<?php echo $row['id'];?>">
                               <form action="../controller/deleteAccount.php" method="POST" enctype="multipart/form-data">
-                                <input type="hidden" name="accType" id="accType" value="visitor">
                                 <input type="hidden" name="idTb" id="<?php echo 'deleteIdTb'.$row['id'];?>" value="<?php echo $row['id'];?>">
                                 <button type="submit" class="btn btn-sm d-flex justify-content-start btn-danger" style="font-size: 13px;"><i class="bi bi-trash mr-1"></i>Delete</button>
                               </form>
