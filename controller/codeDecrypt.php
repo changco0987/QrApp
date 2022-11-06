@@ -32,8 +32,13 @@
             $result = ReadAccountVisitor($conn,$data);
 
             $row = mysqli_fetch_assoc($result);
+
+
+            //to format the datetime
+            $formattedDate1 = strtotime($row['qr_ExDate']);
+            $formattedDate2 = strtotime($currentDateTime);
             //This will check if the qr code is already expired
-            if($currentDateTime < $row['qr_ExDate'] || $row['qr_ExDate']==null)
+            if($row['qr_ExDate']!==null && $formattedDate1 > $formattedDate2)
             {   
 
                 if($row['gateStat'] == 'out'||$row['gateStat'] == null)
@@ -98,8 +103,12 @@
             $result = ReadAccountGuardian($conn,$data);
 
             $row = mysqli_fetch_assoc($result);
+
+            //to format the datetime
+            $formattedDate1 = strtotime($row['qr_ExDate']);
+            $formattedDate2 = strtotime($currentDateTime);
             //This will check if the qr code is already expired
-            if($currentDateTime < $row['qr_ExDate']  || $row['qr_ExDate']==null)
+            if($row['qr_ExDate']!==null && $formattedDate1 > $formattedDate2)
             {   
 
                 if($row['gateStat'] == 'out'||$row['gateStat'] == null)
