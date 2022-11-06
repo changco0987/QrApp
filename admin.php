@@ -155,7 +155,3 @@
     </script>
 </html>
 
-
-<?php
-    exit;
-?>
