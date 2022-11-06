@@ -59,7 +59,7 @@
         }
     </style>
 
-    <link rel="icon" href="asset/qr.png">
+    <link rel="icon" href="../asset/qr.png">
     <title>Entrance Monitoring sys - Dashboard</title>
 </head>
 <body>
@@ -76,7 +76,7 @@
         <div class="row">
             <div class="col-sm-12 col-xs-12 col-md-12 col-lg-12">
                 <div class=" d-flex justify-content-center h-100">
-                <form action="../controller/editStudent.php" method="POST" enctype="multipart/form-data">
+                <form action="../controller/editStaff.php" method="POST" enctype="multipart/form-data">
                     <input type="hidden" id="idTb" name="idTb" value="<?php echo $row['id'];?>">
                     <input type="hidden" name="imageName" value="<?php echo $row['imageName'];?>">
                     <center>
@@ -93,7 +93,7 @@
                                 else
                                 {
                                     ?>
-                                        <img src="../upload/students/<?php echo $row['imageName'];?>" width="90" height="90" class="d-inline-block align-top border border-dark" alt="" style="border-radius: 50%;" id="userImg">
+                                        <img src="../upload/faculty/<?php echo $row['imageName'];?>" width="90" height="90" class="d-inline-block align-top border border-dark" alt="" style="border-radius: 50%;" id="userImg">
                                     <?php
                                 }
                               ?>
@@ -107,7 +107,7 @@
                         </div>
                     </div>
                     </center>
-                    <!-- Student Personal Info -->
+                    <!-- Staff Personal Info -->
                     <div class="mx-2 px-2" style="background-color: #f9f9f9; border-radius:10px;">
                       <div class="form-group">
                           <div class="row">
@@ -142,7 +142,7 @@
                     <div class="modal-footer">
                         <div class="form-group">
                             <button type="submit" class="btn btn-primary">Submit</button>
-                            <a type="button" class="btn btn-warning" href="../admin/admin_students.php">Cancel</a>
+                            <a type="button" class="btn btn-warning" href="../admin/admin_faculty.php">Cancel</a>
                         </div>
                     </div>
                   </form>
