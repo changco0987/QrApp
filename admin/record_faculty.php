@@ -436,7 +436,7 @@ td{
                     while($row = mysqli_fetch_assoc($result))
                     {
                       //This where the QR data was collected
-                      $prevQRData = array("title"=>'qremsystem', "accType"=>'student', "id"=>$row['id']);
+                      $prevQRData = array("title"=>'qremsystem', "accType"=>'faculty', "id"=>$row['id']);
                       $convertedQRData = base64_encode(serialize($prevQRData));
   
                       if($changeColor==0)

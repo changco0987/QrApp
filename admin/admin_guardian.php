@@ -527,7 +527,7 @@ td{
                   while($row = mysqli_fetch_assoc($result))
                   {
                     //This where the QR data was collected
-                    $prevQRData = array("title"=>'qremsystem', "accType"=>'student', "id"=>$row['id']);
+                    $prevQRData = array("title"=>'qremsystem', "accType"=>'guardian', "id"=>$row['id']);
                     $convertedQRData = base64_encode(serialize($prevQRData));
 
                     if($row['status']=='lock')
@@ -569,9 +569,9 @@ td{
                             <td><?php echo $row['status'];?></td>
 
                             <!--Print QR Button-->
-                            <td id="<?php echo $row['id'];?>">
+                            <!--td id="<?php echo $row['id'];?>">
                               <button type="button" class="btn btn-sm d-flex justify-content-start" style="background-color:#3466AA; color:white; font-size: 13px;" id="<?php echo $convertedQRData;?>" onclick="generateQRCode(this.id); window.print();"><i class="bi bi-printer-fill mr-1"></i>Print QR</button>
-                            </td>
+                            </td-->
                             
                             
                             <?php
