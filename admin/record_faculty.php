@@ -4,8 +4,8 @@
     include_once '../model/adminModel.php';
     include_once '../db/tb_admin.php';
 
-    include_once '../model/studentModel.php';
-    include_once '../db/tb_student.php';
+    include_once '../model/facultyModel.php';
+    include_once '../db/tb_faculty.php';
 
     include_once '../model/dtrModel.php';
     include_once '../db/tb_dtr.php';
@@ -359,7 +359,7 @@ td{
   <!--Header of the page-->
   <div class="row">
     <div class="col-sm-10 col-xs-10 col-md-10 col-lg-10 col-xl-11" style="background-color: #4e82c9;">
-      <h3 class="d-flex justify-content-center mt-2 pt-1" id="pageTitle" >Health Records - Student</h3>
+      <h3 class="d-flex justify-content-center mt-2 pt-1" id="pageTitle" >Health Records - Staff</h3>
     </div>
     <div class="col-sm-2 col-xs-2 col-md-2 col-lg-2 col-xl-1" style="background-color: #4e82c9;">
       <div class="w-100 d-flex justify-content-end">
@@ -411,17 +411,17 @@ td{
           </thead>
           <tbody>
               <?php
-                  $student = new studentModel();
+                  $data = new facultyModel();
                   $dtr = new dtrModel();
                   if(isset($_SESSION["studentFname"]) && $_SESSION['studentFname'] != '')
                   {
-                    $student->setFirstname($_SESSION["studentFname"]);
+                    $data->setFirstname($_SESSION["studentFname"]);
                     $_SESSION['studentFname'] = '';
                     unset($_SESSION['studentFname']);
                   }
                   else if(isset($_SESSION["studentLname"]) && $_SESSION['studentLname'] != '')
                   {
-                    $student->setLastname($_SESSION["studentLname"]);
+                    $data->setLastname($_SESSION["studentLname"]);
                     $_SESSION['studentLname'] = '';
                     unset($_SESSION['studentLname']);
                   }
@@ -431,42 +431,38 @@ td{
                   $changeColor = 0;//This is to change the color
                   while($dtrRow = mysqli_fetch_assoc($dtrData))
                   {
-                    if($dtrRow['accType'] == 'student')
+                    $data->setId($dtrRow['dataId']);
+                    $result = ReadFaculty($conn,$data);
+                    while($row = mysqli_fetch_assoc($result))
                     {
-
-                      $student->setId($dtrRow['dataId']);
-                      $result = ReadStudent($conn,$student);
-                      while($row = mysqli_fetch_assoc($result))
+                      //This where the QR data was collected
+                      $prevQRData = array("title"=>'qremsystem', "accType"=>'student', "id"=>$row['id']);
+                      $convertedQRData = base64_encode(serialize($prevQRData));
+  
+                      if($changeColor==0)
                       {
-                        //This where the QR data was collected
-                        $prevQRData = array("title"=>'qremsystem', "accType"=>'student', "id"=>$row['id']);
-                        $convertedQRData = base64_encode(serialize($prevQRData));
-    
-                        if($changeColor==0)
-                        {
-                          ?>
-                            <tr style="background-color:#82B7DC;">
-                          <?php
-                          $changeColor++;
-                        }                   
-                        else if($changeColor==1)
-                        {
-                          ?>
-                            <tr style="background-color:#6aa9d5;">
-                          <?php
-                          $changeColor=0;
-                        }
-                          ?>
-                              <td><?php echo $rowCount;?></td>
-                              <td><?php echo $row['firstname'].' '.$row['lastname'];?></td>
-                              <td></td><!-- Temperature -->
-                              <td><?php echo $dtrRow['time_in'];?></td>
-                              <td><?php echo $dtrRow['time_out'];?></td>
-                          </tr>
-                          <?php
-                          $rowCount++;
-    
+                        ?>
+                          <tr style="background-color:#82B7DC;">
+                        <?php
+                        $changeColor++;
+                      }                   
+                      else if($changeColor==1)
+                      {
+                        ?>
+                          <tr style="background-color:#6aa9d5;">
+                        <?php
+                        $changeColor=0;
                       }
+                        ?>
+                            <td><?php echo $rowCount;?></td>
+                            <td><?php echo $row['firstname'].' '.$row['lastname'];?></td>
+                            <td></td><!-- Temperature -->
+                            <td><?php echo $dtrRow['time_in'];?></td>
+                            <td><?php echo $dtrRow['time_out'];?></td>
+                        </tr>
+                        <?php
+                        $rowCount++;
+  
                     }
                   }
               ?>

@@ -26,6 +26,10 @@
         {
             $dbData = mysqli_query($conn,"SELECT * FROM guardiantb WHERE username = '".$data->getUsername()."'");
         }
+        else if($data->getId()!=null)
+        {
+            $dbData = mysqli_query($conn,"SELECT * FROM guardiantb WHERE id = ".$data->getId());
+        }
         else
         {
             $dbData = mysqli_query($conn,"SELECT * FROM guardiantb");

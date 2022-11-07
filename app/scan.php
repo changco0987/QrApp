@@ -147,6 +147,7 @@ h6{
   font-weight:900;
   color: #1C1C1C;
 }
+
 #inTxt, #outTxt, #errorTxt{
     display: none;
 }

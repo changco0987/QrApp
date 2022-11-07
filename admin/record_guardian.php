@@ -433,38 +433,42 @@ td{
                   $changeColor = 0;//This is to change the color
                   while($dtrRow = mysqli_fetch_assoc($dtrData))
                   {
-                    $data->setId($dtrRow['dataId']);
-                    $result = ReadAccountGuardian($conn,$data);
-                    while($row = mysqli_fetch_assoc($result))
+                    if($dtrRow['accType'] == 'guardian')
                     {
-                      //This where the QR data was collected
-                      $prevQRData = array("title"=>'qremsystem', "accType"=>'student', "id"=>$row['id']);
-                      $convertedQRData = base64_encode(serialize($prevQRData));
-  
-                      if($changeColor==0)
+
+                      $data->setId($dtrRow['dataId']);
+                      $result = ReadAccountGuardian($conn,$data);
+                      while($row = mysqli_fetch_assoc($result))
                       {
-                        ?>
-                          <tr style="background-color:#82B7DC;">
-                        <?php
-                        $changeColor++;
-                      }                   
-                      else if($changeColor==1)
-                      {
-                        ?>
-                          <tr style="background-color:#6aa9d5;">
-                        <?php
-                        $changeColor=0;
+                        //This where the QR data was collected
+                        $prevQRData = array("title"=>'qremsystem', "accType"=>'student', "id"=>$row['id']);
+                        $convertedQRData = base64_encode(serialize($prevQRData));
+    
+                        if($changeColor==0)
+                        {
+                          ?>
+                            <tr style="background-color:#82B7DC;">
+                          <?php
+                          $changeColor++;
+                        }                   
+                        else if($changeColor==1)
+                        {
+                          ?>
+                            <tr style="background-color:#6aa9d5;">
+                          <?php
+                          $changeColor=0;
+                        }
+                          ?>
+                              <td><?php echo $rowCount;?></td>
+                              <td><?php echo $row['firstname'].' '.$row['lastname'];?></td>
+                              <td></td><!-- Temperature -->
+                              <td><?php echo $dtrRow['time_in'];?></td>
+                              <td><?php echo $dtrRow['time_out'];?></td>
+                          </tr>
+                          <?php
+                          $rowCount++;
+    
                       }
-                        ?>
-                            <td><?php echo $rowCount;?></td>
-                            <td><?php echo $row['firstname'].' '.$row['lastname'];?></td>
-                            <td></td><!-- Temperature -->
-                            <td><?php echo $dtrRow['time_in'];?></td>
-                            <td><?php echo $dtrRow['time_out'];?></td>
-                        </tr>
-                        <?php
-                        $rowCount++;
-  
                     }
                   }
               ?>

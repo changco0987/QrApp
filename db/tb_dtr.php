@@ -17,6 +17,11 @@
             //to get all data in this table
             $dbData = mysqli_query($conn,"SELECT * FROM dtr WHERE dataId = ".$dtr->getDataId());
         }
+        else if($dtr->getAccType()!= null && $dtr->getId()==null)
+        {
+            //to get data using AccType
+            $dbData = mysqli_query($conn,"SELECT * FROM dtr WHERE accType = '".$dtr->getAccType()."'");
+        }
         else if($dtr->getId()==null)
         {
             //to get all data in this table

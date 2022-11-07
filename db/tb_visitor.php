@@ -24,6 +24,10 @@
         {
             $dbData = mysqli_query($conn,"SELECT * FROM visitortb WHERE username = '".$data->getUsername()."'");
         }
+        else if($data->getId()!=null)
+        {
+            $dbData = mysqli_query($conn,"SELECT * FROM visitortb WHERE id = ".$data->getId());
+        }
         else
         {
             $dbData = mysqli_query($conn,"SELECT * FROM visitortb");
