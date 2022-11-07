@@ -569,7 +569,7 @@ td{
                             <td><?php echo $row['status'];?></td>
 
                             <!--Print QR Button-->
-                            <!--td id="<?php echo $row['id'];?>">
+                            <!--td id="<?php //echo $row['id'];?>">
                               <button type="button" class="btn btn-sm d-flex justify-content-start" style="background-color:#3466AA; color:white; font-size: 13px;" id="<?php echo $convertedQRData;?>" onclick="generateQRCode(this.id); window.print();"><i class="bi bi-printer-fill mr-1"></i>Print QR</button>
                             </td-->
                             
