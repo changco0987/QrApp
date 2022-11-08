@@ -254,7 +254,7 @@
                     $_SESSION['gateStat'] = $row['gateStat'];
                     $_SESSION['accType'] = 'student';
                     $_SESSION['id'] = $row['id'];
-                    /*
+                    
                     //Going out/Exit
                     //log to DTR
                     $dtr = new dtrModel();
@@ -296,7 +296,7 @@
                     }
 
                     UpdateStudent($conn,$data);
-                    */
+                    
                 }
                 
 

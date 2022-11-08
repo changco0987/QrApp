@@ -134,7 +134,7 @@
     }
 }
 
-#codeInput, #tempInput{
+#codeInput{
     width: 0;
     height: 0;
     outline:none!important;
@@ -195,11 +195,11 @@ h6{
                     <h4 id="contactLb"></h4>
                     <h4 id="addressLb"></h4>
                     <h4 id="guardianLb"></h4>
+                    <h2 id="tempTxt" style="color:red; font-weight:bold;">Temp: </h2>
                     <h4 id="timeLb" class="text-success"></h4>
                     <h2 id="inTxt" class="text-center" style="color:green; font-weight:bold;"><i class="bi bi-check2-circle mr-1"></i>Time-in</h2>
                     <h2 id="outTxt" class="text-center" style="color:green; font-weight:bold;"><i class="bi bi-check2-circle mr-1"></i>Time-out</h2>
                     <h2 id="errorTxt" class="text-center" style="color:red; font-weight:bold;"><i class="bbi bi-exclamation-diamond-fill mr-1"></i></h2>
-                    <h2 id="tempTxt" class="text-center" style="color:red; font-weight:bold;"><i class="bbi bi-exclamation-diamond-fill mr-1"></i></h2>
                     <input id="codeInput" oninput="clearVal()" onchange="getVal()" onblur="this.focus()" autofocus/> 
                     <input id="tempInput" oninput="clearVal()" onchange="getTemp()" onblur="this.focus()" maxlength="10" autofocus/> 
                 </div>
@@ -242,35 +242,44 @@ h6{
         //To submit the form without reloading it
         function submitTemp(tempValue) 
         {
-            var http = new XMLHttpRequest();
-            http.open("POST", "../controller/dtrInput.php", true);
-            http.setRequestHeader("Content-type","application/x-www-form-urlencoded");
-            //This is the form input fields data
-            var params = "tempInput="+tempValue; // probably use document.getElementById(...).value
-            http.send(params);
-            http.onload = function() 
+            try
             {
-                var data = http.responseText;
-                if(data=='error')
+                var http = new XMLHttpRequest();
+                http.open("POST", "../controller/dtrInput.php", true);
+                http.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+                //This is the form input fields data
+                var params = "tempInput="+tempValue; // probably use document.getElementById(...).value
+                http.send(params);
+                http.onload = function() 
                 {
-                    $('#errorTxt').show();
-                    $('#errorTxt').html('The QR is not belong to the system');
-                    const myTimeout = setTimeout(revokeView, 5000);
+                    var data = http.responseText;
+                    if(data=='error')
+                    {
+                        $('#errorTxt').show();
+                        $('#errorTxt').html('The QR is not belong to the system');
+                        const myTimeout = setTimeout(revokeView, 5000);
+                    }
+                    else
+                    {
+                        //console.log(data);
+                        showTemp(data);
+                        console.log(data);
+                    }
+                    //returnDate();
+                    //console.log(params);
                 }
-                else
-                {
-                    //console.log(data);
-                    showTemp(data);
-                    console.log(data);
-                }
-                //returnDate();
-                //console.log(params);
+            }
+            catch(err)
+            {
+                location.reload();
             }
         }
 
         function showTemp(temp)
         {
-            $('#tempTxt').html("Temp: "+temp.temp);
+            $('#tempTxt').html("Temp: "+temp);
+            $('#tempInput').blur();
+            $('#tempInput').hide();
             const myTimeout = setTimeout(revokeView, 5000);
 
         }
@@ -279,34 +288,41 @@ h6{
         //To submit the form without reloading it
         function submitForm(qrValue) 
         {
-            var http = new XMLHttpRequest();
-            http.open("POST", "../controller/codeDecrypt.php", true);
-            http.setRequestHeader("Content-type","application/x-www-form-urlencoded");
-            //This is the form input fields data
-            var params = "codeInput="+qrValue; // probably use document.getElementById(...).value
-            http.send(params);
-            http.onload = function() 
+            try
             {
-                var data = http.responseText;
-                if(data=='expired')
+                var http = new XMLHttpRequest();
+                http.open("POST", "../controller/codeDecrypt.php", true);
+                http.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+                //This is the form input fields data
+                var params = "codeInput="+qrValue; // probably use document.getElementById(...).value
+                http.send(params);
+                http.onload = function() 
                 {
-                    $('#errorTxt').show();
-                    $('#errorTxt').html('QR already expired');
-                    const myTimeout = setTimeout(revokeView, 5000);
+                    var data = http.responseText;
+                    if(data=='expired')
+                    {
+                        $('#errorTxt').show();
+                        $('#errorTxt').html('QR already expired');
+                        const myTimeout = setTimeout(revokeView, 5000);
+                    }
+                    else if(data=='error')
+                    {
+                        $('#errorTxt').show();
+                        $('#errorTxt').html('The QR is not belong to the system');
+                        const myTimeout = setTimeout(revokeView, 5000);
+                    }
+                    else
+                    {
+                        //console.log(data);
+                        getType(JSON.parse(data));
+                    }
+                    //returnDate();
+                    //console.log(params);
                 }
-                else if(data=='error')
-                {
-                    $('#errorTxt').show();
-                    $('#errorTxt').html('The QR is not belong to the system');
-                    const myTimeout = setTimeout(revokeView, 5000);
-                }
-                else
-                {
-                    //console.log(data);
-                    getType(JSON.parse(data));
-                }
-                //returnDate();
-                //console.log(params);
+            }
+            catch(err)
+            {
+                location.reload();
             }
         }
 
@@ -315,8 +331,7 @@ h6{
         function getType(arrVal)
         {
             $('#codeInput').hide();//this will hide the code input to avoid inputting qr value after scanning something
-            $('#tempInput').show();//this will show the temp input to input the user temp
-            $('#tempInput').focus();
+
             /*for(var key in arrVal)
             {
             }*/
@@ -375,11 +390,16 @@ h6{
                     {
                         $('#timeLb').html('Time: '+arrVal.time);
                         $('#inTxt').show();
+
+                        //This will only show in the entry
+                        $('#tempInput').show();//this will show the temp input to input the user temp
+                        $('#tempInput').focus();
                     }
                     else
                     {
                         $('#timeLb').html('Time: '+arrVal.time);
                         $('#outTxt').show();
+                        const myTimeout = setTimeout(revokeView, 5000);
                     }
                     //const myTimeout = setTimeout(revokeView, 5000);
                     //console.log(arrVal.accType);
@@ -409,13 +429,19 @@ h6{
                     //To check if the user is "in or out"
                     if(arrVal.state == 'in')
                     {
+                        $('#tempTxt').show();//This is the temperature value/data container to display
                         $('#timeLb').html('Time: '+arrVal.time);
                         $('#inTxt').show();
+                        //This will only show in the entry
+                        $('#tempInput').show();//this will show the temp input to input the user temp
+                        $('#tempInput').focus();
+                        
                     }
                     else
                     {
                         $('#timeLb').html('Time: '+arrVal.time);
                         $('#outTxt').show();
+                        const myTimeout = setTimeout(revokeView, 5000);
                     }
                     //const myTimeout = setTimeout(revokeView, 5000);
                     //console.log(arrVal.accType);
@@ -444,6 +470,9 @@ h6{
             $('#tempTxt').hide();
 
             $('#codeInput').show();
+            $('#codeInput').focus();
+
+            $('#tempInput').blur();
             $('#tempInput').hide();
         }
 

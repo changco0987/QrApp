@@ -22,7 +22,7 @@
     $currentDateTime = date('Y-m-d h:i:s a');
     if(isset($_POST['tempInput']))
     {
-        $responseData = '';
+        $responsedata = '';
 
         if($_SESSION['accType'] == 'visitor')
         {
@@ -38,7 +38,7 @@
             $data = new studentModel();
             $data->setId($_SESSION['id']);
 
-            if($_SESSION['gateStat'] == 'out'||$_SESSION['gateStat'] == null)
+            if($_SESSION['gateStat'] == 'out' || $_SESSION['gateStat'] == null)
             {
 
                 //Going in/enter
@@ -78,7 +78,7 @@
             exit;
         }
         
-        echo json_encode($responseData);
+        echo $responsedata;
         exit;
     }
 ?>
