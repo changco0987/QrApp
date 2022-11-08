@@ -188,6 +188,8 @@
                                                    "guardianName"=>$row['guardianName'],
                                                    "time"=>$currentDateTime,
                                                    "state"=>'in');
+
+                    /*
                     //Going in/enter
                     //log to DTR
                     $dtr = new dtrModel();
@@ -228,6 +230,7 @@
                         }
                     }
                     UpdateStudent($conn,$data);
+                    */
                     
                 }
                 else
@@ -241,6 +244,7 @@
                                                    "guardianName"=>$row['guardianName'],
                                                    "time"=>$currentDateTime,
                                                    "state"=>'out');
+                    /*
                     //Going out/Exit
                     //log to DTR
                     $dtr = new dtrModel();
@@ -282,6 +286,7 @@
                     }
 
                     UpdateStudent($conn,$data);
+                    */
                 }
                 
 

@@ -134,7 +134,7 @@
     }
 }
 
-#codeInput{
+#codeInput, #tempInput{
     width: 0;
     height: 0;
     outline:none!important;
@@ -148,7 +148,7 @@ h6{
   color: #1C1C1C;
 }
 
-#inTxt, #outTxt, #errorTxt{
+#inTxt, #outTxt, #errorTxt, #tempTxt, #tempInput{
     display: none;
 }
 
@@ -216,6 +216,8 @@ h6{
         //To identify the accType
         function getType(arrVal)
         {
+            $('#codeInput').hide();//this will hide the code input to avoid inputting qr value after scanning something
+            $('#tempInput').show();//this will show the temp input to input the user temp
             /*for(var key in arrVal)
             {
             }*/
@@ -248,7 +250,7 @@ h6{
                         $('#timeLb').html('Time: '+arrVal.time);
                         $('#outTxt').show();
                     }
-                    const myTimeout = setTimeout(revokeView, 5000);
+                    //const myTimeout = setTimeout(revokeView, 5000);
                     console.log(arrVal.accType);
 
                 }
@@ -280,12 +282,13 @@ h6{
                         $('#timeLb').html('Time: '+arrVal.time);
                         $('#outTxt').show();
                     }
-                    const myTimeout = setTimeout(revokeView, 5000);
+                    //const myTimeout = setTimeout(revokeView, 5000);
                     //console.log(arrVal.accType);
 
                 }
                 else if(arrVal.accType=='student')
                 {
+                    
                     if(arrVal.imageName)
                     {
                         document.getElementById("userPicture").src = '../upload/students/'+arrVal.imageName;
@@ -295,7 +298,7 @@ h6{
                         $('#userPicture').hide();
                         $('#noPicture').show();
                     }
-                    console.log(arrVal.imageName);
+                    //console.log(arrVal.imageName);
                     document.getElementById("scanLb").style.display = "none";
 
                     $('#nameLb').html('Name: '+arrVal.name);
@@ -304,6 +307,7 @@ h6{
                     $('#contactLb').html('Contact #: '+arrVal.contact);
                     $('#addressLb').html('Address: '+arrVal.address);
                     $('#guardianLb').html("Parent's Name: "+arrVal.guardianName);
+                    $('#tempTxt').html("Temp: "+arrVal.temp);
                     //To check if the user is "in or out"
                     if(arrVal.state == 'in')
                     {
@@ -315,7 +319,7 @@ h6{
                         $('#timeLb').html('Time: '+arrVal.time);
                         $('#outTxt').show();
                     }
-                    const myTimeout = setTimeout(revokeView, 5000);
+                    //const myTimeout = setTimeout(revokeView, 5000);
                     //console.log(arrVal.accType);
                 }
             
@@ -339,6 +343,9 @@ h6{
             $('#errorTxt').hide();
             $('#userPicture').show();
             $('#noPicture').hide();
+            $('#tempTxt').hide();
+            $('#codeInput').show();
+            $('#tempInput').hide();
         }
 
         //To get the user qr expiry date
@@ -401,6 +408,8 @@ h6{
                     <h2 id="inTxt" class="text-center" style="color:green; font-weight:bold;"><i class="bi bi-check2-circle mr-1"></i>Time-in</h2>
                     <h2 id="outTxt" class="text-center" style="color:green; font-weight:bold;"><i class="bi bi-check2-circle mr-1"></i>Time-out</h2>
                     <h2 id="errorTxt" class="text-center" style="color:red; font-weight:bold;"><i class="bbi bi-exclamation-diamond-fill mr-1"></i></h2>
+                    <h2 id="tempTxt" class="text-center" style="color:red; font-weight:bold;"><i class="bbi bi-exclamation-diamond-fill mr-1"></i></h2>
+                    <input id="tempInput" oninput="clearVal()" onchange="getTemp()" onblur="this.focus()" autofocus/> 
                     <input id="codeInput" oninput="clearVal()" onchange="getVal()" onblur="this.focus()" autofocus/> 
                 </div>
             </div>
@@ -443,6 +452,14 @@ $(function() {
             console.log('QR data: '+inputVal);
             submitForm(inputVal);
             $("#codeInput").val('');
+        }
+
+        function getTemp()
+        {
+            var inputVal = $("#tempInput").val();
+            console.log('Temp data: '+inputVal);
+            submitForm(inputVal);
+            $("#tempInput").val('');  
         }
 
         document.getElementById('successBox').style.display = 'none';
