@@ -5,7 +5,7 @@
     $dtr = new dtrModel();
     function CreateDtr($conn,$dtr)
     {
-        mysqli_query($conn,"INSERT INTO dtr(dataId, accType, time_in) values('".$dtr->getDataId()."','".$dtr->getAccType()."','".$dtr->getTime_in()."')");
+        mysqli_query($conn,"INSERT INTO dtr(dataId, temperature, accType, time_in) values('".$dtr->getDataId()."','".$dtr->getTemperature()."','".$dtr->getAccType()."','".$dtr->getTime_in()."')");
         $id = mysqli_insert_id($conn);
         return $id;
     }

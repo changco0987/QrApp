@@ -3,6 +3,7 @@
     {
         private $id;
         private $dataId;
+        private $temperature;
         private $accType;
         private $time_in;
         private $time_out;
@@ -27,6 +28,17 @@
         public function setDataId($dataId)
         {
             $this->dataId = $dataId;
+        }
+
+
+        public function getTemperature()
+        {
+            return $this->temperature;   
+        }
+
+        public function setTemperature($temperature)
+        {
+            $this->temperature = $temperature;
         }
 
 

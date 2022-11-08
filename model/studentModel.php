@@ -9,7 +9,6 @@
         private $course;
         private $section;
         private $year;
-        private $temperature;
         private $age;
         private $gender;
         private $address;
@@ -106,17 +105,6 @@
         public function setYear($year)
         {
             $this->year = strtolower($year);
-        }
-
-
-        public function getTemperature()
-        {
-            return $this->temperature;   
-        }
-
-        public function setTemperature($temperature)
-        {
-            $this->temperature = strtolower($temperature);
         }
 
 

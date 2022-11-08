@@ -1,4 +1,12 @@
+<?php
 
+    session_start();
+    if(isset($_SESSION['adminNameTb']))
+    {
+        header('location: admin/dashboard.php');
+    }
+
+?>
 
 <!DOCTYPE html>
 <html lang="en">
