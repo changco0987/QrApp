@@ -260,7 +260,8 @@ h6{
                 else
                 {
                     //console.log(data);
-                    showTemp(JSON.parse(data));
+                    showTemp(data);
+                    console.log(data);
                 }
                 //returnDate();
                 //console.log(params);

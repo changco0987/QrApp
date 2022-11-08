@@ -22,19 +22,19 @@
     $currentDateTime = date('Y-m-d h:i:s a');
     if(isset($_POST['tempInput']))
     {
-        $responseData = array();
+        $responseData = '';
 
-        if($_POST['accType'] == 'visitor')
+        if($_SESSION['accType'] == 'visitor')
         {
 
         }
-        else if($_POST['accType'] == 'guardian')
+        else if($_SESSION['accType'] == 'guardian')
         {
 
         }
-        else if($_POST['accType'] == 'student')
+        else if($_SESSION['accType'] == 'student')
         {
-            $responsedata = array("temp"=>$_POST['tempInput']);
+            $responsedata = $_POST['tempInput'];
             $data = new studentModel();
             $data->setId($_SESSION['id']);
 
@@ -44,7 +44,7 @@
                 //Going in/enter
                 //log to DTR
                 $dtr = new dtrModel();
-                $dtr->setDataId($row['id']);
+                $dtr->setDataId($_SESSION['id']);
                 $dtr->setAccType('student');
                 $dtr->setTemperature($_POST['tempInput']);
                 $dtr->setTime_in($currentDateTime);
