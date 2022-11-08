@@ -157,6 +157,64 @@ h6{
 }
     </style>
     <script>
+    </script>
+
+    <link rel="icon" href="../asset/qr.png">
+    <title>Entrance Monitoring sys - Dashboard</title>
+</head>
+<body>
+    
+    <!-- Image and text Header-->
+    <nav class="navbar navbar-light" style="background-color: #114084;">
+        <a class="navbar-brand" href="#" style="font-weight:bold; color: whitesmoke; text-shadow: 1px 1px #1C1C1C;">
+        <img src="../asset/qr.png" width="40" height="40" class="d-inline-block align-top" alt="">
+            QR <small style="color: whitesmoke; text-shadow: 1px 1px #1C1C1C;">Entrance Monitoring System</small>
+        </a>
+     </nav>
+        
+    <!-- Alert message container-->
+    <div id="successBox" class="alert alert-success alert-dismissible fade show" role="alert" style="display:block;">
+        <strong id="successMsg"></strong>
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    
+    <div class="row myRow mt-4 pt-4 mx-auto">
+        <div class="col-sm-12 col-xs-12 col-md-12 col-lg-12 my-4 py-4">
+            <div class="container d-flex justify-content-center">
+                <div style="min-width:max-content;">
+                    <center>
+                        <img id="userPicture" src="../asset/qrScan.png" class="mx-auto text-center border border-dark" alt="" style="width:250px;height: 250px;">
+                        <img id="noPicture" src="../asset/user.png" class="mx-auto text-center border border-dark" alt="" style="width:250px;height: 250px;">
+                        <h6 id="typeLb" style="font-size:13px; color:red;" class="mt-1"></h6>
+                    </center>
+                    <h2 id="scanLb" class="mx-auto text-center">Scan Here</h2>
+                    <h3 id="nameLb" class="mt-2" style=" font-weight:bold;"></h3>
+                    <h4 id="courseLb"></h4>
+                    <h4 id="contactLb"></h4>
+                    <h4 id="addressLb"></h4>
+                    <h4 id="guardianLb"></h4>
+                    <h4 id="timeLb" class="text-success"></h4>
+                    <h2 id="inTxt" class="text-center" style="color:green; font-weight:bold;"><i class="bi bi-check2-circle mr-1"></i>Time-in</h2>
+                    <h2 id="outTxt" class="text-center" style="color:green; font-weight:bold;"><i class="bi bi-check2-circle mr-1"></i>Time-out</h2>
+                    <h2 id="errorTxt" class="text-center" style="color:red; font-weight:bold;"><i class="bbi bi-exclamation-diamond-fill mr-1"></i></h2>
+                    <h2 id="tempTxt" class="text-center" style="color:red; font-weight:bold;"><i class="bbi bi-exclamation-diamond-fill mr-1"></i></h2>
+                    <input id="codeInput" oninput="clearVal()" onchange="getVal()" onblur="this.focus()" autofocus/> 
+                    <input id="tempInput" oninput="clearVal()" onchange="getTemp()" onblur="this.focus()" maxlength="10" autofocus/> 
+                </div>
+            </div>
+        </div>
+    </div>  
+
+
+
+
+
+
+</body>
+<!--alert message script-->
+<script>
     /*
     outline:none!important;
     border:0;
@@ -180,15 +238,54 @@ h6{
             }
         }
 
+        
         //To submit the form without reloading it
-        function submitForm(qrValue) {
+        function submitTemp(tempValue) 
+        {
+            var http = new XMLHttpRequest();
+            http.open("POST", "../controller/dtrInput.php", true);
+            http.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+            //This is the form input fields data
+            var params = "tempInput="+tempValue; // probably use document.getElementById(...).value
+            http.send(params);
+            http.onload = function() 
+            {
+                var data = http.responseText;
+                if(data=='error')
+                {
+                    $('#errorTxt').show();
+                    $('#errorTxt').html('The QR is not belong to the system');
+                    const myTimeout = setTimeout(revokeView, 5000);
+                }
+                else
+                {
+                    //console.log(data);
+                    showTemp(JSON.parse(data));
+                }
+                //returnDate();
+                //console.log(params);
+            }
+        }
+
+        function showTemp(temp)
+        {
+            $('#tempTxt').html("Temp: "+temp.temp);
+            const myTimeout = setTimeout(revokeView, 5000);
+
+        }
+
+
+        //To submit the form without reloading it
+        function submitForm(qrValue) 
+        {
             var http = new XMLHttpRequest();
             http.open("POST", "../controller/codeDecrypt.php", true);
             http.setRequestHeader("Content-type","application/x-www-form-urlencoded");
             //This is the form input fields data
             var params = "codeInput="+qrValue; // probably use document.getElementById(...).value
             http.send(params);
-            http.onload = function() {
+            http.onload = function() 
+            {
                 var data = http.responseText;
                 if(data=='expired')
                 {
@@ -212,12 +309,13 @@ h6{
             }
         }
 
-
+        
         //To identify the accType
         function getType(arrVal)
         {
             $('#codeInput').hide();//this will hide the code input to avoid inputting qr value after scanning something
             $('#tempInput').show();//this will show the temp input to input the user temp
+            $('#tempInput').focus();
             /*for(var key in arrVal)
             {
             }*/
@@ -307,7 +405,6 @@ h6{
                     $('#contactLb').html('Contact #: '+arrVal.contact);
                     $('#addressLb').html('Address: '+arrVal.address);
                     $('#guardianLb').html("Parent's Name: "+arrVal.guardianName);
-                    $('#tempTxt').html("Temp: "+arrVal.temp);
                     //To check if the user is "in or out"
                     if(arrVal.state == 'in')
                     {
@@ -344,6 +441,7 @@ h6{
             $('#userPicture').show();
             $('#noPicture').hide();
             $('#tempTxt').hide();
+
             $('#codeInput').show();
             $('#tempInput').hide();
         }
@@ -366,64 +464,6 @@ h6{
             });
         }
         
-    </script>
-
-    <link rel="icon" href="../asset/qr.png">
-    <title>Entrance Monitoring sys - Dashboard</title>
-</head>
-<body>
-    
-    <!-- Image and text Header-->
-    <nav class="navbar navbar-light" style="background-color: #114084;">
-        <a class="navbar-brand" href="#" style="font-weight:bold; color: whitesmoke; text-shadow: 1px 1px #1C1C1C;">
-        <img src="../asset/qr.png" width="40" height="40" class="d-inline-block align-top" alt="">
-            QR <small style="color: whitesmoke; text-shadow: 1px 1px #1C1C1C;">Entrance Monitoring System</small>
-        </a>
-     </nav>
-        
-    <!-- Alert message container-->
-    <div id="successBox" class="alert alert-success alert-dismissible fade show" role="alert" style="display:block;">
-        <strong id="successMsg"></strong>
-        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-        </button>
-    </div>
-    
-    <div class="row myRow mt-4 pt-4 mx-auto">
-        <div class="col-sm-12 col-xs-12 col-md-12 col-lg-12 my-4 py-4">
-            <div class="container d-flex justify-content-center">
-                <div style="min-width:max-content;">
-                    <center>
-                        <img id="userPicture" src="../asset/qrScan.png" class="mx-auto text-center border border-dark" alt="" style="width:250px;height: 250px;">
-                        <img id="noPicture" src="../asset/user.png" class="mx-auto text-center border border-dark" alt="" style="width:250px;height: 250px;">
-                        <h6 id="typeLb" style="font-size:13px; color:red;" class="mt-1"></h6>
-                    </center>
-                    <h2 id="scanLb" class="mx-auto text-center">Scan Here</h2>
-                    <h3 id="nameLb" class="mt-2" style=" font-weight:bold;"></h3>
-                    <h4 id="courseLb"></h4>
-                    <h4 id="contactLb"></h4>
-                    <h4 id="addressLb"></h4>
-                    <h4 id="guardianLb"></h4>
-                    <h4 id="timeLb" class="text-success"></h4>
-                    <h2 id="inTxt" class="text-center" style="color:green; font-weight:bold;"><i class="bi bi-check2-circle mr-1"></i>Time-in</h2>
-                    <h2 id="outTxt" class="text-center" style="color:green; font-weight:bold;"><i class="bi bi-check2-circle mr-1"></i>Time-out</h2>
-                    <h2 id="errorTxt" class="text-center" style="color:red; font-weight:bold;"><i class="bbi bi-exclamation-diamond-fill mr-1"></i></h2>
-                    <h2 id="tempTxt" class="text-center" style="color:red; font-weight:bold;"><i class="bbi bi-exclamation-diamond-fill mr-1"></i></h2>
-                    <input id="tempInput" oninput="clearVal()" onchange="getTemp()" onblur="this.focus()" autofocus/> 
-                    <input id="codeInput" oninput="clearVal()" onchange="getVal()" onblur="this.focus()" autofocus/> 
-                </div>
-            </div>
-        </div>
-    </div>  
-
-
-
-
-
-
-</body>
-<!--alert message script-->
-<script>
     /*
 $(function() {
    $('#codeInput').keypress(function(event) {
@@ -452,13 +492,14 @@ $(function() {
             console.log('QR data: '+inputVal);
             submitForm(inputVal);
             $("#codeInput").val('');
+            $('#codeInput').blur();
         }
 
         function getTemp()
         {
             var inputVal = $("#tempInput").val();
             console.log('Temp data: '+inputVal);
-            submitForm(inputVal);
+            submitTemp(inputVal);
             $("#tempInput").val('');  
         }
 

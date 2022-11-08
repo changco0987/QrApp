@@ -16,6 +16,7 @@
     //include_once '../API/apiData.php';
     //include_once 'smsAPI.php';
 
+    session_start();
 
     date_default_timezone_set('Asia/Manila'); 
     $currentDateTime = date('Y-m-d h:i:s a');
@@ -189,6 +190,10 @@
                                                    "time"=>$currentDateTime,
                                                    "state"=>'in');
 
+                    $_SESSION['gateStat'] = $row['gateStat'];
+                    $_SESSION['accType'] = 'student';
+                    $_SESSION['id'] = $row['id'];
+
                     /*
                     //Going in/enter
                     //log to DTR
@@ -244,6 +249,11 @@
                                                    "guardianName"=>$row['guardianName'],
                                                    "time"=>$currentDateTime,
                                                    "state"=>'out');
+                                                   
+                    $_SESSION['dtrId'] = $row['dtrId'];
+                    $_SESSION['gateStat'] = $row['gateStat'];
+                    $_SESSION['accType'] = 'student';
+                    $_SESSION['id'] = $row['id'];
                     /*
                     //Going out/Exit
                     //log to DTR
@@ -254,7 +264,7 @@
 
                     //This will update the userside dtr Log
                     $data->setGateStat('out');
-                    $data->setDtrId($row['dtrId']);//To make the UpdateAccountGuardian 1st condition valid
+                    $data->setDtrId($row['dtrId']);//To make the UpdateStudent 1st condition valid
 
                     //This will get the guardian details to check if the guardian has turned the notif on or off
                     $guardian = new guardianModel();
