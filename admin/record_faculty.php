@@ -382,7 +382,7 @@ td{
     </div>
 
     <div class="col-sm-4 col-xs-2 col-md-4 col-lg-2 col-xl-4 pl-3 pr-2 my-2 py-2 d-flex justify-content-end h-100 mx-auto my-auto">
-      <form action="../controller/searchStudent.php" method="post" enctype="multipart/form-data">
+      <form action="../controller/searchFaculty.php" method="post" enctype="multipart/form-data">
         <div class="input-group">
           <input type="hidden" name="record" value="recordPage">
           <input type="text" name="searchName" id="searchName" class="form-control no-border form-control-sm" placeholder="Type by Name or Surname">
@@ -413,17 +413,13 @@ td{
               <?php
                   $data = new facultyModel();
                   $dtr = new dtrModel();
-                  if(isset($_SESSION["studentFname"]) && $_SESSION['studentFname'] != '')
+                  if(isset($_GET["firstname"]))
                   {
-                    $data->setFirstname($_SESSION["studentFname"]);
-                    $_SESSION['studentFname'] = '';
-                    unset($_SESSION['studentFname']);
+                    $data->setFirstname($_GET["firstname"]);
                   }
-                  else if(isset($_SESSION["studentLname"]) && $_SESSION['studentLname'] != '')
+                  else if(isset($_GET["lastname"]))
                   {
-                    $data->setLastname($_SESSION["studentLname"]);
-                    $_SESSION['studentLname'] = '';
-                    unset($_SESSION['studentLname']);
+                    $data->setLastname($_GET["lastname"]);
                   }
 
                   $dtrData = ReadDtr($conn,$dtr);
@@ -431,38 +427,41 @@ td{
                   $changeColor = 0;//This is to change the color
                   while($dtrRow = mysqli_fetch_assoc($dtrData))
                   {
-                    $data->setId($dtrRow['dataId']);
-                    $result = ReadFaculty($conn,$data);
-                    while($row = mysqli_fetch_assoc($result))
+                    if($dtrRow['accType'] == 'faculty')
                     {
-                      //This where the QR data was collected
-                      $prevQRData = array("title"=>'qremsystem', "accType"=>'faculty', "id"=>$row['id']);
-                      $convertedQRData = base64_encode(serialize($prevQRData));
-  
-                      if($changeColor==0)
+                      $data->setId($dtrRow['dataId']);
+                      $result = ReadFaculty($conn,$data);
+                      while($row = mysqli_fetch_assoc($result))
                       {
-                        ?>
-                          <tr style="background-color:#82B7DC;">
-                        <?php
-                        $changeColor++;
-                      }                   
-                      else if($changeColor==1)
-                      {
-                        ?>
-                          <tr style="background-color:#6aa9d5;">
-                        <?php
-                        $changeColor=0;
+                        //This where the QR data was collected
+                        $prevQRData = array("title"=>'qremsystem', "accType"=>'faculty', "id"=>$row['id']);
+                        $convertedQRData = base64_encode(serialize($prevQRData));
+    
+                        if($changeColor==0)
+                        {
+                          ?>
+                            <tr style="background-color:#82B7DC;">
+                          <?php
+                          $changeColor++;
+                        }                   
+                        else if($changeColor==1)
+                        {
+                          ?>
+                            <tr style="background-color:#6aa9d5;">
+                          <?php
+                          $changeColor=0;
+                        }
+                          ?>
+                              <td><?php echo $rowCount;?></td>
+                              <td><?php echo $row['firstname'].' '.$row['lastname'];?></td>
+                              <td></td><!-- Temperature -->
+                              <td><?php echo $dtrRow['time_in'];?></td>
+                              <td><?php echo $dtrRow['time_out'];?></td>
+                          </tr>
+                          <?php
+                          $rowCount++;
+    
                       }
-                        ?>
-                            <td><?php echo $rowCount;?></td>
-                            <td><?php echo $row['firstname'].' '.$row['lastname'];?></td>
-                            <td></td><!-- Temperature -->
-                            <td><?php echo $dtrRow['time_in'];?></td>
-                            <td><?php echo $dtrRow['time_out'];?></td>
-                        </tr>
-                        <?php
-                        $rowCount++;
-  
                     }
                   }
               ?>
