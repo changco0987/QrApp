@@ -11,11 +11,11 @@
 
     function ReadFaculty($conn,$data)
     {
-        if($data->getFirstname()!=null && $data->getUsername()==null)
+        if($data->getFirstname()!=null)
         {
             $dbData = mysqli_query($conn,"SELECT * FROM facultytb WHERE firstname = '".$data->getFirstname()."'");
         }
-        else if($data->getLastname()!=null && $data->getUsername()==null)
+        else if($data->getLastname()!=null)
         {
             $dbData = mysqli_query($conn,"SELECT * FROM facultytb WHERE lastname = '".$data->getLastname()."'");
         }

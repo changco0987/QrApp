@@ -271,6 +271,7 @@ h6{
             }
             catch(err)
             {
+                //this will reload the page if an error has occur
                 location.reload();
             }
         }
@@ -322,6 +323,7 @@ h6{
             }
             catch(err)
             {
+                //this will reload the page if an error has occur
                 location.reload();
             }
         }
