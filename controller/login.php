@@ -144,6 +144,7 @@
                     {
                          //Throws back to the login page and show "This account is not existed"
                          echo '<script> localStorage.setItem("state",5); window.location = "../pages/guardianLogin.php";</script>';
+                         exit;
                          
                     }
                }
@@ -151,6 +152,7 @@
                {
                     //Throws back to the login page and show "Incorrect password"
                     echo '<script> localStorage.setItem("state",1); window.location = "../pages/guardianLogin.php";</script>';
+                    exit;
                     
                }
             }

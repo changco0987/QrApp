@@ -3,10 +3,14 @@
     include_once '../db/tb_student.php';
     include_once '../model/studentModel.php';
 
+    include_once '../db/tb_logs.php';
+    include_once '../model/logsModel.php';
+
     $imgPath = '../upload/students/';
     $tempFilename = '';
     $fileExtension = pathinfo($_FILES['fileTb']['name'],PATHINFO_EXTENSION);
 
+    $log = new logsModel();
     session_start();
     if(isset($_SESSION['adminNameTb']))
     {
@@ -38,6 +42,14 @@
         {
             $student->setImageName($_POST['imageName']);
         }
+
+        //create log
+        $log->setActivity('edited student named: '.$_POST['fnameTb'].' '.$_POST['lnameTb']);
+        $log->setIpAdd();
+        $log->setAccType('Administrator');
+        $log->setCreator($row['username']);
+    
+        CreateLog($conn,$log);
 
         UpdateStudent($conn,$student);
         echo '<script> localStorage.setItem("studentMsg",4); window.location = "../admin/admin_students.php";</script>';//success message
