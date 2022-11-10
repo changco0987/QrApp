@@ -153,7 +153,7 @@
         {
             //if password doesn't matched
             document.getElementById('successBox').style.display = 'block';
-            document.getElementById('successMsg').innerHTML = "Information Successfully saved!";
+            document.getElementById('successMsg').innerHTML = "Admin active login reached to its maximum count!";
             console.log("okay");
         }
 

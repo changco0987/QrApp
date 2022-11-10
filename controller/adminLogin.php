@@ -42,8 +42,8 @@
                     exit;
                 }
 
-                //Throws back to the login page and show "Username or Password is incorrect"
-                echo '<script> localStorage.setItem("state",1); window.location = "../admin.php";</script>';
+                //Throws back to the login page and show "Admin active login reached to its maximum count"
+                echo '<script> localStorage.setItem("state",4); window.location = "../admin.php";</script>';
                 exit;
 
             }
