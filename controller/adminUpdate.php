@@ -3,8 +3,12 @@
     include_once '../db/tb_admin.php';
     include_once '../model/adminModel.php';
 
+    include_once '../db/tb_logs.php';
+    include_once '../model/logsModel.php';
+
     session_start();
 
+    $log = new logsModel();
     if(isset($_SESSION['adminNameTb']))
     {
         $data = new adminModel();
@@ -23,7 +27,17 @@
                 UpdateAdmin($conn,$data);
 
                 $_SESSION['adminNameTb'] = $row['username'];
+                
+                
+                //create log
+                $log->setActivity('changed admin password');
+                $log->setIpAdd();
+                $log->setAccType('Administrator');
+                $log->setCreator($_SESSION['adminNameTb']);
+            
+                CreateLog($conn,$log);
                 echo '<script> localStorage.setItem("signal",1); window.location = "../admin/dashboard.php";</script>';
+                exit;
             }
             else
             {

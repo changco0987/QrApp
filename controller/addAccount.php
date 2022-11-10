@@ -6,11 +6,15 @@
 
     include_once '../db/tb_guardian.php';
     include_once '../model/guardianModel.php';
+
+    include_once '../db/tb_logs.php';
+    include_once '../model/logsModel.php';
     
     $imgPath = '../upload/';
     $tempFilename = '';
     $fileExtension = pathinfo($_FILES['fileTb']['name'],PATHINFO_EXTENSION);
 
+    $log = new logsModel();
     if(isset($_POST['accType']))
     {
         if($_POST['accType'] == 'visitor')
@@ -46,8 +50,16 @@
                         copy($uploadedFile,$imgPath.$data->getImageName());//This will move the uploaded file into file directory (web)
                     }
                     
-                    echo '<script> localStorage.setItem("visitorMsg",1); window.location = "../admin/admin_visitor.php";</script>';   
+                    //create log
+                    $log->setActivity('added account Type: '.$_POST['accType'].', username: '.$_POST['usernameTb']);
+                    $log->setIpAdd();
+                    $log->setAccType($_SESSION['accType']);
+                    $log->setCreator($_SESSION['username']);
+
+                    CreateLog($conn,$log);
+
                     CreateAccountVisitor($conn,$data); 
+                    echo '<script> localStorage.setItem("visitorMsg",1); window.location = "../admin/admin_visitor.php";</script>';   
                     exit();
                     //header("location: ../admin/admin_visitor.php?success");
                }
@@ -94,10 +106,21 @@
                         $uploadedFile = $_FILES['fileTb']['tmp_name'];
                         copy($uploadedFile,$imgPath.$data->getImageName());//This will move the uploaded file into file directory (web)
                     }
-                    echo '<script> localStorage.setItem("guardianMsg",1);</script>';   
-                    CreateAccountGuardian($conn,$data); 
 
-                    header("location: ../admin/admin_guardian.php?success");
+                    
+                    //create log
+                    $log->setActivity('added account Type: '.$_POST['accType'].', username: '.$_POST['usernameTb']);
+                    $log->setIpAdd();
+                    $log->setAccType($_SESSION['accType']);
+                    $log->setCreator($_SESSION['username']);
+
+                    CreateLog($conn,$log);
+                    
+                    CreateAccountGuardian($conn,$data); 
+                    echo '<script> localStorage.setItem("guardianMsg",1); window.location = "../admin/admin_guardian.php";</script>';   
+
+                    //header("location: ../admin/admin_guardian.php?success");
+                    exit;
                }
                else
                {
