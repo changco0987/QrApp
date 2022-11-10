@@ -4,6 +4,7 @@
     if(isset($_SESSION['adminNameTb']))
     {
         header('location: admin/dashboard.php');
+        exit;
     }
 
 ?>

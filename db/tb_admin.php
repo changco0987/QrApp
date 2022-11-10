@@ -24,7 +24,11 @@
 
     function UpdateAdmin($conn,$data)
     {
-        if($data->getUsername()==null)
+        if($data->getLoginCount()!=null)
+        {
+            mysqli_query($conn,"UPDATE admintb set loginCount =".$data->getLoginCount());
+        }
+        else if($data->getUsername()==null)
         {
             mysqli_query($conn,"UPDATE admintb set activeLogin =".$data->getActiveLogin());
         }

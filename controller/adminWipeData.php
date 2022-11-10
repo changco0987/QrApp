@@ -38,6 +38,9 @@
     $data->setActiveLogin($active);
     UpdateAdmin($conn,$data);
 
+    setcookie('adminNameTb', null, -1, '/');//To remove cookie
+    unset($_COOKIE['adminNameTb']);
+
     $helper = array_keys($_SESSION);
     foreach ($helper as $key)
     {

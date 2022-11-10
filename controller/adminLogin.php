@@ -38,6 +38,7 @@
 
                     session_start();
                     $_SESSION['adminNameTb'] = $row['username'];
+                    setcookie("adminNameTb",$row['username'], time() + (86400 * 30),"/");
                     header("Location: ../admin/dashboard.php");
                     exit;
                 }

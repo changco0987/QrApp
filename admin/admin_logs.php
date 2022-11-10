@@ -373,12 +373,21 @@ td{
   <!--This is where the body content start-->
 
   <div class="row my-3 no-gutters" style="background-color:#F1F1F1; border-radius: 10px; box-shadow: -1px 1px 20px 6px #d9d9d9;">
-    <div class="col-sm-5 col-xs-5 col-md-5 col-lg-5 col-xl-5 mx-auto pr-2 my-2 py-2">        
+    <div class="col-sm-5 col-xs-5 col-md-6 col-lg-6 col-xl-3 mx-auto pr-2 my-2 py-2">        
         <h4 class="pr-2" id="btnLabel"><i class="bi bi-person-check-fill text-success"></i> Active admin: <?php echo $adminRow['activeLogin'];?></h4>
     </div>
 
-    <div class="col-sm-5 col-xs-5 col-md-5 col-lg-5 col-xl-5 mx-auto pr-2 my-2 py-2">        
+    <div class="col-sm-5 col-xs-5 col-md-6 col-lg-6 col-xl-3 mx-auto pr-2 my-2 py-2">        
         <h4 class="pr-2" id="btnLabel"><i class="bi bi-people-fill text-success"></i> Max login: <?php echo $adminRow['loginCount'];?></h4>
+    </div>
+    <div class="col-sm-2 col-xs-2 col-md-5 col-lg-5 col-xl-3 mx-auto pr-2 my-2 py-2 d-flex justify-content-end h-100 mx-auto">       
+      <form action="../controller/addMaxLogin.php" method="POST">
+        <div class="input-group">
+          <input type="hidden" name="idTb" id="idTb" value="<?php echo $adminRow['id']; ?>">
+          <input type="number" name="addLoginTb" id="addLoginTb" class="form-control no-border form-control-sm mr-1" placeholder="Increase Max Login">
+          <button type="submit" class="btn btn-sm" style="background-color:#3466AA; color:whitesmoke;"><i class="bi bi-plus-square"></i></button>
+        </div>
+      </form> 
     </div>
 
    
@@ -692,21 +701,21 @@ td{
     */
 
     document.getElementById('successBox').style.display = 'none';
-    var successSignal = localStorage.getItem('studentMsg');
+    var successSignal = localStorage.getItem('signalLogs');
 
     if(successSignal==1)
     {
         //if password or username is incorrect
         document.getElementById('successBox').style.display = 'block';
-        document.getElementById('successMsg').innerHTML = "Data Added Successfully!";
+        document.getElementById('successMsg').innerHTML = "Data Modified Successfully!";
         console.log("okay");
 
     }
     else if(successSignal==2)
     {
         //if password doesn't matched
-        document.getElementById('successBox').style.display = 'block';
-        document.getElementById('successMsg').innerHTML = "Changed Status Successfully";
+        document.getElementById('failBox').style.display = 'block';
+        document.getElementById('failMsg').innerHTML = "Invalid number!";
         console.log("okay");
     }
     else if(successSignal==3)
@@ -725,7 +734,7 @@ td{
     }
 
     //To make signl back to normmal and to prevent for the success page to appear every time the page was reload or refresh
-    localStorage.setItem('studentMsg',0);
+    localStorage.setItem('signalLogs',0);
     
     //this will make a image preview before it was uploaded
     fileTb.onchange = evt => {
