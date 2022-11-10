@@ -1,4 +1,9 @@
 <?php
+    include_once '../db/connection.php';
+    
+    include_once '../db/tb_admin.php';
+    include_once '../model/adminModel.php';    
+
     include_once '../db/tb_logs.php';
     include_once '../model/logsModel.php';    
 
@@ -19,7 +24,20 @@
     
         CreateLog($conn,$log);
     }
-    
+    //to reduce the activeLogin by 1
+    $data = new adminModel();
+    $result = ReadAdmin($conn,$data);
+
+    $row = mysqli_fetch_assoc($result);
+
+    $active = $row['activeLogin'];
+    if($active!=0)
+    {
+        $active--;
+    }
+    $data->setActiveLogin($active);
+    UpdateAdmin($conn,$data);
+
     $helper = array_keys($_SESSION);
     foreach ($helper as $key)
     {

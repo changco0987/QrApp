@@ -26,7 +26,7 @@
     {
         if($data->getUsername()==null)
         {
-            mysqli_query($conn,"UPDATE admintb set activeLogin =".$data->getActiveLogin()." where id = ". $data->getId());
+            mysqli_query($conn,"UPDATE admintb set activeLogin =".$data->getActiveLogin());
         }
         else
         {
