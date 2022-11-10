@@ -18,7 +18,7 @@
         $student->setId($_POST['idTb']);
         $student->setFirstname($_POST['fnameTb']);
         $student->setLastname($_POST['lnameTb']);
-        $student->setLastname($_POST['mnameTb']);
+        $student->setMiddlename($_POST['mnameTb']);
         $student->setGender($_POST['genderRb']);
         $student->setAge($_POST['ageTb']);
         $student->setAddress($_POST['addressTb']);
@@ -47,7 +47,7 @@
         $log->setActivity('edited student named: '.$_POST['fnameTb'].' '.$_POST['lnameTb']);
         $log->setIpAdd();
         $log->setAccType('Administrator');
-        $log->setCreator($row['username']);
+        $log->setCreator($_SESSION['adminNameTb']);
     
         CreateLog($conn,$log);
 
