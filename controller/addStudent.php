@@ -44,7 +44,7 @@
         $log->setActivity('added student named: '.$_POST['fnameTb'].' '.$_POST['lnameTb']);
         $log->setIpAdd();
         $log->setAccType('Administrator');
-        $log->setCreator($row['username']);
+        $log->setCreator($_SESSION['adminNameTb']);
     
         CreateLog($conn,$log);
 

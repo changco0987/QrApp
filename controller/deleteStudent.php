@@ -7,6 +7,7 @@
     include_once '../model/logsModel.php';
 
 
+    session_start();
     $log = new logsModel();
     if(isset($_POST['idTb']))
     {
@@ -15,13 +16,14 @@
 
         //this will read the selected data that the user wants to be deleted
         $read = ReadStudent($conn,$student);
+        $row = mysqli_fetch_assoc($read);
 
         
         //create log
-        $log->setActivity('deleted student named: '.$read['firstname'].' '.$read['lastname']);
+        $log->setActivity('deleted student named: '.$row['firstname'].' '.$row['lastname']);
         $log->setIpAdd();
         $log->setAccType('Administrator');
-        $log->setCreator($row['username']);
+        $log->setCreator($_SESSION['adminNameTb']);
     
         CreateLog($conn,$log);
 
