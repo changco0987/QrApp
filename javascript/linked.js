@@ -64,3 +64,10 @@ function gotoResetPass()
 {
     window.location = '../pages/resetPass.php';
 }
+
+
+
+function gotoLogs()
+{
+    window.location = '../admin/admin_logs.php';
+}

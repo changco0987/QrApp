@@ -13,6 +13,10 @@
     {
         header("Location: ../admin.php");
     }
+
+    $admin = new adminModel();
+    $read = ReadAdmin($conn,$admin);
+    $adminRow = mysqli_fetch_assoc($read);
     /*
     date_default_timezone_set('Asia/Manila');
 
@@ -312,7 +316,7 @@ td{
         </div>
     </div>
     <!--Health Record button-->
-  <a type="button" class="active mt-1" href="#healthRecord" data-toggle="collapse" data-target="#collapseHealthRecord" aria-expanded="true" aria-controls="collapseHealthRecord"><i class="bi bi-card-checklist mr-1"></i> Health Records</a>
+  <a type="button" class="mt-1" href="#healthRecord" data-toggle="collapse" data-target="#collapseHealthRecord" aria-expanded="true" aria-controls="collapseHealthRecord"><i class="bi bi-card-checklist mr-1"></i> Health Records</a>
     <div id="collapseHealthRecord" class="collapse my-1" aria-labelledby="headingUtilities" data-parent="#accordionSidebar" >
         <div class="py-2 collapse-inner rounded mx-4">
             <h6 class="collapse-header" style="font-size: 13px;"></h6>
@@ -329,15 +333,13 @@ td{
         </div>
     </div>
 
-  <a type="button" class=" mt-1" href="#about" data-toggle="collapse" data-target="#collapseUtilities" aria-expanded="true" aria-controls="collapseUtilities"><i class="bi bi-tools mr-1"></i> Utilities</a>
+  <a type="button" class="active mt-1" href="#about" data-toggle="collapse" data-target="#collapseUtilities" aria-expanded="true" aria-controls="collapseUtilities"><i class="bi bi-tools mr-1"></i> Utilities</a>
     <div id="collapseUtilities" class="collapse my-1" aria-labelledby="headingUtilities" data-parent="#accordionSidebar" >
         <div class="py-2 collapse-inner rounded mx-4">
             <h6 class="collapse-header" style="font-size: 13px;"></h6>
  
-              <form action="../pages/reporthc.php" method="post" enctype="multipart/form-data">
-                  <!--input type="hidden" name="departmentName" value=""-->
-                      <button type="submit" class="collapse-item btn btn-sm my-1 collapseBtn" >User Account</button><br>
-              </form>
+              <button type="button" onclick="gotoLogs()" class="active collapse-item btn btn-sm my-1 collapseBtn">Logs</button><br>
+         
               <form action="../pages/reporthc.php" method="post" enctype="multipart/form-data">
                   <!--input type="hidden" name="departmentName" value=""-->
                       <button type="submit" class="collapse-item btn btn-sm my-1 collapseBtn" >Back up and Restore</button><br>
@@ -371,11 +373,12 @@ td{
   <!--This is where the body content start-->
 
   <div class="row my-3 no-gutters" style="background-color:#F1F1F1; border-radius: 10px; box-shadow: -1px 1px 20px 6px #d9d9d9;">
-    <div class="col-sm-4 col-xs-2 col-md-4 col-lg-2 col-xl-2 pl-3 pr-2 my-2 py-2">        
-    <!--h6 class="pr-2" id="btnLabel">Types: </h6-->
+    <div class="col-sm-5 col-xs-5 col-md-5 col-lg-5 col-xl-5 mx-auto pr-2 my-2 py-2">        
+        <h4 class="pr-2" id="btnLabel"><i class="bi bi-person-check-fill text-success"></i> Active admin: <?php echo $adminRow['activeLogin'];?></h4>
     </div>
 
-    <div class="col-sm-4 col-xs-2 col-md-4 col-lg-2 col-xl-6 pl-3 pr-1 my-2 py-2">
+    <div class="col-sm-5 col-xs-5 col-md-5 col-lg-5 col-xl-5 mx-auto pr-2 my-2 py-2">        
+        <h4 class="pr-2" id="btnLabel"><i class="bi bi-people-fill text-success"></i> Max login: <?php echo $adminRow['loginCount'];?></h4>
     </div>
 
    
@@ -667,139 +670,6 @@ td{
                         
 
 
-var ctx = document.getElementById("pie1").getContext('2d');
-var dataStat = [lockedData,unlockedData];
-var myChart = new Chart(ctx, {
-    type: 'pie',
-    data: {
-        labels: ['Locked','Unlocked'],
-        datasets: [{
-            label: 'Status',
-            data: dataStat,
-            backgroundColor: [
-                '#EE4B2B',
-                '#50C878',
-                '#8b0000',
-                '#234471',
-                '#AEC6CF',
-                '#0000FF',
-                '#FF00FF',
-                '#00FFFF',
-                '#ffa500',
-                '#9400d3',
-                '#808080',
-                '#00ffff',
-                '#8fbc8f',
-                '#1e90ff'
-
-            ],
-            borderWidth: 1
-        }]
-    },
-    options: {
-        plugins: {
-            title: {
-                display: true,
-                text: 'Account Status',
-                fontSize: 300
-            },
-            legend:{
-                position: 'bottom'
-            }
-        }
-    }
-});
-
-var ctx2 = document.getElementById("barGender").getContext('2d');
-var genderData = [male,female];
-                        var mybar = new Chart(ctx2, {
-                            type: 'bar',
-                            data: {
-                                labels: ['Male','Female'],
-                                datasets: [{
-                                    label: 'Count',
-                                    data: genderData,
-                                    backgroundColor: [
-                                        'rgb(54, 162, 235)',
-                                        'rgb(255, 99, 132)',
-                                        '#8b0000',
-                                        '#234471',
-                                        '#0000FF',
-                                        '#FF00FF',
-                                        '#00FFFF',
-                                        '#ffa500',
-                                        '#9400d3',
-                                        '#808080',
-                                        '#00ffff',
-                                        '#8fbc8f',
-                                        '#1e90ff'
-
-                                    ],
-                                    tension: 0.4,
-                                    fill: false,
-                                    spanGaps: true
-                                }]
-                            },
-                            options: {
-                                plugins: {
-                                    title: {
-                                        display: true,
-                                        text: 'Head Count',
-                                        fontSize: 300
-                                    },
-                                    legend:{
-                                        display: false
-                                    }
-                                }
-                            }
-                        });
-
-
-                        
-var ctx3 = document.getElementById("barStat").getContext('2d');
-var gateData = [inside,outside];
-                        var mybar = new Chart(ctx3, {
-                            type: 'bar',
-                            data: {
-                                labels: ['Inside','Outside'],
-                                datasets: [{
-                                    label: 'Count',
-                                    data: gateData,
-                                    backgroundColor: [
-                                        '#EE4B2B',
-                                        '#50C878',
-                                        '#8b0000',
-                                        '#234471',
-                                        '#0000FF',
-                                        '#FF00FF',
-                                        '#00FFFF',
-                                        '#ffa500',
-                                        '#9400d3',
-                                        '#808080',
-                                        '#00ffff',
-                                        '#8fbc8f',
-                                        '#1e90ff'
-
-                                    ],
-                                    tension: 0.4,
-                                    fill: false,
-                                    spanGaps: true
-                                }]
-                            },
-                            options: {
-                              indexAxis: 'y',
-                                plugins: {
-                                    title: {
-                                        display: true,
-                                        text: 'In campus student count',
-                                        fontSize: 300
-                                    },
-                                    legend:{
-                                        display: false
-                                    }
-                                }
-                            }
-                        });
 
     //Edit
 

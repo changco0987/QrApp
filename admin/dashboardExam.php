@@ -200,11 +200,7 @@ label{
     <div id="collapseUtilities" class="collapse my-1" aria-labelledby="headingUtilities" data-parent="#accordionSidebar" >
         <div class="py-2 collapse-inner rounded mx-4">
             <h6 class="collapse-header" style="font-size: 13px;"></h6>
- 
-              <form action="../pages/reporthc.php" method="post" enctype="multipart/form-data">
-                  <!--input type="hidden" name="departmentName" value=""-->
-                      <button type="submit" class="collapse-item btn btn-sm my-1 collapseBtn" >User Account</button><br>
-              </form>
+              <button type="button" onclick="gotoLogs()" class="collapse-item btn btn-sm my-1 collapseBtn">Logs</button><br>
               <form action="../pages/reporthc.php" method="post" enctype="multipart/form-data">
                   <!--input type="hidden" name="departmentName" value=""-->
                       <button type="submit" class="collapse-item btn btn-sm my-1 collapseBtn" >Back up and Restore</button><br>
