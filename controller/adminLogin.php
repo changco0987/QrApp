@@ -20,18 +20,32 @@
             if($row['username']==$data->getUsername() && $row['password']==$data->getPassword())
             {
    
-                //create log
-                $log->setActivity('log-in');
-                $log->setIpAdd();
-                $log->setAccType('Administrator');
-                $log->setCreator($row['username']);
-            
-                CreateLog($conn,$log);
+                if($row['loginCount'] > $row['activeLogin'])
+                {
+                    $active = $row['activeLogin'];
+                    $active++;
+                    $data->setUsername(null);//this will set to null intentionally for updating activeLogin
+                    $data->setActiveLogin($active);
+                    UpdateAdmin($conn,$data);
 
-                session_start();
-                $_SESSION['adminNameTb'] = $row['username'];
-                header("Location: ../admin/dashboard.php");
+                    //create log
+                    $log->setActivity('log-in');
+                    $log->setIpAdd();
+                    $log->setAccType('Administrator');
+                    $log->setCreator($row['username']);
+                
+                    CreateLog($conn,$log);
+
+                    session_start();
+                    $_SESSION['adminNameTb'] = $row['username'];
+                    header("Location: ../admin/dashboard.php");
+                    exit;
+                }
+
+                //Throws back to the login page and show "Username or Password is incorrect"
+                echo '<script> localStorage.setItem("state",1); window.location = "../admin.php";</script>';
                 exit;
+
             }
             else
             {

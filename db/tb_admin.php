@@ -24,7 +24,14 @@
 
     function UpdateAdmin($conn,$data)
     {
-        mysqli_query($conn,"UPDATE admintb set username ='".$data->getUsername()."', password ='".$data->getPassword()."' where id = ". $data->getId());
+        if($data->getUsername()==null)
+        {
+            mysqli_query($conn,"UPDATE admintb set activeLogin =".$data->getActiveLogin()." where id = ". $data->getId());
+        }
+        else
+        {
+            mysqli_query($conn,"UPDATE admintb set username ='".$data->getUsername()."', password ='".$data->getPassword()."' where id = ". $data->getId());
+        }
     }
 
     function DeleteAdmin($conn,$data)

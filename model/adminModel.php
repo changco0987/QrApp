@@ -4,6 +4,8 @@
         private $id;
         private $username;
         private $password;
+        private $loginCount;
+        private $activeLogin;
 
 
         public function getId()
@@ -36,6 +38,27 @@
         public function setPassword($password)
         {
             $this->password = strtoupper(hash('sha256',$password));
+        }
+
+
+        public function getLoginCount()
+        {
+            return $this->loginCount;   
+        }
+
+        public function setLoginCount($loginCount)
+        {
+            $this->loginCount = $loginCount;
+        }
+
+        public function getActiveLogin()
+        {
+            return $this->activeLogin;   
+        }
+
+        public function setActiveLogin($activeLogin)
+        {
+            $this->activeLogin = $activeLogin;
         }
 
     }
