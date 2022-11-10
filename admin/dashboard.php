@@ -9,7 +9,7 @@
 
     //This will check if the user is truely login
     session_start();
-    if(!isset($_COOKIE['adminNameTb']) || !isset($_SESSION['adminNameTb']))
+    if(!isset($_SESSION['adminNameTb']))
     {
         header("Location: ../admin.php");
         exit;
