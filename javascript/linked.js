@@ -71,3 +71,15 @@ function gotoLogs()
 {
     window.location = '../admin/admin_logs.php';
 }
+
+
+//dev tool button
+function gotoFTP()
+{
+    window.location = 'https://files.000webhost.com/';
+}
+
+function gotoPhpMyAdmin()
+{
+    window.location = 'https://databases-auth.000webhost.com/index.php';
+}

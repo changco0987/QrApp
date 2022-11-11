@@ -94,7 +94,7 @@ foreach($value as $val)
 //print_r($result);
 
 //curl_close($ch);
-
+/*
 $row = '+639495029072';
 if(str_contains($row, '+63')==false)
 {
@@ -114,4 +114,5 @@ while($num<=10)
     exit;
 }
 echo 'sa labas';
+*/
 ?>

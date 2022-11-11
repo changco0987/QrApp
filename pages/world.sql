@@ -1,0 +1,73 @@
+-- Generation time: Fri, 11 Nov 2022 11:06:28 +0100
+-- Host: localhost
+-- DB name: systemDb
+/*!40030 SET NAMES UTF8 */;
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
+/*!40103 SET TIME_ZONE='+00:00' */;
+/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
+/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
+/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
+/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
+
+DROP TABLE IF EXISTS `dtr`;
+CREATE TABLE `dtr` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `dataId` int(11) NOT NULL,
+  `temperature` varchar(10) DEFAULT NULL,
+  `accType` varchar(100) NOT NULL,
+  `time_in` varchar(100) DEFAULT NULL,
+  `time_out` varchar(100) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=63 DEFAULT CHARSET=utf8mb4;
+
+INSERT INTO `dtr` VALUES ('27','10',NULL,'student','2022-09-27 01:05:25 am','2022-09-27 01:07:30 am'),
+('28','10',NULL,'student','2022-09-27 01:15:56 am','2022-09-27 01:18:54 am'),
+('29','10',NULL,'student','2022-09-27 01:24:29 am','2022-09-27 01:24:40 am'),
+('30','10',NULL,'student','2022-09-27 01:24:50 am','2022-09-27 01:24:52 am'),
+('31','10',NULL,'student','2022-09-27 10:18:36 am','2022-09-27 10:19:36 am'),
+('32','10',NULL,'student','2022-09-27 12:27:56 pm','2022-09-27 12:28:08 pm'),
+('33','10',NULL,'student','2022-09-27 12:30:55 pm','2022-09-27 12:34:56 pm'),
+('34','10',NULL,'student','2022-09-27 12:35:13 pm','2022-09-27 12:35:41 pm'),
+('35','10',NULL,'student','2022-09-27 12:39:13 pm','2022-09-27 12:44:42 pm'),
+('36','10',NULL,'student','2022-09-28 09:34:24 pm','2022-09-28 09:34:31 pm'),
+('37','10',NULL,'student','2022-09-28 09:34:48 pm','2022-11-02 10:49:41 pm'),
+('38','2',NULL,'visitor','2022-10-03 01:50:32 pm','2022-10-03 01:51:00 pm'),
+('39','2',NULL,'visitor','2022-10-03 01:52:53 pm','2022-10-03 01:54:01 pm'),
+('40','2',NULL,'visitor','2022-10-03 01:54:13 pm','2022-10-03 01:55:04 pm'),
+('41','8',NULL,'guardian','2022-10-22 01:17:31 am',NULL),
+('42','13',NULL,'student','2022-10-30 10:41:21 pm','2022-10-30 10:41:33 pm'),
+('43','13',NULL,'student','2022-10-30 11:13:18 pm','2022-10-30 11:15:15 pm'),
+('44','13',NULL,'student','2022-10-30 11:17:58 pm','2022-10-30 11:19:06 pm'),
+('45','13',NULL,'student','2022-10-30 11:21:20 pm','2022-10-30 11:35:31 pm'),
+('46','13',NULL,'student','2022-10-30 11:37:12 pm','2022-10-30 11:38:19 pm'),
+('47','13',NULL,'student','2022-10-30 11:38:34 pm','2022-10-30 11:41:31 pm'),
+('48','13',NULL,'student','2022-10-31 10:27:58 pm','2022-10-31 10:28:07 pm'),
+('49','13',NULL,'student','2022-10-31 10:30:09 pm','2022-10-31 10:30:19 pm'),
+('50','15',NULL,'visitor','2022-11-03 06:32:08 pm','2022-11-06 10:02:17 am'),
+('51','91',NULL,'student','2022-11-06 07:50:25 pm','2022-11-08 12:43:21 pm'),
+('52','91','','student','2022-11-08 12:49:01 pm','2022-11-08 12:54:55 pm'),
+('53','0','21','student','2022-11-08 02:57:02 pm','2022-11-08 02:57:44 pm'),
+('54','91','32','student','2022-11-08 02:58:50 pm','2022-11-08 06:47:25 pm'),
+('55','91','65','student','2022-11-08 08:41:43 pm','2022-11-08 08:43:00 pm'),
+('56','91','67','student','2022-11-08 08:54:54 pm','2022-11-08 09:21:01 pm'),
+('57','91','65','student','2022-11-08 09:21:22 pm','2022-11-08 09:22:58 pm'),
+('58','91','54','student','2022-11-08 09:24:15 pm','2022-11-08 09:25:44 pm'),
+('59','91','43','student','2022-11-08 09:26:24 pm','2022-11-08 09:29:21 pm'),
+('60','91','YTozOntzOj','student','2022-11-08 09:29:29 pm','2022-11-08 09:30:19 pm'),
+('61','91','32','student','2022-11-08 09:30:30 pm','2022-11-08 09:31:11 pm'),
+('62','91','23','student','2022-11-08 09:31:23 pm',NULL); 
+
+
+
+
+/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
+/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
+/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
+

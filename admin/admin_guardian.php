@@ -337,10 +337,8 @@ td{
             <h6 class="collapse-header" style="font-size: 13px;"></h6>
  
               <button type="button" onclick="gotoLogs()" class="collapse-item btn btn-sm my-1 collapseBtn">Logs</button><br>
-              <form action="../pages/reporthc.php" method="post" enctype="multipart/form-data">
-                  <!--input type="hidden" name="departmentName" value=""-->
-                      <button type="submit" class="collapse-item btn btn-sm my-1 collapseBtn" >Back up and Restore</button><br>
-              </form>
+              
+              <button type="button" onclick="" class="collapse-item btn btn-sm my-q collapseBtn" data-toggle="modal" data-target="#DevTool">Dev tool</button>
               <form action="../pages/reporthc.php" method="post" enctype="multipart/form-data">
                   <!--input type="hidden" name="departmentName" value=""-->
                       <button type="submit" class="collapse-item btn btn-sm my-1 collapseBtn" >QR Settings</button><br>
@@ -790,6 +788,31 @@ td{
 
     
 
+    <!-- Modal for Utilities->Dev Tools -->
+    <div class="modal fade" id="DevTool" tabindex="-1" role="dialog" aria-labelledby="addAnnouncementCenterTitle" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered" role="document">
+          <div class="modal-content" style="background-color:lightsalmon;">
+              <div class="modal-header">
+                  <h5 class="modal-title font-weight-bold" id="addAnnouncementLongTitle">Developer Tool</h5>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+              </div>
+              <div class="modal-body d-flex flex-column text-center">
+                <div class="row mt-1">
+                  <div class="col-xl-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+                      <a type="button" href="https://files.000webhost.com/" target="_blank" class="btn btn-danger"><i class="bi bi-folder"></i> File Manager</a>
+                  </div>
+                </div>
+                <div class="row mt-1">
+                  <div class="col-xl-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+                      <a type="button" href="https://databases-auth.000webhost.com/index.php" target="_blank" class="btn btn-warning"><i class="bi bi-filetype-php"></i> phpMyAdmin</a>
+                  </div>
+                </div>
+              </div>
+          </div>
+      </div>
+    </div>
 
 </body>
 <script>
