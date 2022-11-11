@@ -93,6 +93,13 @@ foreach($value as $val)
 }*/
 //print_r($result);
 
+$currentDate = date('Y-m-d h:i:s a');
+date_default_timezone_set('Asia/Manila');
+$date = new DateTime($currentDate);
+$date->add(new DateInterval('PT104H'));
+$expiryDate = $date->format('Y-m-d h:i:s a');
+
+echo $expiryDate;
 //curl_close($ch);
 /*
 $row = '+639495029072';
