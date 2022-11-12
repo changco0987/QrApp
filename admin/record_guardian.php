@@ -341,7 +341,7 @@ td{
             <h6 class="collapse-header" style="font-size: 13px;"></h6>
               <button type="button" onclick="gotoLogs()" class="collapse-item btn btn-sm my-1 collapseBtn">Logs</button><br>
               
-              <button type="button" onclick="" class="collapse-item btn btn-sm my-q collapseBtn" data-toggle="modal" data-target="#DevTool">Dev tool</button>
+              <button type="button" onclick="" class="collapse-item btn btn-sm my-1 collapseBtn" data-toggle="modal" data-target="#DevTool">Dev tool</button>
           
               <button type="button" class="collpase-item btn btn-sm my-1 collapseBtn" data-toggle="modal" data-target="#qrSett">QR Settings</button>
               <!--input type="hidden" name="departmentName" value=""-->
