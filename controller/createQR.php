@@ -10,10 +10,17 @@
     include_once '../db/tb_logs.php';
     include_once '../model/logsModel.php';    
 
+    include_once '../db/tb_qrsettings.php';
+    include_once '../model/qrsettingsModel.php';    
+
     date_default_timezone_set('Asia/Manila'); 
     $log = new logsModel();
 
     $currentDateTime = date('Y-m-d h:i a');
+
+    $qr = new qrsettingsModel();
+    $qrResult = ReadQrSetting($conn,$qr);
+    $qrData = mysqli_fetch_assoc($qrResult);
 
     //This will be used by 2 page the visitor and guardian login
 
@@ -24,7 +31,7 @@
             
             //This will compute the expiry date it will add +12hrs to current date
             $date = new DateTime($_POST['qr_ExDateTb']);
-            $date->add(new DateInterval('PT12H'));
+            $date->add(new DateInterval('PT'.$qrData['expiryHrs'].'H'));
             $expiryDate = $date->format('Y-m-d h:i:s a');
             $data->setQr_ExDate($expiryDate);
 
@@ -65,7 +72,7 @@
 
             //This will compute the expiry date it will add +12hrs to current date
             $date = new DateTime($_POST['qr_ExDateTb']);
-            $date->add(new DateInterval('PT12H'));
+            $date->add(new DateInterval('PT'.$qrData['expiryHrs'].'H'));
             $expiryDate = $date->format('Y-m-d h:i:s a');
             $data->setQr_ExDate($expiryDate);
 
