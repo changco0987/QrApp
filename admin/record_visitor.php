@@ -10,6 +10,8 @@
     include_once '../model/dtrModel.php';
     include_once '../db/tb_dtr.php';
 
+    include_once '../model/qrsettingsModel.php';
+    include_once '../db/tb_qrsettings.php';
     //This will check if the user is truely login
     session_start();
     if(!isset($_SESSION['adminNameTb']))
@@ -338,11 +340,9 @@ td{
             <h6 class="collapse-header" style="font-size: 13px;"></h6>
               <button type="button" onclick="gotoLogs()" class="collapse-item btn btn-sm my-1 collapseBtn">Logs</button><br>
               
-              <button type="button" onclick="" class="collapse-item btn btn-sm my-q collapseBtn" data-toggle="modal" data-target="#DevTool">Dev tool</button>
-              <form action="../pages/reporthc.php" method="post" enctype="multipart/form-data">
-                  <!--input type="hidden" name="departmentName" value=""-->
-                      <button type="submit" class="collapse-item btn btn-sm my-1 collapseBtn" >QR Settings</button><br>
-              </form>
+              <button type="button" onclick="" class="collapse-item btn btn-sm my-1 collapseBtn" data-toggle="modal" data-target="#DevTool">Dev tool</button>
+         
+              <button type="button" class="collpase-item btn btn-sm my-1 collapseBtn" data-toggle="modal" data-target="#qrSett">QR Settings</button>
               <!--input type="hidden" name="departmentName" value=""-->
               <button type="submit" class="collapse-item btn btn-sm my-1 collapseBtn" data-toggle="modal" data-target="#ChangePass">Change Password</button><br>
       
@@ -710,10 +710,69 @@ td{
     </div>
 
 
+    <!-- Modal for Utilities->QR settings -->
+    <div class="modal fade" id="qrSett" tabindex="-1" role="dialog" aria-labelledby="addAnnouncementCenterTitle" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered" role="document"style="width:max-content;">
+          <div class="modal-content" style="background-color:#d9d9d9;">
+              <div class="modal-header">
+                  <h5 class="modal-title font-weight-bold" id="addAnnouncementLongTitle">QR Settings</h5>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+              </div>
+              <div class="modal-body d-flex flex-column">
+              <?php
+
+                  $qr = new qrsettingsModel();
+                  $result = ReadQrSetting($conn,$qr);
+                  $row = mysqli_fetch_assoc($result);
+
+
+                ?>
+                <div class="row my-2">
+                  <div class="col-xs-10 col-sm-10 col-md-10 col-lg-10 col-xl-10">
+                    <form action="" method="post">
+                      <label for="qrExpiryTb" style="font-size: 0.73rem;">Change QR Expiry hours:</label><br>
+                      <small class="text-success">Current: <?php echo $row['expiryHrs'];?>Hrs before qr expire</small>
+                      <div class="input-group d-flex justify-content-start">
+                        <input type="hidden" name="idTb" id="qrIdTb" value="<?php echo $row['id'];?>">
+                        <input type="number" name="qrExpiryTb" id="qrExpiryTb" class="form-control no-border form-control-sm mr-1">
+                        <button type="submit" class="btn btn-success btn-sm" name="submitQrSett" id="submitQrSett" onclick="submitForm();"><i class="bi bi-hourglass-split"></i> Change</button>
+                      </div>
+                    </form>
+                  </div>
+                </div>
+                <div class="row mt-2">
+                  <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+                      <button type="button" class="btn btn-danger btn-sm"><i class="bi bi-shield-lock-fill"></i> Lock all QR</button>
+                  </div>
+                </div>
+              </div>
+          </div>
+      </div>
+    </div>
 </body>
 <script>
 
   
+        //To submit the form without reloading it
+        function submitForm() 
+        {
+                var http = new XMLHttpRequest();
+                http.open("POST", "../controller/changeSett.php", true);
+                http.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+                //This is the form input fields data
+                var params = "submitQrSett=" + document.getElementById("submitQrSett").value+"&qrExpiryTb=" + document.getElementById("qrExpiryTb").value+"&qrIdTb=" + document.getElementById('qrIdTb').value; // probably use document.getElementById(...).value
+                http.send(params);
+                http.onload = function() 
+                {
+                    var data = http.responseText;
+                    //returnDate();
+                    console.log(data);
+                }
+        }
+                        
+
                         
 
 
