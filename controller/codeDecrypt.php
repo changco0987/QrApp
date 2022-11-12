@@ -52,6 +52,12 @@
                                             "address"=>$row['address'],
                                             "time"=>$currentDateTime,
                                             "state"=>'in');
+                                            
+                    $_SESSION['gateStat'] = $row['gateStat'];
+                    $_SESSION['accType'] = 'visitor';
+                    $_SESSION['username'] = $row['username'];
+
+                    /*
                     //Going in/enter
                     //log to DTR
                     $dtr = new dtrModel();
@@ -63,6 +69,7 @@
                     $data->setGateStat('in');
                     $data->setDtrId(CreateDtr($conn,$dtr));
                     UpdateAccountVisitor($conn,$data);
+                    */
                     
                 }
                 else
@@ -75,6 +82,11 @@
                                             "address"=>$row['address'],
                                             "time"=>$currentDateTime,
                                             "state"=>'out');
+                                            
+                    $_SESSION['gateStat'] = $row['gateStat'];
+                    $_SESSION['accType'] = 'visitor';
+                    $_SESSION['username'] = $row['username'];
+
                     //Going out/Exit
                     //log to DTR
                     $dtr = new dtrModel();
@@ -122,6 +134,12 @@
                                                    "address"=>$row['address'],
                                                    "time"=>$currentDateTime,
                                                    "state"=>'in');
+                                                   
+                    $_SESSION['gateStat'] = $row['gateStat'];
+                    $_SESSION['accType'] = 'guardian';
+                    $_SESSION['username'] = $row['username'];
+
+                    /*
                     //Going in/enter
                     //log to DTR
                     $dtr = new dtrModel();
@@ -133,6 +151,7 @@
                     $data->setGateStat('in');
                     $data->setDtrId(CreateDtr($conn,$dtr));
                     UpdateAccountGuardian($conn,$data);
+                    */
                     
                 }
                 else
@@ -145,6 +164,12 @@
                                                    "address"=>$row['address'],
                                                    "time"=>$currentDateTime,
                                                    "state"=>'out');
+                                                   
+                    $_SESSION['gateStat'] = $row['gateStat'];
+                    $_SESSION['accType'] = 'guardian';
+                    $_SESSION['username'] = $row['username'];
+
+                    
                     //Going out/Exit
                     //log to DTR
                     $dtr = new dtrModel();
@@ -156,6 +181,7 @@
                     $data->setGateStat('out');
                     $data->setDtrId($row['dtrId']);//To make the UpdateAccountGuardian 1st condition valid
                     UpdateAccountGuardian($conn,$data);
+                    
                 }
                 
 

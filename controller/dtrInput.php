@@ -26,10 +26,81 @@
 
         if($_SESSION['accType'] == 'visitor')
         {
+            $responsedata = $_POST['tempInput'];
+            $data = new visitorModel();
+            $data->setUsername($_SESSION['username']);
 
+            if($_SESSION['gateStat'] == 'out' || $_SESSION['gateStat'] == null)
+            {
+
+                //Going in/enter
+                //log to DTR
+                $dtr = new dtrModel();
+                $dtr->setDataId($_SESSION['id']);
+                $dtr->setAccType('visitor');
+                $dtr->setTemperature($_POST['tempInput']);
+                $dtr->setTime_in($currentDateTime);
+
+                //This will update the userside dtr Log
+                $data->setGateStat('in');
+                $data->setDtrId(CreateDtr($conn,$dtr));
+                UpdateAccountVisitor($conn,$data);
+            }
+            else
+            {
+                //this is not used to codeDecrypt 'out' is being used
+
+                //Going out/Exit
+                //log to DTR
+                $dtr = new dtrModel();
+                $data->setUsername($_SESSION['username']);
+                $dtr->setTime_out($currentDateTime);
+                UpdateDtr($conn,$dtr);
+
+                //This will update the userside dtr Log
+                $data->setGateStat('out');
+                $data->setDtrId($_SESSION['dtrId']);//To make the UpdateStudent 1st condition valid
+                UpdateAccountVisitor($conn,$data);
+            }
         }
         else if($_SESSION['accType'] == 'guardian')
         {
+            $responsedata = $_POST['tempInput'];
+            $data = new guardianModel();
+            $data->setUsername($_SESSION['username']);
+
+            if($_SESSION['gateStat'] == 'out' || $_SESSION['gateStat'] == null)
+            {
+
+                //Going in/enter
+                //log to DTR
+                $dtr = new dtrModel();
+                $dtr->setDataId($_SESSION['id']);
+                $dtr->setAccType('guardian');
+                $dtr->setTemperature($_POST['tempInput']);
+                $dtr->setTime_in($currentDateTime);
+
+                //This will update the userside dtr Log
+                $data->setGateStat('in');
+                $data->setDtrId(CreateDtr($conn,$dtr));
+                UpdateAccountGuardian($conn,$data);
+            }
+            else
+            {
+                //this is not used to codeDecrypt 'out' is being used
+
+                //Going out/Exit
+                //log to DTR
+                $dtr = new dtrModel();
+                $data->setUsername($_SESSION['username']);
+                $dtr->setTime_out($currentDateTime);
+                UpdateDtr($conn,$dtr);
+
+                //This will update the userside dtr Log
+                $data->setGateStat('out');
+                $data->setDtrId($_SESSION['dtrId']);//To make the UpdateStudent 1st condition valid
+                UpdateAccountGuardian($conn,$data);
+            }
 
         }
         else if($_SESSION['accType'] == 'student')

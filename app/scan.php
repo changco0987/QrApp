@@ -358,13 +358,18 @@ h6{
                     //To check if the user is "in or out"
                     if(arrVal.state == 'in')
                     {
+                        $('#tempTxt').show();//This is the temperature value/data container to display
                         $('#timeLb').html('Time: '+arrVal.time);
                         $('#inTxt').show();
+                        //This will only show in the entry
+                        $('#tempInput').show();//this will show the temp input to input the user temp
+                        $('#tempInput').focus();
                     }
                     else
                     {
                         $('#timeLb').html('Time: '+arrVal.time);
                         $('#outTxt').show();
+                        const myTimeout = setTimeout(revokeView, 5000);
                     }
                     //const myTimeout = setTimeout(revokeView, 5000);
                     console.log(arrVal.accType);
@@ -390,6 +395,7 @@ h6{
                     //To check if the user is "in or out"
                     if(arrVal.state == 'in')
                     {
+                        $('#tempTxt').show();//This is the temperature value/data container to display
                         $('#timeLb').html('Time: '+arrVal.time);
                         $('#inTxt').show();
 
@@ -469,6 +475,8 @@ h6{
             $('#errorTxt').hide();
             $('#userPicture').show();
             $('#noPicture').hide();
+
+            $('#tempTxt').html('');
             $('#tempTxt').hide();
 
             $('#codeInput').show();
