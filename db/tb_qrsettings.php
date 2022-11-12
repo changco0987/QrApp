@@ -15,7 +15,7 @@
     {
         if($qr->getExpiryHrs()==null)
         {
-            $dbData = mysqli_query($conn,"SELECT * FROM logstb");
+            $dbData = mysqli_query($conn,"SELECT * FROM qrsettingstb");
         }
         else
         {
@@ -29,8 +29,16 @@
     {
         date_default_timezone_set('Asia/Manila');
         $date = date('Y-m-d h:i:s a');
+
+        if($qr->getExpiryHrs())
+        {
+            mysqli_query($conn,"UPDATE qrsettingstb set expiryHrs = ".$qr->getExpiryHrs()." where id =".$qr->getId());
+        }
+        else
+        {
+            mysqli_query($conn,"UPDATE qrsettingstb set qrStatus = '".$qr->getQrStatus()."' where id =".$qr->getId());
+        }
         //$address = mysqli_real_escape_string($conn,$logs->getAddress());
-        mysqli_query($conn,"UPDATE qrsettingstb set expiryHrs = ".$qr->getExpiryHrs().", qrStatus = '".$qr->getQrStatus()."' where id =".$qr->getId());
     }
 
     function DeleteQrSetting($conn,$qr)
