@@ -339,8 +339,9 @@ h6{
             }*/
                 if(arrVal.accType=='visitor')
                 {
-                    if(arrVal.imageName!=null)
+                    if(arrVal.imageName!=null && arrVal.imageName ===" ")
                     {
+                        console.log(arrVal.imageName);
                         document.getElementById("userPicture").src = '../upload/'+arrVal.imageName;
                     }
                     else
@@ -377,7 +378,7 @@ h6{
                 }
                 else if(arrVal.accType=='guardian')
                 {
-                    if(arrVal.imageName!=null)
+                    if(arrVal.imageName!=null && arrVal.imageName ===" ")
                     {
                         document.getElementById("userPicture").src = '../upload/'+arrVal.imageName;
                     }
@@ -413,7 +414,7 @@ h6{
                     //console.log(arrVal.accType);
 
                 }
-                else if(arrVal.accType=='student')
+                else if(arrVal.accType=='student' && arrVal.imageName ===" ")
                 {
                     
                     if(arrVal.imageName)
