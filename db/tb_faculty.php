@@ -36,7 +36,7 @@
       if($data->getDtrId()!=null)
         {
             //To time-in and time-out
-            mysqli_query($conn,"UPDATE facultytb set gateStat ='".$data->getGateStat()."', dtrId = '".$data->getDtrId()."' where id = '".$data->getId()."'");
+            mysqli_query($conn,"UPDATE facultytb set gateStat ='".$data->getGateStat()."', dtrId = '".$data->getDtrId()."' where id = ".$data->getId());
         }
         else if($data->getStatus() != null)
         {

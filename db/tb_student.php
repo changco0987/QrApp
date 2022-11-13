@@ -47,7 +47,7 @@
     {
         if($student->getDtrId()!=null)
         {
-            mysqli_query($conn,"UPDATE studentstb set gateStat ='".$student->getGateStat()."', dtrId = '".$student->getDtrId()."' where id = '".$student->getId()."'");
+            mysqli_query($conn,"UPDATE studentstb set gateStat ='".$student->getGateStat()."', dtrId = '".$student->getDtrId()."' where id = ".$student->getId());
         }
         else if($student->getStatus()!=null)
         {

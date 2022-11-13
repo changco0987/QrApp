@@ -456,7 +456,7 @@ td{
                           ?>
                               <td><?php echo $rowCount;?></td>
                               <td><?php echo $row['firstname'].' '.$row['lastname'];?></td>
-                              <td></td><!-- Temperature -->
+                              <td><?php echo $dtrRow['temperature'];?></td><!-- Temperature -->
                               <td><?php echo $dtrRow['time_in'];?></td>
                               <td><?php echo $dtrRow['time_out'];?></td>
                           </tr>

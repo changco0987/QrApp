@@ -191,6 +191,7 @@ h6{
                     </center>
                     <h2 id="scanLb" class="mx-auto text-center">Scan Here</h2>
                     <h3 id="nameLb" class="mt-2" style=" font-weight:bold;"></h3>
+                    <h4 id="deptLb"></h4>
                     <h4 id="courseLb"></h4>
                     <h4 id="contactLb"></h4>
                     <h4 id="addressLb"></h4>
@@ -414,10 +415,10 @@ h6{
                     //console.log(arrVal.accType);
 
                 }
-                else if(arrVal.accType=='student' && arrVal.imageName ===" ")
+                else if(arrVal.accType=='student')
                 {
                     
-                    if(arrVal.imageName)
+                    if(arrVal.imageName && arrVal.imageName ===" ")
                     {
                         document.getElementById("userPicture").src = '../upload/students/'+arrVal.imageName;
                     }
@@ -435,6 +436,46 @@ h6{
                     $('#contactLb').html('Contact #: '+arrVal.contact);
                     $('#addressLb').html('Address: '+arrVal.address);
                     $('#guardianLb').html("Parent's Name: "+arrVal.guardianName);
+                    //To check if the user is "in or out"
+                    if(arrVal.state == 'in')
+                    {
+                        $('#tempTxt').show();//This is the temperature value/data container to display
+                        $('#timeLb').html('Time: '+arrVal.time);
+                        $('#inTxt').show();
+                        //This will only show in the entry
+                        $('#tempInput').show();//this will show the temp input to input the user temp
+                        $('#tempInput').focus();
+                        
+                    }
+                    else
+                    {
+                        $('#timeLb').html('Time: '+arrVal.time);
+                        $('#outTxt').show();
+                        const myTimeout = setTimeout(revokeView, 5000);
+                    }
+                    //const myTimeout = setTimeout(revokeView, 5000);
+                    //console.log(arrVal.accType);
+                }
+                else if(arrVal.accType=='faculty')
+                {
+                    
+                    if(arrVal.imageName && arrVal.imageName ===" ")
+                    {
+                        document.getElementById("userPicture").src = '../upload/faculty/'+arrVal.imageName;
+                    }
+                    else
+                    {
+                        $('#userPicture').hide();
+                        $('#noPicture').show();
+                    }
+                    //console.log(arrVal.imageName);
+                    document.getElementById("scanLb").style.display = "none";
+
+                    $('#nameLb').html('Name: '+arrVal.name);
+                    $('#typeLb').html('('+arrVal.accType+')');
+                    $('#deptLb').html("Dept: "+arrVal.dept);
+                    $('#contactLb').html('Contact #: '+arrVal.contact);
+
                     //To check if the user is "in or out"
                     if(arrVal.state == 'in')
                     {
@@ -476,6 +517,8 @@ h6{
             $('#errorTxt').hide();
             $('#userPicture').show();
             $('#noPicture').hide();
+            $('#deptLb').html('');
+            $('#deptLb').hide();
 
             $('#tempTxt').html('');
             $('#tempTxt').hide();
