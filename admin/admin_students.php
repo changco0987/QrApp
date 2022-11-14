@@ -897,7 +897,10 @@ td{
     </div>
     
 
-
+    <script>
+  var qrLockStat = '';
+</script>
+    
     <!-- Modal for Utilities->QR settings -->
     <div class="modal fade" id="qrSett" tabindex="-1" role="dialog" aria-labelledby="addAnnouncementCenterTitle" aria-hidden="true">
       <div class="modal-dialog modal-dialog-centered" role="document"style="width:max-content;">
@@ -909,14 +912,12 @@ td{
                   </button>
               </div>
               <div class="modal-body d-flex flex-column">
-              <?php
-
+                <?php
                   $qr = new qrsettingsModel();
                   $result = ReadQrSetting($conn,$qr);
                   $row = mysqli_fetch_assoc($result);
-
-
                 ?>
+
                 <div class="row my-2">
                   <div class="col-xs-10 col-sm-10 col-md-10 col-lg-10 col-xl-10">
                     <form action="" method="post">
@@ -931,9 +932,30 @@ td{
                   </div>
                 </div>
                 <div class="row mt-2">
-                  <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
-                      <button type="button" class="btn btn-danger btn-sm"><i class="bi bi-shield-lock-fill"></i> Lock all QR</button>
-                  </div>
+                  <form action="" method="post">
+                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+                      <input type="hidden" name="qrStatId" id="qrStatId" value="<?php echo $row['id'];?>">
+                      <?php
+                        if($row['qrStatus']=='unlock')
+                        {
+                          ?>
+                            <script> qrLockStat = 'unlock';//because this is the current value while the button below is not click yet </script>
+                            <input type="hidden" name="qrStatTb" id="qrStatTb" value="lock">
+                          <?php
+                        }
+                        else
+                        {
+                          ?>
+                            <script> qrLockStat = 'lock';//because this is the current value while the button below is not click yet </script>
+                            <input type="hidden" name="qrStatTb" id="qrStatTb" value="unlock">
+                          <?php
+                        }
+                      ?>
+                        <button type="submit" name="submitQrStat" id="submitQrStat" class="btn btn-danger btn-sm" onclick="submitFormLock();"><i class="bi bi-shield-lock-fill"></i> Lock all QR</button>
+                    </div>
+                  </form>
+                  <label for="qrStatTb" id="qrStatLabel" class="text-primary"></label>
+                  <script> $('#qrStatLabel').html('All QR code is '+qrLockStat);</script>
                 </div>
               </div>
           </div>
@@ -946,22 +968,39 @@ td{
         //To submit the form without reloading it
         function submitForm() 
         {
-                var http = new XMLHttpRequest();
-                http.open("POST", "../controller/changeSett.php", true);
-                http.setRequestHeader("Content-type","application/x-www-form-urlencoded");
-                //This is the form input fields data
-                var params = "submitQrSett=" + document.getElementById("submitQrSett").value+"&qrExpiryTb=" + document.getElementById("qrExpiryTb").value+"&qrIdTb=" + document.getElementById('qrIdTb').value; // probably use document.getElementById(...).value
-                http.send(params);
-                http.onload = function() 
-                {
-                    var data = http.responseText;
-                    //returnDate();
-                    console.log(data);
-                }
+            var http = new XMLHttpRequest();
+            http.open("POST", "../controller/changeSett.php", true);
+            http.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+            //This is the form input fields data
+            var params = "submitQrSett=" + document.getElementById("submitQrSett").value+"&qrExpiryTb=" + document.getElementById("qrExpiryTb").value+"&qrIdTb=" + document.getElementById('qrIdTb').value; // probably use document.getElementById(...).value
+            http.send(params);
+            http.onload = function() 
+            {
+                var data = http.responseText;
+                //returnDate();
+                console.log(JSON.parse(data));
+            }
         }
-                        
 
+        
   
+        //To submit the form without reloading it
+        function submitFormLock() 
+        {
+            var http = new XMLHttpRequest();
+            http.open("POST", "../controller/lockAllQr.php", true);
+            http.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+            //This is the form input fields data
+            var params = "qrStatId=" + document.getElementById("qrStatId").value+"&qrStatTb=" + document.getElementById("qrStatTb").value+"&submitQrStat=" + document.getElementById('submitQrStat').value; // probably use document.getElementById(...).value
+            http.send(params);
+            http.onload = function() 
+            {
+                var data = http.responseText;
+                //returnDate();
+                console.log(data);
+            }
+        }
+            
                         
 
 
