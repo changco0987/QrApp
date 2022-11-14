@@ -301,13 +301,20 @@ h6{
                 http.onload = function() 
                 {
                     var data = http.responseText;
-                    if(data=='expired')
+                    console.log(JSON.parse(data));
+                    if(JSON.parse(data)=='expired')
                     {
                         $('#errorTxt').show();
                         $('#errorTxt').html('QR already expired');
                         const myTimeout = setTimeout(revokeView, 5000);
                     }
-                    else if(data=='error')
+                    else if(JSON.parse(data)=='Lock' || JSON.parse(data)=='Locked')
+                    {
+                        $('#errorTxt').show();
+                        $('#errorTxt').html('QR is locked please contact the admin');
+                        const myTimeout = setTimeout(revokeView, 5000);
+                    }
+                    else if(JSON.parse(data)=='error')
                     {
                         $('#errorTxt').show();
                         $('#errorTxt').html('The QR is not belong to the system');

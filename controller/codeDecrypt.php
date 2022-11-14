@@ -121,7 +121,7 @@
             }
             else
             {
-                echo 'error';
+                echo json_encode('Locked');
                 exit;
             }
 
@@ -214,7 +214,7 @@
             }
             else
             {
-                echo 'Locked';
+                echo json_encode('Locked');
                 exit;
             }
             
@@ -355,7 +355,7 @@
             }
             else
             {
-                echo 'Locked';
+                echo json_encode('Locked');
                 exit;
             }
         }
@@ -461,14 +461,14 @@
             }
             else
             {
-                echo 'Locked';
+                echo json_encode('Locked');
                 exit;
             }
         }
         else
         {
             //This will occur if the qr is not created by the system
-            echo 'error';
+            echo json_encode('error');
             exit;
         }
         
