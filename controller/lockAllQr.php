@@ -6,29 +6,23 @@
     include_once '../db/tb_logs.php';
     include_once '../model/logsModel.php';
 
-    $log = new logsModel();
+
     session_start();
-    if(isset($_POST['submitQrSett']))
+    if(isset($_POST['submitQrStat']))
     {
         $qr = new qrsettingsModel();
-        $qr->setId($_POST['qrIdTb']);
-        $qr->setExpiryHrs($_POST['qrExpiryTb']);
-                
+        $qr->setId($_POST['qrStatId']);
+        $qr->setQrStatus($_POST['qrStatTb']);
+
+        UpdateQrSetting($conn,$qr);
+
         //create log
-        $log->setActivity('changed QR expiry allotted time to '.$_POST['qrExpiryTb']);
+        $log->setActivity('Locked all QR code');
         $log->setIpAdd();
         $log->setAccType('Administrator');
         $log->setCreator($_SESSION['adminNameTb']);
     
         CreateLog($conn,$log);
-        UpdateQrSetting($conn,$qr);
-
-        echo json_encode('Success');
-
-    }
-    else
-    {
-        header("location: ../admin.php");
     }
 
 ?>
