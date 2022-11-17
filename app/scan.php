@@ -630,6 +630,11 @@ $(function() {
                 console.log('High temp');
                 $("#tempInput").val('');  
             }
+            else if(inputTempVal<36)
+            {
+                console.log('Low temp');
+                $("#tempInput").val('');  
+            }
             else
             {
                 //this will show the inputted temp and hide the temp input field
