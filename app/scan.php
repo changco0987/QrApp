@@ -148,7 +148,7 @@ h6{
   color: #1C1C1C;
 }
 
-#inTxt, #outTxt, #errorTxt, #tempTxt, #tempInput{
+#inTxt, #outTxt, #errorTxt, #tempTxt, #tempInput, #timeInInput{
     display: none;
 }
 
@@ -203,6 +203,7 @@ h6{
                     <h2 id="errorTxt" class="text-center" style="color:red; font-weight:bold;"><i class="bbi bi-exclamation-diamond-fill mr-1"></i></h2>
                     <input id="codeInput" oninput="clearVal()" onchange="getVal()" onblur="this.focus()" autofocus/> 
                     <input type="number" id="tempInput" oninput="clearVal()" onchange="getTemp()" onblur="this.focus()" maxlength="10" autofocus/> 
+                    <input id="timeInInput" oninput="clearVal()" onchange="getTimeIn()" onblur="this.focus()" autofocus/> 
                 </div>
             </div>
         </div>
@@ -257,6 +258,51 @@ h6{
                     if(data=='error')
                     {
                         $('#errorTxt').show();
+                        $('#errorTxt').html('Inputted Temp error!');
+                        const myTimeout = setTimeout(revokeView, 5000);
+                    }
+                    else
+                    {
+                        //console.log(data);
+                        showTimeIn(data);
+                        console.log(data);
+                    }
+                    //returnDate();
+                    //console.log(params);
+                }
+            }
+            catch(err)
+            {
+                //this will reload the page if an error has occur
+                location.reload();
+            }
+        }
+
+        function showTimeIn(temp)
+        {
+            $('#inTxt').show();
+            const myTimeout = setTimeout(revokeView, 5000);
+
+        }
+
+        /*
+        //This is for the sensor when entering the gate
+        function detectTimeIn(timeinInput)
+        {
+            try
+            {
+                var http = new XMLHttpRequest();
+                http.open("POST", "../controller/dtrInput.php", true);
+                http.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+                //This is the form input fields data
+                var params = "timeinInput="+timeinInput; // probably use document.getElementById(...).value
+                http.send(params);
+                http.onload = function() 
+                {
+                    var data = http.responseText;
+                    if(data=='error')
+                    {
+                        $('#errorTxt').show();
                         $('#errorTxt').html('The QR is not belong to the system');
                         const myTimeout = setTimeout(revokeView, 5000);
                     }
@@ -277,15 +323,7 @@ h6{
             }
         }
 
-        function showTemp(temp)
-        {
-            $('#tempTxt').html("Temp: "+temp);
-            $('#tempInput').blur();
-            $('#tempInput').hide();
-            const myTimeout = setTimeout(revokeView, 5000);
-
-        }
-
+        */
 
         //To submit the form without reloading it
         function submitForm(qrValue) 
@@ -370,7 +408,6 @@ h6{
 
                         $('#tempTxt').show();//This is the temperature value/data container to display
                         $('#timeLb').html('Time: '+arrVal.time);
-                        $('#inTxt').show();
                         //This will only show in the entry
                         $('#tempInput').show();//this will show the temp input to input the user temp
                         $('#tempInput').focus();
@@ -407,7 +444,6 @@ h6{
 
                         $('#tempTxt').show();//This is the temperature value/data container to display
                         $('#timeLb').html('Time: '+arrVal.time);
-                        $('#inTxt').show();
 
                         //This will only show in the entry
                         $('#tempInput').show();//this will show the temp input to input the user temp
@@ -424,7 +460,7 @@ h6{
                 }
                 else if(arrVal.accType=='student')
                 {
-                        //To check if the user is "in or out"
+                    //To check if the user is "in or out"
                     if(arrVal.state == 'in')
                     {
                         
@@ -449,7 +485,6 @@ h6{
 
                         $('#tempTxt').show();//This is the temperature value/data container to display
                         $('#timeLb').html('Time: '+arrVal.time);
-                        $('#inTxt').show();
                         //This will only show in the entry
                         $('#tempInput').show();//this will show the temp input to input the user temp
                         $('#tempInput').focus();
@@ -469,7 +504,6 @@ h6{
                     if(arrVal.state == 'in')
                     {
                             
-                        
                         if(arrVal.imageName && arrVal.imageName ===" ")
                         {
                             document.getElementById("userPicture").src = '../upload/faculty/'+arrVal.imageName;
@@ -489,7 +523,6 @@ h6{
 
                         $('#tempTxt').show();//This is the temperature value/data container to display
                         $('#timeLb').html('Time: '+arrVal.time);
-                        $('#inTxt').show();
                         //This will only show in the entry
                         $('#tempInput').show();//this will show the temp input to input the user temp
                         $('#tempInput').focus();
@@ -533,7 +566,6 @@ h6{
             $('#codeInput').show();
             $('#codeInput').focus();
 
-            $('#tempInput').blur();
             $('#tempInput').hide();
         }
 
@@ -586,23 +618,54 @@ $(function() {
             $('#codeInput').blur();
         }
 
+        var inputTempVal = 0;
+        //For temp input
         function getTemp()
         {
-            var inputVal = $("#tempInput").val();
-            console.log('Temp data: '+inputVal);
+            inputTempVal = $("#tempInput").val();
+            console.log('Temp data: '+inputTempVal);
 
-            if(inputVal>38)
+            if(inputTempVal>38)
             {
                 console.log('High temp');
+                $("#tempInput").val('');  
             }
             else
             {
+                //this will show the inputted temp and hide the temp input field
+                $('#tempTxt').html("Temp: "+inputTempVal);
                 console.log('not high');
-                submitTemp(inputVal);
                 $("#tempInput").val('');  
+                $('#tempInput').blur();
+                $('#tempInput').hide();
+
+                //This will occur after the temp input 
+                $('#timeInInput').show();//this will show the temp input to input the user temp
+                $('#timeInInput').focus();
             }
-         
         }
+
+        //For sensor detection
+        function getTimeIn()
+        {
+            var timeinInput = $('#timeInInput').val();
+            console.log('time-in input: '+timeinInput);
+
+            if(timeinInput==1)
+            {
+                submitTemp(inputTempVal);
+                //detectTimeIn(timeinInput);
+                $("#timeInInput").val(''); 
+                $('#timeInInput').blur();
+                $('#timeInInput').hide();
+            }
+            else
+            {
+                console.log('wrong sensor input');
+                $("#timeInInput").val(''); 
+            }
+
+        } 
 
         document.getElementById('successBox').style.display = 'none';
         var successSignal = localStorage.getItem('state');
