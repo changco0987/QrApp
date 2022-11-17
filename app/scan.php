@@ -202,7 +202,7 @@ h6{
                     <h2 id="outTxt" class="text-center" style="color:green; font-weight:bold;"><i class="bi bi-check2-circle mr-1"></i>Time-out</h2>
                     <h2 id="errorTxt" class="text-center" style="color:red; font-weight:bold;"><i class="bbi bi-exclamation-diamond-fill mr-1"></i></h2>
                     <input id="codeInput" oninput="clearVal()" onchange="getVal()" onblur="this.focus()" autofocus/> 
-                    <input id="tempInput" oninput="clearVal()" onchange="getTemp()" onblur="this.focus()" maxlength="10" autofocus/> 
+                    <input type="number" id="tempInput" oninput="clearVal()" onchange="getTemp()" onblur="this.focus()" maxlength="10" autofocus/> 
                 </div>
             </div>
         </div>
@@ -347,26 +347,27 @@ h6{
             }*/
                 if(arrVal.accType=='visitor')
                 {
-                    if(arrVal.imageName!=null && arrVal.imageName ===" ")
-                    {
-                        console.log(arrVal.imageName);
-                        document.getElementById("userPicture").src = '../upload/'+arrVal.imageName;
-                    }
-                    else
-                    {
-                        $('#userPicture').hide();
-                        $('#noPicture').show();
-                    }
-                    //console.log(arrVal.imageName);
-                    document.getElementById("scanLb").style.display = "none";
-
-                    $('#nameLb').html('Name: '+arrVal.name);
-                    $('#typeLb').html('('+arrVal.accType+')');
-                    $('#contactLb').html('Contact #: '+arrVal.contact);
-                    $('#addressLb').html('Address: '+arrVal.address);
                     //To check if the user is "in or out"
                     if(arrVal.state == 'in')
-                    {
+                        {
+                        if(arrVal.imageName!=null && arrVal.imageName ===" ")
+                        {
+                            console.log(arrVal.imageName);
+                            document.getElementById("userPicture").src = '../upload/'+arrVal.imageName;
+                        }
+                        else
+                        {
+                            $('#userPicture').hide();
+                            $('#noPicture').show();
+                        }
+                        //console.log(arrVal.imageName);
+                        document.getElementById("scanLb").style.display = "none";
+
+                        $('#nameLb').html('Name: '+arrVal.name);
+                        $('#typeLb').html('('+arrVal.accType+')');
+                        $('#contactLb').html('Contact #: '+arrVal.contact);
+                        $('#addressLb').html('Address: '+arrVal.address);
+
                         $('#tempTxt').show();//This is the temperature value/data container to display
                         $('#timeLb').html('Time: '+arrVal.time);
                         $('#inTxt').show();
@@ -376,9 +377,8 @@ h6{
                     }
                     else
                     {
-                        $('#timeLb').html('Time: '+arrVal.time);
-                        $('#outTxt').show();
-                        const myTimeout = setTimeout(revokeView, 5000);
+                        console.log(arrVal.state);
+                        const myTimeout = setTimeout(revokeView, 1000);
                     }
                     //const myTimeout = setTimeout(revokeView, 5000);
                     console.log(arrVal.accType);
@@ -386,24 +386,25 @@ h6{
                 }
                 else if(arrVal.accType=='guardian')
                 {
-                    if(arrVal.imageName!=null && arrVal.imageName ===" ")
-                    {
-                        document.getElementById("userPicture").src = '../upload/'+arrVal.imageName;
-                    }
-                    else
-                    {
-                        $('#userPicture').hide();
-                        $('#noPicture').show();
-                    }
-                    document.getElementById("scanLb").style.display = "none";
-
-                    $('#nameLb').html('Name: '+arrVal.name);
-                    $('#typeLb').html('('+arrVal.accType+')');
-                    $('#contactLb').html('Contact #: '+arrVal.contact);
-                    $('#addressLb').html('Address: '+arrVal.address);
                     //To check if the user is "in or out"
                     if(arrVal.state == 'in')
-                    {
+                        {
+                        if(arrVal.imageName!=null && arrVal.imageName ===" ")
+                        {
+                            document.getElementById("userPicture").src = '../upload/'+arrVal.imageName;
+                        }
+                        else
+                        {
+                            $('#userPicture').hide();
+                            $('#noPicture').show();
+                        }
+                        document.getElementById("scanLb").style.display = "none";
+
+                        $('#nameLb').html('Name: '+arrVal.name);
+                        $('#typeLb').html('('+arrVal.accType+')');
+                        $('#contactLb').html('Contact #: '+arrVal.contact);
+                        $('#addressLb').html('Address: '+arrVal.address);
+
                         $('#tempTxt').show();//This is the temperature value/data container to display
                         $('#timeLb').html('Time: '+arrVal.time);
                         $('#inTxt').show();
@@ -414,9 +415,8 @@ h6{
                     }
                     else
                     {
-                        $('#timeLb').html('Time: '+arrVal.time);
-                        $('#outTxt').show();
-                        const myTimeout = setTimeout(revokeView, 5000);
+                        console.log(arrVal.state);
+                        const myTimeout = setTimeout(revokeView, 1000);
                     }
                     //const myTimeout = setTimeout(revokeView, 5000);
                     //console.log(arrVal.accType);
@@ -424,28 +424,29 @@ h6{
                 }
                 else if(arrVal.accType=='student')
                 {
-                    
-                    if(arrVal.imageName && arrVal.imageName ===" ")
-                    {
-                        document.getElementById("userPicture").src = '../upload/students/'+arrVal.imageName;
-                    }
-                    else
-                    {
-                        $('#userPicture').hide();
-                        $('#noPicture').show();
-                    }
-                    //console.log(arrVal.imageName);
-                    document.getElementById("scanLb").style.display = "none";
-
-                    $('#nameLb').html('Name: '+arrVal.name);
-                    $('#typeLb').html('('+arrVal.accType+')');
-                    $('#courseLb').html("Course y/s: "+arrVal.course);
-                    $('#contactLb').html('Contact #: '+arrVal.contact);
-                    $('#addressLb').html('Address: '+arrVal.address);
-                    $('#guardianLb').html("Parent's Name: "+arrVal.guardianName);
-                    //To check if the user is "in or out"
+                        //To check if the user is "in or out"
                     if(arrVal.state == 'in')
                     {
+                        
+                        if(arrVal.imageName && arrVal.imageName ===" ")
+                        {
+                            document.getElementById("userPicture").src = '../upload/students/'+arrVal.imageName;
+                        }
+                        else
+                        {
+                            $('#userPicture').hide();
+                            $('#noPicture').show();
+                        }
+                        //console.log(arrVal.imageName);
+                        document.getElementById("scanLb").style.display = "none";
+
+                        $('#nameLb').html('Name: '+arrVal.name);
+                        $('#typeLb').html('('+arrVal.accType+')');
+                        $('#courseLb').html("Course y/s: "+arrVal.course);
+                        $('#contactLb').html('Contact #: '+arrVal.contact);
+                        $('#addressLb').html('Address: '+arrVal.address);
+                        $('#guardianLb').html("Parent's Name: "+arrVal.guardianName);
+
                         $('#tempTxt').show();//This is the temperature value/data container to display
                         $('#timeLb').html('Time: '+arrVal.time);
                         $('#inTxt').show();
@@ -456,36 +457,36 @@ h6{
                     }
                     else
                     {
-                        $('#timeLb').html('Time: '+arrVal.time);
-                        $('#outTxt').show();
-                        const myTimeout = setTimeout(revokeView, 5000);
+                        console.log(arrVal.state);
+                        const myTimeout = setTimeout(revokeView, 1000);
                     }
                     //const myTimeout = setTimeout(revokeView, 5000);
                     //console.log(arrVal.accType);
                 }
                 else if(arrVal.accType=='faculty')
                 {
-                    
-                    if(arrVal.imageName && arrVal.imageName ===" ")
-                    {
-                        document.getElementById("userPicture").src = '../upload/faculty/'+arrVal.imageName;
-                    }
-                    else
-                    {
-                        $('#userPicture').hide();
-                        $('#noPicture').show();
-                    }
-                    //console.log(arrVal.imageName);
-                    document.getElementById("scanLb").style.display = "none";
-
-                    $('#nameLb').html('Name: '+arrVal.name);
-                    $('#typeLb').html('('+arrVal.accType+')');
-                    $('#deptLb').html("Dept: "+arrVal.dept);
-                    $('#contactLb').html('Contact #: '+arrVal.contact);
-
                     //To check if the user is "in or out"
                     if(arrVal.state == 'in')
                     {
+                            
+                        
+                        if(arrVal.imageName && arrVal.imageName ===" ")
+                        {
+                            document.getElementById("userPicture").src = '../upload/faculty/'+arrVal.imageName;
+                        }
+                        else
+                        {
+                            $('#userPicture').hide();
+                            $('#noPicture').show();
+                        }
+                        //console.log(arrVal.imageName);
+                        document.getElementById("scanLb").style.display = "none";
+
+                        $('#nameLb').html('Name: '+arrVal.name);
+                        $('#typeLb').html('('+arrVal.accType+')');
+                        $('#deptLb').html("Dept: "+arrVal.dept);
+                        $('#contactLb').html('Contact #: '+arrVal.contact);
+
                         $('#tempTxt').show();//This is the temperature value/data container to display
                         $('#timeLb').html('Time: '+arrVal.time);
                         $('#inTxt').show();
@@ -496,9 +497,8 @@ h6{
                     }
                     else
                     {
-                        $('#timeLb').html('Time: '+arrVal.time);
-                        $('#outTxt').show();
-                        const myTimeout = setTimeout(revokeView, 5000);
+                        console.log(arrVal.state);
+                        const myTimeout = setTimeout(revokeView, 1000);
                     }
                     //const myTimeout = setTimeout(revokeView, 5000);
                     //console.log(arrVal.accType);
@@ -575,7 +575,7 @@ $(function() {
             }
             */
         }    
-
+        
         //This will get the qr input
         function getVal()
         {
@@ -590,8 +590,18 @@ $(function() {
         {
             var inputVal = $("#tempInput").val();
             console.log('Temp data: '+inputVal);
-            submitTemp(inputVal);
-            $("#tempInput").val('');  
+
+            if(inputVal>38)
+            {
+                console.log('High temp');
+            }
+            else
+            {
+                console.log('not high');
+                submitTemp(inputVal);
+                $("#tempInput").val('');  
+            }
+         
         }
 
         document.getElementById('successBox').style.display = 'none';
