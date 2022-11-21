@@ -496,6 +496,7 @@ td{
                         </div>
                     </div>
                     </center>
+                    
                     <!-- Student Personal Info -->
                     <div class="mx-2 px-2" style="background-color: #f9f9f9; border-radius:10px;">
                       <div class="form-group">

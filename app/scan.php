@@ -201,9 +201,14 @@ h6{
                     <h2 id="inTxt" class="text-center" style="color:green; font-weight:bold;"><i class="bi bi-check2-circle mr-1"></i>Time-in</h2>
                     <h2 id="outTxt" class="text-center" style="color:green; font-weight:bold;"><i class="bi bi-check2-circle mr-1"></i>Time-out</h2>
                     <h2 id="errorTxt" class="text-center" style="color:red; font-weight:bold;"><i class="bbi bi-exclamation-diamond-fill mr-1"></i></h2>
-                    <input id="codeInput" oninput="clearVal()" onchange="getVal()" onblur="this.focus()" autofocus/> 
+                    <input id="codeInput" onchange="getVal()" onblur="this.focus()" autofocus/> 
+
+
                     <input type="number" id="tempInput" oninput="clearVal()" onchange="getTemp()" onblur="this.focus()" maxlength="10" autofocus/> 
+
+
                     <input id="timeInInput" oninput="clearVal()" onchange="getTimeIn()" onblur="this.focus()" autofocus/> 
+
                 </div>
             </div>
         </div>
@@ -563,8 +568,8 @@ h6{
             $('#tempTxt').html('');
             $('#tempTxt').hide();
 
-            $('#codeInput').show();
-            $('#codeInput').focus();
+            $('#codeInput').show();//qr input
+            $('#codeInput').focus();//qr input
 
             $('#tempInput').hide();
         }
@@ -598,14 +603,14 @@ $(function() {
         //This will clear all keyboard inputs and filter it out
         function clearVal()
         {
-            /*
-            var inputVal = $("#codeInput").val();
-            var result = inputVal.includes('=');
-            if(!result)
+         
+            var inputVal = $("#tempInput").val();
+            var result = inputVal.includes('E');
+            if(result)
             {
-                $("#codeInput").val('');
+                $("#tempInput").val('');
             }
-            */
+            
         }    
         
         //This will get the qr input
@@ -624,30 +629,40 @@ $(function() {
         {
             inputTempVal = $("#tempInput").val();
             console.log('Temp data: '+inputTempVal);
-
-            if(inputTempVal>38)
+   
+            var length = inputTempVal.length;
+            if(length>4)
             {
-                console.log('High temp');
-                $("#tempInput").val('');  
-            }
-            else if(inputTempVal<36)
-            {
-                console.log('Low temp');
-                $("#tempInput").val('');  
+                $("#tempInput").val('');
             }
             else
             {
-                //this will show the inputted temp and hide the temp input field
-                $('#tempTxt').html("Temp: "+inputTempVal);
-                console.log('not high');
-                $("#tempInput").val('');  
-                $('#tempInput').blur();
-                $('#tempInput').hide();
+                
+                if(inputTempVal>38)
+                {
+                    console.log('High temp');
+                    $("#tempInput").val('');  
+                }
+                else if(inputTempVal<36)
+                {
+                    console.log('Low temp');
+                    $("#tempInput").val('');  
+                }
+                else
+                {
+                    //this will show the inputted temp and hide the temp input field
+                    $('#tempTxt').html("Temp: "+inputTempVal);
+                    console.log('not high');
+                    $("#tempInput").val('');  
+                    $('#tempInput').blur();
+                    $('#tempInput').hide();
 
-                //This will occur after the temp input 
-                $('#timeInInput').show();//this will show the temp input to input the user temp
-                $('#timeInInput').focus();
+                    //This will occur after the temp input 
+                    $('#timeInInput').show();//this will show the temp input to input the user temp
+                    $('#timeInInput').focus();
+                }
             }
+
         }
 
         //For sensor detection
