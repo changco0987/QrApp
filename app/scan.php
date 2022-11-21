@@ -152,7 +152,7 @@ h6{
     display: none;
 }
 
-#noPicture{
+#noPicture, #userPicture{
     display: none;
 }
     </style>
@@ -182,25 +182,37 @@ h6{
     
     <div class="row myRow mt-4 pt-4 mx-auto">
         <div class="col-sm-12 col-xs-12 col-md-12 col-lg-12 my-4 py-4">
-            <div class="container d-flex justify-content-center">
+            <div class="container">
                 <div style="min-width:max-content;">
                     <center>
-                        <img id="userPicture" src="../asset/qrScan.png" class="mx-auto text-center border border-dark" alt="" style="width:250px;height: 250px;">
-                        <img id="noPicture" src="../asset/user.png" class="mx-auto text-center border border-dark" alt="" style="width:250px;height: 250px;">
-                        <h6 id="typeLb" style="font-size:13px; color:red;" class="mt-1"></h6>
+                        <img id="qrPicture" src="../asset/qrScan.png" class="mx-auto text-center border border-dark" alt="" style="width:250px;height: 250px;">
+                        <h2 id="scanLb" class="mx-auto text-center">Scan Here</h2>
                     </center>
-                    <h2 id="scanLb" class="mx-auto text-center">Scan Here</h2>
-                    <h3 id="nameLb" class="mt-2" style=" font-weight:bold;"></h3>
-                    <h4 id="deptLb"></h4>
-                    <h4 id="courseLb"></h4>
-                    <h4 id="contactLb"></h4>
-                    <h4 id="addressLb"></h4>
-                    <h4 id="guardianLb"></h4>
-                    <h2 id="tempTxt" style="color:red; font-weight:bold;">Temp: </h2>
-                    <h4 id="timeLb" class="text-success"></h4>
-                    <h2 id="inTxt" class="text-center" style="color:green; font-weight:bold;"><i class="bi bi-check2-circle mr-1"></i>Time-in</h2>
-                    <h2 id="outTxt" class="text-center" style="color:green; font-weight:bold;"><i class="bi bi-check2-circle mr-1"></i>Time-out</h2>
-                    <h2 id="errorTxt" class="text-center" style="color:red; font-weight:bold;"><i class="bbi bi-exclamation-diamond-fill mr-1"></i></h2>
+                    <div class="row">
+                        <div class="col-sm-4 col-xs-4 col-md-4 col-lg-4 my-4 py-4">
+                            <div class="text-center">
+                                <img id="userPicture" src="../asset/qrScan.png" class="border border-dark" alt="" style="width:300px;height: 300px;">
+                                <img id="noPicture" src="../asset/user.png" class="border border-dark" alt="" style="width:300px;height: 300px;">
+                                <h6 id="typeLb" style="font-size:13px; color:red;" class="mt-1"></h6>
+                            </div>
+                        </div>
+
+                        
+                        <div class="col-sm-8 col-xs-8 col-md-8 col-lg-8 my-4 py-4">
+                            <h3 id="nameLb" class="mt-2" style=" font-weight:bold;"></h3>
+                            <h4 id="deptLb"></h4>
+                            <h4 id="courseLb"></h4>
+                            <h4 id="contactLb"></h4>
+                            <h4 id="addressLb"></h4>
+                            <h4 id="guardianLb"></h4>
+                            <h2 id="tempTxt" style="color:red; font-weight:bold;">Temp: </h2>
+                            <h4 id="timeLb" class="text-success"></h4>
+                            <h2 id="inTxt" class="text-center" style="color:green; font-weight:bold;"><i class="bi bi-check2-circle mr-1"></i>Time-in</h2>
+                            <h2 id="outTxt" class="text-center" style="color:green; font-weight:bold;"><i class="bi bi-check2-circle mr-1"></i>Time-out</h2>
+                            <h2 id="errorTxt" class="text-center" style="color:red; font-weight:bold;"><i class="bbi bi-exclamation-diamond-fill mr-1"></i></h2>
+                        </div>
+
+                    </div>
                     <input id="codeInput" onchange="getVal()" onblur="this.focus()" autofocus/> 
 
 
@@ -383,6 +395,7 @@ h6{
         //To identify the accType
         function getType(arrVal)
         {
+            $('#qrPicture').hide();//This will hide the qr picture
             $('#codeInput').hide();//this will hide the code input to avoid inputting qr value after scanning something
 
             /*for(var key in arrVal)
@@ -395,7 +408,7 @@ h6{
                         {
                         if(arrVal.imageName!=null && arrVal.imageName ===" ")
                         {
-                            console.log(arrVal.imageName);
+                            $('#userPicture').show();
                             document.getElementById("userPicture").src = '../upload/'+arrVal.imageName;
                         }
                         else
@@ -433,6 +446,7 @@ h6{
                         {
                         if(arrVal.imageName!=null && arrVal.imageName ===" ")
                         {
+                            $('#userPicture').show();
                             document.getElementById("userPicture").src = '../upload/'+arrVal.imageName;
                         }
                         else
@@ -471,6 +485,7 @@ h6{
                         
                         if(arrVal.imageName && arrVal.imageName ===" ")
                         {
+                            $('#userPicture').show();
                             document.getElementById("userPicture").src = '../upload/students/'+arrVal.imageName;
                         }
                         else
@@ -511,6 +526,7 @@ h6{
                             
                         if(arrVal.imageName && arrVal.imageName ===" ")
                         {
+                            $('#userPicture').show();
                             document.getElementById("userPicture").src = '../upload/faculty/'+arrVal.imageName;
                         }
                         else
@@ -547,7 +563,8 @@ h6{
         //This method will turn the display back to normal state
         function revokeView()
         {
-            document.getElementById("userPicture").src = '../asset/qrScan.png';
+            //document.getElementById("userPicture").src = '../asset/qrScan.png';
+            $('#qrPicture').show();
             $('#scanLb').show();
 
             $('#nameLb').html('');
@@ -560,7 +577,7 @@ h6{
             $('#inTxt').hide();
             $('#outTxt').hide();
             $('#errorTxt').hide();
-            $('#userPicture').show();
+            $('#userPicture').hide();
             $('#noPicture').hide();
             $('#deptLb').html('');
             $('#deptLb').hide();
@@ -651,7 +668,7 @@ $(function() {
                 else
                 {
                     //this will show the inputted temp and hide the temp input field
-                    $('#tempTxt').html("Temp: "+inputTempVal);
+                    $('#tempTxt').html("Temp: "+inputTempVal+"°C");
                     console.log('not high');
                     $("#tempInput").val('');  
                     $('#tempInput').blur();
