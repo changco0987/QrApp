@@ -659,11 +659,13 @@ $(function() {
                 if(inputTempVal>38)
                 {
                     console.log('High temp');
+                    $('#tempTxt').html("Temp: "+inputTempVal+"°C high temperature");
                     $("#tempInput").val('');  
                 }
                 else if(inputTempVal<36)
                 {
                     console.log('Low temp');
+                    $('#tempTxt').html("Temp: "+inputTempVal+"°C low temperature");
                     $("#tempInput").val('');  
                 }
                 else
