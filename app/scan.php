@@ -395,7 +395,6 @@ h6{
         //To identify the accType
         function getType(arrVal)
         {
-            $('#qrPicture').hide();//This will hide the qr picture
             $('#codeInput').hide();//this will hide the code input to avoid inputting qr value after scanning something
 
             /*for(var key in arrVal)
@@ -405,7 +404,8 @@ h6{
                 {
                     //To check if the user is "in or out"
                     if(arrVal.state == 'in')
-                        {
+                    {
+                        $('#qrPicture').hide();//This will hide the qr picture
                         if(arrVal.imageName!=null && arrVal.imageName ===" ")
                         {
                             $('#userPicture').show();
@@ -443,7 +443,8 @@ h6{
                 {
                     //To check if the user is "in or out"
                     if(arrVal.state == 'in')
-                        {
+                    {
+                        $('#qrPicture').hide();//This will hide the qr picture
                         if(arrVal.imageName!=null && arrVal.imageName ===" ")
                         {
                             $('#userPicture').show();
@@ -482,7 +483,7 @@ h6{
                     //To check if the user is "in or out"
                     if(arrVal.state == 'in')
                     {
-                        
+                        $('#qrPicture').hide();//This will hide the qr picture
                         if(arrVal.imageName && arrVal.imageName ===" ")
                         {
                             $('#userPicture').show();
@@ -523,7 +524,7 @@ h6{
                     //To check if the user is "in or out"
                     if(arrVal.state == 'in')
                     {
-                            
+                         $('#qrPicture').hide();//This will hide the qr picture
                         if(arrVal.imageName && arrVal.imageName ===" ")
                         {
                             $('#userPicture').show();
@@ -668,7 +669,7 @@ $(function() {
                 else
                 {
                     //this will show the inputted temp and hide the temp input field
-                    $('#tempTxt').html("Temp: "+inputTempVal+"°C");
+                    $('#tempTxt').html("Temp: "+inputTempVal+"°C normal temperature");
                     console.log('not high');
                     $("#tempInput").val('');  
                     $('#tempInput').blur();
