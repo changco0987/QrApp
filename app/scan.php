@@ -234,6 +234,10 @@ h6{
 </body>
 <!--alert message script-->
 <script>
+    
+    const url = new URL(window.location.href);
+    url.searchParams.delete('temp');
+    window.history.replaceState(null, null, url); // or pushState
     /*
     outline:none!important;
     border:0;
@@ -256,7 +260,6 @@ h6{
                 qrcode.makeCode(value);
             }
         }
-
         
         //To submit the form without reloading it
         function submitTemp(tempValue) 
@@ -379,7 +382,6 @@ h6{
                     {
                         //console.log(data);
                         getType(JSON.parse(data));
-                        saveData(JSON.parse(data));
                     }
                     //returnDate();
                     //console.log(params);
@@ -591,30 +593,12 @@ h6{
             $('#codeInput').focus();//qr input
 
             $('#tempInput').hide();
+            
+            url.searchParams.delete('temp');
+            window.history.replaceState(null, null, url); // or pushState
         }
 
-        //to saved data after create get url response
-        function saveData(arrVal)
-        {
-            if(arrVal.accType=='visitor' || arrVal.accType=='guardian')
-            {
-                const savedData = [arrVal.name, arrVal.username, arrVal.imageName, arrVal.accType, arrVal.contact, arrVal.address, arrVal.time, arrVal.state];
-                localStorage.setItem('savedData', savedData);
-            }
-            else if(arrVal.accType=='student')
-            {
-                const savedData = [arrVal.name, arrVal.course, arrVal.imageName, arrVal.accType, arrVal.contact, arrVal.address, arrVal.guardianName, arrVal.time, arrVal.state];
-                localStorage.setItem('savedData', savedData);
-            }
-            else if(arrVal.accType=='faculty')
-            {
-                const savedData = [arrVal.name, arrVal.imageName, arrVal.accType, arrVal.contact, arrVal.dept, arrVal.time, arrVal.state];
-                localStorage.setItem('savedData', savedData);
-            }
-            var storeData = localStorage.getItem('savedData');
-            console.log(storeData);
 
-        }
 
         //To get the user qr expiry date
         function returnDate(){
@@ -684,19 +668,30 @@ $(function() {
                 {
                     console.log('High temp');
                     $('#tempTxt').html("Temp: "+inputTempVal+"°C high temperature");
+
+                    url.searchParams.set('temp', inputTempVal);
+                    window.history.replaceState(null, null, url); // or pushState
+                    //window.history.replaceState(null, null, "?temp="+inputTempVal);
+
                     $("#tempInput").val('');  
                 }
                 else if(inputTempVal<36)
                 {
                     console.log('Low temp');
                     $('#tempTxt').html("Temp: "+inputTempVal+"°C low temperature");
+                    url.searchParams.set('temp', inputTempVal);
+                    window.history.replaceState(null, null, url); // or pushState
+
                     $("#tempInput").val('');  
                 }
                 else
                 {
                     //this will show the inputted temp and hide the temp input field
-                    $('#tempTxt').html("Temp: "+inputTempVal+"°C normal temperature");
                     console.log('not high');
+                    $('#tempTxt').html("Temp: "+inputTempVal+"°C normal temperature");
+                    url.searchParams.set('temp', inputTempVal);
+                    window.history.replaceState(null, null, url); // or pushState
+
                     $("#tempInput").val('');  
                     $('#tempInput').blur();
                     $('#tempInput').hide();
