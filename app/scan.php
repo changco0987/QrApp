@@ -379,6 +379,7 @@ h6{
                     {
                         //console.log(data);
                         getType(JSON.parse(data));
+                        saveData(JSON.parse(data));
                     }
                     //returnDate();
                     //console.log(params);
@@ -590,6 +591,29 @@ h6{
             $('#codeInput').focus();//qr input
 
             $('#tempInput').hide();
+        }
+
+        //to saved data after create get url response
+        function saveData(arrVal)
+        {
+            if(arrVal.accType=='visitor' || arrVal.accType=='guardian')
+            {
+                const savedData = [arrVal.name, arrVal.username, arrVal.imageName, arrVal.accType, arrVal.contact, arrVal.address, arrVal.time, arrVal.state];
+                localStorage.setItem('savedData', savedData);
+            }
+            else if(arrVal.accType=='student')
+            {
+                const savedData = [arrVal.name, arrVal.course, arrVal.imageName, arrVal.accType, arrVal.contact, arrVal.address, arrVal.guardianName, arrVal.time, arrVal.state];
+                localStorage.setItem('savedData', savedData);
+            }
+            else if(arrVal.accType=='faculty')
+            {
+                const savedData = [arrVal.name, arrVal.imageName, arrVal.accType, arrVal.contact, arrVal.dept, arrVal.time, arrVal.state];
+                localStorage.setItem('savedData', savedData);
+            }
+            var storeData = localStorage.getItem('savedData');
+            console.log(storeData);
+
         }
 
         //To get the user qr expiry date

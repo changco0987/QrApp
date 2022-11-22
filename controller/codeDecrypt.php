@@ -245,7 +245,7 @@
                     $_SESSION['gateStat'] = $row['gateStat'];
                     $_SESSION['accType'] = 'student';
                     $_SESSION['id'] = $row['id'];
-
+                
                     /*
                     //Going in/enter
                     //log to DTR
@@ -471,7 +471,7 @@
             echo json_encode('error');
             exit;
         }
-        
+
         echo json_encode($responseData);
         exit;
     }

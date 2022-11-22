@@ -189,7 +189,6 @@
             echo 'error';
             exit;
         }
-        
         echo $responsedata;
         exit;
     }
