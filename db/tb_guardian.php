@@ -32,7 +32,7 @@
         }
         else
         {
-            $dbData = mysqli_query($conn,"SELECT * FROM guardiantb");
+            $dbData = mysqli_query($conn,"SELECT * FROM guardiantb ORDER BY firstname ASC");
         }
 
         return $dbData;

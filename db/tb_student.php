@@ -32,7 +32,7 @@
         else if($student->getId()==null)
         {
             //to get all data in this table
-            $dbData = mysqli_query($conn,"SELECT * FROM studentstb");
+            $dbData = mysqli_query($conn,"SELECT * FROM studentstb ORDER BY firstname ASC");
         }
         else
         {

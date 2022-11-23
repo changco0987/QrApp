@@ -30,7 +30,7 @@
         }
         else
         {
-            $dbData = mysqli_query($conn,"SELECT * FROM visitortb");
+            $dbData = mysqli_query($conn,"SELECT * FROM visitortb ORDER BY firstname ASC");
         }
 
         return $dbData;

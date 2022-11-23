@@ -25,7 +25,7 @@
         }
         else
         {
-            $dbData = mysqli_query($conn,"SELECT * FROM facultytb");
+            $dbData = mysqli_query($conn,"SELECT * FROM facultytb ORDER BY firstname ASC");
         }
 
         return $dbData;
