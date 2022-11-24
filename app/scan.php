@@ -15,11 +15,10 @@
 
     //This will check if the user is truely login
     session_start();
-    /*
-    if(!isset($_SESSION['username']))
+    if(!isset($_SESSION['adminNameTb']))
     {
-        header("Location: ../index.php");
-    }*/
+        header("Location: ../admin.php");
+    }
     
     date_default_timezone_set('Asia/Manila');
 

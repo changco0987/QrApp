@@ -52,6 +52,11 @@ function gotoRecordFaculty()
     window.location = '../admin/record_faculty.php';
 }
 
+function gotoScanner()
+{
+    window.location = '../app/scan.php';
+}
+
 
 //This will go to reset password pages
 function gotoFindAccount()
