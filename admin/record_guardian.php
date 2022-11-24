@@ -401,7 +401,7 @@ td{
                   <th scope="col">#</th>
                   <th scope="col">Name</th>
                   <th scope="col">Temperature</th>
-                  <th scope="col">Time-in</th>
+                  <th scope="col">Time-in/Scan time attempt</th>
                   <th scope="col">Time-out</th>
               </tr>
           </thead>

@@ -657,28 +657,40 @@ $(function() {
             console.log('Temp data: '+inputTempVal);
    
             var length = inputTempVal.length;
-            if(length>4)
+            if(length>5)
             {
                 $("#tempInput").val('');
             }
             else
             {
                 
-                if(inputTempVal>38)
+                if(inputTempVal>37.50)
                 {
                     console.log('High temp');
                     $('#tempTxt').html("Temp: "+inputTempVal+"°C high temperature");
 
+                    //This will show the error message before reseting all display
+                    $('#errorTxt').show();
+                    $('#errorTxt').html('Please Try again later');
+                    const myTimeout = setTimeout(revokeView, 1000);
+
+                    //to forge the get url
                     url.searchParams.set('temp', inputTempVal);
                     window.history.replaceState(null, null, url); // or pushState
                     //window.history.replaceState(null, null, "?temp="+inputTempVal);
 
                     $("#tempInput").val('');  
                 }
-                else if(inputTempVal<36)
+                else if(inputTempVal<35.50)
                 {
                     console.log('Low temp');
                     $('#tempTxt').html("Temp: "+inputTempVal+"°C low temperature");
+                    
+                    //This will show the error message before reseting all display
+                    $('#errorTxt').show();
+                    $('#errorTxt').html('Please Try again later');
+                    const myTimeout = setTimeout(revokeView, 1000);
+                    //to forge the get url
                     url.searchParams.set('temp', inputTempVal);
                     window.history.replaceState(null, null, url); // or pushState
 
