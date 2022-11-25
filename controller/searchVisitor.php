@@ -1,15 +1,15 @@
 <?php
     include_once '../db/connection.php';
-    include_once '../db/tb_guardian.php';
-    include_once '../model/guardianModel.php';
+    include_once '../db/tb_visitor.php';
+    include_once '../model/visitorModel.php';
     
 
     
     $search = $_GET['search'];
   
-    $data = new guardianModel();
+    $data = new visitorModel();
     
-    $result = ReadAccountGuardian($conn,$data);
+    $result = ReadAccountVisitor($conn,$data);
     $findings = "";
     $count = 1;
     while($row = mysqli_fetch_assoc($result))
@@ -65,7 +65,7 @@
                 $findings = $findings. "<script>unlockedData++;</script>".
                                         "<td id='".$row['id']."'>".
                                             "<form action='../controller/accountStat.php' method='POST' enctype='multipart/form-data'>".
-                                                "<input type='hidden' name='accType' id='accType' value='guardian'>".
+                                                "<input type='hidden' name='accType' id='accType' value='visitor'>".
                                                 "<input type='hidden' name='idTb' id='status1IdTb".$row['id']."' value='".$row['id']."'>".
                                                 "<input type='hidden' name='statusTb' id='status1Tb".$row['id']."' value='lock'>".
                                                 "<button type='submit' class='btn btn-sm d-flex justify-content-start' style='background-color: #ca3635; color: white; font-size: 13px;'><i class='bi bi-lock-fill mr-1'></i>Lock</button>".
@@ -80,7 +80,7 @@
                 $findings = $findings. "<script>lockedData++;</script>".
                                         "<td id='".$row['id']."'>".
                                             "<form action='../controller/accountStat.php' method='POST' enctype='multipart/form-data'>".
-                                                "<input type='hidden' name='accType' id='accType' value='guardian'>".
+                                                "<input type='hidden' name='accType' id='accType' value='visitor'>".
                                                 "<input type='hidden' name='idTb' id='status1IdTb".$row['id']."' value='".$row['id']."'>".
                                                 "<input type='hidden' name='statusTb' id='status1Tb".$row['id']."' value='unlock'>".
                                                 "<button type='submit' class='btn btn-sm d-flex justify-content-start btn-success' style='font-size: 13px;'><i class='bi bi-unlock-fill mr-1'></i>Unlock</button>".
@@ -91,7 +91,7 @@
 
                                     //Edit Button
             $findings = $findings . "<td id='".$row['id']."'>".
-                                    "<form action='../admin/editGuardian.php' method='POST' enctype='multipart/form-data'>".
+                                    "<form action='../admin/editVisitor.php' method='POST' enctype='multipart/form-data'>".
                                         "<input type='hidden' name='accType' id='accType' value='guardian'>".
                                         "<input type='hidden' name='usernameTb' id='editIdTb".$row['username']."' value='". $row['username']."'>".
                                         "<button type='submit' class='btn btn-sm d-flex justify-content-start btn-warning' name='submitEdit' style='font-size: 13px;'><i class='bi bi-pencil-square mr-1'></i>Edit</button>".
@@ -101,7 +101,7 @@
                                     //Delete Button
                                     "<td id='".$row['id']."'>".
                                     "<form action='../controller/deleteAccount.php' method='POST' enctype='multipart/form-data'>".
-                                        "<input type='hidden' name='accType' id='accType' value='guardian'>".
+                                        "<input type='hidden' name='accType' id='accType' value='visitor'>".
                                         "<input type='hidden' name='idTb' id="."deleteIdTb".$row['id']." value=".$row['id'].">".
                                         "<button type='submit' class='btn btn-sm d-flex justify-content-start btn-danger' style='font-size: 13px;'><i class='bi bi-trash mr-1'></i>Delete</button>".
                                     "</form>".
@@ -160,7 +160,7 @@
                 $findings = $findings. "<script>unlockedData++;</script>".
                                         "<td id='".$row['id']."'>".
                                             "<form action='../controller/accountStat.php' method='POST' enctype='multipart/form-data'>".
-                                                "<input type='hidden' name='accType' id='accType' value='guardian'>".
+                                                "<input type='hidden' name='accType' id='accType' value='visitor'>".
                                                 "<input type='hidden' name='idTb' id='status1IdTb".$row['id']."' value='".$row['id']."'>".
                                                 "<input type='hidden' name='statusTb' id='status1Tb".$row['id']."' value='lock'>".
                                                 "<button type='submit' class='btn btn-sm d-flex justify-content-start' style='background-color: #ca3635; color: white; font-size: 13px;'><i class='bi bi-lock-fill mr-1'></i>Lock</button>".
@@ -175,7 +175,7 @@
                 $findings = $findings. "<script>lockedData++;</script>".
                                         "<td id='".$row['id']."'>".
                                             "<form action='../controller/accountStat.php' method='POST' enctype='multipart/form-data'>".
-                                                "<input type='hidden' name='accType' id='accType' value='guardian'>".
+                                                "<input type='hidden' name='accType' id='accType' value='visitor'>".
                                                 "<input type='hidden' name='idTb' id='status1IdTb".$row['id']."' value='".$row['id']."'>".
                                                 "<input type='hidden' name='statusTb' id='status1Tb".$row['id']."' value='unlock'>".
                                                 "<button type='submit' class='btn btn-sm d-flex justify-content-start btn-success' style='font-size: 13px;'><i class='bi bi-unlock-fill mr-1'></i>Unlock</button>".
@@ -186,8 +186,8 @@
 
                                     //Edit Button
             $findings = $findings . "<td id='".$row['id']."'>".
-                                    "<form action='../admin/editGuardian.php' method='POST' enctype='multipart/form-data'>".
-                                        "<input type='hidden' name='accType' id='accType' value='guardian'>".
+                                    "<form action='../admin/editVisitor.php' method='POST' enctype='multipart/form-data'>".
+                                        "<input type='hidden' name='accType' id='accType' value='visitor'>".
                                         "<input type='hidden' name='usernameTb' id='editIdTb".$row['username']."' value='". $row['username']."'>".
                                         "<button type='submit' class='btn btn-sm d-flex justify-content-start btn-warning' name='submitEdit' style='font-size: 13px;'><i class='bi bi-pencil-square mr-1'></i>Edit</button>".
                                     "</form>".
@@ -196,7 +196,7 @@
                                     //Delete Button
                                     "<td id='".$row['id']."'>".
                                     "<form action='../controller/deleteAccount.php' method='POST' enctype='multipart/form-data'>".
-                                        "<input type='hidden' name='accType' id='accType' value='guardian'>".
+                                        "<input type='hidden' name='accType' id='accType' value='visitor'>".
                                         "<input type='hidden' name='idTb' id="."deleteIdTb".$row['id']." value=".$row['id'].">".
                                         "<button type='submit' class='btn btn-sm d-flex justify-content-start btn-danger' style='font-size: 13px;'><i class='bi bi-trash mr-1'></i>Delete</button>".
                                     "</form>".
