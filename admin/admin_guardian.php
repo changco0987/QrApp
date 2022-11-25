@@ -384,7 +384,7 @@ td{
         <div class="input-group">
           <input type="hidden" name="accType" value="guardian">
           <input type="text" name="searchName" id="searchName" class="form-control no-border form-control-sm" placeholder="Type by Name or Surname" onkeyup="showResult(this.value)">
-          <button type="submit" class="btn btn-sm d-flex justify-content-start" style="background-color:#3466AA; color:whitesmoke;"><i class="bi bi-search"></i></button>
+          <button type="submit" class="btn btn-sm d-flex justify-content-start" style="background-color:#3466AA; color:whitesmoke;" disabled><i class="bi bi-search"></i></button>
         </div>
       </form>
     </div>
