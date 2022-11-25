@@ -409,18 +409,13 @@ td{
               <?php
                   $data = new visitorModel();
                   $dtr = new dtrModel();
-                  if(isset($_SESSION["accountFname"]) && $_SESSION['accountFname'] != '')
+                  if(isset($_GET["Firstname"]))
                   {
-                    $data->setFirstname($_SESSION["accountFname"]);
-                    $_SESSION['accountFname'] = '';
-                    unset($_SESSION['accountFname']);
+                    $data->setFirstname($_GET["Firstname"]);
                   }
-                  else if(isset($_SESSION["accountLname"]) && $_SESSION['accountLname'] != '')
+                  else if(isset($_GET["Lastname"]))
                   {
-                    $data->setLastname($_SESSION["accountLname"]);
-                    $_SESSION['accountLname'] = '';
-                    unset($_SESSION['accountLname']);
-                    session_unset();
+                    $data->setLastname($_GET["Lastname"]);
                   }
 
                   $dtrData = ReadDtr($conn,$dtr);

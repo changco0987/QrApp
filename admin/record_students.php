@@ -381,7 +381,7 @@ td{
       <form action="../controller/searchStudent.php" method="post" enctype="multipart/form-data">
         <div class="input-group">
           <input type="hidden" name="record" value="recordPage">
-          <input type="text" name="searchName" id="searchName" class="form-control no-border form-control-sm" placeholder="Type by Name or Surname">
+          <input type="text" name="searchName" id="searchName" class="form-control no-border form-control-sm" placeholder="Type by Name or Surname" onkeyup="showResult(this.value)">
           <button type="submit" class="btn btn-sm d-flex justify-content-start" style="background-color:#3466AA; color:whitesmoke;"><i class="bi bi-search"></i></button>
         </div>
       </form>
@@ -405,11 +405,11 @@ td{
                   <th scope="col">Time-out</th>
               </tr>
           </thead>
-          <tbody>
+          <tbody id="resultTable">
               <?php
                   $student = new studentModel();
                   $dtr = new dtrModel();
-                  if(isset($_SESSION["studentFname"]) && $_SESSION['studentFname'] != '')
+                  if(isset($_GET["studentFname"]) && $_SESSION['studentFname'] != '')
                   {
                     $student->setFirstname($_SESSION["studentFname"]);
                     $_SESSION['studentFname'] = '';
@@ -773,7 +773,23 @@ td{
       </div>
     </div>
 </body>
-<script>
+<script>  
+    //for searching user realtime
+    function showResult(str) 
+    {
+        var xmlhttp=new XMLHttpRequest();
+        xmlhttp.onreadystatechange=function() 
+        {
+            if (this.readyState==4 && this.status==200)
+            {
+                document.getElementById("resultTable").innerHTML=this.responseText;
+                preserveBtnColor();
+                
+            }
+        }
+        xmlhttp.open("GET","../controller/searchStudent.php?search="+str,true);
+        xmlhttp.send();
+    }
 
   
         //To submit the form without reloading it

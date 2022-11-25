@@ -243,6 +243,7 @@ td{
   text-shadow: 1px 1px black;
   font-weight:bolder;
 }
+
       
 </style>
 
@@ -381,7 +382,7 @@ td{
     <div class="col-sm-4 col-xs-2 col-md-4 col-lg-2 col-xl-4 pl-3 pr-2 my-2 py-2 d-flex justify-content-end h-100 mx-auto my-auto">
       <form action="../controller/searchStudent.php" method="post" enctype="multipart/form-data">
         <div class="input-group">
-          <input type="text" name="searchName" id="searchName" class="form-control no-border form-control-sm" placeholder="Type by Name or Surname">
+          <input type="text" name="searchName" id="searchName" class="form-control no-border form-control-sm" placeholder="Type by Name or Surname" onkeyup="showResult(this.value)">
           <button type="submit" class="btn btn-sm d-flex justify-content-start" style="background-color:#3466AA; color:whitesmoke;"><i class="bi bi-search"></i></button>
         </div>
       </form>
@@ -531,21 +532,10 @@ td{
                   <th colspan="4" class="text-center" scope="col">Actions</th><!-- Edit button and Delete button-->
               </tr>
           </thead>
-          <tbody>
+          <tbody id="resultTable">
               <?php
                   $student = new studentModel();
-                  if(isset($_SESSION["studentFname"]) && $_SESSION['studentFname'] != '')
-                  {
-                    $student->setFirstname($_SESSION["studentFname"]);
-                    $_SESSION['studentFname'] = '';
-                    unset($_SESSION['studentFname']);
-                  }
-                  else if(isset($_SESSION["studentLname"]) && $_SESSION['studentLname'] != '')
-                  {
-                    $student->setLastname($_SESSION["studentLname"]);
-                    $_SESSION['studentLname'] = '';
-                    unset($_SESSION['studentLname']);
-                  }
+       
 
                   $result = ReadStudent($conn,$student);
                   $rowCount = 1;
@@ -964,7 +954,23 @@ td{
       </div>
     </div>
 </body>
-<script>
+<script> 
+    //for searching user realtime
+    function showResult(str) 
+    {
+        var xmlhttp=new XMLHttpRequest();
+        xmlhttp.onreadystatechange=function() 
+        {
+            if (this.readyState==4 && this.status==200)
+            {
+              
+                document.getElementById("resultTable").innerHTML=this.responseText;
+                
+            }
+        }
+        xmlhttp.open("GET","../controller/searchStudent.php?search="+str,true);
+        xmlhttp.send();
+    }
 
   
         //To submit the form without reloading it
