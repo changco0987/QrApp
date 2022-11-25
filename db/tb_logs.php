@@ -16,11 +16,11 @@
     {
         if($logs->getCreator()==null)
         {
-            $dbData = mysqli_query($conn,"SELECT * FROM logstb");
+            $dbData = mysqli_query($conn,"SELECT * FROM logstb ORDER BY id DESC");
         }
         else
         {
-            $dbData = mysqli_query($conn,"SELECT * FROM logstb WHERE creator = '".$logs->getCreator()."'");
+            $dbData = mysqli_query($conn,"SELECT * FROM logstb WHERE creator = '".$logs->getCreator()."' ORDER BY id DESC");
         }
 
         return $dbData;
