@@ -15,8 +15,8 @@
     include_once '../model/dtrModel.php';
 
     //sms API
-    //include_once '../API/apiData.php';
-    //include_once 'smsAPI.php';
+    include_once '../API/apiData.php';
+    include_once 'smsAPI.php';
 
 
     session_start();

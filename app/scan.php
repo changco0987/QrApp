@@ -260,13 +260,24 @@ h6{
             }
         }
         
+
+
+
+
         //To submit the form without reloading it
         function submitTemp(tempValue) 
         {
             try
             {
                 var http = new XMLHttpRequest();
-                http.open("POST", "../controller/dtrInput.php", true);
+                if(tempValue>37.50 || tempValue<37.50)
+                {
+                    http.open("POST", "../controller/inputTemp.php", true);
+                }
+                else
+                {
+                    http.open("POST", "../controller/dtrInput.php", true);
+                }
                 http.setRequestHeader("Content-type","application/x-www-form-urlencoded");
                 //This is the form input fields data
                 var params = "tempInput="+tempValue; // probably use document.getElementById(...).value
@@ -279,6 +290,10 @@ h6{
                         $('#errorTxt').show();
                         $('#errorTxt').html('Inputted Temp error!');
                         const myTimeout = setTimeout(revokeView, 5000);
+                    }
+                    else if(data=='ok')
+                    {
+                        const myTimeout = setTimeout(revokeView, 4000);
                     }
                     else
                     {
@@ -585,13 +600,14 @@ h6{
             $('#deptLb').html('');
             $('#deptLb').hide();
 
-            $('#tempTxt').html('');
+            $('#tempTxt').html('Temp: ');
             $('#tempTxt').hide();
+            $('#tempInput').blur();
+            $('#tempInput').hide();
 
             $('#codeInput').show();//qr input
             $('#codeInput').focus();//qr input
 
-            $('#tempInput').hide();
             
             url.searchParams.delete('temp');
             window.history.replaceState(null, null, url); // or pushState
@@ -671,14 +687,17 @@ $(function() {
                     //This will show the error message before reseting all display
                     $('#errorTxt').show();
                     $('#errorTxt').html('Please Try again later');
-                    const myTimeout = setTimeout(revokeView, 1000);
+                    $("#tempInput").val('');  
+                    $('#tempInput').blur();//To prevent from inputting another value
 
                     //to forge the get url
                     url.searchParams.set('temp', inputTempVal);
                     window.history.replaceState(null, null, url); // or pushState
+
+                    submitTemp(inputTempVal);
+
                     //window.history.replaceState(null, null, "?temp="+inputTempVal);
 
-                    $("#tempInput").val('');  
                 }
                 else if(inputTempVal<35.50)
                 {
@@ -688,12 +707,15 @@ $(function() {
                     //This will show the error message before reseting all display
                     $('#errorTxt').show();
                     $('#errorTxt').html('Please Try again later');
-                    const myTimeout = setTimeout(revokeView, 1000);
+                    $("#tempInput").val('');  
+                    $('#tempInput').blur();//To prevent from inputting another value
+                    
                     //to forge the get url
                     url.searchParams.set('temp', inputTempVal);
                     window.history.replaceState(null, null, url); // or pushState
 
-                    $("#tempInput").val('');  
+                    submitTemp(inputTempVal);
+
                 }
                 else
                 {
