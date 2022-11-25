@@ -409,18 +409,6 @@ td{
               <?php
                   $student = new studentModel();
                   $dtr = new dtrModel();
-                  if(isset($_GET["studentFname"]) && $_SESSION['studentFname'] != '')
-                  {
-                    $student->setFirstname($_SESSION["studentFname"]);
-                    $_SESSION['studentFname'] = '';
-                    unset($_SESSION['studentFname']);
-                  }
-                  else if(isset($_SESSION["studentLname"]) && $_SESSION['studentLname'] != '')
-                  {
-                    $student->setLastname($_SESSION["studentLname"]);
-                    $_SESSION['studentLname'] = '';
-                    unset($_SESSION['studentLname']);
-                  }
 
                   $dtrData = ReadDtr($conn,$dtr);
                   $rowCount = 1;
@@ -434,9 +422,6 @@ td{
                       $result = ReadStudent($conn,$student);
                       while($row = mysqli_fetch_assoc($result))
                       {
-                        //This where the QR data was collected
-                        $prevQRData = array("title"=>'qremsystem', "accType"=>'student', "id"=>$row['id']);
-                        $convertedQRData = base64_encode(serialize($prevQRData));
     
                         if($changeColor==0)
                         {
@@ -473,164 +458,7 @@ td{
   </div>
 </div>
 
-  
-    <!--Modal for adding student-->
-    <div class="modal fade" id="addAnnouncement" tabindex="-1" role="dialog" aria-labelledby="addAnnouncementCenterTitle" aria-hidden="true">
-      <div class="modal-dialog modal-dialog-centered" role="document">
-          <div class="modal-content" style="background-color: #e9e9e9; border-radius: 15px;">
-              <div class="modal-header">
-                  <h5 class="modal-title font-weight-bold" id="addAnnouncementLongTitle">Add Student Data</h5>
-                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                  <span aria-hidden="true">&times;</span>
-                  </button>
-              </div>
-              <div class="modal-body">
-                  <form action="../controller/addStudent.php" method="POST" enctype="multipart/form-data">
-                    <!--input type="hidden" id="typeTb" name="typeTb" value="event"-->
-                    <center>
-                    <div class="form-group">
-                        <div class="row pt-1 mt-1">
-                            <div class="col-sm-12 col-xs-12 col-md-12 col-lg-12">
-                              <img src="../asset/user.png" width="90" height="90" class="d-inline-block align-top border border-dark" alt="" style="border-radius: 50%;" id="userImg">
-                            </div>
-                            <div class="col-sm-12 col-xs-12 col-md-12 col-lg-12">
-                              <div class="custom-file" style="width:fit-content;">
-                                  <input type="file" accept=".jpg, .png, .jpeg" class="custom-file-input" id="fileTb" name="fileTb">
-                                  <label class="custom-file-label text-left mt-2 pt-2" for="fileTb">Upload Photo</label>
-                              </div>
-                            </div>
-                        </div>
-                    </div>
-                    </center>
-                    <!-- Student Personal Info -->
-                    <div class="mx-2 px-2" style="background-color: #f9f9f9; border-radius:10px;">
-                      <div class="form-group">
-                          <div class="row">
-                              <div class="col-sm-12 col-xs-12 col-md-4 col-lg-4">
-                                  <label class="d-flex align-items-start" for="fnameTb">First name</label>
-                                  <input type="text" class="form-control no-border form-control-sm" id="fnameTb" name="fnameTb" placeholder="Ex. Marie" maxlength="50" required>
-                              </div>
-                              <div class="col-sm-12 col-xs-12 col-md-4 col-lg-4">
-                                  <label class="d-flex align-items-start" for="lnameTb">Middle name</label> 
-                                  <input type="text" class="form-control form-control-sm" id="mnameTb" name="mnameTb" placeholder="Ex. Jimenez" maxlength="50" required>
-                              </div>
-                              <div class="col-sm-12 col-xs-12 col-md-4 col-lg-4">
-                                  <label class="d-flex align-items-start" for="lnameTb">Last name</label> 
-                                  <input type="text" class="form-control form-control-sm" id="lnameTb" name="lnameTb" placeholder="Ex. Cruz" maxlength="50" required>
-                              </div>
-                          </div>
-                      </div>
-                      <div class="form-group">
-                          <div class="row">
-                              <div class="col-sm-12 col-xs-12 col-md-6 col-lg-6">
-                                  <div class="row">
-                                      <div class="col-sm-12 col-xs-12 col-md-12 col-lg-12">
-                                          <label for="">Gender</label>
-                                      </div>
-                                      <div class="col-sm-6 col-xs-6 col-md-6 col-lg-6">
-                                          <div class="form-check form-check-inline">
-                                              <input class="form-check-input" type="radio" name="genderRb" id="maleRadio" value="Male" checked>
-                                              <label class="form-check-label" for="maleRadio">
-                                                  male
-                                              </label>
-                                          </div>
-                                      </div>
-                                      <div class="col-sm-6 col-xs-6 col-md-6 col-lg-6">
-                                          <div class="form-check form-check-inline">
-                                              <input class="form-check-input" type="radio" name="genderRb" id="femaleRadio" value="Female">
-                                              <label class="form-check-label" for="femaleRadio">
-                                                  female
-                                              </label>
-                                          </div>
-                                      </div>
-                                  </div>
-                              </div>
-                              <div class="col-sm-12 col-xs-12 col-md-6 col-lg-6">
-                                  <label class="d-flex align-items-start" for="ageTb">Age</label> 
-                                  <input type="number" class="form-control form-control-sm" id="ageTb" name="ageTb" placeholder="Ex. 21" required>
-                              </div>
-                          </div>
-                      </div>
-                      <div class="form-group">
-                        <div class="row pb-2">
-                          <div class="col-sm-12 col-xs-12 col-md-12 col-lg-12">
-                              <label class="d-flex align-items-start" for="contactNumTb">Address</label>
-                              <input type="text" class="form-control form-control-sm" id="addressTb" name="addressTb" placeholder="Ex. 2123 home st." maxlength="100" required>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="form-group">
-                        <div class="row pb-2">
-                          <div class="col-sm-12 col-xs-12 col-md-12 col-lg-12">
-                              <label class="d-flex align-items-start" for="contactNumTb">Contact Number</label>
-                              <input type="number" class="form-control form-control-sm" id="contactNumTb" name="contactNumTb" placeholder="Ex. 092X-XXX-XXXX" minlength="11" maxlength="11" required>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    
-                    <!-- Guardian Info -->
-                    <div class="mx-2 px-2" style="background-color: #f9f9f9; border-radius:10px;">
-                      <div class="form-group">
-                        <div class="row">
-                          <div class="col-sm-12 col-xs-12 col-md-12 col-lg-12">
-                              <label class="d-flex align-items-start" for="contentTb">Guardian Name</label>
-                              <input type="text" class="form-control form-control-sm" id="guardianNameTb" name="guardianNameTb" placeholder="Ex. Joselita C. Jimenez" maxlength="100" required>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="form-group">
-                        <div class="row pb-2">
-                          <div class="col-sm-12 col-xs-12 col-md-12 col-lg-12">
-                              <label class="d-flex align-items-start" for="contentTb">Guardian Number</label>
-                              <input type="number" class="form-control form-control-sm" id="guardianNumTb" name="guardianNumTb" placeholder="Ex. 092X-XXX-XXXX" minlength="11" maxlength="11" required>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
 
-
-                    <!-- Student School Info -->
-                    <div class="mx-2 px-2" style="background-color: #f9f9f9; border-radius:10px;">
-                      <div class="form-group">
-                        <div class="row">
-                          <div class="col-sm-6 col-xs-6 col-md-6 col-lg-6">
-                              <label class="d-flex align-items-start" for="contentTb">Student ID</label>
-                              <input type="text" class="form-control form-control-sm" id="studentIdTb" name="studentIdTb" placeholder="Ex. 012-3456-7890" maxlength="50" required>
-                          </div>
-                          <div class="col-sm-6 col-xs-6 col-md-6 col-lg-6">
-                              <label class="d-flex align-items-start" for="contentTb">School name</label>
-                              <input type="text" class="form-control form-control-sm" id="schoolTb" name="schoolTb" placeholder="Ex. STI College BALAYAN" maxlength="150" required>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="form-group">
-                          <div class="row pb-2">
-                              <div class="col-sm-4 col-xs-4 col-md-4 col-lg-4">
-                                  <label class="d-flex align-items-start" for="courseTb">Course</label>
-                                  <input type="text" class="form-control no-border form-control-sm" id="courseTb" name="courseTb" placeholder="Ex. BSIT" maxlength="50" required>
-                              </div>
-                              <div class="col-sm-4 col-xs-4 col-md-4 col-lg-4">
-                                  <label class="d-flex align-items-start" for="sectionTb">Section</label> 
-                                  <input type="text" class="form-control form-control-sm" id="sectionTb" name="sectionTb" placeholder="Ex. ICT101" maxlength="20" required>
-                              </div>
-                              <div class="col-sm-4 col-xs-4 col-md-4 col-lg-4">
-                                  <label class="d-flex align-items-start" for="yearTb">Year Level</label> 
-                                  <input type="text" class="form-control form-control-sm" id="yearTb" name="yearTb" placeholder="Ex. 1st" maxlength="20" required>
-                              </div>
-                          </div>
-                      </div>
-                    </div>
-                    <div class="modal-footer">
-                        <div class="form-group">
-                            <button type="submit" class="btn btn-primary">Submit</button>
-                        </div>
-                    </div>
-                  </form>
-              </div>
-          </div>
-      </div>
-    </div>
 
 
     <!-- Modal for Utilities->Change Password -->
@@ -787,7 +615,7 @@ td{
                 
             }
         }
-        xmlhttp.open("GET","../controller/searchStudent.php?search="+str,true);
+        xmlhttp.open("GET","../controller/searchStudentRecord.php?search="+str,true);
         xmlhttp.send();
     }
 

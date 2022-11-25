@@ -2,6 +2,7 @@
     include_once '../db/connection.php';
     include_once '../db/tb_student.php';
     include_once '../model/studentModel.php';
+    
 
     
     $search = $_GET['search'];
