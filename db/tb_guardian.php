@@ -41,7 +41,7 @@
     function UpdateAccountGuardian($conn,$data)
     {
         
-        if($data->getPassword()!=null)
+        if($data->getPassword()!=null && $data->getNotification()==null)
         {
             mysqli_query($conn,"UPDATE guardiantb set password ='".$data->getPassword()."' where username = '".$data->getUsername()."'");
         }
@@ -66,14 +66,14 @@
                 $address = mysqli_real_escape_string($conn,$data->getAddress());
                 mysqli_query($conn,"UPDATE guardiantb set username ='".$data->getUsername()."', firstname ='". $data->getFirstname()
                 ."', lastname ='".$data->getLastname(). "', address ='". $address. "',contact_number ='". $data->getContact_number(). "', studentId = '". $data->getStudentId(). 
-                "', imageName = '".$data->getImageName()."' where id = ". $data->getId());
+                "', imageName = '".$data->getImageName()."', notification =".$data->getNotification()." where id = ". $data->getId());
             }
             else
             {
                 $address = mysqli_real_escape_string($conn,$data->getAddress());
                 mysqli_query($conn,"UPDATE guardiantb set username ='".$data->getUsername()."', password ='".$data->getPassword()."', firstname ='". $data->getFirstname()
                 ."', lastname ='".$data->getLastname(). "', address ='". $address. "',contact_number ='". $data->getContact_number(). "', studentId = '". $data->getStudentId(). 
-                "', imageName = '".$data->getImageName()."' where id = ". $data->getId());
+                "', imageName = '".$data->getImageName()."', notification = ".$data->getNotification()." where id = ". $data->getId());
             }
         
 

@@ -155,18 +155,20 @@
                             $data->setContact_number($_POST['contactTb']);
                             $data->setStudentId($_POST['studentidTb']);
         
-                            /* Removed the notif function
+                         
                             if(isset($_POST['notifCheckbox']))
                             {
                                 $data->setNotification($_POST['notifCheckbox']);
+                                //echo $data->getNotification();
+                                
                             }
                             else
                             {
                                 $data->setNotification('false');
+                                //echo $data->getNotification();
+                               
                             }
-                            */
         
-                            
                             if($_FILES['fileTb']['name']!="")
                             {
                                 $data->setImageName($_POST['usernameTb'].$_SESSION['accType']. "." .$fileExtension);
@@ -179,7 +181,6 @@
                             }
                             
                             UpdateAccountGuardian($conn,$data);
-        
                             //This will tell the system that the update is made in the admin page
                             if(isset($_POST['adminReq']))
                             {
@@ -187,13 +188,14 @@
                                 //This will occur if the changes was successfully
                                 echo '<script> localStorage.setItem("guardianMsg",1); window.location = "../admin/admin_guardian.php";</script>';  
                                 //echo $data->getPassword();
-                                exit();
+                                exit;
                             }
                             else
                             {
                                 $_SESSION['username'] = $data->getUsername();
                                 $_SESSION['password'] = $_POST['passwordTb'];
-                                echo '<script> localStorage.setItem("state",4); window.location = "../pages/userDashboard.php";</script>';      
+                                echo '<script> localStorage.setItem("state",4); window.location = "../pages/userDashboard.php";</script>'; 
+                                exit;     
                             }
                         }
                     }
@@ -208,7 +210,7 @@
                     else
                     {
                         //This will return the studentid doesn't exist message
-                        echo '<script> localStorage.setItem("state",5); window.location = "../pages/accSettings.php";</script>';  
+                        //echo '<script> localStorage.setItem("state",5); window.location = "../pages/accSettings.php";</script>';  
                         exit;
                     }
 

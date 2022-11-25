@@ -87,7 +87,6 @@
                             $data->setStudentId($_POST['studentidTb']);
                             $data->setStatus('unlock');
 
-                            echo $_POST['studentidTb'];
                             
                             if(isset($_POST['notifCheckbox']))
                             {

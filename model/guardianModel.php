@@ -50,6 +50,7 @@
             $this->password = strtoupper(hash('sha256',$password));
         }
         
+        
         public function getFirstname()
         {
             return $this->firstname;   
@@ -146,7 +147,7 @@
         {
             if($notification==null || $notification==false || $notification==0)
             {
-                $this->notification = false;
+                $this->notification = 0;
             }
             else
             {
