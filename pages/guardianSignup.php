@@ -245,6 +245,14 @@ footer * {
                                 <div class="col-sm-12 col-xs-12 col-md-12 col-lg-12">
                                     <label class="d-flex align-items-start" for="studentidTb">Student ID</label>
                                     <input type="text" class="form-control no-border" id="studentidTb" name="studentidTb" placeholder="Ex. 012-3456-7890" maxlength="80" required>
+                                    
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" value="1" id="notifCheckbox" name="notifCheckbox">
+                                        <label class="form-check-label" for="defaultCheck1">
+                                            Do you want to recieve SMS notification?
+                                        </label>
+                                    </div>
+
                                 </div>
                             </div>
                         </div>

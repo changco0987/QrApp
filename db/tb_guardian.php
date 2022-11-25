@@ -6,9 +6,9 @@
     function CreateAccountGuardian($conn,$data)
     {
         $address = mysqli_real_escape_string($conn,$data->getAddress());
-        mysqli_query($conn,"INSERT INTO guardiantb(username,password,firstname,lastname,address,contact_number,studentId,imageName,status) values('".$data->getUsername()."','".$data->getPassword().
+        mysqli_query($conn,"INSERT INTO guardiantb(username,password,firstname,lastname,address,contact_number,studentId,imageName,status,notification) values('".$data->getUsername()."','".$data->getPassword().
         "','".$data->getFirstname()."','".$data->getLastname()."','".$address."','".$data->getContact_number()."','".$data->getStudentId()."','".$data->getImageName().
-        "','".$data->getStatus()."')");
+        "','".$data->getStatus()."','".$data->getNotification()."')");
     }
 
     function ReadAccountGuardian($conn,$data)
