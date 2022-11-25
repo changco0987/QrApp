@@ -381,8 +381,8 @@ td{
       <form action="../controller/searchFaculty.php" method="post" enctype="multipart/form-data">
         <div class="input-group">
           <input type="hidden" name="accType" value="faculty">
-          <input type="text" name="searchName" id="searchName" class="form-control no-border form-control-sm" placeholder="Type by Name or Surname">
-          <button type="submit" class="btn btn-sm d-flex justify-content-start" style="background-color:#3466AA; color:whitesmoke;"><i class="bi bi-search"></i></button>
+          <input type="text" name="searchName" id="searchName" class="form-control no-border form-control-sm" placeholder="Type by Name or Surname" onkeyup="showResult(this.value)">
+          <button type="submit" class="btn btn-sm d-flex justify-content-start" style="background-color:#3466AA; color:whitesmoke;" disabled><i class="bi bi-search"></i></button>
         </div>
       </form>
     </div>
@@ -500,7 +500,7 @@ td{
                   <th colspan="4" class="text-center" scope="col">Actions</th><!-- Edit button and Delete button-->
               </tr>
           </thead>
-          <tbody>
+          <tbody id="resultTable">
               <?php
                   $data = new facultyModel();
                   if(isset($_GET["firstname"]))
@@ -605,7 +605,7 @@ td{
 
                             <!--Delete Button-->
                             <td id="<?php echo $row['id'];?>">
-                              <form action="../controller/deleteAccount.php" method="POST" enctype="multipart/form-data">
+                              <form action="../controller/deleteStaff.php" method="POST" enctype="multipart/form-data">
                                 <input type="hidden" name="idTb" id="<?php echo 'deleteIdTb'.$row['id'];?>" value="<?php echo $row['id'];?>">
                                 <button type="submit" class="btn btn-sm d-flex justify-content-start btn-danger" style="font-size: 13px;"><i class="bi bi-trash mr-1"></i>Delete</button>
                               </form>
@@ -838,7 +838,23 @@ td{
     </div>
 </body>
 <script>
-
+ 
+    //for searching user realtime
+    function showResult(str) 
+    {
+        var xmlhttp=new XMLHttpRequest();
+        xmlhttp.onreadystatechange=function() 
+        {
+            if (this.readyState==4 && this.status==200)
+            {
+              
+                document.getElementById("resultTable").innerHTML=this.responseText;
+                
+            }
+        }
+        xmlhttp.open("GET","../controller/searchFaculty.php?search="+str,true);
+        xmlhttp.send();
+    }
   
         //To submit the form without reloading it
         function submitForm() 

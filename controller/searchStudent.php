@@ -19,20 +19,21 @@
         if(strtolower($row['firstname']) == strtolower($search) ||
             str_contains(strtolower($row['firstname']),strtolower($search)))
         {
+            if($row['status']=='locked')
+            {
+              
+                $findings = $findings. "<tr style='background-color:#e9808d;'>";
+              
+            }
+            else
+            {
+              
+                $findings = $findings. "<tr style='background-color:#82B7DC;'>";
+              
+            }
+
             if($row['imageName']!==null && $row['imageName']!=='')
             {
-                if($row['status']=='locked')
-                {
-                  
-                   $findings = $findings. "<tr style='background-color:#e9808d;'>";
-                  
-                }
-                else
-                {
-                  
-                    $findings = $findings. "<tr style='background-color:#82B7DC;'>";
-                  
-                }
 
                 $findings = $findings.      "<td>".$count."</td>".
                                             "<td><img src='../upload/students/". $row['imageName']."' width='60' height='60' class='d-inline-block align-top border border-dark' alt='' style='border-radius: 50%;'></td>".
@@ -138,20 +139,20 @@
         else if(strtolower($row['lastname']) == strtolower($search) ||
             str_contains(strtolower($row['lastname']),strtolower($search)))
         {
+            if($row['status']=='locked')
+            {
+              
+              $findings = $findings. "<tr style='background-color:#e9808d;'>";
+              
+            }
+            else
+            {
+              
+                $findings = $findings. "<tr style='background-color:#82B7DC;'>";
+              
+            }
             if($row['imageName']!==null && $row['imageName']!=='')
             {
-                if($row['status']=='locked')
-                {
-                  
-                   $findings = $findings. "<tr style='background-color:#e9808d;'>";
-                  
-                }
-                else
-                {
-                  
-                    $findings = $findings. "<tr style='background-color:#82B7DC;'>";
-                  
-                }
                 $findings = $findings.      "<td>".$count."</td>".
                                             "<td><img src='../upload/students/". $row['imageName']."' width='60' height='60' class='d-inline-block align-top border border-dark' alt='' style='border-radius: 50%;'></td>".
                                             
