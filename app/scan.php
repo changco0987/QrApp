@@ -270,12 +270,14 @@ h6{
             try
             {
                 var http = new XMLHttpRequest();
-                if(tempValue>37.50 || tempValue<37.50)
+                if( tempValue < 35.50 || tempValue > 37.50)
                 {
+                    console.log('failed');
                     http.open("POST", "../controller/inputTemp.php", true);
                 }
                 else
                 {
+                    console.log('success');
                     http.open("POST", "../controller/dtrInput.php", true);
                 }
                 http.setRequestHeader("Content-type","application/x-www-form-urlencoded");

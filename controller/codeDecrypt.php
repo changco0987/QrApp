@@ -17,8 +17,8 @@
     include_once '../model/qrsettingsModel.php';
 
     //sms API
-    //include_once '../API/apiData.php';
-    //include_once 'smsAPI.php';
+    include_once '../API/apiData.php';
+    include_once 'smsAPI.php';
 
     session_start();
 
@@ -342,7 +342,7 @@
                                 }
         
                                 //Removed temporarily to avoid while on QR scanning testing
-                                //sendMessage($ch,$key,$device,$sim,$priority,$phone,$message);//This will send the sms notification to the student guardian
+                                sendMessage($ch,$key,$device,$sim,$priority,$phone,$message);//This will send the sms notification to the student guardian
                             }
                         }
                     }
