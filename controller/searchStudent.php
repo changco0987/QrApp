@@ -57,7 +57,7 @@
             {
                 
                 $findings = $findings.      "<td>".$count."</td>".
-                                            "<td><img src='../asset/user.png' width='60' height='60' class='d-inline-block align-top img-fluid border border-dark' alt='' style='border-radius: 50%;'><</td>".
+                                            "<td><img src='../asset/user.png' width='60' height='60' class='d-inline-block align-top img-fluid border border-dark' alt='' style='border-radius: 50%;'></td>".
                                             
                                             "<td>".$row['firstname'].' '.$row['lastname']."</td>".
                                             "<td>".$row['studentId']."</td>".
@@ -175,7 +175,7 @@
             {
                 
                 $findings = $findings.      "<td>".$count."</td>".
-                                            "<td><img src='../asset/user.png' width='60' height='60' class='d-inline-block align-top img-fluid border border-dark' alt='' style='border-radius: 50%;'><</td>".
+                                            "<td><img src='../asset/user.png' width='60' height='60' class='d-inline-block align-top img-fluid border border-dark' alt='' style='border-radius: 50%;'></td>".
                                             
                                             "<td>".$row['firstname'].' '.$row['lastname']."</td>".
                                             "<td>".$row['studentId']."</td>".
