@@ -14,6 +14,7 @@
     $tempFilename = '';
     $fileExtension = pathinfo($_FILES['fileTb']['name'],PATHINFO_EXTENSION);
 
+    session_start();
     $log = new logsModel();
     if(isset($_POST['accType']))
     {
@@ -53,8 +54,8 @@
                     //create log
                     $log->setActivity('added account Type: '.$_POST['accType'].', username: '.$_POST['usernameTb']);
                     $log->setIpAdd();
-                    $log->setAccType($_SESSION['accType']);
-                    $log->setCreator($_SESSION['username']);
+                    $log->setAccType('Administrator');
+                    $log->setCreator($_SESSION['adminNameTb']);
 
                     CreateLog($conn,$log);
 
@@ -111,9 +112,17 @@
                     //create log
                     $log->setActivity('added account Type: '.$_POST['accType'].', username: '.$_POST['usernameTb']);
                     $log->setIpAdd();
-                    $log->setAccType($_SESSION['accType']);
-                    $log->setCreator($_SESSION['username']);
-
+                    $log->setAccType('Administrator');
+                    $log->setCreator($_SESSION['adminNameTb']);
+   
+                    if(isset($_POST['notifCheckbox']))
+                    {
+                        $data->setNotification($_POST['notifCheckbox']);
+                    }
+                    else
+                    {
+                        $data->setNotification('false');
+                    }
                     CreateLog($conn,$log);
                     
                     CreateAccountGuardian($conn,$data); 
