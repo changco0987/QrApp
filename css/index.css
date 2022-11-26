@@ -1,6 +1,6 @@
 body{
     font-family: Comic Sans MS, Comic Sans;
-    background-color: #3466AA;
+    background-color:#F1F1F1;
 }
 
 p{
@@ -46,10 +46,11 @@ p{
 
 #pageTitle{
     font-family: Verdana, Arial, Tahoma, Serif;
-    text-shadow: 2px 2px whitesmoke;
+    text-shadow: 1px 1px #1C1C1C;
     font-weight: bolder;
-    color: #1C1C1C;
+    color: #3b89c0;
 }
 
 
+  
 
