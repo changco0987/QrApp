@@ -125,6 +125,37 @@
                 //This will update the userside dtr Log
                 $data->setGateStat('in');
                 $data->setDtrId(CreateDtr($conn,$dtr));
+                
+                //This will get the guardian details to check if the guardian has turned the notif on or off
+                $guardian = new guardianModel();
+                $result = ReadAccountGuardian($conn,$guardian);
+                
+                while($guardianRow = mysqli_fetch_assoc($result))
+                {
+                    $guardianName = $guardianRow['firstname'].' '.$guardianRow['lastname'];
+                    //this will find the guardian name
+                    if(strtolower($guardianName) == strtolower($row['guardianName']))
+                    {
+                        //This will check if the guardian notification is on or off to send an sms
+                        if($guardianRow['notification'] == true)
+                        {
+                            //The message sent to guardian
+                            $message = "Dear parent, your child entered to campus at ".date("M d, Y h:i a", strtotime($dtr->getTime_in()));
+                            
+                            $phone = $guardianRow['guardianNum'];
+
+                            //this will check if the guardian number is at the format +63
+                            if(str_contains($guardianRow['guardianNum'], '+63')==false)
+                            {
+                                $phone =  substr_replace($guardianRow['guardianNum'],'+63',0,1);//this will replace the 0 in the start of the number and replace with +63
+                            }
+    
+                            //Removed temporarily to avoid while on QR scanning testing
+                            sendMessage($ch,$key,$device,$sim,$priority,$phone,$message);//This will send the sms notification to the student guardian
+                        }
+                    }
+                }
+
                 UpdateStudent($conn,$data);
             }
             else
