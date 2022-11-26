@@ -375,20 +375,20 @@ h6{
                 http.onload = function() 
                 {
                     var data = http.responseText;
-                    console.log(JSON.parse(data));
-                    if(JSON.parse(data)=='expired')
+                    console.log(data);
+                    if(data=='expired')
                     {
                         $('#errorTxt').show();
                         $('#errorTxt').html('QR already expired');
                         const myTimeout = setTimeout(revokeView, 5000);
                     }
-                    else if(JSON.parse(data)=='Lock' || JSON.parse(data)=='Locked')
+                    else if(data=='Lock' || data=='Locked')
                     {
                         $('#errorTxt').show();
                         $('#errorTxt').html('QR is locked please contact the admin');
                         const myTimeout = setTimeout(revokeView, 5000);
                     }
-                    else if(JSON.parse(data)=='error')
+                    else if(data=='error')
                     {
                         $('#errorTxt').show();
                         $('#errorTxt').html('The QR is not belong to the system');
@@ -653,7 +653,6 @@ $(function() {
             {
                 $("#tempInput").val('');
             }
-            
         }    
         
         //This will get the qr input

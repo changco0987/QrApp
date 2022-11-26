@@ -253,7 +253,6 @@
                             
                             <div class="pb-3 mb-3 " id="qrcode"></div>
                             <?php
-                                                                
                                 //This will get/generate the default qr code for the user if the user somehow have a previous qr code
 
                                 if($_SESSION['qr_ExDate']!==null)

@@ -31,8 +31,17 @@
     $currentDateTime = date('Y-m-d h:i:s a');
     if(isset($_POST['codeInput']))
     {
-        $decryptedCode = unserialize(base64_decode($_POST['codeInput']));
-        $responseData = array();
+        if(base64_encode(base64_decode($_POST['codeInput'], true)) === $_POST['codeInput'])
+        {
+            $decryptedCode = unserialize(base64_decode($_POST['codeInput']));
+            $responseData = array();
+        }
+        else
+        {
+            echo 'error';
+            exit;
+        }
+
 
         //Check on where the QR code belong
         if($decryptedCode['accType']=='visitor')
@@ -468,7 +477,7 @@
         else
         {
             //This will occur if the qr is not created by the system
-            echo json_encode('error');
+            echo 'error';
             exit;
         }
 
