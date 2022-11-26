@@ -142,12 +142,12 @@
                             //The message sent to guardian
                             $message = "Dear parent, your child entered to campus at ".date("M d, Y h:i a", strtotime($dtr->getTime_in()));
                             
-                            $phone = $guardianRow['guardianNum'];
+                            $phone = $guardianRow['contact_number'];
 
                             //this will check if the guardian number is at the format +63
-                            if(str_contains($guardianRow['guardianNum'], '+63')==false)
+                            if(str_contains($guardianRow['contact_number'], '+63')==false)
                             {
-                                $phone =  substr_replace($guardianRow['guardianNum'],'+63',0,1);//this will replace the 0 in the start of the number and replace with +63
+                                $phone =  substr_replace($guardianRow['contact_number'],'+63',0,1);//this will replace the 0 in the start of the number and replace with +63
                             }
     
                             //Removed temporarily to avoid while on QR scanning testing
