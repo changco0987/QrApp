@@ -130,7 +130,7 @@
             }
             else
             {
-                echo json_encode('Locked');
+                echo 'Locked';
                 exit;
             }
 
@@ -223,7 +223,7 @@
             }
             else
             {
-                echo json_encode('Locked');
+                echo 'Locked';
                 exit;
             }
             
@@ -364,7 +364,7 @@
             }
             else
             {
-                echo json_encode('Locked');
+                echo 'Locked';
                 exit;
             }
         }
@@ -470,7 +470,7 @@
             }
             else
             {
-                echo json_encode('Locked');
+                echo 'Locked';
                 exit;
             }
         }
