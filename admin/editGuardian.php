@@ -2,6 +2,8 @@
     include_once '../db/connection.php';
     include_once '../db/tb_guardian.php';
     include_once '../model/guardianModel.php';
+    include_once '../db/tb_admin.php';
+    include_once '../model/adminModel.php';
 
     date_default_timezone_set('Asia/Manila'); 
 
@@ -28,6 +30,8 @@
     {
         header("Location: ../admin.php");
     }
+
+
     $data = new guardianModel();
     if(isset($_SESSION['username']))
     {

@@ -10,27 +10,31 @@
     include_once '../model/qrsettingsModel.php';
     include_once '../db/tb_qrsettings.php';
 
+    //This will check if the user is truely login
     date_default_timezone_set('Asia/Manila'); 
+    $currentDateTime = date('Y-m-d h:i:s a');
+    
+    session_start();
+    
+      if($_SESSION['expiryDate'] <= $currentDateTime)
+      {      
+        echo 'pumasok';
+        $data = new adminModel();             
+        $date = new DateTime($currentDateTime);
+        $date->add(new DateInterval('PT24H'));
+        $expiryDate = $date->format('Y-m-d h:i:s a');
+        $data->setSessionExpiry($expiryDate);
+              
+        $data->setActiveLogin(0);
+        UpdateAdmin($conn,$data);
 
-    $currentDateTime = date('Y-m-d h:i a');
-   //This will check if the user is truely login
-   session_start();
-   $data = new adminModel(); 
-   $result = ReadAdmin($conn,$data);//This is will be the container of the admin data
-   $row = mysqli_fetch_assoc($result);
-   if($row['sessionExpiry']==null || $row['sessionExpiry'] <= $currentDateTime)
-   {                  
-       $date = new DateTime($currentDateTime);
-       $date->add(new DateInterval('PT24H'));
-       $expiryDate = $date->format('Y-m-d h:i:s a');
-       $data->setSessionExpiry($expiryDate);
-       $data->setUsername(null);//this will set to null intentionally for updating activeLogin
-       $data->setActiveLogin(0);
-       UpdateAdmin($conn,$data);
+        
+        unset($_SESSION['adminNameTb']);
+        session_unset();
+          
+      }
+    
 
-       unset($_SESSION['adminNameTb']);
-       session_unset();
-   }
     
     if(!isset($_SESSION['adminNameTb']))
     {

@@ -2,11 +2,9 @@
     include_once '../db/connection.php';
     include_once '../db/tb_announcement.php';
     include_once '../model/announcementModel.php';
+    include_once '../db/tb_admin.php';
+    include_once '../model/adminModel.php';
 
-    $event = new announcementModel();
-    $event->setId($_POST['rowId']);
-    $result = ReadEvent($conn,$event);
-    $row = mysqli_fetch_assoc($result);
 
 
     date_default_timezone_set('Asia/Manila'); 
@@ -34,6 +32,10 @@
     {
         header("Location: ../admin.php");
     }
+    $event = new announcementModel();
+    $event->setId($_POST['rowId']);
+    $result = ReadEvent($conn,$event);
+    $row = mysqli_fetch_assoc($result);
 ?>
 
 <!DOCTYPE html>

@@ -2,11 +2,9 @@
     include_once '../db/connection.php';
     include_once '../db/tb_student.php';
     include_once '../model/studentModel.php';
+    include_once '../db/tb_admin.php';
+    include_once '../model/adminModel.php';
 
-    $event = new studentModel();
-    $event->setId($_POST['idTb']);
-    $result = ReadStudent($conn,$event);
-    $row = mysqli_fetch_assoc($result);
 
 
     date_default_timezone_set('Asia/Manila'); 
@@ -34,6 +32,12 @@
     {
         header("Location: ../admin.php");
     }
+
+    
+    $event = new studentModel();
+    $event->setId($_POST['idTb']);
+    $result = ReadStudent($conn,$event);
+    $row = mysqli_fetch_assoc($result);
 ?>
 
 <!DOCTYPE html>

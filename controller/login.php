@@ -10,7 +10,6 @@
     include_once '../db/tb_logs.php';
     include_once '../model/logsModel.php';    
 
-    date_default_timezone_set('Asia/Manila'); 
     $log = new logsModel();
 
     date_default_timezone_set('Asia/Manila'); 

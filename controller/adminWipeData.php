@@ -10,7 +10,7 @@
     date_default_timezone_set('Asia/Manila'); 
     session_start();
 
-    $currentDateTime = date('Y-m-d h:i a');
+    $currentDateTime = date('Y-m-d h:i:s a');
     //This will check if the session is set to avoid error
     if(isset($_SESSION['adminNameTb']))
     {

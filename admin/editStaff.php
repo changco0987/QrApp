@@ -2,11 +2,9 @@
     include_once '../db/connection.php';
     include_once '../db/tb_faculty.php';
     include_once '../model/facultyModel.php';
+    include_once '../db/tb_admin.php';
+    include_once '../model/adminModel.php';
 
-    $data = new facultyModel();
-    $data->setId($_POST['idTb']);
-    $result = ReadFaculty($conn,$data);
-    $row = mysqli_fetch_assoc($result);
 
 
     date_default_timezone_set('Asia/Manila'); 
@@ -34,6 +32,13 @@
     {
         header("Location: ../admin.php");
     }
+
+
+    
+    $data = new facultyModel();
+    $data->setId($_POST['idTb']);
+    $result = ReadFaculty($conn,$data);
+    $row = mysqli_fetch_assoc($result);
 ?>
 
 <!DOCTYPE html>

@@ -8,7 +8,7 @@
 
     date_default_timezone_set('Asia/Manila'); 
 
-    $currentDateTime = date('Y-m-d h:i a');
+    $currentDateTime = date('Y-m-d h:i:s a');
 
     if(isset($_POST['adminNameTb']))
     {
@@ -31,6 +31,12 @@
                     $expiryDate = $date->format('Y-m-d h:i:s a');
                     $data->setSessionExpiry($expiryDate);
                 }
+                else
+                {
+                    $data->setSessionExpiry($row['sessionExpiry']);
+                }
+                session_start();
+                $_SESSION['expiryDate'] = $row['sessionExpiry'];
 
                 if($row['loginCount'] > $row['activeLogin'])
                 {
@@ -48,7 +54,6 @@
                 
                     CreateLog($conn,$log);
 
-                    session_start();
                     $_SESSION['adminNameTb'] = $row['username'];
                     header("Location: ../admin/dashboard.php");
                     exit;
