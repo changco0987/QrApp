@@ -26,7 +26,7 @@
     {
         if($data->getLoginCount()!=null)
         {
-            mysqli_query($conn,"UPDATE admintb set loginCount =".$data->getLoginCount());
+            mysqli_query($conn,"UPDATE admintb set loginCount =".$data->getLoginCount().", sessionExpiry = '".$data->getSessionExpiry()."'");
         }
         else if($data->getUsername()==null)
         {

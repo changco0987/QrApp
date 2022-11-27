@@ -6,6 +6,10 @@
     include_once '../db/tb_logs.php';
     include_once '../model/logsModel.php';    
 
+    date_default_timezone_set('Asia/Manila'); 
+
+    $currentDateTime = date('Y-m-d h:i a');
+
     if(isset($_POST['adminNameTb']))
     {
         $data = new adminModel();
@@ -20,6 +24,11 @@
             if($row['username']==$data->getUsername() && $row['password']==$data->getPassword())
             {
    
+                if($row['sessionExpiry']==null || $row['sessionExpiry'] <= $currentDateTime)
+                {
+                    $data->setSessionExpiry($currentDateTime);
+                }
+
                 if($row['loginCount'] > $row['activeLogin'])
                 {
                     $active = $row['activeLogin'];

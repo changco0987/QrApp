@@ -6,6 +6,7 @@
         private $password;
         private $loginCount;
         private $activeLogin;
+        private $sessionExpiry;
 
 
         public function getId()
@@ -51,6 +52,7 @@
             $this->loginCount = $loginCount;
         }
 
+
         public function getActiveLogin()
         {
             return $this->activeLogin;   
@@ -59,6 +61,17 @@
         public function setActiveLogin($activeLogin)
         {
             $this->activeLogin = $activeLogin;
+        }
+
+
+        public function getSessionExpiry()
+        {
+            return $this->sessionExpiry;   
+        }
+
+        public function setSessionExpiry($sessionExpiry)
+        {
+            $this->sessionExpiry = $sessionExpiry;
         }
 
     }
