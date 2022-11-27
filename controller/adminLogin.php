@@ -21,28 +21,32 @@
         while($row = mysqli_fetch_assoc($result))
         {
 
+            session_start();
             if($row['username']==$data->getUsername() && $row['password']==$data->getPassword())
             {
-   
-                if($row['sessionExpiry']==null || $row['sessionExpiry'] <= $currentDateTime)
-                {                   
+                //This will check if the expiry date is expired and assign a new one if expired
+                if($row['sessionExpiry'] <= $currentDateTime)
+                {                
                     $date = new DateTime($currentDateTime);
                     $date->add(new DateInterval('PT24H'));
                     $expiryDate = $date->format('Y-m-d h:i:s a');
                     $data->setSessionExpiry($expiryDate);
+                    $data->setUsername(null);//this will set to null intentionally for updating activeLogin
+                    $data->setActiveLogin(0);
+                    UpdateAdmin($conn,$data);
+                    $_SESSION['expiryDate'] = $expiryDate;
                 }
                 else
                 {
                     $data->setSessionExpiry($row['sessionExpiry']);
+                    $data->setUsername(null);//this will set to null intentionally for updating activeLogin
+                    $_SESSION['expiryDate'] = $row['sessionExpiry'];
                 }
-                session_start();
-                $_SESSION['expiryDate'] = $row['sessionExpiry'];
 
                 if($row['loginCount'] > $row['activeLogin'])
                 {
                     $active = $row['activeLogin'];
                     $active++;
-                    $data->setUsername(null);//this will set to null intentionally for updating activeLogin
                     $data->setActiveLogin($active);
                     UpdateAdmin($conn,$data);
 

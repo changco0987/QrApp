@@ -32,17 +32,8 @@
     $row = mysqli_fetch_assoc($result);
 
    
-    if($row['sessionExpiry']==null || $row['sessionExpiry'] <= $currentDateTime)
-    {                   
-        $date = new DateTime($currentDateTime);
-        $date->add(new DateInterval('PT24H'));
-        $expiryDate = $date->format('Y-m-d h:i:s a');
-        $data->setSessionExpiry($expiryDate);
-    }
-    else
-    {
-        $data->setSessionExpiry($row['sessionExpiry']);
-    }
+    $data->setSessionExpiry($row['sessionExpiry']);
+    
 
     $active = $row['activeLogin'];
     if($active!=0)
