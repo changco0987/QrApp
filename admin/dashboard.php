@@ -16,23 +16,23 @@
     
     session_start();
     
-      if($_SESSION['expiryDate'] <= $currentDateTime)
-      {      
-        echo 'pumasok';
-        $data = new adminModel();             
-        $date = new DateTime($currentDateTime);
-        $date->add(new DateInterval('PT24H'));
-        $expiryDate = $date->format('Y-m-d h:i:s a');
-        $data->setSessionExpiry($expiryDate);
-              
-        $data->setActiveLogin(0);
-        UpdateAdmin($conn,$data);
+    if($_SESSION['expiryDate'] <= $currentDateTime)
+    {      
+      echo 'pumasok';
+      $data = new adminModel();             
+      $date = new DateTime($currentDateTime);
+      $date->add(new DateInterval('PT24H'));
+      $expiryDate = $date->format('Y-m-d h:i:s a');
+      $data->setSessionExpiry($expiryDate);
+            
+      $data->setActiveLogin(0);
+      UpdateAdmin($conn,$data);
 
+      
+      unset($_SESSION['adminNameTb']);
+      session_unset();
         
-        unset($_SESSION['adminNameTb']);
-        session_unset();
-          
-      }
+    }
     
 
     
