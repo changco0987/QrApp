@@ -25,8 +25,11 @@
             {
    
                 if($row['sessionExpiry']==null || $row['sessionExpiry'] <= $currentDateTime)
-                {
-                    $data->setSessionExpiry($currentDateTime);
+                {                   
+                    $date = new DateTime($currentDateTime);
+                    $date->add(new DateInterval('PT24H'));
+                    $expiryDate = $date->format('Y-m-d h:i:s a');
+                    $data->setSessionExpiry($expiryDate);
                 }
 
                 if($row['loginCount'] > $row['activeLogin'])

@@ -26,11 +26,11 @@
     {
         if($data->getLoginCount()!=null)
         {
-            mysqli_query($conn,"UPDATE admintb set loginCount =".$data->getLoginCount().", sessionExpiry = '".$data->getSessionExpiry()."'");
+            mysqli_query($conn,"UPDATE admintb set loginCount =".$data->getLoginCount());
         }
         else if($data->getUsername()==null)
         {
-            mysqli_query($conn,"UPDATE admintb set activeLogin =".$data->getActiveLogin());
+            mysqli_query($conn,"UPDATE admintb set activeLogin =".$data->getActiveLogin().", sessionExpiry = '".$data->getSessionExpiry()."'");
         }
         else
         {
