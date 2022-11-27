@@ -10,6 +10,7 @@
     date_default_timezone_set('Asia/Manila'); 
     session_start();
 
+    $currentDateTime = date('Y-m-d h:i a');
     //This will check if the session is set to avoid error
     if(isset($_SESSION['adminNameTb']))
     {
@@ -29,6 +30,19 @@
     $result = ReadAdmin($conn,$data);
 
     $row = mysqli_fetch_assoc($result);
+
+   
+    if($row['sessionExpiry']==null || $row['sessionExpiry'] <= $currentDateTime)
+    {                   
+        $date = new DateTime($currentDateTime);
+        $date->add(new DateInterval('PT24H'));
+        $expiryDate = $date->format('Y-m-d h:i:s a');
+        $data->setSessionExpiry($expiryDate);
+    }
+    else
+    {
+        $data->setSessionExpiry($row['sessionExpiry']);
+    }
 
     $active = $row['activeLogin'];
     if($active!=0)
