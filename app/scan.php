@@ -215,7 +215,7 @@ h6{
                     <input id="codeInput" onchange="getVal()" onblur="this.focus()" autofocus/> 
 
 
-                    <input type="number" id="tempInput" oninput="clearVal()" onchange="getTemp()" onblur="this.focus()" maxlength="10" autofocus/> 
+                    <input type="number" id="tempInput" oninput="clearVal()" onchange="getTemp()" onblur="this.focus()" step="0.01" autofocus/> 
 
 
                     <input id="timeInInput" oninput="clearVal()" onchange="getTimeIn()" onblur="this.focus()" autofocus/> 
@@ -270,7 +270,7 @@ h6{
             try
             {
                 var http = new XMLHttpRequest();
-                if( tempValue < 35.50 || tempValue > 37.50)
+                if(tempValue > 37.50)
                 {
                     console.log('failed');
                     http.open("POST", "../controller/inputTemp.php", true);
@@ -698,24 +698,6 @@ $(function() {
                     submitTemp(inputTempVal);
 
                     //window.history.replaceState(null, null, "?temp="+inputTempVal);
-
-                }
-                else if(inputTempVal<35.50)
-                {
-                    console.log('Low temp');
-                    $('#tempTxt').html("Temp: "+inputTempVal+"°C low temperature");
-                    
-                    //This will show the error message before reseting all display
-                    $('#errorTxt').show();
-                    $('#errorTxt').html('Please Try again later');
-                    $("#tempInput").val('');  
-                    $('#tempInput').blur();//To prevent from inputting another value
-                    
-                    //to forge the get url
-                    url.searchParams.set('temp', inputTempVal);
-                    window.history.replaceState(null, null, url); // or pushState
-
-                    submitTemp(inputTempVal);
 
                 }
                 else
