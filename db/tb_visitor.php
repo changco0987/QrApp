@@ -54,7 +54,7 @@
         {
             mysqli_query($conn,"UPDATE visitortb SET status ='".$data->getStatus()."' WHERE id =".$data->getId());
         }
-        else if(!$data->getQr_ExDate())
+        else if($data->getQr_ExDate())
         {
 
             //to filter if the password is changed

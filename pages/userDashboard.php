@@ -150,7 +150,8 @@
         {
             if(qrcode === undefined)
             {
-                qrcode = new QRCode(document.getElementById('qrcode'), value);
+                let qrData = value.replaceAll('"', '');
+                qrcode = new QRCode(document.getElementById('qrcode'), qrData);
                 $('#qrcode').show();
                 $('#printBtn').show();
                 returnDate();

@@ -75,6 +75,7 @@
                         $_SESSION['gateStat'] = $row['gateStat'];
                         $_SESSION['accType'] = 'visitor';
                         $_SESSION['username'] = $row['username'];
+                        $_SESSION['id'] = $row['id'];
     
                         /*
                         //Going in/enter
@@ -105,6 +106,7 @@
                         $_SESSION['gateStat'] = $row['gateStat'];
                         $_SESSION['accType'] = 'visitor';
                         $_SESSION['username'] = $row['username'];
+                        $_SESSION['id'] = $row['id'];
     
                         //Going out/Exit
                         //log to DTR
@@ -167,6 +169,7 @@
                         $_SESSION['gateStat'] = $row['gateStat'];
                         $_SESSION['accType'] = 'guardian';
                         $_SESSION['username'] = $row['username'];
+                        $_SESSION['id'] = $row['id'];
     
                         /*
                         //Going in/enter
@@ -197,6 +200,7 @@
                         $_SESSION['gateStat'] = $row['gateStat'];
                         $_SESSION['accType'] = 'guardian';
                         $_SESSION['username'] = $row['username'];
+                        $_SESSION['id'] = $row['id'];
     
                         
                         //Going out/Exit

@@ -446,9 +446,6 @@ td{
                       $result = ReadAccountGuardian($conn,$data);
                       while($row = mysqli_fetch_assoc($result))
                       {
-                        //This where the QR data was collected
-                        $prevQRData = array("title"=>'qremsystem', "accType"=>'guardian', "id"=>$row['id']);
-                        $convertedQRData = base64_encode(serialize($prevQRData));
     
                         if($changeColor==0)
                         {

@@ -190,7 +190,7 @@ h6{
                     <div class="row">
                         <div class="col-sm-4 col-xs-4 col-md-4 col-lg-4 my-4 py-4">
                             <div class="text-center">
-                                <img id="userPicture" src="../asset/qrScan.png" class="border border-dark" alt="" style="width:300px;height: 300px;">
+                                <img id="userPicture" class="border border-dark" alt="" style="width:300px;height: 300px;">
                                 <img id="noPicture" src="../asset/user.png" class="border border-dark" alt="" style="width:300px;height: 300px;">
                                 <h6 id="typeLb" style="font-size:13px; color:red;" class="mt-1"></h6>
                             </div>
@@ -425,7 +425,7 @@ h6{
                     if(arrVal.state == 'in')
                     {
                         $('#qrPicture').hide();//This will hide the qr picture
-                        if(arrVal.imageName!=null && arrVal.imageName ===" ")
+                        if(arrVal.imageName)
                         {
                             $('#userPicture').show();
                             document.getElementById("userPicture").src = '../upload/'+arrVal.imageName;
@@ -435,7 +435,7 @@ h6{
                             $('#userPicture').hide();
                             $('#noPicture').show();
                         }
-                        //console.log(arrVal.imageName);
+                        console.log(arrVal.imageName);
                         document.getElementById("scanLb").style.display = "none";
 
                         $('#nameLb').html('Name: '+arrVal.name);
@@ -464,7 +464,7 @@ h6{
                     if(arrVal.state == 'in')
                     {
                         $('#qrPicture').hide();//This will hide the qr picture
-                        if(arrVal.imageName!=null && arrVal.imageName ===" ")
+                        if(arrVal.imageName)
                         {
                             $('#userPicture').show();
                             document.getElementById("userPicture").src = '../upload/'+arrVal.imageName;
@@ -503,7 +503,7 @@ h6{
                     if(arrVal.state == 'in')
                     {
                         $('#qrPicture').hide();//This will hide the qr picture
-                        if(arrVal.imageName && arrVal.imageName ===" ")
+                        if(arrVal.imageName)
                         {
                             $('#userPicture').show();
                             document.getElementById("userPicture").src = '../upload/students/'+arrVal.imageName;
@@ -544,7 +544,7 @@ h6{
                     if(arrVal.state == 'in')
                     {
                          $('#qrPicture').hide();//This will hide the qr picture
-                        if(arrVal.imageName && arrVal.imageName ===" ")
+                        if(arrVal.imageName)
                         {
                             $('#userPicture').show();
                             document.getElementById("userPicture").src = '../upload/faculty/'+arrVal.imageName;
