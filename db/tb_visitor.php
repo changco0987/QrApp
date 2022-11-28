@@ -38,7 +38,7 @@
 
     function UpdateAccountVisitor($conn,$data)
     {
-        if($data->getPassword()!=null)
+        if($data->getPassword()!=null && $data->getStatus()==null)
         {
             mysqli_query($conn,"UPDATE visitortb set password ='".$data->getPassword()."' where username = '".$data->getUsername()."'");
         }
@@ -54,7 +54,7 @@
         {
             mysqli_query($conn,"UPDATE visitortb SET status ='".$data->getStatus()."' WHERE id =".$data->getId());
         }
-        else if($data->getQr_ExDate()==null)
+        else if(!$data->getQr_ExDate())
         {
 
             //to filter if the password is changed
@@ -71,7 +71,7 @@
 
                 $address = mysqli_real_escape_string($conn,$data->getAddress());
                 mysqli_query($conn,"UPDATE visitortb set username ='".$data->getUsername()."', password ='".$data->getPassword()."', firstname ='". $data->getFirstname()
-                ."', lastname ='".$data->getLastname(). "', address ='". $address. "',contact_number ='". $data->getContact_number().
+                ."', lastname ='".$data->getLastname(). "', address ='". $address. "', contact_number ='". $data->getContact_number().
                 "', imageName = '".$data->getImageName()."' where id = ". $data->getId());
             }
             

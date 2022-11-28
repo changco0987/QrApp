@@ -349,6 +349,7 @@ footer * {
                               {
                                 ?>
                                 <script>
+                                    $('#studentidTb').removeProp('required',true);
                                     $('#studentIdDiv').show();
                                 </script>
                                 <style>

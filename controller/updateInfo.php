@@ -66,9 +66,28 @@
                     {
                         $data->setImageName($_POST['imageName']);
                     }
-
-                    UpdateAccountVisitor($conn,$data);
                     
+
+
+                    //UpdateAccountVisitor($conn,$data);
+                            
+                    //to filter if the password is changed
+                    if($data->getPassword()==null)
+                    {
+
+                        $address = mysqli_real_escape_string($conn,$data->getAddress());
+                        mysqli_query($conn,"UPDATE visitortb set username ='".$data->getUsername()."', firstname ='". $data->getFirstname()
+                        ."', lastname ='".$data->getLastname(). "', address ='". $address. "',contact_number ='". $data->getContact_number().
+                        "', imageName = '".$data->getImageName()."' where id = ". $data->getId());
+                    }
+                    else
+                    {
+
+                        $address = mysqli_real_escape_string($conn,$data->getAddress());
+                        mysqli_query($conn,"UPDATE visitortb set username ='".$data->getUsername()."', password ='".$data->getPassword()."', firstname ='". $data->getFirstname()
+                        ."', lastname ='".$data->getLastname(). "', address ='". $address. "', contact_number ='". $data->getContact_number().
+                        "', imageName = '".$data->getImageName()."' where id = ". $data->getId());
+                    }
 
                     //This will tell the system that the update is made in the admin page
                     if(isset($_POST['adminReq']))
@@ -82,6 +101,7 @@
                         $_SESSION['username'] = $data->getUsername();  
                         $_SESSION['password'] = $_POST['passwordTb'];  
                         echo '<script> localStorage.setItem("state",4); window.location = "../pages/userDashboard.php";</script>';  
+                        exit;
 
                     }
                }
