@@ -19,7 +19,6 @@
     
     if($_SESSION['expiryDate'] <= $currentDateTime)
     {      
-      echo 'pumasok';
       $data = new adminModel();             
       $date = new DateTime($currentDateTime);
       $date->add(new DateInterval('PT24H'));
