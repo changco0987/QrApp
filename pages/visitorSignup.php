@@ -299,6 +299,13 @@ footer * {
             document.getElementById('errorMsg').innerHTML = "Password doesn't match!";
             console.log("okay");
         }
+        else if(successSignal==8)
+        {
+            //if password doesn't matched
+            document.getElementById('alertBox').style.display = 'block';
+            document.getElementById('errorMsg').innerHTML = "Incorrect OTP, please try again";
+            console.log("okay");
+        }
 
         //To make signl back to normmal and to prevent for the success page to appear every time the page was reload or refresh
         localStorage.setItem('state',0);

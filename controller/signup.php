@@ -17,6 +17,11 @@
     {
         if($_POST['accType'] == 'visitor')
         {
+            if($_POST['otp']!=$_POST['otpTb'])
+            {
+                //Throws back to the signup page and show "Incorrect OTP"
+                echo '<script> localStorage.setItem("state",8); window.location = "../pages/visitorSignup.php";</script>';
+            }
             $data = new visitorModel();
             $data->setUsername($_POST['usernameTb']);
             $data->setPassword($_POST['passwordTb']);
@@ -52,6 +57,11 @@
         }
         else if($_POST['accType'] == 'guardian')
         {
+            if($_POST['otp']!=$_POST['otpTb'])
+            {
+                //Throws back to the signup page and show "Incorrect OTP"
+                echo '<script> localStorage.setItem("state",8); window.location = "../pages/guardianSignup.php";</script>';
+            }
             $data = new guardianModel();
             $data->setUsername($_POST['usernameTb']);
             $data->setPassword($_POST['passwordTb']);

@@ -187,7 +187,7 @@ footer * {
         <div class="col-sm-12 col-xs-12 col-md-12 col-lg-12 my-5 py-5">
             <div class="containerForm">
                 <div class="d-flex justify-content-center">
-                    <form action="../controller/signup.php" method="post" enctype="multipart/form-data">
+                    <form action="../pages/smsConfirm.php" method="post" enctype="multipart/form-data">
                         <input type="hidden" name="accType" value="guardian">
                         <div class="form-group mt-1 pt-1">
                             <center>
@@ -260,7 +260,7 @@ footer * {
                         <div class="form-group">
                             <div class="row pb-5 mb-5">
                                 <div class="col-sm-12 col-xs-12 col-md-12 col-lg-12">
-                                    <button type="submit" class="form-control btn" id="submitBtn" style="background-color: #3466AA; color:white;">Submit</button>
+                                    <button type="submit" class="form-control btn" id="submitBtn" name="submitBtn" style="background-color: #3466AA; color:white;">Submit</button>
                                 </div>
                             </div>
                         </div>
@@ -322,6 +322,13 @@ footer * {
             //if password doesn't matched
             document.getElementById('alertBox').style.display = 'block';
             document.getElementById('errorMsg').innerHTML = "This StudentID doesn't exist";
+            console.log("okay");
+        }
+        else if(successSignal==8)
+        {
+            //if password doesn't matched
+            document.getElementById('alertBox').style.display = 'block';
+            document.getElementById('errorMsg').innerHTML = "Incorrect OTP, please try again";
             console.log("okay");
         }
 

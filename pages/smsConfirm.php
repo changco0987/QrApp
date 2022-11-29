@@ -34,20 +34,6 @@
         {
             $phone = $_POST['contactTb'];
         }
-
-
-        if($_POST['accType'] == 'visitor')
-        {
-            $data = new visitorModel();
-            $data->setOtp($otp);
-            UpdateAccountVisitor($conn,$data);//This will also send otp code in to the database
-        }
-        else if($_POST['accType'] == 'guardian')
-        {
-            $data = new guardianModel();
-            $data->setOtp($otp);
-            UpdateAccountGuardian($conn,$data);//This will also send otp code in to the database
-        }
         sendMessage($ch,$key,$device,$sim,$priority,$phone,$message);//This will send the sms notification to the student 
     }
 
@@ -242,6 +228,10 @@ footer * {
             <div class="container">
                 <div class="d-flex justify-content-center my-4 py-1">
                     <form action="../controller/signup.php" method="post" enctype="multipart/form-data">
+                            
+                        <input type="hidden" name="otp" value="<?php echo $otp;?>">
+
+
                         <input type="hidden" name="accType" value="<?php echo $_POST['accType'];?>">
                         <input type="hidden" name="fnameTb" value="<?php echo $_POST['fnameTb'];?>">
                         <input type="hidden" name="lnameTb" value="<?php echo $_POST['lnameTb'];?>">
