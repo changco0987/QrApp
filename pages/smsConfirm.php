@@ -22,7 +22,8 @@
     {
         //The message sent to mobile number
         $otp = rand(11111111, 99999999);
-        $message = "The OTP code for your QREM system reset password request is: ".$otp;
+        $message = "The OTP code for your QR Code Based health Monitoring system is: ".$otp;
+
 
                         
         //this will check if the guardian number is at the format +63
