@@ -1,4 +1,14 @@
 <?php
+    include_once '../db/connection.php';
+
+    include_once '../db/tb_visitor.php';
+    include_once '../model/visitorModel.php';
+    
+    include_once '../db/tb_guardian.php';
+    include_once '../model/guardianModel.php';
+    //sms API
+    include_once '../API/apiData.php';
+    include_once '../controller/smsAPI.php';
     session_start();
 
     
@@ -7,6 +17,38 @@
     if(!isset($_POST['submitBtn']))
     {
         header('Location: ../index.php');
+    }
+    else
+    {
+        //The message sent to mobile number
+        $otp = rand(11111111, 99999999);
+        $message = "The OTP code for your QREM system reset password request is: ".$otp;
+
+                        
+        //this will check if the guardian number is at the format +63
+        if(str_contains($_POST['contactTb'], '+63')==false)
+        {
+            $phone =  substr_replace($_POST['contactTb'],'+63',0,1);//this will replace the 0 in the start of the number and replace with +63
+        }
+        else
+        {
+            $phone = $_POST['contactTb'];
+        }
+
+
+        if($_POST['accType'] == 'visitor')
+        {
+            $data = new visitorModel();
+            $data->setOtp($otp);
+            UpdateAccountVisitor($conn,$data);//This will also send otp code in to the database
+        }
+        else if($_POST['accType'] == 'guardian')
+        {
+            $data = new guardianModel();
+            $data->setOtp($otp);
+            UpdateAccountGuardian($conn,$data);//This will also send otp code in to the database
+        }
+        sendMessage($ch,$key,$device,$sim,$priority,$phone,$message);//This will send the sms notification to the student 
     }
 
 
