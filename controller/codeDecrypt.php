@@ -258,6 +258,7 @@
                     $_SESSION['gateStat'] = $row['gateStat'];
                     $_SESSION['accType'] = 'student';
                     $_SESSION['id'] = $row['id'];
+                    $_SESSION['guardianName'] = $row['guardianName'];
                 
                     /*
                     //Going in/enter

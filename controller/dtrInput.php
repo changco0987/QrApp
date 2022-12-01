@@ -34,7 +34,6 @@
 
             if($_SESSION['gateStat'] == 'out' || $_SESSION['gateStat'] == null)
             {
-
                 //Going in/enter
                 //log to DTR
                 $dtr = new dtrModel();
@@ -129,12 +128,11 @@
                 //This will get the guardian details to check if the guardian has turned the notif on or off
                 $guardian = new guardianModel();
                 $result = ReadAccountGuardian($conn,$guardian);
-                
                 while($guardianRow = mysqli_fetch_assoc($result))
                 {
                     $guardianName = $guardianRow['firstname'].' '.$guardianRow['lastname'];
                     //this will find the guardian name
-                    if(strtolower($guardianName) == strtolower($row['guardianName']))
+                    if(strtolower($guardianName) == strtolower($_SESSION['guardianName']))
                     {
                         //This will check if the guardian notification is on or off to send an sms
                         if($guardianRow['notification'] == true)
@@ -152,6 +150,7 @@
     
                             //Removed temporarily to avoid while on QR scanning testing
                             sendMessage($ch,$key,$device,$sim,$priority,$phone,$message);//This will send the sms notification to the student guardian
+                            
                         }
                     }
                 }
