@@ -45,33 +45,37 @@
     <script src="javascript/linked.js"></script>
 
     <style>
-    #context1{
-        height: max-content;
-    }
 
     .imgEvent{
-        width: 100%; 
+        max-width: 100%;
+        width: 100%\9; /* ie8 */
         height: 874px;
     }
         
 @media screen and (max-height: 850px) {
 
 .imgEvent{  
-   height: 500px;
+        max-width: 100%;
+        width: 100%\9; /* ie8 */
+        height: 100%;
 }
 }
 
 @media screen and (max-width: 650px) {
 
 .imgEvent{  
-   height: 500px;
+        max-width: 100%;
+        width: 100%\9; /* ie8 */
+        height: 100%;
 }
 }
 
 @media screen and (max-width: 450px) {
 
 .imgEvent{  
-   height: 330px;
+        max-width: 100%;
+        width: 100%\9; /* ie8 */
+        height: 100%;
 }
 }
 
@@ -79,7 +83,9 @@
 @media screen and (max-width: 360px) {
     
 .imgEvent{  
-   height: 500px;
+        max-width: 100%;
+        width: 100%\9; /* ie8 */
+        height: 100%;
 }
 }
 
@@ -87,7 +93,9 @@
 @media screen and (max-width: 320px) {
 
 .imgEvent{  
-   height: 500px;
+        max-width: 100%;
+        width: 100%\9; /* ie8 */
+        height: 100%;
 }
 
 }
