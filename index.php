@@ -45,6 +45,10 @@
     <script src="javascript/linked.js"></script>
 
     <style>
+    #context1{
+        height: max-content;
+    }
+
     .imgEvent{
         width: 100%; 
         height: 874px;
@@ -259,9 +263,9 @@
                     </div>
                 </div>
             </div>
-            
         </div>
     </div>
+
     <!--Footer Section-->
     <div class="row no-gutters">
     <footer class=" text-center text-lg-end fixed-bottom">

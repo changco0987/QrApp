@@ -414,7 +414,7 @@ label{
                         <div class="row pt-1 mt-1">
                             <div class="col-sm-12 col-xs-12 col-md-12 col-lg-12">
                               <label class="d-flex align-items-start" for="contentTb">Content</label>
-                              <textarea type="text" class="form-control form-control-sm" id="contentTb" name="contentTb" placeholder="Elaborate the context max of 500 letters" maxlength="500"style="height: 125px;"></textarea>
+                              <textarea type="text" class="form-control form-control-sm" id="contentTb" name="contentTb" placeholder="Elaborate the context max of 255 letters" maxlength="255"style="height: 125px;"></textarea>
                             </div>
                         </div>
                     </div>
