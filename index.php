@@ -56,8 +56,8 @@
 
 .imgEvent{  
         max-width: 100%;
-        width: 100%\9; /* ie8 */
-        height: 100%;
+        width: 100%; /* ie8 */
+        height: 585px;
 }
 }
 
@@ -65,8 +65,8 @@
 
 .imgEvent{  
         max-width: 100%;
-        width: 100%\9; /* ie8 */
-        height: 100%;
+        width: 100%; /* ie8 */
+        height: 20rem;
 }
 }
 
@@ -74,8 +74,8 @@
 
 .imgEvent{  
         max-width: 100%;
-        width: 100%\9; /* ie8 */
-        height: 100%;
+        width: 100%; /* ie8 */
+        height: 20rem;
 }
 }
 
@@ -84,8 +84,8 @@
     
 .imgEvent{  
         max-width: 100%;
-        width: 100%\9; /* ie8 */
-        height: 100%;
+        width: 100%; /* ie8 */
+        height: 20rem;
 }
 }
 
@@ -94,8 +94,8 @@
 
 .imgEvent{  
         max-width: 100%;
-        width: 100%\9; /* ie8 */
-        height: 100%;
+        width: 100%; /* ie8 */
+        height: 20rem;
 }
 
 }
@@ -159,9 +159,9 @@
                                     if($row['imageName']==null)
                                     {
                                         ?>
-                                            <div class="carousel-item active">
+                                            <div class="carousel-item active my-2 py-1">
                                                 <img class="d-block imgEvent" src="asset/sti.jpg" alt="<?php echo $rowCount. 'slide';?>">
-                                                <div class="carousel-caption">
+                                                <div class="carousel-caption my-2 py-2">
                                                     <h4 id="announceHead1"><?php echo $row['heading'];?></h4>
                                                     <p id="context1" class="text-justify"><?php echo $row['content'];?></p>
                                                 </div>
@@ -171,9 +171,9 @@
                                     else
                                     {
                                         ?>
-                                            <div class="carousel-item active">
+                                            <div class="carousel-item active my-2 py-1">
                                                 <img class="d-block imgEvent" src="upload/events/<?php echo $row['imageName'];?>" alt="<?php echo $rowCount. 'slide';?>">
-                                                <div class="carousel-caption">
+                                                <div class="carousel-caption my-2 py-2">
                                                     <h4 id="announceHead1"><?php echo $row['heading'];?></h4>
                                                     <p id="context1" class="text-justify"><?php echo $row['content'];?></p>
                                                 </div>
@@ -188,9 +188,9 @@
                                     if($row['imageName']==null)
                                     {
                                         ?>
-                                            <div class="carousel-item">
+                                            <div class="carousel-item my-2 py-1">
                                                 <img class="d-block imgEvent" src="asset/sti.jpg" alt="<?php echo $rowCount. 'slide';?>">
-                                                <div class="carousel-caption">
+                                                <div class="carousel-caption my-2 py-2">
                                                     <h4 id="announceHead1"><?php echo $row['heading'];?></h4>
                                                     <p id="context1" class="text-justify"><?php echo $row['content'];?></p>
                                                 </div>
@@ -200,9 +200,9 @@
                                     else
                                     {
                                         ?>
-                                            <div class="carousel-item">
+                                            <div class="carousel-item my-2 py-1">
                                                 <img class="d-block imgEvent" src="upload/events/<?php echo $row['imageName'];?>" alt="<?php echo $rowCount. 'slide';?>" >
-                                                <div class="carousel-caption">
+                                                <div class="carousel-caption my-2 py-2">
                                                     <h4 id="announceHead1"><?php echo $row['heading'];?></h4>
                                                     <p id="context1" class="text-justify"><?php echo $row['content'];?></p>
                                                 </div>
