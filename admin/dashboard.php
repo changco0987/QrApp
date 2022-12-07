@@ -278,7 +278,7 @@ label{
         <i class="bi bi-calendar-event mr-1"></i>Events
         </button>
         <div class="dropdown-menu" style="border-radius: 15px;">
-            <a class="dropdown-item active" href="../pages/reporthc.php"><i class="bi bi-calendar-event mr-1"></i>Events</a>
+            <a class="dropdown-item active" href="../admin/dashboard.php"><i class="bi bi-calendar-event mr-1"></i>Events</a>
             <a class="dropdown-item" href="../admin/dashboardHoliday.php"><i class="bi bi-flag-fill mr-1"></i>Holidays</a>
             <a class="dropdown-item" href="../admin/dashboardExam.php"><i class="bi bi-pencil-fill mr-1"></i>Examination Schedule</a>
             <a class="dropdown-item" href="../admin/dashboardEnrollment.php"><i class="bi bi-calendar-check-fill mr-1"></i>Enrollment</a>

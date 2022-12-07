@@ -694,6 +694,9 @@ $(function() {
                     //to forge the get url
                     url.searchParams.set('temp', inputTempVal);
                     window.history.replaceState(null, null, url); // or pushState
+                    //This will play the audio after the temp scan
+                    var audio = new Audio('Dtmf-5.wav');
+                    audio.play();
 
                     submitTemp(inputTempVal);
 
@@ -707,6 +710,9 @@ $(function() {
                     $('#tempTxt').html("Temp: "+inputTempVal+"°C normal temperature");
                     url.searchParams.set('temp', inputTempVal);
                     window.history.replaceState(null, null, url); // or pushState
+                    //This will play the audio after the temp scan
+                    var audio = new Audio('Dtmf-5.wav');
+                    audio.play();
 
                     $("#tempInput").val('');  
                     $('#tempInput').blur();
