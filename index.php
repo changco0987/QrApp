@@ -109,7 +109,7 @@
 
 
     <link rel="icon" href="asset/qr.png">
-    <title>Entrance Monitoring sys - Home page</title>
+    <title>Health Monitoring sys - Home page</title>
 </head>
 <body>
 

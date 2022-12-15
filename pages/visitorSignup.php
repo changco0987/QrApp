@@ -178,7 +178,7 @@ footer * {
 
     </style>
     <link rel="icon" href="../asset/qr.png">
-    <title>Entrance Monitoring sys - Sign up</title>
+    <title>Health Monitoring sys - Sign up</title>
 </head>
 <body>
     
@@ -186,7 +186,7 @@ footer * {
     <nav class="navbar navbar-light" style="background-color: #114084;">
         <a class="navbar-brand" href="#" style="font-weight:bold; color: whitesmoke; text-shadow: 1px 1px #1C1C1C;">
         <img src="../asset/qr.png" width="40" height="40" class="d-inline-block align-top" alt="">
-            QR <small style="color: whitesmoke; text-shadow: 1px 1px #1C1C1C;">Entrance Monitoring System</small>
+            QR <small style="color: whitesmoke; text-shadow: 1px 1px #1C1C1C;">Code Based Health Monitoring System</small>
         </a>
      </nav>
     <div class="row myRow mt-5 pt-5 mx-auto">

@@ -220,7 +220,7 @@ footer * {
     </style>
 
     <link rel="icon" href="../asset/qr.png">
-    <title>Entrance Monitoring sys - Account Settings</title>
+    <title>Health Monitoring sys - Account Settings</title>
 </head>
 <body>
     <div class="row myRow mt-5 pt-5 mx-auto">
