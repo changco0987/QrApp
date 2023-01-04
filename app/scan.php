@@ -752,6 +752,8 @@ $(function() {
                 $("#timeInInput").val(''); 
                 $('#timeInInput').blur();
                 $('#timeInInput').hide();
+                var audio = new Audio('Dtmf-9.wav');
+                audio.play();
             }
             else
             {
