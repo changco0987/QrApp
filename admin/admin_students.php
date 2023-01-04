@@ -569,6 +569,7 @@ td{
                     if($row['status']=='locked')
                     {
                       ?>
+                      <script>console.log(<?php echo json_encode($convertedQRData);?>);</script>
                         <tr style="background-color:#e9808d;">
                       <?php
                     }

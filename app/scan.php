@@ -707,20 +707,20 @@ $(function() {
                 }
                 else
                 {
-                    if(inputTempVal<=36)
-                    {
-                        //this will show the inputted temp and hide the temp input field
-                        console.log('not high');
-                        $('#tempTxt').html("Temp: "+36+"°C normal temperature");
-                        url.searchParams.set('temp', 36);
-                    }
-                    else
-                    {
-                        //this will show the inputted temp and hide the temp input field
-                        console.log('not high');
-                        $('#tempTxt').html("Temp: "+inputTempVal+"°C normal temperature");
-                        url.searchParams.set('temp', inputTempVal);
-                    }
+                    /*
+                        if(inputTempVal<=36)
+                        {
+                            //this will show the inputted temp and hide the temp input field
+                            console.log('not high');
+                            $('#tempTxt').html("Temp: "+36+"°C normal temperature");
+                            url.searchParams.set('temp', 36);
+                        }
+                    */
+                    //this will show the inputted temp and hide the temp input field
+                    console.log('not high');
+                    $('#tempTxt').html("Temp: "+inputTempVal+"°C normal temperature");
+                    url.searchParams.set('temp', inputTempVal);
+                
 
                     window.history.replaceState(null, null, url); // or pushState
                     //This will play the audio after the temp scan
