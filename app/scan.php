@@ -215,7 +215,7 @@ h6{
                     <input id="codeInput" onchange="getVal()" onblur="this.focus()" autofocus/> 
 
 
-                    <input type="number" id="tempInput" oninput="clearVal()" onchange="getTemp()" onblur="this.focus()" step="0.01" autofocus/> 
+                    <input type="number" id="tempInput" oninput="clearVal()" onchange="getTemp()" onblur="this.focus()" step="0.01" min="-999" max="999" autofocus/> 
 
 
                     <input id="timeInInput" oninput="clearVal()" onchange="getTimeIn()" onblur="this.focus()" autofocus/> 
@@ -269,42 +269,45 @@ h6{
         {
             try
             {
-                var http = new XMLHttpRequest();
-                if(tempValue > 37.50)
+                if(clearVal()==false)
                 {
-                    console.log('failed');
-                    http.open("POST", "../controller/inputTemp.php", true);
-                }
-                else
-                {
-                    console.log('success');
-                    http.open("POST", "../controller/dtrInput.php", true);
-                }
-                http.setRequestHeader("Content-type","application/x-www-form-urlencoded");
-                //This is the form input fields data
-                var params = "tempInput="+tempValue; // probably use document.getElementById(...).value
-                http.send(params);
-                http.onload = function() 
-                {
-                    var data = http.responseText;
-                    if(data=='error')
+                    var http = new XMLHttpRequest();
+                    if(tempValue > 37.50)
                     {
-                        $('#errorTxt').show();
-                        $('#errorTxt').html('Inputted Temp error!');
-                        const myTimeout = setTimeout(revokeView, 5000);
-                    }
-                    else if(data=='ok')
-                    {
-                        const myTimeout = setTimeout(revokeView, 4000);
+                        console.log('failed');
+                        http.open("POST", "../controller/inputTemp.php", true);
                     }
                     else
                     {
-                        //console.log(data);
-                        showTimeIn(data);
-                        console.log(data);
+                        console.log('success');
+                        http.open("POST", "../controller/dtrInput.php", true);
                     }
-                    //returnDate();
-                    //console.log(params);
+                    http.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+                    //This is the form input fields data
+                    var params = "tempInput="+tempValue; // probably use document.getElementById(...).value
+                    http.send(params);
+                    http.onload = function() 
+                    {
+                        var data = http.responseText;
+                        if(data=='error')
+                        {
+                            $('#errorTxt').show();
+                            $('#errorTxt').html('Inputted Temp error!');
+                            const myTimeout = setTimeout(revokeView, 5000);
+                        }
+                        else if(data=='ok')
+                        {
+                            const myTimeout = setTimeout(revokeView, 4000);
+                        }
+                        else
+                        {
+                            //console.log(data);
+                            showTimeIn(data);
+                            console.log(data);
+                        }
+                        //returnDate();
+                        //console.log(params);
+                    }
                 }
             }
             catch(err)
@@ -648,17 +651,27 @@ $(function() {
         {
          
             var inputVal = $("#tempInput").val();
-            var result = inputVal.includes('E');
-            if(result)
+            if(inputVal.includes('E'))
             {
                 $("#tempInput").val('');
+                return true;
             }
+            /*
+                var result = inputVal.includes('E');
+                if(result)
+                {
+                    $("#tempInput").val('');
+                    return true;
+                }
+            */
+            return false;
         }    
         
         //This will get the qr input
         function getVal()
         {
             var inputVal = $("#codeInput").val();
+	        inputVal = inputVal.replaceAll('"','');
             console.log('QR data: '+inputVal);
             submitForm(inputVal);
             $("#codeInput").val('');
@@ -671,69 +684,73 @@ $(function() {
         {
             inputTempVal = $("#tempInput").val();
             console.log('Temp data: '+inputTempVal);
-   
-            var length = inputTempVal.length;
-            if(length>5)
+            
+            if(clearVal()==false)
             {
-                $("#tempInput").val('');
-            }
-            else
-            {
-                
-                if(inputTempVal>37.50)
+                var length = inputTempVal.length;
+                if(length>5)
                 {
-                    console.log('High temp');
-                    $('#tempTxt').html("Temp: "+inputTempVal+"°C high temperature");
-
-                    //This will show the error message before reseting all display
-                    $('#errorTxt').show();
-                    $('#errorTxt').html('Please Try again later');
-                    $("#tempInput").val('');  
-                    $('#tempInput').blur();//To prevent from inputting another value
-
-                    //to forge the get url
-                    url.searchParams.set('temp', inputTempVal);
-                    window.history.replaceState(null, null, url); // or pushState
-                    //This will play the qr after the temp scan
-                    var audio = new Audio('Dtmf-5.wav');
-                    audio.play();
-
-                    submitTemp(inputTempVal);
-
-                    //window.history.replaceState(null, null, "?temp="+inputTempVal);
-
+                    $("#tempInput").val('');
                 }
-                else
+                else if(length>1)
                 {
-                    /*
-                        if(inputTempVal<=36)
-                        {
-                            //this will show the inputted temp and hide the temp input field
-                            console.log('not high');
-                            $('#tempTxt').html("Temp: "+36+"°C normal temperature");
-                            url.searchParams.set('temp', 36);
-                        }
-                    */
-                    //this will show the inputted temp and hide the temp input field
-                    console.log('not high');
-                    $('#tempTxt').html("Temp: "+inputTempVal+"°C normal temperature");
-                    url.searchParams.set('temp', inputTempVal);
-                
+                    
+                    if(inputTempVal>37.50)
+                    {
+                        console.log('High temp');
+                        $('#tempTxt').html("Temp: "+inputTempVal+"°C high temperature");
 
-                    window.history.replaceState(null, null, url); // or pushState
-                    //This will play the audio after the temp scan
-                    var audio = new Audio('Dtmf-5.wav');
-                    audio.play();
+                        //This will show the error message before reseting all display
+                        $('#errorTxt').show();
+                        $('#errorTxt').html('Please Try again later');
+                        $("#tempInput").val('');  
+                        $('#tempInput').blur();//To prevent from inputting another value
 
-                    $("#tempInput").val('');  
-                    $('#tempInput').blur();
-                    $('#tempInput').hide();
+                        //to forge the get url
+                        url.searchParams.set('temp', inputTempVal);
+                        window.history.replaceState(null, null, url); // or pushState
+                        //This will play the qr after the temp scan
+                        var audio = new Audio('Dtmf-5.wav');
+                        audio.play();
 
-                    //This will occur after the temp input 
-                    $('#timeInInput').show();//this will show the temp input to input the user temp
-                    $('#timeInInput').focus();
+                        submitTemp(inputTempVal);
+
+                        //window.history.replaceState(null, null, "?temp="+inputTempVal);
+
+                    }
+                    else
+                    {
+                        /*
+                            if(inputTempVal<=36)
+                            {
+                                //this will show the inputted temp and hide the temp input field
+                                console.log('not high');
+                                $('#tempTxt').html("Temp: "+36+"°C normal temperature");
+                                url.searchParams.set('temp', 36);
+                            }
+                        */
+                        //this will show the inputted temp and hide the temp input field
+                        console.log('not high');
+                        $('#tempTxt').html("Temp: "+inputTempVal+"°C normal temperature");
+                        url.searchParams.set('temp', inputTempVal);
+                    
+
+                        window.history.replaceState(null, null, url); // or pushState
+                        //This will play the audio after the temp scan
+                        var audio = new Audio('Dtmf-5.wav');
+                        audio.play();
+
+                        $("#tempInput").val('');  
+                        $('#tempInput').blur();
+                        $('#tempInput').hide();
+
+                        //This will occur after the temp input 
+                        $('#timeInInput').show();//this will show the temp input to input the user temp
+                        $('#timeInInput').focus();
+                    }
                 }
             }
+
 
         }
 

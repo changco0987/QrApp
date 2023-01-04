@@ -259,9 +259,11 @@
                                 {
                                     $prevQRData = array("title"=>'qremsystem', "accType"=>$_SESSION['accType'], "username"=>$_SESSION['username'], "qr_ExDate"=>$_SESSION['qr_ExDate']);
                                     $convertedQRData = base64_encode(serialize($prevQRData));
+                                    
                                     ?>
                                         <script>
                                             var data = <?php echo json_encode($convertedQRData);?>;
+	                                        data = data.replaceAll('"','');
                                             generateQRCode(data);
                                         </script>
                                     <?php
