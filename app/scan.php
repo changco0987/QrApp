@@ -133,7 +133,7 @@
     }
 }
 
-#codeInput{
+#codeInput,#tempInput, #timeInInput{
     width: 0;
     height: 0;
     outline:none!important;
@@ -751,6 +751,7 @@ $(function() {
                 }
             }
 
+            const myTimeout = setTimeout(revokeView, 2000);
 
         }
 

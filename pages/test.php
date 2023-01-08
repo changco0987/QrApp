@@ -16,7 +16,13 @@
 		
 	console.log('wala');
 	}
+	
+	const myTimeout = setTimeout(test,5000);
 	data = data.replaceAll('"','');
-	console.log(data);
+	//console.log(data);
 
+function test()
+{
+	console.log('ok');
+}
 </script>
