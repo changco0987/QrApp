@@ -445,6 +445,9 @@ h6{
                         $('#typeLb').html('('+arrVal.accType+')');
                         $('#contactLb').html('Contact #: '+arrVal.contact);
                         $('#addressLb').html('Address: '+arrVal.address);
+                        
+                        var audio = new Audio('Dtmf-6.wav');
+                        audio.play();
 
                         $('#tempTxt').show();//This is the temperature value/data container to display
                         $('#timeLb').html('Time: '+arrVal.time);
@@ -483,6 +486,9 @@ h6{
                         $('#typeLb').html('('+arrVal.accType+')');
                         $('#contactLb').html('Contact #: '+arrVal.contact);
                         $('#addressLb').html('Address: '+arrVal.address);
+                        
+                        var audio = new Audio('Dtmf-6.wav');
+                        audio.play();
 
                         $('#tempTxt').show();//This is the temperature value/data container to display
                         $('#timeLb').html('Time: '+arrVal.time);
@@ -525,6 +531,9 @@ h6{
                         $('#contactLb').html('Contact #: '+arrVal.contact);
                         $('#addressLb').html('Address: '+arrVal.address);
                         $('#guardianLb').html("Parent's Name: "+arrVal.guardianName);
+                        
+                        var audio = new Audio('Dtmf-6.wav');
+                        audio.play();
 
                         $('#tempTxt').show();//This is the temperature value/data container to display
                         $('#timeLb').html('Time: '+arrVal.time);
@@ -564,6 +573,9 @@ h6{
                         $('#typeLb').html('('+arrVal.accType+')');
                         $('#deptLb').html("Dept: "+arrVal.dept);
                         $('#contactLb').html('Contact #: '+arrVal.contact);
+                        
+                        var audio = new Audio('Dtmf-6.wav');
+                        audio.play();
 
                         $('#tempTxt').show();//This is the temperature value/data container to display
                         $('#timeLb').html('Time: '+arrVal.time);
@@ -577,7 +589,8 @@ h6{
                         console.log(arrVal.state);
                         const myTimeout = setTimeout(revokeView, 1000);
                     }
-                    //const myTimeout = setTimeout(revokeView, 5000);
+
+                    //const myTimeout = setTimeout(revokeView, 10000);
                     //console.log(arrVal.accType);
                 }
             
@@ -709,9 +722,7 @@ $(function() {
                         //to forge the get url
                         url.searchParams.set('temp', inputTempVal);
                         window.history.replaceState(null, null, url); // or pushState
-                        //This will play the qr after the temp scan
-                        var audio = new Audio('Dtmf-5.wav');
-                        audio.play();
+                        
 
                         submitTemp(inputTempVal);
 
@@ -751,7 +762,7 @@ $(function() {
                 }
             }
 
-            const myTimeout = setTimeout(revokeView, 2000);
+            //const myTimeout = setTimeout(revokeView, 2000);
 
         }
 
