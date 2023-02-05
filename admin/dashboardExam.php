@@ -91,6 +91,9 @@ body {
   margin: 0;
   font-family: "Lato", sans-serif;
 }
+td{
+  font-size: 14px;
+}
 
 .sidebar {
   margin: 0;
@@ -287,6 +290,7 @@ label{
                   <th scope="col" class="text-center" >Content</th>
                   <th scope="col" class="text-center" >Image</th>
                   <th scope="col" class="text-center" >Date</th>
+                  <th scope="col" class="text-center" >Status</th>
                   <th colspan="3" class="text-center" scope="col">Actions</th><!-- Edit button and Delete button-->
               </tr>
           </thead>
@@ -329,6 +333,9 @@ label{
                               if($row['isShow']==0)
                               {
                                 ?>
+                                  <!-- Status -->
+                                  <td>Unpublished</td>
+
                                   <!--Publish Button-->
                                   <td id="<?php echo $row['id'];?>">
                                     <form action="../controller/publish.php" method="POST" enctype="multipart/form-data">
@@ -344,6 +351,9 @@ label{
                               else
                               {
                                 ?>
+                                  <!-- Status -->
+                                  <td>Published</td>
+
                                   <!--Publish Button-->
                                   <td id="<?php echo $row['id'];?>">
                                     <form action="../controller/publish.php" method="POST" enctype="multipart/form-data">

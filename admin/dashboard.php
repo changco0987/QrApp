@@ -94,7 +94,9 @@ body {
   margin: 0;
   font-family: "Lato", sans-serif;
 }
-
+td{
+  font-size: 14px;
+}
 .sidebar {
   margin: 0;
   padding: 0;
@@ -308,6 +310,7 @@ label{
                   <th scope="col" class="text-center" >Content</th>
                   <th scope="col" class="text-center" >Image</th>
                   <th scope="col" class="text-center" >Date</th>
+                  <th scope="col" class="text-center" >Status</th>
                   <th colspan="3" class="text-center" scope="col">Actions</th><!-- Edit button and Delete button-->
               </tr>
           </thead>
@@ -350,6 +353,9 @@ label{
                               if($row['isShow']==0)
                               {
                                 ?>
+                                  <!-- Status -->
+                                  <td>Unpublished</td>
+
                                   <!--Publish Button-->
                                   <td id="<?php echo $row['id'];?>">
                                     <form action="../controller/publish.php" method="POST" enctype="multipart/form-data">
@@ -359,19 +365,21 @@ label{
                                       <button type="submit" class="btn btn-sm d-flex justify-content-start btn-success"><i class="bi bi-paperclip mr-1"></i>Publish</button>
                                     </form>
                                   </td>
-
                                 <?php
                               } 
                               else
                               {
                                 ?>
+                                  <!-- Status -->
+                                  <td>Published</td>
+
                                   <!--Publish Button-->
                                   <td id="<?php echo $row['id'];?>">
                                     <form action="../controller/publish.php" method="POST" enctype="multipart/form-data">
                                       <input type="hidden" name="typeTb" id="typeTb" value="event">
                                       <input type="hidden" name="idTb" id="idTb" value="<?php echo $row['id'];?>">
                                       <input type="hidden" name="publishTb" id="publishTb" value="false">
-                                      <button type="submit" class="btn btn-sm d-flex justify-content-start btn-secondary"><i class="bi bi-x-circle mr-1"></i>Unpublished</button>
+                                      <button type="submit" class="btn btn-sm d-flex justify-content-start btn-secondary"><i class="bi bi-x-circle mr-1"></i>Unpublish</button>
                                     </form>
                                   </td>
                                 <?php
