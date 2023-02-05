@@ -133,7 +133,7 @@
     }
 }
 
-#codeInput,#tempInput, #timeInInput{
+#codeInput, #timeInInput{
     width: 0;
     height: 0;
     outline:none!important;
@@ -308,6 +308,10 @@ h6{
                         //returnDate();
                         //console.log(params);
                     }
+                }
+                else
+                {
+                    $("#tempInput").html('');
                 }
             }
             catch(err)
@@ -760,6 +764,10 @@ $(function() {
                         $('#timeInInput').focus();
                     }
                 }
+            }
+            else
+            {
+                $("#tempInput").val('');
             }
 
             //const myTimeout = setTimeout(revokeView, 2000);
