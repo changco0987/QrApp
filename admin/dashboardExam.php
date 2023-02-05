@@ -269,7 +269,7 @@ label{
     </div>
 
     <div class="col-sm-4 col-xs-2 col-md-4 col-lg-2 col-xl-3 pl-3 pr-2 my-2 py-2 d-flex justify-content-end h-100 mx-auto my-auto">
-          <button type="button" class="btn d-flex justify-content-start btn-primary" href="../controller/adminWipeData.php" style="background-color:#3466AA;" data-toggle="modal" data-target="#addAnnouncement"><i class="bi bi-plus-square mr-2"></i>Add Announcement</button>
+          <button type="button" class="btn d-flex justify-content-start btn-primary" href="../controller/adminWipeData.php" style="background-color:#3466AA;" data-toggle="modal" data-target="#addAnnouncement"><i class="bi bi-plus-square mr-2"></i>Add</button>
     </div>
   </div>
 
