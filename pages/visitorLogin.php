@@ -210,7 +210,9 @@ footer * {
                         <div class="form-group">
                             <div class="row pt-1 mt-1">
                                 <div class="col-sm-12 col-xs-12 col-md-12 col-lg-12">
-                                    <input type="password" class="form-control" id="passwordTb" name="passwordTb" placeholder="Password" minlength="8" maxlength="20" required>
+                                    <input type="password" class="form-control userPass" id="passwordTb" name="passwordTb" placeholder="Password" minlength="8" maxlength="20" required>
+                                    <input type="checkbox" name="showPass" id="showPass">
+                                    <small><label for="showPass">Show password</label></small>
                                 </div>
                             </div>
                         </div>
@@ -261,6 +263,20 @@ footer * {
 </body>
     <!--alert message script-->
     <script>
+        //To show password
+        const input = document.querySelector("#passwordTb");
+        $('#showPass').click(function(){
+
+            if (input.getAttribute("type") === "password")
+            {
+                input.setAttribute("type", "text");
+            }
+            else
+            {
+                input.setAttribute("type", "password");
+            }
+        });
+
         document.getElementById('successBox').style.display = 'none';
         document.getElementById('alertBox').style.display = 'none';
         var successSignal = localStorage.getItem('state');

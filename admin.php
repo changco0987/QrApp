@@ -103,6 +103,8 @@
                                 <div class="col-sm-12 col-xs-12 col-md-12 col-lg-12">
                                     <label class="d-flex align-items-start" for="adminPasswordTb">Password</label>
                                     <input type="password" class="form-control" id="adminPasswordTb" name="adminPasswordTb" placeholder="" minlength="8" maxlength="20" required>
+                                    <input type="checkbox" name="showPass" id="showPass">
+                                    <small><label for="showPass">Show password</label></small>
                                 </div>
                             </div>
                         </div>
@@ -127,6 +129,20 @@
 <!--alert message script-->
 <script>
  
+        //To show password
+        const input = document.querySelector("#adminPasswordTb");
+        $('#showPass').click(function(){
+
+            if (input.getAttribute("type") === "password")
+            {
+                input.setAttribute("type", "text");
+            }
+            else
+            {
+                input.setAttribute("type", "password");
+            }
+        });
+
         document.getElementById('successBox').style.display = 'none';
         var successSignal = localStorage.getItem('state');
 

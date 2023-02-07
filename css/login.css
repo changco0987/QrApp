@@ -16,8 +16,8 @@ body{
     left: 50%;
     transform: translateX(-50%) translateY(-50%);
     border-radius: 15px;
-    width: 400px;
-    height: 300px;
+    width: max-content;
+    height: max-content;
     box-shadow: 1px 1px 15px 3px black;
 }
 
