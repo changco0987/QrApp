@@ -344,6 +344,13 @@ footer * {
             document.getElementById('errorMsg').innerHTML = "Password doesn't match!";
             console.log("okay");
         }
+        else if(successSignal==5)
+        {
+            //if password doesn't matched
+            document.getElementById('alertBox').style.display = 'block';
+            document.getElementById('errorMsg').innerHTML = "Password doesn't match, please check carefully and try again";
+            console.log("okay");
+        }
         else if(successSignal==8)
         {
             //if password doesn't matched

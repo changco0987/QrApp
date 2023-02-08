@@ -25,6 +25,7 @@
             $data = new visitorModel();
             $data->setUsername($_POST['usernameTb']);
             $data->setPassword($_POST['passwordTb']);
+
             //this will check the username if already used
             $read = ReadAccountVisitor($conn,$data);
             $row = mysqli_num_rows($read);
@@ -38,14 +39,25 @@
             {
                 if(checkSpaces($data->getUsername(),$data->getPassword()) == false)
                 {
-                    $data->setFirstname($_POST['fnameTb']);
-                    $data->setLastname($_POST['lnameTb']);
-                    $data->setAddress($_POST['addressTb']);
-                    $data->setContact_number($_POST['contactTb']);
-                    $data->setStatus('unlock');
-
-                    CreateAccountVisitor($conn,$data);
-                    echo '<script> localStorage.setItem("state",4); window.location = "../pages/visitorLogin.php";</script>';   
+                    //check if the passowrd is correctly inputted 2x
+                    if($_POST['passwordTb'] == $_POST['confirmPasswordTb'])
+                    {
+                        $data->setFirstname($_POST['fnameTb']);
+                        $data->setLastname($_POST['lnameTb']);
+                        $data->setAddress($_POST['addressTb']);
+                        $data->setContact_number($_POST['contactTb']);
+                        $data->setStatus('unlock');
+    
+                        CreateAccountVisitor($conn,$data);
+                        echo '<script> localStorage.setItem("state",4); window.location = "../pages/visitorLogin.php";</script>';
+                        exit;
+                    }
+                    else
+                    {
+                        //Throws back to the signup page and show an error saying, confirm password doesn't match
+                        echo '<script> localStorage.setItem("state",5); window.location = "../pages/visitorSignup.php";</script>';
+                        
+                    }
                     exit;
                 }
                 else

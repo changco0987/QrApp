@@ -234,12 +234,14 @@ footer * {
                             
                         <input type="hidden" name="otp" value="<?php echo $otp;?>">
 
+                        <?php echo $otp;?>
 
                         <input type="hidden" name="accType" value="<?php echo $_POST['accType'];?>">
                         <input type="hidden" name="fnameTb" value="<?php echo $_POST['fnameTb'];?>">
                         <input type="hidden" name="lnameTb" value="<?php echo $_POST['lnameTb'];?>">
                         <input type="hidden" name="usernameTb" value="<?php echo $_POST['usernameTb'];?>">
                         <input type="hidden" name="passwordTb" value="<?php echo $_POST['passwordTb'];?>">
+                        <input type="hidden" name="confirmPasswordTb" value="<?php echo $_POST['confirmPasswordTb'];?>">
                         <input type="hidden" name="addressTb" value="<?php echo $_POST['addressTb'];?>">
                         <input type="hidden" name="contactTb" value="<?php echo $_POST['contactTb'];?>">
                         <?php
