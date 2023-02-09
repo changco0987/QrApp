@@ -91,43 +91,53 @@
             {
                 if(checkSpaces($data->getUsername(),$data->getPassword()) == false)
                 {
-                    //this will check the studentid existance 
-                    $studentId = str_replace(' ', '', $_POST['studentidTb']);//to remove all spaces in the inputted studentid
-                    $student = new studentModel();
-                    $result = ReadStudent($conn,$student);
-
-                    while($studentDbRow = mysqli_fetch_assoc($result))
+                    //check if the passowrd is correctly inputted 2x
+                    if($_POST['passwordTb'] == $_POST['confirmPasswordTb'])
                     {
-                        $rowStudentId = str_replace(' ', '', $studentDbRow['studentId']);//to remove all spaces in the retrieved studentid
-                        if(strtolower($studentId) == strtolower($rowStudentId))
+                        //this will check the studentid existance 
+                        $studentId = str_replace(' ', '', $_POST['studentidTb']);//to remove all spaces in the inputted studentid
+                        $student = new studentModel();
+                        $result = ReadStudent($conn,$student);
+    
+                        while($studentDbRow = mysqli_fetch_assoc($result))
                         {
-                            //This will occur when the student id is existed in the database
-                            $data->setFirstname($_POST['fnameTb']);
-                            $data->setLastname($_POST['lnameTb']);
-                            $data->setAddress($_POST['addressTb']);
-                            $data->setContact_number($_POST['contactTb']);
-                            $data->setStudentId($_POST['studentidTb']);
-                            $data->setStatus('unlock');
-
-                            
-                            if(isset($_POST['notifCheckbox']))
+                            $rowStudentId = str_replace(' ', '', $studentDbRow['studentId']);//to remove all spaces in the retrieved studentid
+                            if(strtolower($studentId) == strtolower($rowStudentId))
                             {
-                                $data->setNotification($_POST['notifCheckbox']);
+                                //This will occur when the student id is existed in the database
+                                $data->setFirstname($_POST['fnameTb']);
+                                $data->setLastname($_POST['lnameTb']);
+                                $data->setAddress($_POST['addressTb']);
+                                $data->setContact_number($_POST['contactTb']);
+                                $data->setStudentId($_POST['studentidTb']);
+                                $data->setStatus('unlock');
+    
+                                
+                                if(isset($_POST['notifCheckbox']))
+                                {
+                                    $data->setNotification($_POST['notifCheckbox']);
+                                }
+                                else
+                                {
+                                    $data->setNotification('false');
+                                }
+                                
+            
+                                CreateAccountGuardian($conn,$data);
+                                echo '<script> localStorage.setItem("state",4); window.location = "../pages/guardianLogin.php";</script>';  
+                                exit;
                             }
-                            else
-                            {
-                                $data->setNotification('false');
-                            }
-                            
-        
-                            CreateAccountGuardian($conn,$data);
-                            echo '<script> localStorage.setItem("state",4); window.location = "../pages/guardianLogin.php";</script>';  
-                            exit;
                         }
+    
+                        //This will return the studentid doesn't exist message
+                        echo '<script> localStorage.setItem("state",4); window.location = "../pages/guardianSignup.php";</script>';  
                     }
-
-                    //This will return the studentid doesn't exist message
-                    echo '<script> localStorage.setItem("state",4); window.location = "../pages/guardianSignup.php";</script>';  
+                    else
+                    {
+                        //Throws back to the signup page and show an error saying, confirm password doesn't match
+                        echo '<script> localStorage.setItem("state",5); window.location = "../pages/guardianSignup.php";</script>';
+                        
+                    }
                     exit;
                     
                 }

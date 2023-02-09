@@ -205,7 +205,7 @@ footer * {
                                 </div>
                                 <div class="col-sm-12 col-xs-12 col-md-6 col-lg-6 pt-1 mt-1">
                                     <label class="d-flex align-items-start" for="lnameTb">Last name</label> 
-                                    <input type="text" class="form-control" id="lnameTb" name="lnameTb" placeholder="Ex. Cruz" maxlength="50" required>
+                                    <input type="text" class="form-control form-control-sm" id="lnameTb" name="lnameTb" placeholder="Ex. Cruz" maxlength="50" required>
                                 </div>
                             </div>
                         </div>
@@ -213,15 +213,15 @@ footer * {
                             <div class="row pt-1 mt-1">
                                 <div class="col-sm-12 col-xs-12 col-md-12 col-lg-12">
                                     <label class="d-flex align-items-start" for="usernameTb">Username</label>
-                                    <input type="text" class="form-control" id="usernameTb" name="usernameTb" placeholder="Ex. Marie0123" maxlength="20" required>
+                                    <input type="text" class="form-control form-control-sm" id="usernameTb" name="usernameTb" placeholder="Ex. Marie0123" maxlength="20" required>
                                 </div>
                             </div>
                         </div>
                         <div class="form-group">
                             <div class="row pt-1 mt-1">
-                                <div class="col-sm-12 col-xs-12 col-md-12 col-lg-12">
+                                <div class="col-sm-6 col-xs-6 col-md-6 col-lg-6">
                                     <label class="d-flex align-items-start" for="passwordTb">Password</label>
-                                    <input type="password" class="form-control" id="passwordTb" name="passwordTb" placeholder="Ex. CMarie123" minlength="8" maxlength="20" required>
+                                    <input type="password" class="form-control form-control-sm" id="passwordTb" name="passwordTb" placeholder="Ex. CMarie123" minlength="8" maxlength="20" required>
                                     <div class="d-flex">
                                         <input type="checkbox" class="mb-2 mr-1" name="showPass" id="showPass">
                                         <small><label for="showPass">Show password</label></small>
@@ -229,13 +229,22 @@ footer * {
 
                                     <small class="d-flex align-items-start" style="color:red;">Use at least 8 or up to 15 characters for your password </small>
                                 </div>
+
+                                <div class="col-sm-6 col-xs-6 col-md-6 col-lg-6">
+                                    <label class="d-flex align-items-start" for="passwordTb">Confirm Password</label>
+                                    <input type="password" class="form-control form-control-sm" id="confirmPasswordTb" name="confirmPasswordTb" placeholder="Repeat your password" minlength="8" maxlength="20" required>
+                                    <div class="d-flex">
+                                        <input type="checkbox" class="mb-2 mr-1" name="showConfirmPass" id="showConfirmPass">
+                                        <small><label for="showConfirmPass">Show password</label></small>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                         <div class="form-group">
                             <div class="row pt-1 mt-1">
                                 <div class="col-sm-12 col-xs-12 col-md-12 col-lg-12">
                                     <label class="d-flex align-items-start" for="addressTb">Address</label>
-                                    <input type="text" class="form-control no-border" id="addressTb" name="addressTb" placeholder="Ex. 2123 home st." maxlength="90" required>
+                                    <input type="text" class="form-control form-control-sm no-border" id="addressTb" name="addressTb" placeholder="Ex. 2123 home st." maxlength="90" required>
                                 </div>
                             </div>
                         </div>
@@ -243,7 +252,7 @@ footer * {
                             <div class="row pt-1 mt-1">
                                 <div class="col-sm-12 col-xs-12 col-md-12 col-lg-12">
                                     <label class="d-flex align-items-start" for="contactTb">Contact Number</label>
-                                    <input type="text" class="form-control no-border" id="contactTb" name="contactTb" placeholder="Ex. 092X-XXX-XXXX" maxlength="11" required>
+                                    <input type="text" class="form-control form-control-sm no-border" id="contactTb" name="contactTb" placeholder="Ex. 092X-XXX-XXXX" maxlength="11" required>
                                 </div>
                             </div>
                         </div>
@@ -251,7 +260,7 @@ footer * {
                             <div class="row">
                                 <div class="col-sm-12 col-xs-12 col-md-12 col-lg-12">
                                     <label class="d-flex align-items-start" for="studentidTb">Student ID</label>
-                                    <input type="text" class="form-control no-border" id="studentidTb" name="studentidTb" placeholder="Ex. 012-3456-7890" maxlength="80" required>
+                                    <input type="text" class="form-control form-control-sm no-border" id="studentidTb" name="studentidTb" placeholder="Ex. 012-3456-7890" maxlength="80" required>
                                     
                                     <div class="form-check">
                                         <input class="form-check-input" type="checkbox" value="1" id="notifCheckbox" name="notifCheckbox">
@@ -267,7 +276,7 @@ footer * {
                         <div class="form-group">
                             <div class="row pb-md-0 mb-md-0 pb-sm-5 mb-sm-5">
                                 <div class="col-sm-12 col-xs-12 col-md-12 col-lg-12">
-                                    <button type="submit" class="form-control btn" id="submitBtn" name="submitBtn" style="background-color: #3466AA; color:white;">Submit</button>
+                                    <button type="submit" class="form-control form-control-sm btn" id="submitBtn" name="submitBtn" style="background-color: #3466AA; color:white;">Submit</button>
                                 </div>
                             </div>
                         </div>
@@ -311,6 +320,20 @@ footer * {
                 input.setAttribute("type", "password");
             }
         });
+
+        //To show confirm password
+        const input2 = document.querySelector("#confirmPasswordTb");
+        $('#showConfirmPass').click(function(){
+
+            if (input2.getAttribute("type") === "password")
+            {
+                input2.setAttribute("type", "text");
+            }
+            else
+            {
+                input2.setAttribute("type", "password");
+            }
+        });
         
         document.getElementById('alertBox').style.display = 'none';
         var successSignal = localStorage.getItem('state');
@@ -342,6 +365,13 @@ footer * {
             //if password doesn't matched
             document.getElementById('alertBox').style.display = 'block';
             document.getElementById('errorMsg').innerHTML = "This StudentID doesn't exist";
+            console.log("okay");
+        }
+        else if(successSignal==5)
+        {
+            //if password doesn't matched
+            document.getElementById('alertBox').style.display = 'block';
+            document.getElementById('errorMsg').innerHTML = "Password doesn't match, please check carefully and try again";
             console.log("okay");
         }
         else if(successSignal==8)

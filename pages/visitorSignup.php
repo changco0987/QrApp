@@ -238,7 +238,6 @@ footer * {
                                         <input type="checkbox" class="mb-2 mr-1" name="showConfirmPass" id="showConfirmPass">
                                         <small><label for="showConfirmPass">Show password</label></small>
                                     </div>
-                              
                                 </div>
                             </div>
                         </div>
