@@ -78,7 +78,7 @@ label{
     top: 50%;
     left: 50%;
     transform: translateX(-50%) translateY(-50%);
-    height: 795px;
+    height: max-content;
     width: 650px;
     padding: 20px;
     text-align: center;
@@ -111,7 +111,7 @@ label{
     top: 35%;
     left: 50%;
     transform: translateX(-50%) translateY(-35%);
-    height: 815px;
+    height: max-content;
     width: 400px;
     padding: 15px;
     text-align: center;
@@ -132,7 +132,7 @@ label{
     top: 35%;
     left: 50%;
     transform: translateX(-50%) translateY(-35%);
-    height: 750px;
+    height: max-content;
     width: 385px;
     padding: 15px;
     text-align: center;
@@ -154,7 +154,7 @@ label{
     top: 35%;
     left: 50%;
     transform: translateX(-50%) translateY(-35%);
-    height: 790px;
+    height: max-content;
     width: 385px;
     padding: 20px;
     text-align: center;
@@ -177,7 +177,7 @@ label{
     top: 35%;
     left: 50%;
     transform: translateX(-50%) translateY(-35%);
-    height: 890px;
+    height: max-content;
     width: 350px;
     padding: 20px;
     text-align: center;
@@ -200,7 +200,7 @@ body{
     top: 25%;
     left: 50%;
     transform: translateX(-50%) translateY(-25%);
-    height: 970px;
+    height: max-content;
     width: 320px;
     padding: 35px;
     text-align: center;
@@ -297,6 +297,10 @@ footer * {
                                 <div class="col-sm-12 col-xs-12 col-md-12 col-lg-12">
                                     <label class="d-flex align-items-start" for="passwordTb">Password</label>
                                     <input type="password" class="form-control" id="passwordTb" name="passwordTb" placeholder="Ex. CMarie123" minlength="8" maxlength="20" required value="<?php echo $_SESSION['password'];?>">
+                                    <div class="d-flex">
+                                        <input type="checkbox" class="mb-2 mr-1" name="showPass" id="showPass">
+                                        <small><label for="showPass">Show password</label></small>
+                                    </div>
                                     <small class="d-flex align-items-start" style="color:red;">Use at least 8 or up to 15 characters for your password </small>
                                 </div>
                             </div>
@@ -514,6 +518,21 @@ footer * {
 </body>
     <!--alert message script-->
     <script>
+        
+        //To show password
+        const input = document.querySelector("#passwordTb");
+        $('#showPass').click(function(){
+
+            if (input.getAttribute("type") === "password")
+            {
+                input.setAttribute("type", "text");
+            }
+            else
+            {
+                input.setAttribute("type", "password");
+            }
+        });
+
         document.getElementById('alertBox').style.display = 'none';
         var successSignal = localStorage.getItem('state');
 
