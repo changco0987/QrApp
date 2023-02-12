@@ -376,7 +376,7 @@ td{
   <!--Header of the page-->
   <div class="row">
     <div class="col-sm-10 col-xs-10 col-md-10 col-lg-10 col-xl-11" style="background-color: #4e82c9;">
-      <h3 class="d-flex justify-content-center mt-2 pt-1" id="pageTitle" >Health Records - Visitor</h3>
+      <h3 class="d-flex justify-content-center mt-2 pt-1" id="pageTitle" >Health Records - Students</h3>
     </div>
     <div class="col-sm-2 col-xs-2 col-md-2 col-lg-2 col-xl-1" style="background-color: #4e82c9;">
       <div class="w-100 d-flex justify-content-end">
@@ -684,139 +684,6 @@ td{
                         
 
 
-var ctx = document.getElementById("pie1").getContext('2d');
-var dataStat = [lockedData,unlockedData];
-var myChart = new Chart(ctx, {
-    type: 'pie',
-    data: {
-        labels: ['Locked','Unlocked'],
-        datasets: [{
-            label: 'Status',
-            data: dataStat,
-            backgroundColor: [
-                '#EE4B2B',
-                '#50C878',
-                '#8b0000',
-                '#234471',
-                '#AEC6CF',
-                '#0000FF',
-                '#FF00FF',
-                '#00FFFF',
-                '#ffa500',
-                '#9400d3',
-                '#808080',
-                '#00ffff',
-                '#8fbc8f',
-                '#1e90ff'
-
-            ],
-            borderWidth: 1
-        }]
-    },
-    options: {
-        plugins: {
-            title: {
-                display: true,
-                text: 'Account Status',
-                fontSize: 300
-            },
-            legend:{
-                position: 'bottom'
-            }
-        }
-    }
-});
-
-var ctx2 = document.getElementById("barGender").getContext('2d');
-var genderData = [male,female];
-                        var mybar = new Chart(ctx2, {
-                            type: 'bar',
-                            data: {
-                                labels: ['Male','Female'],
-                                datasets: [{
-                                    label: 'Count',
-                                    data: genderData,
-                                    backgroundColor: [
-                                        'rgb(54, 162, 235)',
-                                        'rgb(255, 99, 132)',
-                                        '#8b0000',
-                                        '#234471',
-                                        '#0000FF',
-                                        '#FF00FF',
-                                        '#00FFFF',
-                                        '#ffa500',
-                                        '#9400d3',
-                                        '#808080',
-                                        '#00ffff',
-                                        '#8fbc8f',
-                                        '#1e90ff'
-
-                                    ],
-                                    tension: 0.4,
-                                    fill: false,
-                                    spanGaps: true
-                                }]
-                            },
-                            options: {
-                                plugins: {
-                                    title: {
-                                        display: true,
-                                        text: 'Head Count',
-                                        fontSize: 300
-                                    },
-                                    legend:{
-                                        display: false
-                                    }
-                                }
-                            }
-                        });
-
-
-                        
-var ctx3 = document.getElementById("barStat").getContext('2d');
-var gateData = [inside,outside];
-                        var mybar = new Chart(ctx3, {
-                            type: 'bar',
-                            data: {
-                                labels: ['Inside','Outside'],
-                                datasets: [{
-                                    label: 'Count',
-                                    data: gateData,
-                                    backgroundColor: [
-                                        '#EE4B2B',
-                                        '#50C878',
-                                        '#8b0000',
-                                        '#234471',
-                                        '#0000FF',
-                                        '#FF00FF',
-                                        '#00FFFF',
-                                        '#ffa500',
-                                        '#9400d3',
-                                        '#808080',
-                                        '#00ffff',
-                                        '#8fbc8f',
-                                        '#1e90ff'
-
-                                    ],
-                                    tension: 0.4,
-                                    fill: false,
-                                    spanGaps: true
-                                }]
-                            },
-                            options: {
-                              indexAxis: 'y',
-                                plugins: {
-                                    title: {
-                                        display: true,
-                                        text: 'In campus student count',
-                                        fontSize: 300
-                                    },
-                                    legend:{
-                                        display: false
-                                    }
-                                }
-                            }
-                        });
 
     //Edit
 
@@ -874,12 +741,6 @@ var gateData = [inside,outside];
     //To make signl back to normmal and to prevent for the success page to appear every time the page was reload or refresh
     localStorage.setItem('studentMsg',0);
     
-    //this will make a image preview before it was uploaded
-    fileTb.onchange = evt => {
-    const [file] = fileTb.files
-    if (file) {
-        userImg.src = URL.createObjectURL(file)
-    }
-    }
+
 </script>
 </html>
