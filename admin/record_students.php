@@ -4,8 +4,8 @@
     include_once '../model/adminModel.php';
     include_once '../db/tb_admin.php';
 
-    include_once '../model/visitorModel.php';
-    include_once '../db/tb_visitor.php';
+    include_once '../model/studentModel.php';
+    include_once '../db/tb_student.php';
 
     include_once '../model/dtrModel.php';
     include_once '../db/tb_dtr.php';
@@ -429,7 +429,7 @@ td{
           </thead>
           <tbody id="resultTable">
               <?php
-                  $data = new visitorModel();
+                  $data = new studentModel();
                   $dtr = new dtrModel();
 
                   $dtrData = ReadDtr($conn,$dtr);
@@ -437,11 +437,11 @@ td{
                   $changeColor = 0;//This is to change the color
                   while($dtrRow = mysqli_fetch_assoc($dtrData))
                   {
-                    if($dtrRow['accType'] == 'visitor')
+                    if($dtrRow['accType'] == 'student')
                     {
 
                       $data->setId($dtrRow['dataId']);
-                      $result = ReadAccountVisitor($conn,$data);
+                      $result = ReadStudent($conn,$data);
                       while($row = mysqli_fetch_assoc($result))
                       {
     
