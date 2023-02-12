@@ -382,7 +382,7 @@ h6{
                 http.onload = function() 
                 {
                     var data = http.responseText;
-                    console.log(data);
+                    //console.log(data);
                     if(data=='expired')
                     {
                         $('#errorTxt').show();
