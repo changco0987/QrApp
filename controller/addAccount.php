@@ -38,37 +38,31 @@
             {
                if(checkSpaces($data->getUsername(),$data->getPassword()) == false)
                {
-                //This is the unfinished part of confirm password
-                    if($data->getPassword() == $_POST['confirmPasswordTb'])
-                    {
-                        $data->setFirstname($_POST['fnameTb']);
-                        $data->setLastname($_POST['lnameTb']);
-                        $data->setAddress($_POST['addressTb']);
-                        $data->setContact_number($_POST['contactTb']);
-                        $data->setStatus('unlock');
-    
-                        if($_FILES['fileTb']['name']!="")
-                        {
-                            $data->setImageName($_POST['usernameTb'].$_POST['accType']. "." .$fileExtension);
-                            $uploadedFile = $_FILES['fileTb']['tmp_name'];
-                            copy($uploadedFile,$imgPath.$data->getImageName());//This will move the uploaded file into file directory (web)
-                        }
-                        
-                        //create log
-                        $log->setActivity('added account Type: '.$_POST['accType'].', username: '.$_POST['usernameTb']);
-                        $log->setIpAdd();
-                        $log->setAccType('Administrator');
-                        $log->setCreator($_SESSION['adminNameTb']);
-    
-                        CreateLog($conn,$log);
-    
-                        CreateAccountVisitor($conn,$data); 
-                        echo '<script> localStorage.setItem("visitorMsg",1); window.location = "../admin/admin_visitor.php";</script>';   
-                    }
-                    else
-                    {
 
+                    $data->setFirstname($_POST['fnameTb']);
+                    $data->setLastname($_POST['lnameTb']);
+                    $data->setAddress($_POST['addressTb']);
+                    $data->setContact_number($_POST['contactTb']);
+                    $data->setStatus('unlock');
+
+                    if($_FILES['fileTb']['name']!="")
+                    {
+                        $data->setImageName($_POST['usernameTb'].$_POST['accType']. "." .$fileExtension);
+                        $uploadedFile = $_FILES['fileTb']['tmp_name'];
+                        copy($uploadedFile,$imgPath.$data->getImageName());//This will move the uploaded file into file directory (web)
                     }
+                    
+                    //create log
+                    $log->setActivity('added account Type: '.$_POST['accType'].', username: '.$_POST['usernameTb']);
+                    $log->setIpAdd();
+                    $log->setAccType('Administrator');
+                    $log->setCreator($_SESSION['adminNameTb']);
+
+                    CreateLog($conn,$log);
+
+                    CreateAccountVisitor($conn,$data); 
+                    echo '<script> localStorage.setItem("visitorMsg",1); window.location = "../admin/admin_visitor.php";</script>';   
+  
                     exit();
                     //header("location: ../admin/admin_visitor.php?success");
                }
@@ -101,7 +95,7 @@
             }
             else
             {
-               if(checkSpaces($data->getUsername(),$data->getPassword()) == false)
+               if(checkSpaces($data->getUsername(), $data->getPassword()) == false)
                {
                     $data->setFirstname($_POST['fnameTb']);
                     $data->setLastname($_POST['lnameTb']);
