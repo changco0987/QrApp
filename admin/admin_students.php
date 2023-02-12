@@ -366,6 +366,8 @@ td{
              
               <button type="button" onclick="gotoScanner()" class="collapse-item btn btn-sm my-1 collapseBtn">Scanner App</button><br>
               
+              <button type="button" onclick="gotoExitScanner()" class="collapse-item btn btn-sm my-1 collapseBtn">Exit Scanner App</button><br>
+              
               <button type="button" class="collpase-item btn btn-sm my-1 collapseBtn" data-toggle="modal" data-target="#qrSett">QR Settings</button>
               <!--input type="hidden" name="departmentName" value=""-->
               <button type="submit" class="collapse-item btn btn-sm my-1 collapseBtn" data-toggle="modal" data-target="#ChangePass">Change Password</button><br>

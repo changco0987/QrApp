@@ -368,6 +368,8 @@ td{
               <button type="button" class="collapse-item btn btn-sm my-1 collapseBtn" data-toggle="modal" data-target="#DevTool">Dev tool</button>
 
               <button type="button" onclick="gotoScanner()" class="collapse-item btn btn-sm my-1 collapseBtn">Scanner App</button><br>
+              
+              <button type="button" onclick="gotoExitScanner()" class="collapse-item btn btn-sm my-1 collapseBtn">Exit Scanner App</button><br>
 
               <button type="button" class="collpase-item btn btn-sm my-1 collapseBtn" data-toggle="modal" data-target="#qrSett">QR Settings</button>
    

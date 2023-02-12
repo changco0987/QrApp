@@ -57,6 +57,11 @@ function gotoScanner()
     window.location = '../app/scan.php';
 }
 
+function gotoExitScanner()
+{
+    window.location = '../app/exit_scan.php';
+}
+
 
 //This will go to reset password pages
 function gotoFindAccount()
