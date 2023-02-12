@@ -401,6 +401,12 @@ h6{
                         $('#errorTxt').html('The QR is not belong to the system');
                         const myTimeout = setTimeout(revokeView, 5000);
                     }
+                    else if(data=='invalid_status')
+                    {
+                        //This will only trigger if the QR status is set to go outside/exit
+                        console.log('QR status: Exit');
+                        const myTimeout = setTimeout(revokeView, 5000);
+                    }
                     else
                     {
                         //console.log(data);

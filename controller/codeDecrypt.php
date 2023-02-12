@@ -94,6 +94,7 @@
                     }
                     else
                     {
+                        /*
                         $responseData = array("name"=>$row['firstname'].' '.$row['lastname'],
                                                 "username"=>$row['username'],
                                                 "imageName"=>$row['imageName'],
@@ -119,6 +120,9 @@
                         $data->setGateStat('out');
                         $data->setDtrId($row['dtrId']);//To make the UpdateAccountGuardian 1st condition valid
                         UpdateAccountVisitor($conn,$data);
+                        */
+                        echo 'invalid_status';
+                        exit;
                     }
                     
     
@@ -188,6 +192,7 @@
                     }
                     else
                     {
+                        /*
                         $responseData = array("name"=>$row['firstname'].' '.$row['lastname'],
                                                        "username"=>$row['username'],
                                                        "imageName"=>$row['imageName'],
@@ -214,6 +219,10 @@
                         $data->setGateStat('out');
                         $data->setDtrId($row['dtrId']);//To make the UpdateAccountGuardian 1st condition valid
                         UpdateAccountGuardian($conn,$data);
+                        */
+                            
+                        echo 'invalid_status';
+                        exit;
                         
                     }
                     
@@ -306,6 +315,7 @@
                 }
                 else
                 {
+                    /*
                     $responseData = array("name"=>$row['firstname'].' '.$row['middlename'].' '.$row['lastname'],
                                                    "course"=>$row['course'].' '.$row['year'].' - '.$row['section'],
                                                    "imageName"=>$row['imageName'],
@@ -362,6 +372,9 @@
                     }
 
                     UpdateStudent($conn,$data);
+                    */
+                    echo 'invalid_status';
+                    exit;
                     
                 }
                 
@@ -444,6 +457,7 @@
                 }
                 else
                 {
+                    /*
                     $responseData = array("name"=>$row['firstname'].' '.$row['lastname'],
                                                    "imageName"=>$row['imageName'],
                                                    "accType"=>'faculty',
@@ -468,6 +482,9 @@
                     $data->setGateStat('out');
                     $data->setDtrId($row['dtrId']);//To make the UpdateAccountGuardian 1st condition valid
                     UpdateFaculty($conn,$data);
+                    */
+                    echo 'invalid_status';
+                    exit;
                 
                 }
                 
