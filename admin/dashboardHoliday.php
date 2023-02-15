@@ -447,8 +447,16 @@ label{
                     <div class="form-group">
                         <div class="row pt-1 mt-1">
                             <div class="col-sm-12 col-xs-12 col-md-12 col-lg-12">
-                              <label id="dateLb" for="dateTb" >Choose Holiday Date</label>
+                              <label id="dateLb" for="dateTb" >Holiday Date from:</label>
                               <input class="form-control" type="date" id="dateTb" name="dateTb" required>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="row pt-1 mt-1">
+                            <div class="col-sm-12 col-xs-12 col-md-12 col-lg-12">
+                              <label id="dateToLb" for="dateToTb" >Holiday Date to:</label>
+                              <input class="form-control" type="date" id="dateToTb" name="dateToTb" required>
                             </div>
                         </div>
                     </div>
