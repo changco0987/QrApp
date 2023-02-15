@@ -8,6 +8,7 @@
         private $isShow;
         private $type;
         private $date;
+        private $dateTo;
 
 
         public function getId()
@@ -91,6 +92,17 @@
         public function setDate($date)
         {
             $this->date = $date;
+        }
+
+
+        public function getDateTo()
+        {
+            return $this->dateTo;   
+        }
+
+        public function setDateTo($dateTo)
+        {
+            $this->dateTo = $dateTo;
         }
     }
 
