@@ -234,8 +234,6 @@ footer * {
                             
                         <input type="hidden" name="otp" value="<?php echo $otp;?>">
 
-                        <?php echo $otp;?>
-
                         <input type="hidden" name="accType" value="<?php echo $_POST['accType'];?>">
                         <input type="hidden" name="fnameTb" value="<?php echo $_POST['fnameTb'];?>">
                         <input type="hidden" name="lnameTb" value="<?php echo $_POST['lnameTb'];?>">

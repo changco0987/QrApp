@@ -464,54 +464,54 @@ label{
     </div>
 
 
-<!-- Modal for Utilities->Change Password -->
-<div class="modal fade" id="ChangePass" tabindex="-1" role="dialog" aria-labelledby="addAnnouncementCenterTitle" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered" role="document">
-      <div class="modal-content">
-          <div class="modal-header">
-              <h5 class="modal-title font-weight-bold" id="addAnnouncementLongTitle">Change Admin Password</h5>
-              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
-              </button>
-          </div>
-          <div class="modal-body">
-              <form action="../controller/adminUpdate.php" method="POST" enctype="multipart/form-data">
-                <?php 
-                  $admin = new adminModel();
-                  $admin->setUsername($_SESSION['adminNameTb']);
-                  $result = ReadAdmin($conn,$admin);
+    <!-- Modal for Utilities->Change Password -->
+    <div class="modal fade" id="ChangePass" tabindex="-1" role="dialog" aria-labelledby="addAnnouncementCenterTitle" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered" role="document">
+          <div class="modal-content">
+              <div class="modal-header">
+                  <h5 class="modal-title font-weight-bold" id="addAnnouncementLongTitle">Change Admin Password</h5>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                  </button>
+              </div>
+              <div class="modal-body">
+                  <form action="../controller/adminUpdate.php" method="POST" enctype="multipart/form-data">
+                    <?php 
+                      $admin = new adminModel();
+                      $admin->setUsername($_SESSION['adminNameTb']);
+                      $result = ReadAdmin($conn,$admin);
 
-                  while($row = mysqli_fetch_assoc($result))
-                  {
+                      while($row = mysqli_fetch_assoc($result))
+                      {
+                        ?>
+                          <input type="hidden" name="idTb" value="<?php echo $row['id'];?>">
+                        <?php
+                      }
                     ?>
-                      <input type="hidden" name="idTb" value="<?php echo $row['id'];?>">
-                    <?php
-                  }
-                ?>
-                <div class="form-group">
-                  <div class="row pt-1 mt-1">
-                    <div class="col-sm-12 col-xs-12 col-md-12 col-lg-12">
-                        <label class="d-flex align-items-start" for="contentTb">Current Password</label>
-                        <input type="password" class="form-control form-control-sm" id="oldPassTb" name="oldPassTb" placeholder="" maxlength="50" required>
+                    <div class="form-group">
+                      <div class="row pt-1 mt-1">
+                        <div class="col-sm-12 col-xs-12 col-md-12 col-lg-12">
+                            <label class="d-flex align-items-start" for="contentTb">Current Password</label>
+                            <input type="password" class="form-control form-control-sm" id="oldPassTb" name="oldPassTb" placeholder="" maxlength="50" required>
+                        </div>
+                      </div>
                     </div>
-                  </div>
-                </div>
-                <div class="form-group">
-                  <div class="row pt-1 mt-1">
-                    <div class="col-sm-12 col-xs-12 col-md-12 col-lg-12">
-                        <label class="d-flex align-items-start" for="contentTb">New Password</label>
-                        <input type="password" class="form-control form-control-sm" id="newPassTb" name="newPassTb" placeholder="" maxlength="50" required>
+                    <div class="form-group">
+                      <div class="row pt-1 mt-1">
+                        <div class="col-sm-12 col-xs-12 col-md-12 col-lg-12">
+                            <label class="d-flex align-items-start" for="contentTb">New Password</label>
+                            <input type="password" class="form-control form-control-sm" id="newPassTb" name="newPassTb" placeholder="" maxlength="50" required>
+                        </div>
+                      </div>
                     </div>
-                  </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="submit" class="btn btn-primary">Add Event</button>
-                </div>
-              </form>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-primary">Save Changes</button>
+                    </div>
+                  </form>
+              </div>
           </div>
       </div>
-  </div>
-</div>
+    </div>
 
     <!-- Modal for Utilities->Dev Tools -->
     <div class="modal fade" id="DevTool" tabindex="-1" role="dialog" aria-labelledby="addAnnouncementCenterTitle" aria-hidden="true">

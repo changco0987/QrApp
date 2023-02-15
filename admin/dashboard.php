@@ -522,14 +522,13 @@ label{
                       </div>
                     </div>
                     <div class="modal-footer">
-                        <button type="submit" class="btn btn-primary">Add Event</button>
+                        <button type="submit" class="btn btn-primary">Save Changes</button>
                     </div>
                   </form>
               </div>
           </div>
       </div>
     </div>
-
     
     <!-- Modal for Utilities->Dev Tools -->
     <div class="modal fade" id="DevTool" tabindex="-1" role="dialog" aria-labelledby="addAnnouncementCenterTitle" aria-hidden="true">
