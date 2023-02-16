@@ -58,6 +58,10 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.3/font/bootstrap-icons.css">
     
     <script src="https://code.jquery.com/jquery-1.8.3.min.js"></script>
+    <!--For date range picker-->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.11.3/jquery-ui.js"></script>
+    <link rel="stylesheet" type="text/css" href="https://code.jquery.com/ui/1.11.4/themes/ui-lightness/jquery-ui.css">
     <!-- QR code javascript -->
     <script src="../javascript/qrcode.min.js"></script>
 
@@ -143,8 +147,16 @@
                         <div class="form-group">
                             <div class="row pt-1 mt-1">
                                 <div class="col-sm-12 col-xs-12 col-md-12 col-lg-12">
-                                <label id="dateLb" for="dateTb" >Choose Event Date</label>
-                                <input class="form-control" type="date" id="dateTb" name="dateTb" required  value="<?php echo $row['date'];?>">
+                                <label id="dateLb" for="dateTb" >Event Date from:</label>
+                                <input class="form-control" type="text" id="dateTb" name="dateTb" required  value="<?php echo $row['date'];?>">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="row pt-1 mt-1">
+                                <div class="col-sm-12 col-xs-12 col-md-12 col-lg-12">
+                                <label id="dateToLb" for="dateToTb" >Event Date to:</label>
+                                <input class="form-control" type="text" id="dateToTb" name="dateToTb" required  value="<?php echo $row['dateTo'];?>">
                                 </div>
                             </div>
                         </div>
@@ -165,6 +177,26 @@
 </body>
 <!--alert message script-->
 <script>
+      //This is the date range picker
+          $(function() {
+            $( "#dateTb" ).datepicker({
+              defaultDate: "+1w",
+              changeMonth: true,
+              numberOfMonths: 1,
+              onClose: function( selectedDate ) {
+                $( "#dateToTb" ).datepicker( "option", "minDate", selectedDate );
+              }
+            });
+            $( "#dateToTb" ).datepicker({
+              defaultDate: "+1w",
+              changeMonth: true,
+              numberOfMonths: 1,
+              onClose: function( selectedDate ) {
+                $( "#dateTb" ).datepicker( "option", "maxDate", selectedDate );
+              }
+            });
+          });
+
         document.getElementById('successBox').style.display = 'none';
         var successSignal = localStorage.getItem('state');
 /*

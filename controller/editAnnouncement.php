@@ -17,6 +17,7 @@
         $event->setHeading($_POST['headingTb']);
         $event->setContent($_POST['contentTb']);
         $event->setDate($_POST['dateTb']);
+        $event->setDateTo($_POST['dateToTb']);
         
 
 
