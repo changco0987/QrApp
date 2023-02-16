@@ -82,8 +82,12 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.3/font/bootstrap-icons.css">
 
     <!--script src="https://code.jquery.com/jquery-1.8.3.min.js"></script-->
+    <!--For date range picker-->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.11.3/jquery-ui.js"></script>
+    <link rel="stylesheet" type="text/css" href="https://code.jquery.com/ui/1.11.4/themes/ui-lightness/jquery-ui.css">
+
     <!--My CSS and JS-->
-    <!--link type="text/css" rel="stylesheet" href="../css/index.css"/-->
     <script src="../javascript/linked.js"></script>
     <!-- Custom fonts for this template-->
     <link rel="icon" href="../asset/qr.png">
@@ -467,7 +471,7 @@ label{
                         <div class="row pt-1 mt-1">
                             <div class="col-sm-12 col-xs-12 col-md-12 col-lg-12">
                               <label id="dateLb" for="dateTb" >Event Date from:</label>
-                              <input class="form-control" type="date" id="dateTb" name="dateTb" required>
+                              <input class="form-control" type="text" id="dateTb" name="dateTb" required>
                             </div>
                         </div>
                     </div>
@@ -475,7 +479,7 @@ label{
                         <div class="row pt-1 mt-1">
                             <div class="col-sm-12 col-xs-12 col-md-12 col-lg-12">
                               <label id="dateToLb" for="dateToTb" >Event Date to:</label>
-                              <input class="form-control" type="date" id="dateToTb" name="dateToTb" required>
+                              <input class="form-control" type="text" id="dateToTb" name="dateToTb" required>
                             </div>
                         </div>
                     </div>
@@ -487,6 +491,27 @@ label{
           </div>
       </div>
     </div>
+    <script>
+      //This is the date range picker
+          $(function() {
+            $( "#dateTb" ).datepicker({
+              defaultDate: "+1w",
+              changeMonth: true,
+              numberOfMonths: 1,
+              onClose: function( selectedDate ) {
+                $( "#dateToTb" ).datepicker( "option", "minDate", selectedDate );
+              }
+            });
+            $( "#dateToTb" ).datepicker({
+              defaultDate: "+1w",
+              changeMonth: true,
+              numberOfMonths: 1,
+              onClose: function( selectedDate ) {
+                $( "#dateTb" ).datepicker( "option", "maxDate", selectedDate );
+              }
+            });
+          });
+    </script>
 
 
     <!-- Modal for Utilities->Change Password -->
