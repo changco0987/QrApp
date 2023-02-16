@@ -85,7 +85,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
     <script src="https://code.jquery.com/ui/1.11.3/jquery-ui.js"></script>
     <link rel="stylesheet" type="text/css" href="https://code.jquery.com/ui/1.11.4/themes/ui-lightness/jquery-ui.css">
-    
+
     <!--My CSS and JS-->
     <script src="../javascript/linked.js"></script>
     <!-- Custom fonts for this template-->
@@ -287,11 +287,11 @@ label{
   </div>
 
   <!--Table row-->
-  <div class="row my-3 no-gutters" style="background-color:#F1F1F1; border-radius: 10px; box-shadow: -1px 1px 20px 6px #d9d9d9;">
+  <div class="row my-3 no-gutters" style="background-color:#F1F1F1; border-radius: 8px; box-shadow: -1px 1px 20px 6px #d9d9d9;">
     <div class="col-sm-12 col-xs-12 col-md-12 col-lg-12 col-xl-12 pl-3 pr-2 my-2 py-2">        
 
       <div  class="table-wrapper-scroll-y my-custom-scrollbar table-responsive" style="height: 750px;">
-        <table class="table table-striped table-bordered table-hover table-sm text-justify mb-0" style="border-radius: 10px;" id="1">
+        <table class="table table-striped table-bordered table-hover table-sm mb-0" style="border-radius: 8px;" id="1">
           <caption id="tbCaption"></caption>
           <thead class="text-light" style="background-color:#234471;">
               <tr>
@@ -336,7 +336,16 @@ label{
                                   }
                               ?>
                             </td>
-                            <td><?php echo date("M d, Y ", strtotime($row['date']));?></td>
+                            
+                            <td>
+                                <?php
+                                    echo date("M d, Y ", strtotime($row['date']));
+                                    if($row['dateTo']!=null)
+                                    {
+                                      echo ' to '.date("M d, Y ", strtotime($row['dateTo']));
+                                    }
+                                ?>
+                            </td>
                             
                             <?php
                               //This is to check the current status of event data if its already shown or not
