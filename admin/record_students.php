@@ -477,7 +477,7 @@ td{
                           else
                           {
                             ?>
-                            <tr style="background-color:#FF6961;">
+                              <tr style="background-color:#FF6961;">
                             <?php
                           }
                           $changeColor=0;
@@ -491,10 +491,41 @@ td{
                               <?php
                                   if(strpos($dtrRow['time_in'], 'Attempt') == false)
                                   {
-                                    ?>
-                                      <td><?php echo $dtrRow['time_in'];?></td>
-                                      <td><?php echo $dtrRow['time_out'];?></td>
-                                    <?php
+                                      ?>
+                                        <td><?php echo $dtrRow['time_in'];?></td>
+                                      <?php
+                                        if($dtrRow['time_out'] == null)
+                                        {
+                                            //This is to get formatted current time
+                                            $format = 'Y-m-d h:i:s a';
+                                            $currTime = DateTime::createFromFormat($format, $currentDateTime);
+                                            $convertedCurrTime = strtotime($currTime->format('h a'));
+
+                                            $timeout = strtotime('6pm');//This is the set timeout
+                                            $timeoutDate = strtotime('today 6pm');//This is the set timeout with date
+
+                                            //echo $convertedCurrTime > $timeout;
+
+                                            //This will check if the current time is exceed 6pm
+                                            if($convertedCurrTime > $timeout || $currentDateTime > strtotime($dtrRow['time_in']))
+                                            {
+                                              ?>
+                                                <td><?php echo 'System Time out';?></td>
+                                              <?php
+                                            }
+                                            else
+                                            {
+                                              ?>
+                                                <td><?php echo $dtrRow['time_out'];?></td>
+                                              <?php
+                                            }
+                                        }
+                                        else
+                                        {
+                                            ?>
+                                              <td><?php echo $dtrRow['time_out'];?></td>
+                                            <?php
+                                        }
                                   }
                                   else
                                   {
