@@ -492,8 +492,22 @@ td{
                               <td><?php echo $rowCount;?></td>
                               <td><?php echo $row['firstname'].' '.$row['lastname'];?></td>
                               <td><?php echo $dtrRow['temperature'];?></td><!-- Temperature -->
-                              <td><?php echo $dtrRow['time_in'];?></td>
-                              <td><?php echo $dtrRow['time_out'];?></td>
+
+                              <?php
+                                  if(strpos($dtrRow['time_in'], 'Attempt') == false)
+                                  {
+                                    ?>
+                                      <td><?php echo $dtrRow['time_in'];?></td>
+                                      <td><?php echo $dtrRow['time_out'];?></td>
+                                    <?php
+                                  }
+                                  else
+                                  {
+                                    ?>
+                                      <td colspan="2" class="text-center"><?php echo '---- '.$dtrRow['time_in'].' ----';?></td>
+                                    <?php
+                                  }
+                              ?>
                           </tr>
                           <?php
                           $rowCount++;
