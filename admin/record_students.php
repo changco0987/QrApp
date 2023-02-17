@@ -450,18 +450,39 @@ td{
     
                         if($changeColor==0)
                         {
-                          ?>
-                            <tr style="background-color:#82B7DC;">
-                          <?php
+                          //this will filter the attempts and will be colored red
+                          if(strpos($dtrRow['time_in'], 'Attempt') == false)
+                          {
+                            ?>
+                              <tr style="background-color:#82B7DC;">
+                            <?php
+                          }
+                          else
+                          {
+                            ?>
+                              <tr style="background-color:#FF6961;">
+                            <?php
+                          }
                           $changeColor++;
                         }                   
                         else if($changeColor==1)
                         {
-                          ?>
-                            <tr style="background-color:#6aa9d5;">
-                          <?php
+                          //this will filter the attempts and will be colored red
+                          if(strpos($dtrRow['time_in'], 'Attempt') == false)
+                          {
+                            ?>
+                              <tr style="background-color:#6aa9d5;">
+                            <?php
+                          }
+                          else
+                          {
+                            ?>
+                            <tr style="background-color:#FF6961;">
+                            <?php
+                          }
                           $changeColor=0;
                         }
+
                           ?>
                               <td><?php echo $rowCount;?></td>
                               <td><?php echo $row['firstname'].' '.$row['lastname'];?></td>
