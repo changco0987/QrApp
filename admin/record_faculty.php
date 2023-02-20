@@ -517,6 +517,10 @@ td{
                                               ?>
                                                 <td><?php echo 'System Time out';?></td>
                                               <?php
+                                                //This will automatically updated the dtr and status of the account to exited
+                                                $data->setGateStat('out');
+                                                $data->setDtrId($row['dtrId']);//To make the UpdateStudent 1st condition valid
+                                                UpdateStudent($conn,$data);
                                             }
                                             else
                                             {
