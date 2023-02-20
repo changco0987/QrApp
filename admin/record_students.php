@@ -14,6 +14,7 @@
     include_once '../db/tb_qrsettings.php';
 
 
+
     //This will check if the user is truely login
     date_default_timezone_set('Asia/Manila'); 
     $currentDateTime = date('Y-m-d h:i:s a');
@@ -512,6 +513,9 @@ td{
                                               ?>
                                                 <td><?php echo 'System Time out';?></td>
                                               <?php
+                                                $data->setGateStat('out');
+                                                $data->setDtrId($row['dtrId']);//To make the UpdateStudent 1st condition valid
+                                                UpdateStudent($conn,$data);
                                             }
                                             else
                                             {
