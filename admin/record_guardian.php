@@ -507,7 +507,8 @@ td{
                                             //echo $convertedCurrTime > $timeout;
 
                                             //This will check if the current time is exceed 6pm
-                                            if($convertedCurrTime > $timeout || $currentDateTime > strtotime($dtrRow['time_in']))
+                                            // removed "|| $currentDateTime > strtotime($dtrRow['time_in'])"
+                                            if($convertedCurrTime > $timeout )
                                             {
                                               ?>
                                                 <td><?php echo 'System Time out';?></td>
