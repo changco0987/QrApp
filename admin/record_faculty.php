@@ -504,16 +504,19 @@ td{
                                             //This is to get formatted current time
                                             $format = 'Y-m-d h:i:s a';
                                             $currTime = DateTime::createFromFormat($format, $currentDateTime);
-                                            $convertedCurrTime = strtotime($currTime->format('h a'));
+                                            $convertedCurrTime = strtotime($currTime->format('h a'));//current time
+                                            $convertedCurrDate = strtotime(($currTime->format('Y-m-d')));//current date
+
+                                            $userTimein = DateTime::createFromFormat($format, $dtrRow['time_in']);
+                                            $convertedTimein = strtotime($userTimein->format('Y-m-d'));//formatted time_in but only gets the date
 
                                             $timeout = strtotime('6pm');//This is the set timeout
-                                            $timeoutDate = strtotime('today 6pm');//This is the set timeout with date
-
+                                            //echo $timeoutDate;
                                             //echo $convertedCurrTime > $timeout;
 
                                             //This will check if the current time is exceed 6pm
                                             // removed "|| $currentDateTime > strtotime($dtrRow['time_in'])"
-                                            if($convertedCurrTime > $timeout )
+                                            if($convertedCurrTime > $timeout ||  $convertedCurrDate > $convertedTimein)
                                             {
                                               ?>
                                                 <td><?php echo 'System Time out';?></td>
