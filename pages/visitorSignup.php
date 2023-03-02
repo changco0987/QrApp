@@ -185,7 +185,7 @@ footer * {
             QR <small style="color: whitesmoke; text-shadow: 1px 1px #1C1C1C;">Code Based Health Monitoring System</small>
         </a>
      </nav>
-    <div class="row myRow mt-5 pt-5 mx-auto">
+    <div class="row myRow mt-3 pt-5 mx-auto">
         <div class="col-sm-12 col-xs-12 col-md-12 col-lg-12 my-5 py-5">
             <div class="containerForm">
                 <div class="d-flex justify-content-center">
@@ -266,9 +266,16 @@ footer * {
                         </div>
                     </form>
                 </div>
+                <div class="row pb-4 mb-4 pb-sm-0 mb-sm-0 mx-auto">
+                    <div class="col-sm-12 col-xs-12 col-md-12 col-lg-12 pb-md-1 mb-md-1 pb-sm-5 mb-sm-5 ">
+                        <!-- Spacing -->
+                        <input type="text" style="display:none">
+                    </div>
+                </div>
             </div>
         </div>
     </div>
+    
     <!--Footer Section-->
     <div class="row no-gutters">
     <footer class=" text-center text-lg-end fixed-bottom">

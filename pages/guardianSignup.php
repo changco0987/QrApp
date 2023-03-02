@@ -185,7 +185,7 @@ footer * {
             QR <small style="color: whitesmoke; text-shadow: 1px 1px #1C1C1C;">Code Based Health Monitoring System</small>
         </a>
      </nav>
-    <div class="row myRow mt-5 pt-5 mx-auto">
+    <div class="row myRow mt-xl-5 pt-xl-5 mx-auto">
         <div class="col-sm-12 col-xs-12 col-md-12 col-lg-12 my-5 py-5">
             <div class="containerForm">
                 <div class="d-flex justify-content-center">
@@ -274,28 +274,34 @@ footer * {
                         </div>
 
                         <div class="form-group">
-                            <div class="row pb-md-0 mb-md-0 pb-sm-5 mb-sm-5">
+                            <div class="row py-2 my-2 pb-md-0 mb-md-0 pb-sm-5 mb-sm-5">
                                 <div class="col-sm-12 col-xs-12 col-md-12 col-lg-12">
                                     <button type="submit" class="form-control form-control-sm btn" id="submitBtn" name="submitBtn" style="background-color: #3466AA; color:white;">Submit</button>
                                 </div>
                             </div>
                         </div>
-                        
+                        <div class="row pb-4 mb-4 pb-sm-0 mb-sm-0 mx-auto">
+                            <div class="col-sm-12 col-xs-12 col-md-12 col-lg-12 pb-md-1 mb-md-1 pb-sm-5 mb-sm-5 ">
+                                <!-- Spacing -->
+                                <input type="text" style="display:none">
+                            </div>
+                        </div>
                     </form>
                 </div>
             </div>
         </div>
     </div>
+    
     <!--Footer Section-->
     <div class="row no-gutters">
-    <footer class=" text-center text-lg-end fixed-bottom">
-        <div class="d-flex justify-content-center p-3" style="background-color: #E78F14;">
-            <h5 style="background-color:#E78F14;"><a href="https://www.facebook.com/balayan.sti.edu/" target="_blank" class="mx-2" style="background-color:#E78F14;"><i class="bi bi-facebook" style="background-color:#E78F14;"></i></a></h5>
-            <h5 style="background-color:#E78F14;"><a href="mailto:richardjohn.encarnacion@batangas.sti.edu" target="_blank" class="mx-2"><i class="bi bi-envelope-fill" style="background-color:#E78F14;"></i></a></h5>
-            <h5 style="background-color:#E78F14;"><a href="https://maps.google.com/?q=STI College - Batangas, 865 National Road, Batangas, 4200 Batangas" target="_blank" class="mx-2"><i class="bi bi-geo-alt-fill" style="background-color:#E78F14;"></i></a></h5>
-            <h5 style="background-color:#E78F14;"><a href="https://www.sti.edu/campuses-details.asp?campus_id=BAT" target="_blank" class="mx-2"><i class="bi bi-info-square-fill" style="background-color:#E78F14;"></i></a></h5>
-        </div>
-    </footer>
+        <footer class=" text-center text-lg-end fixed-bottom">
+            <div class="d-flex justify-content-center p-3" style="background-color: #E78F14;">
+                <h5 style="background-color:#E78F14;"><a href="https://www.facebook.com/balayan.sti.edu/" target="_blank" class="mx-2" style="background-color:#E78F14;"><i class="bi bi-facebook" style="background-color:#E78F14;"></i></a></h5>
+                <h5 style="background-color:#E78F14;"><a href="mailto:richardjohn.encarnacion@batangas.sti.edu" target="_blank" class="mx-2"><i class="bi bi-envelope-fill" style="background-color:#E78F14;"></i></a></h5>
+                <h5 style="background-color:#E78F14;"><a href="https://maps.google.com/?q=STI College - Batangas, 865 National Road, Batangas, 4200 Batangas" target="_blank" class="mx-2"><i class="bi bi-geo-alt-fill" style="background-color:#E78F14;"></i></a></h5>
+                <h5 style="background-color:#E78F14;"><a href="https://www.sti.edu/campuses-details.asp?campus_id=BAT" target="_blank" class="mx-2"><i class="bi bi-info-square-fill" style="background-color:#E78F14;"></i></a></h5>
+            </div>
+        </footer>
     </div>
     <!-- Alert message container-->
     <div id="alertBox" class="alert alert-danger alert-dismissible fade show" role="alert" style="display:block ;">
