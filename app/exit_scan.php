@@ -159,7 +159,7 @@ h6{
     </script>
 
     <link rel="icon" href="../asset/qr.png">
-    <title>Entrance Monitoring sys - Dashboard</title>
+    <title>Entrance Monitoring sys - Scanner App (Exit)</title>
 </head>
 <body>
     
