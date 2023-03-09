@@ -405,7 +405,7 @@ h6{
                     {
                         //This will only trigger if the QR status is set to go outside/exit
                         console.log('QR status: Exit');
-                        const myTimeout = setTimeout(revokeView, 5000);
+                        const myTimeout = setTimeout(revokeView, 2000);
                     }
                     else
                     {

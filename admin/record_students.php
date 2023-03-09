@@ -514,13 +514,15 @@ td{
                                             // removed "|| $currentDateTime > strtotime($dtrRow['time_in'])"
                                             if($convertedCurrTime > $timeout ||  $convertedCurrDate > $convertedTimein)
                                             {
-                                              ?>
-                                                <td><?php echo 'System Time out';?></td>
-                                              <?php
+                                              //This will check if the current/latest dtrId that bind to user row is the current dtr in the loop iteration
+                                              if($dtrRow['id'] == $row['dtrId'])
+                                              {
                                                 //This will automatically updated the dtr and status of the account to exited
                                                 $data->setGateStat('out');
                                                 $data->setDtrId($row['dtrId']);//To make the UpdateStudent 1st condition valid
                                                 UpdateStudent($conn,$data);
+                                              }
+                                              echo "<td> System Time out</td>";
                                             }
                                             else
                                             {
