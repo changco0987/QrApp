@@ -699,6 +699,9 @@ $(function() {
             submitForm(inputVal);
             $("#codeInput").val('');
             $('#codeInput').blur();
+
+            const myTimeout = setTimeout(revokeView, 10000);
+
         }
 
         var inputTempVal = 0;
