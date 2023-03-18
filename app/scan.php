@@ -185,7 +185,7 @@ h6{
                 <div style="min-width:max-content;">
                     <center>
                         <img id="qrPicture" src="../asset/qrScan.png" class="mx-auto text-center border border-dark" alt="" style="width:250px;height: 250px;">
-                        <h2 id="scanLb" class="mx-auto text-center">Scan Here</h2>
+                        <h2 id="scanLb" class="mx-auto text-center">Please scan your QR code</h2>
                     </center>
                     <div class="row">
                         <div class="col-sm-4 col-xs-4 col-md-4 col-lg-4 my-4 py-4">
