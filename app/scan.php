@@ -700,7 +700,7 @@ $(function() {
             $("#codeInput").val('');
             $('#codeInput').blur();
 
-            const myTimeout = setTimeout(revokeView, 10000);
+            const myTimeout = setTimeout(revokeView, 15000);
 
         }
 
