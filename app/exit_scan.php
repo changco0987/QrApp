@@ -418,6 +418,7 @@ h6{
             }
             catch(err)
             {
+                
                 //this will reload the page if an error has occur
                 location.reload();
             }
@@ -437,36 +438,11 @@ h6{
                     //To check if the user is "in or out"
                     if(arrVal.state == 'in')
                     {
-                        $('#qrPicture').hide();//This will hide the qr picture
-                        if(arrVal.imageName)
-                        {
-                            $('#userPicture').show();
-                            document.getElementById("userPicture").src = '../upload/'+arrVal.imageName;
-                        }
-                        else
-                        {
-                            $('#userPicture').hide();
-                            $('#noPicture').show();
-                        }
-                        console.log(arrVal.imageName);
-                        document.getElementById("scanLb").style.display = "none";
-
-                        $('#nameLb').html('Name: '+arrVal.name);
-                        $('#typeLb').html('('+arrVal.accType+')');
-                        $('#contactLb').html('Contact #: '+arrVal.contact);
-                        $('#addressLb').html('Address: '+arrVal.address);
-                        
-                        var audio = new Audio('Dtmf-6.wav');
-                        audio.play();
-
-                        $('#tempTxt').show();//This is the temperature value/data container to display
-                        $('#timeLb').html('Time: '+arrVal.time);
-                        //This will only show in the entry
-                        $('#tempInput').show();//this will show the temp input to input the user temp
-                        $('#tempInput').focus();
                     }
                     else
                     {
+                        var audio = new Audio('Dtmf-6.wav');
+                        audio.play();
                         console.log(arrVal.state);
                         const myTimeout = setTimeout(revokeView, 1000);
                     }
@@ -479,36 +455,13 @@ h6{
                     //To check if the user is "in or out"
                     if(arrVal.state == 'in')
                     {
-                        $('#qrPicture').hide();//This will hide the qr picture
-                        if(arrVal.imageName)
-                        {
-                            $('#userPicture').show();
-                            document.getElementById("userPicture").src = '../upload/'+arrVal.imageName;
-                        }
-                        else
-                        {
-                            $('#userPicture').hide();
-                            $('#noPicture').show();
-                        }
-                        document.getElementById("scanLb").style.display = "none";
 
-                        $('#nameLb').html('Name: '+arrVal.name);
-                        $('#typeLb').html('('+arrVal.accType+')');
-                        $('#contactLb').html('Contact #: '+arrVal.contact);
-                        $('#addressLb').html('Address: '+arrVal.address);
-                        
-                        var audio = new Audio('Dtmf-6.wav');
-                        audio.play();
-
-                        $('#tempTxt').show();//This is the temperature value/data container to display
-                        $('#timeLb').html('Time: '+arrVal.time);
-
-                        //This will only show in the entry
-                        $('#tempInput').show();//this will show the temp input to input the user temp
-                        $('#tempInput').focus();
                     }
                     else
                     {
+                        
+                        var audio = new Audio('Dtmf-6.wav');
+                        audio.play();
                         console.log(arrVal.state);
                         const myTimeout = setTimeout(revokeView, 1000);
                     }
@@ -521,39 +474,12 @@ h6{
                     //To check if the user is "in or out"
                     if(arrVal.state == 'in')
                     {
-                        $('#qrPicture').hide();//This will hide the qr picture
-                        if(arrVal.imageName)
-                        {
-                            $('#userPicture').show();
-                            document.getElementById("userPicture").src = '../upload/students/'+arrVal.imageName;
-                        }
-                        else
-                        {
-                            $('#userPicture').hide();
-                            $('#noPicture').show();
-                        }
-                        //console.log(arrVal.imageName);
-                        document.getElementById("scanLb").style.display = "none";
-
-                        $('#nameLb').html('Name: '+arrVal.name);
-                        $('#typeLb').html('('+arrVal.accType+')');
-                        $('#courseLb').html("Course y/s: "+arrVal.course);
-                        $('#contactLb').html('Contact #: '+arrVal.contact);
-                        $('#addressLb').html('Address: '+arrVal.address);
-                        $('#guardianLb').html("Parent's Name: "+arrVal.guardianName);
-                        
-                        var audio = new Audio('Dtmf-6.wav');
-                        audio.play();
-
-                        $('#tempTxt').show();//This is the temperature value/data container to display
-                        $('#timeLb').html('Time: '+arrVal.time);
-                        //This will only show in the entry
-                        $('#tempInput').show();//this will show the temp input to input the user temp
-                        $('#tempInput').focus();
                         
                     }
                     else
                     {
+                        var audio = new Audio('Dtmf-6.wav');
+                        audio.play();
                         console.log(arrVal.state);
                         const myTimeout = setTimeout(revokeView, 1000);
                     }
@@ -565,37 +491,12 @@ h6{
                     //To check if the user is "in or out"
                     if(arrVal.state == 'in')
                     {
-                         $('#qrPicture').hide();//This will hide the qr picture
-                        if(arrVal.imageName)
-                        {
-                            $('#userPicture').show();
-                            document.getElementById("userPicture").src = '../upload/faculty/'+arrVal.imageName;
-                        }
-                        else
-                        {
-                            $('#userPicture').hide();
-                            $('#noPicture').show();
-                        }
-                        //console.log(arrVal.imageName);
-                        document.getElementById("scanLb").style.display = "none";
-
-                        $('#nameLb').html('Name: '+arrVal.name);
-                        $('#typeLb').html('('+arrVal.accType+')');
-                        $('#deptLb').html("Dept: "+arrVal.dept);
-                        $('#contactLb').html('Contact #: '+arrVal.contact);
-                        
-                        var audio = new Audio('Dtmf-6.wav');
-                        audio.play();
-
-                        $('#tempTxt').show();//This is the temperature value/data container to display
-                        $('#timeLb').html('Time: '+arrVal.time);
-                        //This will only show in the entry
-                        $('#tempInput').show();//this will show the temp input to input the user temp
-                        $('#tempInput').focus();
                         
                     }
                     else
                     {
+                        var audio = new Audio('Dtmf-6.wav');
+                        audio.play();
                         console.log(arrVal.state);
                         const myTimeout = setTimeout(revokeView, 1000);
                     }
