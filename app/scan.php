@@ -172,8 +172,8 @@ h6{
      </nav>
         
     <!-- Alert message container-->
-    <div id="successBox" class="alert alert-success alert-dismissible fade show" role="alert" style="display:block;">
-        <strong id="successMsg"></strong>
+    <div id="alertBox" class="alert alert-danger alert-dismissible fade show" role="alert" style="display:none; position:absolute; z-index: 1;">
+        <strong id="errorMsg"></strong>
         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
             <span aria-hidden="true">&times;</span>
         </button>
@@ -404,8 +404,12 @@ h6{
                     else if(data=='invalid_status')
                     {
                         //This will only trigger if the QR status is set to go outside/exit
+                        //alert("This user is currently inside of campus");
+                        document.getElementById('alertBox').style.display = 'block';
+                        document.getElementById('errorMsg').style.display = 'block';
+                        document.getElementById('errorMsg').innerHTML = 'This user is currently inside';
                         console.log('QR status: Exit');
-                        const myTimeout = setTimeout(revokeView, 2000);
+                        const myTimeout = setTimeout(hideAlert, 3000);
                     }
                     else
                     {
@@ -604,6 +608,14 @@ h6{
                     //console.log(arrVal.accType);
                 }
             
+        }
+
+        function hideAlert()
+        {
+            document.getElementById('alertBox').style.display = 'none';
+            document.getElementById('errorMsg').style.display = 'none';
+
+            revokeView();
         }
 
         //This method will turn the display back to normal state
@@ -807,7 +819,8 @@ $(function() {
 
         } 
 
-        document.getElementById('successBox').style.display = 'none';
+        /*
+        //document.getElementById('successBox').style.display = 'none';
         var successSignal = localStorage.getItem('state');
 
         if(successSignal==1)
@@ -839,6 +852,7 @@ $(function() {
             document.getElementById('successMsg').innerHTML = "Information Successfully saved!";
             //console.log("okay");
         }
+        */
 
         //To make signl back to normmal and to prevent for the success page to appear every time the page was reload or refresh
         localStorage.setItem('state',0);
